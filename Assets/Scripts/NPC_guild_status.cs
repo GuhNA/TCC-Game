@@ -18,8 +18,11 @@ public class NPC_guild_status : ScriptableObject
     public bool distancia;
     //Dano tem de ser um calculo, baseado em classe
     //public short dano_min, dano_max, vida; 
-    [Space(10)][Header("escaladores")]
+    [Space(10)][Header("Escaladores")]
     public float escalaDexMax;
     public float escalaIntMax, escalaForMax, escalaDexMin, escalaIntMin, escalaForMin;
+
+    [Space(10)][Header("Outros")]
+    public short preco;
 
 }

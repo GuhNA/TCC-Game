@@ -21,7 +21,7 @@ MonoBehaviour:
   forca: 0
   mana: 0
   ganho_mana: 0
-  classe: 0
+  classe: 1
   "tra\xE7os": []
   distancia: 0
   escalaDexMax: 0
@@ -30,3 +30,4 @@ MonoBehaviour:
   escalaDexMin: 0
   escalaIntMin: 0
   escalaForMin: 0
+  preco: 0
