@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290f57902b84105409f99b1cbad8a4f6, type: 3}
+  m_Name: Mago
+  m_EditorClassIdentifier: Assembly-CSharp::Char_base
+  sprite: {fileID: 0}
+  vida: 90
+  "resist\xEAncia_magica": 15
+  armadura: 0
+  destreza: 2
+  inteligencia: 9
+  forca: 1
+  mana: 100
+  ganho_mana: 10
+  classe: 3
+  "tra\xE7os": []
+  distancia: 1
+  preco: 150
+  mao: {fileID: 0}
+  torso: {fileID: 0}
+  acessorio: {fileID: 0}
+  dano_min: 0
+  dano_max: 0
+  vivo: 0
+  escalaDexMax: 0.2
+  escalaIntMax: 1.8
+  escalaForMax: 0.1
+  escalaDexMin: 0
+  escalaIntMin: 0.5
+  escalaForMin: 0

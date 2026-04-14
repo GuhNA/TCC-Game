@@ -1,14 +1,17 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class Inventario
+[System.Serializable]
+[CreateAssetMenu(fileName = "NovoInventario", menuName = "Sistema/Inventario")]
+public class Inventario : ScriptableObject
 {
     
     //taverna membro
-    public List<Aventureiro> aventureiros;
+    public List<Char_base> aventureiros;
 
     //monetizacao
-    public short moedas;
+    public ushort moedas;
 
     //exercito
     public byte soldados, arqueiros, magos;

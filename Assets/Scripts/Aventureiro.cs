@@ -3,24 +3,22 @@ using UnityEngine;
 public class Aventureiro : MonoBehaviour
 {
     
-    public Char_base char_Base;
-    public NPC_guild_status status;
+    public Char_base charBase;
     Sprite spriteChar;
 
 
     void Start()
     {
-        spriteChar = status.sprite;
-        char_Base.vida = status.vida;
-        char_Base.vivo = true;
+        spriteChar = charBase.sprite;
+        charBase.vivo = true;
         //inteligencia .1, destreza 1.5, força .5
-        char_Base.dano_max = (short)(4 + status.destreza*status.escalaDexMax
-                                    + status.inteligencia*status.escalaIntMax 
-                                    + status.forca*status.escalaForMax);
-        char_Base.dano_min = (short)(status.destreza*status.escalaDexMin
-                                    + status.inteligencia*status.escalaIntMin 
-                                    + status.forca*status.escalaForMin);
-        char_Base.calculaVida();
+        charBase.dano_max = (ushort)(4 + charBase.destreza*charBase.escalaDexMax
+                                    + charBase.inteligencia*charBase.escalaIntMax 
+                                    + charBase.forca*charBase.escalaForMax);
+        charBase.dano_min = (ushort)(charBase.destreza*charBase.escalaDexMin
+                                    + charBase.inteligencia*charBase.escalaIntMin 
+                                    + charBase.forca*charBase.escalaForMin);
+        charBase.calculaVida();
     }
 
 }

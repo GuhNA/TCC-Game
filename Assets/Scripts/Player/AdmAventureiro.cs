@@ -10,20 +10,24 @@ public class AdmAventureiro : MonoBehaviour
     public AventureiroPopup popup;
     public Aventureiro aventureiro;
 
-    private void Awake() {
+
+    private void Awake()
+    {
         movimento = GetComponent<moviment>();
     }
+
     private void Update() 
     {
         if(aventureiro_proximo)
         {
-            if(Input.GetKeyDown(KeyCode.E)) {
+            if(Input.GetKeyDown(KeyCode.E)) 
+            {
                 ativaPopup = !ativaPopup;
             }
         }
         if(ativaPopup) 
         {
-            attDados(aventureiro);
+            attDados(aventureiro.GetComponentInParent<Aventureiro>());
             movimento.velocity = 0;
         }
         else
@@ -46,34 +50,38 @@ public class AdmAventureiro : MonoBehaviour
 
    private void OnTriggerExit2D(Collider2D other) 
    {
-        
     //removendo dados pegos do aventureiro
-    popup.vida.text = "";
-    popup.dex.text = "";
-    popup.inte.text = "";
-    popup.forca.text = "";
-    popup.foto.sprite = null;
-    aventureiro_proximo = false;
-
+        popup.vida.text = "";
+        popup.dex.text = "";
+        popup.inte.text = "";
+        popup.forca.text = "";
+        popup.foto.sprite = null;
+        aventureiro_proximo = false;
     }
     void attDados(Aventureiro aventureiro)
     {
-        popup.vida.text = aventureiro.status.vida.ToString();
-        popup.dex.text = aventureiro.status.destreza.ToString();
-        popup.inte.text = aventureiro.status.inteligencia.ToString();
-        popup.forca.text = aventureiro.status.forca.ToString();
-        popup.comprar.text = aventureiro.status.preco.ToString();
-        popup.foto.sprite = aventureiro.status.sprite;
+        popup.vida.text = aventureiro.charBase.vida.ToString();
+        popup.dex.text = aventureiro.charBase.destreza.ToString();
+        popup.inte.text = aventureiro.charBase.inteligencia.ToString();
+        popup.forca.text = aventureiro.charBase.forca.ToString();
+        popup.comprar.text = aventureiro.charBase.preco.ToString();
+        popup.foto.sprite = aventureiro.charBase.sprite;
         popup_aventureiro.SetActive(true);
     }
 
     public void comprarPersonagem()
     {
-        if(inventario.moedas >= aventureiro.status.preco) 
+        if(inventario.moedas >= aventureiro.charBase.preco) 
         {
-            inventario.moedas -= aventureiro.status.preco;
-            inventario.aventureiros.Add(aventureiro);
+            inventario.moedas -= aventureiro.charBase.preco;
+            inventario.aventureiros.Add(aventureiro.charBase);
+            //Popup Alerta "Contratado"
+            //Nao permitir contratar novamente este personagem
         }
-        
+        else
+        {
+            //Popup alerta "sem dinheiro suficiente"
+        }
     }
+
 }

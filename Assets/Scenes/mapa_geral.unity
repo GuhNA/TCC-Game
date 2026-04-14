@@ -400,7 +400,7 @@ MonoBehaviour:
   dex: {fileID: 1217712036}
   inte: {fileID: 970538805}
   forca: {fileID: 901511267}
-  comprar: {fileID: 0}
+  comprar: {fileID: 1722139354}
   foto: {fileID: 1770079810}
 --- !u!1 &312181250
 GameObject:
@@ -547,15 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f90c514023dc5b40b0977a5d97c4d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
-  char_Base:
-    vida: 0
-    mao: {fileID: 0}
-    torso: {fileID: 0}
-    acessorio: {fileID: 0}
-    dano_min: 0
-    dano_max: 0
-    vivo: 0
-  status: {fileID: 11400000, guid: 096c0c4c6d6febb4cb694e892584f112, type: 2}
+  charBase: {fileID: 11400000, guid: b86197fd39e4b0e4b89b733a15ca9ac7, type: 2}
 --- !u!1 &670812723
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,8 +772,9 @@ GameObject:
   m_Component:
   - component: {fileID: 798842073}
   - component: {fileID: 798842072}
-  - component: {fileID: 798842071}
   - component: {fileID: 798842070}
+  - component: {fileID: 798842076}
+  - component: {fileID: 798842071}
   - component: {fileID: 798842074}
   - component: {fileID: 798842075}
   m_Layer: 0
@@ -953,6 +946,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d42333ea30cd3b468bd0fd5ef5951f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdmAventureiro
+  inventario: {fileID: 11400000, guid: 8be4e02ecb8d63e49846336bf40a6fef, type: 2}
+  popup_aventureiro: {fileID: 308363320}
+  popup: {fileID: 308363322}
+  aventureiro: {fileID: 0}
+--- !u!114 &798842076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798842069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d42333ea30cd3b468bd0fd5ef5951f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AdmAventureiro
+  inventario: {fileID: 11400000, guid: 8be4e02ecb8d63e49846336bf40a6fef, type: 2}
   popup_aventureiro: {fileID: 308363320}
   popup: {fileID: 308363322}
   aventureiro: {fileID: 0}
@@ -1930,7 +1940,7 @@ GameObject:
   - component: {fileID: 1722139355}
   - component: {fileID: 1722139354}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: valor compra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1952,7 +1962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0001449585, y: -0.000016212463}
+  m_AnchoredPosition: {x: 0.00015258789, y: -0.000015258789}
   m_SizeDelta: {x: 632.29, y: 115.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722139354
