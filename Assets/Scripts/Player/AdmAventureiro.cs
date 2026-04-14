@@ -9,7 +9,7 @@ public class AdmAventureiro : MonoBehaviour
     public GameObject popup_aventureiro;
     public AventureiroPopup popup;
     public Aventureiro aventureiro;
-
+    public PopupAlerta alerta;
 
     private void Awake()
     {
@@ -49,15 +49,15 @@ public class AdmAventureiro : MonoBehaviour
     }
 
    private void OnTriggerExit2D(Collider2D other) 
-   {
-    //removendo dados pegos do aventureiro
+    {
+        //removendo dados pegos do aventureiro
         popup.vida.text = "";
         popup.dex.text = "";
         popup.inte.text = "";
         popup.forca.text = "";
         popup.foto.sprite = null;
         aventureiro_proximo = false;
-    }
+    }   
     void attDados(Aventureiro aventureiro)
     {
         popup.vida.text = aventureiro.charBase.vida.ToString();
@@ -69,18 +69,22 @@ public class AdmAventureiro : MonoBehaviour
         popup_aventureiro.SetActive(true);
     }
 
-    public void comprarPersonagem()
+    public async void ComprarPersonagem()
     {
-        if(inventario.moedas >= aventureiro.charBase.preco) 
+        if(inventario.moedas >= aventureiro.charBase.preco && !aventureiro.comprado) 
         {
             inventario.moedas -= aventureiro.charBase.preco;
             inventario.aventureiros.Add(aventureiro.charBase);
-            //Popup Alerta "Contratado"
+            ativaPopup = false;
+            await alerta.AttTexto("Mercenário contratado");
             //Nao permitir contratar novamente este personagem
+            aventureiro.comprado = true;
         }
         else
         {
-            //Popup alerta "sem dinheiro suficiente"
+            ativaPopup = false;
+            if(aventureiro.comprado) await alerta.AttTexto("Personagem já contratado!!!");
+            else await alerta.AttTexto("Dinheiro insuficiente");
         }
     }
 

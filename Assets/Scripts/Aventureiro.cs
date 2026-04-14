@@ -5,6 +5,7 @@ public class Aventureiro : MonoBehaviour
     
     public Char_base charBase;
     Sprite spriteChar;
+    public bool comprado;
 
 
     void Start()
