@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,10 +10,10 @@ public class Inventario : ScriptableObject
     public List<Char_base> aventureiros;
 
     //monetizacao
-    public ushort moedas;
+    public uint moedas;
 
     //exercito
-    public byte soldados, arqueiros, magos;
+    public uint guerreiro, arqueiro, mago;
 
     //itens gerais
     public List<Item> items;

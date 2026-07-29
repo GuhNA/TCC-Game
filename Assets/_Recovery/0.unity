@@ -394,15 +394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f90c514023dc5b40b0977a5d97c4d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
-  char_Base:
-    vida: 0
-    mao: {fileID: 0}
-    torso: {fileID: 0}
-    acessorio: {fileID: 0}
-    dano_min: 0
-    dano_max: 0
-    vivo: 0
-  status: {fileID: 11400000, guid: 096c0c4c6d6febb4cb694e892584f112, type: 2}
+  charBase: {fileID: 0}
+  comprado: 0
 --- !u!1 &670812723
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935169149b21f024684d9f47db9d529a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::moviment
-  popup_aventureiro: {fileID: 308363320}
   velocity: 10
 --- !u!50 &798842071
 Rigidbody2D:
@@ -1291,6 +1283,7 @@ MonoBehaviour:
   dex: {fileID: 1217712036}
   inte: {fileID: 970538805}
   forca: {fileID: 901511267}
+  comprar: {fileID: 0}
   foto: {fileID: 1770079810}
 --- !u!4 &1142398995
 Transform:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arqueiro
   m_EditorClassIdentifier: Assembly-CSharp::Char_base
   sprite: {fileID: 1889912218, guid: c422416117fea4b4ea664b5ddc9e7b6f, type: 3}
-  vida: 0
+  vida: 110
   "resist\xEAncia_magica": 0
   armadura: 5
   destreza: 8

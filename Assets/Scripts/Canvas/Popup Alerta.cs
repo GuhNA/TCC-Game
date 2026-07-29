@@ -11,6 +11,9 @@ public class PopupAlerta : MonoBehaviour
     {
         popup.SetActive(false);
     }
+
+    //Atualizar essa função pra funcionar em qualquer cena
+    //Sera necessario atualizar o admAventureiro e o NPCVenda!!!!
     public async Task AttTexto(string texto)
     {
         popup.SetActive(true);
