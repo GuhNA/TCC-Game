@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Inventario
   aventureiros: []
   moedas: 450
-  soldados: 0
-  arqueiros: 0
-  magos: 0
+  guerreiro: 0
+  arqueiro: 0
+  mago: 0
   items: []

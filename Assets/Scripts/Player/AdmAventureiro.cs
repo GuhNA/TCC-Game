@@ -69,22 +69,22 @@ public class AdmAventureiro : MonoBehaviour
         popup_aventureiro.SetActive(true);
     }
 
-    public async void ComprarPersonagem()
+    public void ComprarPersonagem()
     {
         if(inventario.moedas >= aventureiro.charBase.preco && !aventureiro.comprado) 
         {
             inventario.moedas -= aventureiro.charBase.preco;
             inventario.aventureiros.Add(aventureiro.charBase);
             ativaPopup = false;
-            await alerta.AttTexto("Mercenário contratado");
+            StartCoroutine(alerta.attTexto("Mercenário contratado"));
             //Nao permitir contratar novamente este personagem
             aventureiro.comprado = true;
         }
         else
         {
             ativaPopup = false;
-            if(aventureiro.comprado) await alerta.AttTexto("Personagem já contratado!!!");
-            else await alerta.AttTexto("Dinheiro insuficiente");
+            if(aventureiro.comprado) StartCoroutine(alerta.attTexto("Personagem já contratado!!!"));
+            else  StartCoroutine(alerta.attTexto("Dinheiro insuficiente"));
         }
     }
 

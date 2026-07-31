@@ -18,7 +18,7 @@ public class DefenseStatus : MonoBehaviour
 
     void Update()
     {
-        if(DateTime.Now.CompareTo(defenseTime) == 1) Debug.Log("battle time!");
+        //if(DateTime.Now.CompareTo(defenseTime) == 1) Debug.Log("battle time!");
         //Acontece batalha, atualiza a data nova.
     }
 }

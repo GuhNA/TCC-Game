@@ -1,15 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NPCVenda : MonoBehaviour
 {
-    PopupAlerta alerta;
+    //Supor valor de mago, soldado e arqueiro
+    //Valor de compra
+    //Arqueiro = 5 
+    //Mago = 8
+    //Guerreiro = 4
+    public GameManager game;
+    TimeSpan tempo_atualiza;
     bool aberto, dentro;
+    public PopupAlerta alerta;
     public GameObject popup;
     public Text arqueiro_texto, guerreiro_texto, mago_texto;
     public Inventario inventario;
     public Construcoes cidade;
     uint arqueiro, guerreiro, mago = 10;
+    byte arqueiro_value = 5, guerreiro_value = 3, mago_value = 8;
+
     int escolha = 0;
 
     void Start()
@@ -21,16 +31,19 @@ public class NPCVenda : MonoBehaviour
 
     void Update()
     {
+        tempo_atualiza = cidade.data_renova.AddHours(6).Subtract(DateTime.Now);
+        //Range para pegar a string [..8] = pega os primeiros 8 caracteres. [8..] = pega apos 8 caracteres.
+        //print(tempo_atualiza.ToString()[..8]);
+        
         if(dentro)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Entrei if");
+                
                 if(!aberto) abrir_popup();
                 else {popup.SetActive(false); aberto = false;}
             }
         }
-        print(aberto);
     }
     void OnTriggerEnter2D()
     {  
@@ -44,45 +57,56 @@ public class NPCVenda : MonoBehaviour
     void abrir_popup()
     {
         aberto = true;
-        atualizaDados();
+        
+        //Verifica se passou de 6h de CD
+        //Necessario login para voltar a atualizar  NON E INTERESSANTE
+        if(DateTime.Compare(cidade.data_renova.AddHours(6),DateTime.Now) == 1)
+        {
+            cidade.data_renova = DateTime.Now;
+            atualizaDados();
+            atualizaTexto();
+        }
         popup.SetActive(true);
     }
 
-    public async void vendaCalculo(int intValue)
+    public void vendaCalculo(int intValue)
     { 
         uint value = (uint)intValue;
         switch (escolha)
         {
             case 1:
-                if(value < arqueiro)
+                if(value <= arqueiro)
                 {
                     arqueiro -=value;
                     inventario.arqueiro += value;
-                    await alerta.AttTexto("Compra realizada, arqueiros disponíveis: "+arqueiro);
-                    atualizaDados();
+                    inventario.moedas -= arqueiro_value;
+                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+arqueiro));
+                    atualizaTexto();
                 }
-                else await alerta.AttTexto("Quantidade indisponível de arqueiro");
+                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de arqueiro"));
                 break;
             case 2:
-                if(value < guerreiro)
+                if(value <= guerreiro)
                 {
                     guerreiro -=value;
                     inventario.guerreiro += value;
-                    await alerta.AttTexto("Compra realizada, guerreiros disponíveis: "+guerreiro);
-                    atualizaDados();
+                    inventario.moedas -= guerreiro_value;
+                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+guerreiro));
+                    atualizaTexto();
                 }
-                else await alerta.AttTexto("Quantidade indisponível de guerreiro");
+                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de guerreiro"));
             break;
 
             case 3:
-                if(value < mago)
+                if(value <= mago)
                 {
                     mago -=value;
                     inventario.mago += value;
-                    await alerta.AttTexto("Compra realizada, magos disponíveis: "+mago);
-                    atualizaDados();
+                    inventario.moedas -= mago_value;
+                    StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+mago));
+                    atualizaTexto();
                 }
-                else await alerta.AttTexto("Quantidade indisponível de mago");
+                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de mago"));
                 break;
         }
 
@@ -91,13 +115,21 @@ public class NPCVenda : MonoBehaviour
     {
         escolha = value;
     }
-    void atualizaDados()
+    void atualizaTexto()
     {
-        arqueiro = (uint)((cidade.quartel_arqueiro*1.3f*arqueiro > 0) ? cidade.quartel_arqueiro*1.3f*arqueiro :  10);
-        guerreiro = (uint)((cidade.quartel_guerreiro*1.3f*guerreiro > 0)? cidade.quartel_guerreiro*1.3f*guerreiro : 10);
-        mago = (uint)((cidade.escola_mago*1.3f*mago > 0)? cidade.escola_mago*1.3f*mago : 10);
         arqueiro_texto.text = "Arqueiros: "+arqueiro;
         guerreiro_texto.text = "Guerreiros: "+guerreiro;
         mago_texto.text = "Magos: "+mago;
+        game.atualizaOuro();
+
     }
+
+    void atualizaDados()
+    {
+        //reset a cada 6h
+        arqueiro = (uint)((cidade.quartel_arqueiro*1.3f*arqueiro > 0) ? cidade.quartel_arqueiro*1.3f*arqueiro :  10);
+        guerreiro = (uint)((cidade.quartel_guerreiro*1.3f*guerreiro > 0)? cidade.quartel_guerreiro*1.3f*guerreiro : 10);
+        mago = (uint)((cidade.escola_mago*1.3f*mago > 0)? cidade.escola_mago*1.3f*mago : 10);
+    }
+
 }

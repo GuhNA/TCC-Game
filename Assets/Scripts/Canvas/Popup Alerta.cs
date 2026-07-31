@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,11 +15,11 @@ public class PopupAlerta : MonoBehaviour
 
     //Atualizar essa função pra funcionar em qualquer cena
     //Sera necessario atualizar o admAventureiro e o NPCVenda!!!!
-    public async Task AttTexto(string texto)
-    {
+    public IEnumerator attTexto(string texto){
+        Debug.Log("Entrei!");
         popup.SetActive(true);
         this.texto.text = texto;
-        await Task.Delay(1000);
+        yield return new WaitForSeconds(1);
         popup.SetActive(false);
-    }
+    } 
 }

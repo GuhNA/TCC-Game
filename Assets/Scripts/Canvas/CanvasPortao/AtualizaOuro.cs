@@ -10,4 +10,9 @@ public class AtualizaOuro : MonoBehaviour
         ouro.text = "Ouro: "+inventario.moedas;
     }
 
+    public void atualizaOuro()
+    {
+        ouro.text = "Ouro: "+inventario.moedas;
+    }
+
 }
