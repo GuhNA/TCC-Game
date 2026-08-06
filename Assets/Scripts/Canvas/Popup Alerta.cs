@@ -13,10 +13,7 @@ public class PopupAlerta : MonoBehaviour
         popup.SetActive(false);
     }
 
-    //Atualizar essa função pra funcionar em qualquer cena
-    //Sera necessario atualizar o admAventureiro e o NPCVenda!!!!
     public IEnumerator attTexto(string texto){
-        Debug.Log("Entrei!");
         popup.SetActive(true);
         this.texto.text = texto;
         yield return new WaitForSeconds(1);

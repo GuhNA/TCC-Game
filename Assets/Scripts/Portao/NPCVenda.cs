@@ -14,12 +14,12 @@ public class NPCVenda : MonoBehaviour
     bool aberto, dentro;
     public PopupAlerta alerta;
     public GameObject popup;
-    public Text arqueiro_texto, guerreiro_texto, mago_texto;
+    public Text arqueiro_texto, guerreiro_texto, mago_texto, tempo_texto;
     public Inventario inventario;
     public Construcoes cidade;
-    uint arqueiro, guerreiro, mago = 10;
     byte arqueiro_value = 5, guerreiro_value = 3, mago_value = 8;
-
+    
+    DateTime data_renova;
     int escolha = 0;
 
     void Start()
@@ -27,20 +27,24 @@ public class NPCVenda : MonoBehaviour
         aberto = false;
         dentro = false;
         popup.SetActive(false);
+        data_renova = DateTime.Parse(cidade.data_renova);
+        print(data_renova);
     }
 
     void Update()
     {
-        tempo_atualiza = cidade.data_renova.AddHours(6).Subtract(DateTime.Now);
-        //Range para pegar a string [..8] = pega os primeiros 8 caracteres. [8..] = pega apos 8 caracteres.
-        //print(tempo_atualiza.ToString()[..8]);
-        
+        if (aberto)
+        {
+            tempo_atualiza = data_renova.AddHours(6).Subtract(DateTime.Now);
+            tempo_texto.text = "Tempo: "+ tempo_atualiza.ToString()[..8];
+        }        
+
         if(dentro)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                
-                if(!aberto) abrir_popup();
+
+                if (!aberto) abrir_popup();
                 else {popup.SetActive(false); aberto = false;}
             }
         }
@@ -60,9 +64,9 @@ public class NPCVenda : MonoBehaviour
         
         //Verifica se passou de 6h de CD
         //Necessario login para voltar a atualizar  NON E INTERESSANTE
-        if(DateTime.Compare(cidade.data_renova.AddHours(6),DateTime.Now) == 1)
+        if(DateTime.Compare(DateTime.Now,data_renova.AddHours(6)) == 1)
         {
-            cidade.data_renova = DateTime.Now;
+            cidade.data_renova = DateTime.Now.ToString();
             atualizaDados();
             atualizaTexto();
         }
@@ -72,38 +76,39 @@ public class NPCVenda : MonoBehaviour
     public void vendaCalculo(int intValue)
     { 
         uint value = (uint)intValue;
+        //Botão arqueiro = 1, guerreiro = 2, mago = 3;
         switch (escolha)
         {
             case 1:
-                if(value <= arqueiro)
+                if(value <= cidade.arqueirosDis)
                 {
-                    arqueiro -=value;
+                    cidade.arqueirosDis -=value;
                     inventario.arqueiro += value;
                     inventario.moedas -= arqueiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+arqueiro));
+                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+cidade.arqueirosDis));
                     atualizaTexto();
                 }
                 else  StartCoroutine(alerta.attTexto("Quantidade indisponível de arqueiro"));
                 break;
             case 2:
-                if(value <= guerreiro)
+                if(value <= cidade.guerreirosDis)
                 {
-                    guerreiro -=value;
+                    cidade.guerreirosDis -=value;
                     inventario.guerreiro += value;
                     inventario.moedas -= guerreiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+guerreiro));
+                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+cidade.guerreirosDis));
                     atualizaTexto();
                 }
                 else  StartCoroutine(alerta.attTexto("Quantidade indisponível de guerreiro"));
             break;
 
             case 3:
-                if(value <= mago)
+                if(value <= cidade.magosDis)
                 {
-                    mago -=value;
+                    cidade.magosDis -=value;
                     inventario.mago += value;
                     inventario.moedas -= mago_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+mago));
+                    StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+cidade.magosDis));
                     atualizaTexto();
                 }
                 else  StartCoroutine(alerta.attTexto("Quantidade indisponível de mago"));
@@ -117,9 +122,9 @@ public class NPCVenda : MonoBehaviour
     }
     void atualizaTexto()
     {
-        arqueiro_texto.text = "Arqueiros: "+arqueiro;
-        guerreiro_texto.text = "Guerreiros: "+guerreiro;
-        mago_texto.text = "Magos: "+mago;
+        arqueiro_texto.text = "Arqueiros: "+cidade.arqueirosDis;
+        guerreiro_texto.text = "Guerreiros: "+cidade.guerreirosDis;
+        mago_texto.text = "Magos: "+cidade.magosDis;
         game.atualizaOuro();
 
     }
@@ -127,9 +132,9 @@ public class NPCVenda : MonoBehaviour
     void atualizaDados()
     {
         //reset a cada 6h
-        arqueiro = (uint)((cidade.quartel_arqueiro*1.3f*arqueiro > 0) ? cidade.quartel_arqueiro*1.3f*arqueiro :  10);
-        guerreiro = (uint)((cidade.quartel_guerreiro*1.3f*guerreiro > 0)? cidade.quartel_guerreiro*1.3f*guerreiro : 10);
-        mago = (uint)((cidade.escola_mago*1.3f*mago > 0)? cidade.escola_mago*1.3f*mago : 10);
+        cidade.arqueirosDis = (uint)((cidade.quartel_arqueiro*1.3f*cidade.arqueirosDis > 0) ? cidade.quartel_arqueiro*1.3f*cidade.arqueirosDis :  10);
+        cidade.guerreirosDis = (uint)((cidade.quartel_guerreiro*1.3f*cidade.guerreirosDis > 0)? cidade.quartel_guerreiro*1.3f*cidade.guerreirosDis : 10);
+        cidade.magosDis = (uint)((cidade.escola_mago*1.3f*cidade.magosDis > 0)? cidade.escola_mago*1.3f*cidade.magosDis : 10);
     }
 
 }
