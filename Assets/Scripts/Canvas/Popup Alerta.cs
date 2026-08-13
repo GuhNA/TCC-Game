@@ -14,8 +14,8 @@ public class PopupAlerta : MonoBehaviour
     }
 
     public IEnumerator attTexto(string texto){
-        popup.SetActive(true);
         this.texto.text = texto;
+        popup.SetActive(true);
         yield return new WaitForSeconds(1);
         popup.SetActive(false);
     } 

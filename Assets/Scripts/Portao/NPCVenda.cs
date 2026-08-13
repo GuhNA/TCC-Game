@@ -1,6 +1,7 @@
 using System;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class NPCVenda : MonoBehaviour
 {
@@ -60,13 +61,14 @@ public class NPCVenda : MonoBehaviour
     }
     void abrir_popup()
     {
+        atualizaTexto();
         aberto = true;
-        
         //Verifica se passou de 6h de CD
         //Necessario login para voltar a atualizar  NON E INTERESSANTE
         if(DateTime.Compare(DateTime.Now,data_renova.AddHours(6)) == 1)
         {
             cidade.data_renova = DateTime.Now.ToString();
+            data_renova = DateTime.Now;
             atualizaDados();
             atualizaTexto();
         }
@@ -137,4 +139,50 @@ public class NPCVenda : MonoBehaviour
         cidade.magosDis = (uint)((cidade.escola_mago*1.3f*cidade.magosDis > 0)? cidade.escola_mago*1.3f*cidade.magosDis : 10);
     }
 
+    public void porInput(InputField input)
+    {
+        if(input.name == "arqueiroInput")
+        {
+            if(Regex.IsMatch(input.text , @"\d+"))
+            {
+                if(uint.Parse(input.text) <= cidade.arqueirosDis)
+                {
+                    cidade.arqueirosDis -=uint.Parse(input.text);
+                    inventario.arqueiro += uint.Parse(input.text);
+                    inventario.moedas -= arqueiro_value;
+                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+cidade.arqueirosDis));
+                    atualizaTexto();
+                }
+                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de arqueiro"));
+            }
+        }
+        else if(input.name == "guerreiroInput")
+        {
+            if(Regex.IsMatch(input.text , @"\d+"))
+            {
+                if(uint.Parse(input.text) <= cidade.guerreirosDis)
+                {
+                    cidade.guerreirosDis -=uint.Parse(input.text);
+                    inventario.guerreiro += uint.Parse(input.text);
+                    inventario.moedas -= guerreiro_value;
+                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+cidade.guerreirosDis));
+                    atualizaTexto();
+                }
+                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de guerreiro"));
+            }
+        }
+        else if(input.name == "magoInput")
+        {
+            if(uint.Parse(input.text) <= cidade.magosDis)
+            {
+                cidade.magosDis -=uint.Parse(input.text);;
+                inventario.mago += uint.Parse(input.text);;
+                inventario.moedas -= mago_value;
+                StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+cidade.magosDis));
+                atualizaTexto();
+            }
+            else  StartCoroutine(alerta.attTexto("Quantidade indisponível de mago"));
+        }
+        input.text = "";
+    }
 }

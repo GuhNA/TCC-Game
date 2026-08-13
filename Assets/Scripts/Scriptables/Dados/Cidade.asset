@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c99b2047c350c4ebbf52f787e8dc53, type: 3}
   m_Name: Cidade
   m_EditorClassIdentifier: Assembly-CSharp::Construcoes
-  data_renova: 05/08/2026 21:47:42
+  data_renova: 13/08/2026 20:06:39
   quartel_guerreiro: 0
   quartel_arqueiro: 0
   escola_mago: 0
