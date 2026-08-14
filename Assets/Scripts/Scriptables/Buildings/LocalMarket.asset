@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8186d37150faccb458de0070e6a96349, type: 3}
+  m_Name: LocalMarket
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingDefinition
+  type: 3
+  displayName: Mercado Local
+  description: "Melhor essa constru\xE7\xE3o permite coletar mais impostos"
+  maximumLevel: 10
+  baseUpgradeCost: 100
+  upgradeCostMultiplier: 1.5
+  baseProduction: 10
+  productionPerLevel: 5
+  unbuiltSprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  levelSprites:
+  - {fileID: 4957968758042986621, guid: 045275ef7fa44f4db46068f97dea4a2d, type: 3}
