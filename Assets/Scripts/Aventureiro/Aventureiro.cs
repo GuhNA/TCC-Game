@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class Aventureiro : MonoBehaviour
 {
-    
     public Char_base charBase;
-    Sprite spriteChar;
-    public bool comprado;
-
 
     void Start()
     {
-        spriteChar = charBase.sprite;
+        if (charBase == null)
+        {
+            enabled = false;
+            return;
+        }
+
         charBase.vivo = true;
         //inteligencia .1, destreza 1.5, força .5
         charBase.dano_max = (ushort)(4 + charBase.destreza*charBase.escalaDexMax

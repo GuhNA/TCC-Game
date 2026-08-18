@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
   charBase: {fileID: 11400000, guid: b86197fd39e4b0e4b89b733a15ca9ac7, type: 2}
-  comprado: 0
 --- !u!1 &8955537160197946111
 GameObject:
   m_ObjectHideFlags: 0

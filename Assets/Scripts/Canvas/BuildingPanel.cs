@@ -41,7 +41,7 @@ public class BuildingPanel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Show(
+    internal void Show(
         BuildingBehaviour building,
         bool canAfford
     )

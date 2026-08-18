@@ -4,7 +4,4 @@ public class AventureiroPopup : MonoBehaviour
 {
     public Text vida, dex, inte, forca, comprar;
     public Image foto;
-
-    Char_base aventureiro;
-
 }

@@ -1,6 +1,6 @@
 using System;
+using TCCGame.Core.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider2D))]
 public class BuildingBehaviour : MonoBehaviour
@@ -20,13 +20,13 @@ public class BuildingBehaviour : MonoBehaviour
     public event Action<BuildingBehaviour> Selected;
     public event Action<BuildingBehaviour, int, int> LevelChanged;
 
-    public void Initialize(BuildingState buildingState)
+    internal void Initialize(BuildingState buildingState)
     {
         state = buildingState;
         RefreshView();
     }
 
-    public void IncreaseLevel()
+    internal void IncreaseLevel()
     {
         if (state == null)
         {
@@ -46,7 +46,7 @@ public class BuildingBehaviour : MonoBehaviour
         LevelChanged?.Invoke(this, previousLevel, state.level);
     }
 
-    public void RefreshView()
+    private void RefreshView()
     {
         if (state == null || spriteRenderer == null)
         {
@@ -97,8 +97,7 @@ public class BuildingBehaviour : MonoBehaviour
     private void Update()
     {
         if (playerInContact &&
-            Keyboard.current != null &&
-            Keyboard.current.eKey.wasPressedThisFrame)
+            GameInput.WasInteractPressedThisFrame())
         {
             Selected?.Invoke(this);
         }

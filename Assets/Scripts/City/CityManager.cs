@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using TCCGame.Core;
+using TCCGame.Gameplay.City;
+using TCCGame.Gameplay.Economy;
 using UnityEngine;
 
 public class CityManager : MonoBehaviour
 {
-    [SerializeField]
-    private EconomyManager economyManager;
-
     [SerializeField]
     private BuildingPanel buildingPanel;
 
@@ -16,32 +16,31 @@ public class CityManager : MonoBehaviour
         buildingStates = new();
 
     private BuildingBehaviour selectedBuilding;
+    private EconomyService economy;
 
     private void Awake()
     {
+        economy = GameSessionProvider.Current.Economy;
         CreateInitialStates();
         InitializeBuildings();
 
         buildingPanel.UpgradeRequested += UpgradeSelectedBuilding;
-        economyManager.MoneyChanged += HandleMoneyChanged;
+        economy.MoneyChanged += HandleMoneyChanged;
     }
 
     private void OnDestroy()
     {
         buildingPanel.UpgradeRequested -= UpgradeSelectedBuilding;
-        economyManager.MoneyChanged -= HandleMoneyChanged;
+        economy.MoneyChanged -= HandleMoneyChanged;
 
         foreach (BuildingBehaviour building in buildings)
         {
             building.Selected -= SelectBuilding;
-            building.LevelChanged -= HandleBuildingLevelChanged;
         }
     }
 
     private void CreateInitialStates()
     {
-        CitySaveData saveData = CitySaveRepository.Load();
-
         foreach (BuildingBehaviour building in buildings)
         {
             BuildingType type = building.Definition.type;
@@ -60,7 +59,8 @@ public class CityManager : MonoBehaviour
                 new BuildingState(
                     type,
                     Mathf.Clamp(
-                        saveData.GetBuildingLevel(type),
+                        GameSessionProvider.Current.Buildings
+                            .GetLevel(type),
                         0,
                         building.Definition.maximumLevel
                     )
@@ -77,20 +77,7 @@ public class CityManager : MonoBehaviour
 
             building.Initialize(buildingStates[type]);
             building.Selected += SelectBuilding;
-            building.LevelChanged += HandleBuildingLevelChanged;
         }
-    }
-
-    private void HandleBuildingLevelChanged(
-        BuildingBehaviour building,
-        int previousLevel,
-        int newLevel
-    )
-    {
-        CitySaveRepository.SaveBuildingLevel(
-            building.Definition.type,
-            newLevel
-        );
     }
 
     private void SelectBuilding(BuildingBehaviour building)
@@ -117,12 +104,10 @@ public class CityManager : MonoBehaviour
             return;
         }
 
-        int cost = BuildingCalculator.GetUpgradeCost(
-            definition,
-            state.level
-        );
+        BuildingUpgradeStatus result =
+            GameSessionProvider.Current.Buildings.TryUpgrade(definition);
 
-        if (!economyManager.TrySpend(cost))
+        if (result != BuildingUpgradeStatus.Upgraded)
         {
             RefreshSelectedBuildingPanel();
             return;
@@ -130,8 +115,6 @@ public class CityManager : MonoBehaviour
 
         selectedBuilding.IncreaseLevel();
         RefreshSelectedBuildingPanel();
-
-        RecalculateCityProduction();
     }
 
     private void HandleMoneyChanged(int newMoney)
@@ -154,7 +137,7 @@ public class CityManager : MonoBehaviour
             selectedBuilding.State.level
         );
 
-        bool canAfford = economyManager.CanAfford(cost);
+        bool canAfford = economy.CanAfford(cost);
 
         buildingPanel.Show(
             selectedBuilding,
@@ -162,18 +145,4 @@ public class CityManager : MonoBehaviour
         );
     }
 
-    private void RecalculateCityProduction()
-    {
-        foreach (BuildingBehaviour building in buildings)
-        {
-            int production = BuildingCalculator.GetProduction(
-                building.Definition,
-                building.State.level
-            );
-
-            Debug.Log(
-                $"{building.Definition.displayName}: {production}"
-            );
-        }
-    }
 }

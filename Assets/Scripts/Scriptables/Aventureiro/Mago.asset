@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290f57902b84105409f99b1cbad8a4f6, type: 3}
   m_Name: Mago
   m_EditorClassIdentifier: Assembly-CSharp::Char_base
+  persistenceId: adventurer.mage
   sprite: {fileID: 0}
   vida: 90
   "resist\xEAncia_magica": 15

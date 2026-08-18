@@ -395,7 +395,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
   charBase: {fileID: 0}
-  comprado: 0
 --- !u!1 &670812723
 GameObject:
   m_ObjectHideFlags: 0

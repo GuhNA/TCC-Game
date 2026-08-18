@@ -1,8 +1,11 @@
+using TCCGame.Core;
+using TCCGame.Core.Input;
+using TCCGame.Gameplay.Player;
 using UnityEngine;
 
+[RequireComponent(typeof(moviment))]
 public class AdmAventureiro : MonoBehaviour
 {
-    public Inventario inventario;
     moviment movimento;
     bool aventureiro_proximo;
     bool ativaPopup;
@@ -16,24 +19,44 @@ public class AdmAventureiro : MonoBehaviour
         movimento = GetComponent<moviment>();
     }
 
+    private void OnDisable()
+    {
+        if (movimento != null)
+        {
+            movimento.SetMovementBlocked(false);
+        }
+    }
+
     private void Update() 
     {
         if(aventureiro_proximo)
         {
-            if(Input.GetKeyDown(KeyCode.E)) 
+            if(GameInput.WasInteractPressedThisFrame())
             {
                 ativaPopup = !ativaPopup;
             }
         }
         if(ativaPopup) 
         {
-            attDados(aventureiro.GetComponentInParent<Aventureiro>());
-            movimento.velocity = 0;
+            if (aventureiro != null && popup != null)
+            {
+                attDados(aventureiro);
+                movimento.SetMovementBlocked(true);
+            }
+            else
+            {
+                ativaPopup = false;
+                movimento.SetMovementBlocked(false);
+            }
         }
         else
         {
-            popup_aventureiro.SetActive(false);
-            movimento.velocity = 10;
+            if (popup_aventureiro != null)
+            {
+                popup_aventureiro.SetActive(false);
+            }
+
+            movimento.SetMovementBlocked(false);
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -48,15 +71,31 @@ public class AdmAventureiro : MonoBehaviour
         }
     }
 
-   private void OnTriggerExit2D(Collider2D other) 
+    private void OnTriggerExit2D(Collider2D other)
     {
-        //removendo dados pegos do aventureiro
-        popup.vida.text = "";
-        popup.dex.text = "";
-        popup.inte.text = "";
-        popup.forca.text = "";
-        popup.foto.sprite = null;
+        Aventureiro exitingAdventurer =
+            other.GetComponentInParent<Aventureiro>();
+
+        if (exitingAdventurer == null ||
+            exitingAdventurer != aventureiro)
+        {
+            return;
+        }
+
+        if (popup != null)
+        {
+            //removendo dados pegos do aventureiro
+            popup.vida.text = "";
+            popup.dex.text = "";
+            popup.inte.text = "";
+            popup.forca.text = "";
+            popup.foto.sprite = null;
+        }
+
         aventureiro_proximo = false;
+        ativaPopup = false;
+        aventureiro = null;
+        movimento.SetMovementBlocked(false);
     }   
     void attDados(Aventureiro aventureiro)
     {
@@ -66,27 +105,54 @@ public class AdmAventureiro : MonoBehaviour
         popup.forca.text = aventureiro.charBase.forca.ToString();
         popup.comprar.text = aventureiro.charBase.preco.ToString();
         popup.foto.sprite = aventureiro.charBase.sprite;
-        popup_aventureiro.SetActive(true);
+        if (popup_aventureiro != null)
+        {
+            popup_aventureiro.SetActive(true);
+        }
     }
 
     public void ComprarPersonagem()
     {
-        if(inventario.moedas >= aventureiro.charBase.preco && !aventureiro.comprado) 
+        if (aventureiro == null || aventureiro.charBase == null)
         {
-            inventario.moedas -= aventureiro.charBase.preco;
-            inventario.aventureiros.Add(aventureiro.charBase);
             ativaPopup = false;
-            StartCoroutine(alerta.attTexto("Mercenário contratado"));
-            //Nao permitir contratar novamente este personagem
-            aventureiro.comprado = true;
+            ShowAlert("Aventureiro inválido");
+            return;
         }
-        else
+
+        AdventurerRecruitmentStatus result =
+            GameSessionProvider.Current.Inventory.TryRecruitAdventurer(
+                aventureiro.charBase.PersistenceId,
+                aventureiro.charBase.preco
+            );
+
+        ativaPopup = false;
+
+        switch (result)
         {
-            ativaPopup = false;
-            if(aventureiro.comprado) StartCoroutine(alerta.attTexto("Personagem já contratado!!!"));
-            else  StartCoroutine(alerta.attTexto("Dinheiro insuficiente"));
+            case AdventurerRecruitmentStatus.Recruited:
+                ShowAlert("Mercenário contratado");
+                break;
+
+            case AdventurerRecruitmentStatus.AlreadyRecruited:
+                ShowAlert("Personagem já contratado!!!");
+                break;
+
+            case AdventurerRecruitmentStatus.InsufficientMoney:
+                ShowAlert("Dinheiro insuficiente");
+                break;
+
+            default:
+                ShowAlert("Aventureiro inválido");
+                break;
         }
     }
 
-
+    private void ShowAlert(string message)
+    {
+        if (alerta != null)
+        {
+            StartCoroutine(alerta.attTexto(message));
+        }
+    }
 }

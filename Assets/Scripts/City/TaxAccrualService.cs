@@ -1,4 +1,7 @@
 using System;
+using TCCGame.Core;
+using TCCGame.Core.Persistence;
+using TCCGame.Gameplay.Economy;
 using UnityEngine;
 
 public enum TaxCollectionStatus
@@ -31,11 +34,10 @@ public class TaxAccrualService : MonoBehaviour
     private const double MaximumAccrualSeconds = 24d * 60d * 60d;
 
     [SerializeField]
-    private EconomyManager economyManager;
-    [SerializeField]
     private BuildingBehaviour localMarket;
 
     private TaxAccrualSaveData state;
+    private EconomyService economy;
 
     private bool isInitialized;
 
@@ -44,24 +46,26 @@ public class TaxAccrualService : MonoBehaviour
         Initialize();
     }
 
-    public void Initialize()
+    private void Initialize()
     {
         if (isInitialized)
         {
             return;
         }
 
-        if (economyManager == null || localMarket == null)
+        if (localMarket == null)
         {
             Debug.LogError(
-                "TaxAccrualService requires EconomyManager and LocalMarket references.",
+                "TaxAccrualService requires a LocalMarket reference.",
                 this
             );
 
             return;
         }
 
-        state = CitySaveRepository.Load().taxes;
+        GameSession session = GameSessionProvider.Current;
+        economy = session.Economy;
+        state = session.Taxes;
 
         long now = GetCurrentUnixSeconds();
 
@@ -74,21 +78,21 @@ public class TaxAccrualService : MonoBehaviour
                 lastCollectedUnixSeconds = now
             };
 
-            CitySaveRepository.SaveTaxes(state);
+            GameSessionProvider.Current.SaveTaxes(state);
         }
 
         localMarket.LevelChanged += HandleMarketLevelChanged;
         isInitialized = true;
     }
 
-    public TaxCollectionResult CollectTaxes()
+    internal TaxCollectionResult CollectTaxes()
     {
         if (!isInitialized || localMarket.State.level <= 0)
         {
             return new TaxCollectionResult(
                 TaxCollectionStatus.MarketNotBuilt,
                 0,
-                economyManager == null ? 0 : economyManager.Money
+                economy?.Money ?? 0
             );
         }
 
@@ -99,12 +103,12 @@ public class TaxAccrualService : MonoBehaviour
 
         if (amount <= 0)
         {
-            CitySaveRepository.SaveTaxes(state);
+            GameSessionProvider.Current.SaveTaxes(state);
 
             return new TaxCollectionResult(
                 TaxCollectionStatus.NothingAvailable,
                 0,
-                economyManager.Money
+                economy.Money
             );
         }
 
@@ -112,13 +116,12 @@ public class TaxAccrualService : MonoBehaviour
         state.eligibleSecondsSinceCollection = 0d;
         state.lastCollectedUnixSeconds = now;
 
-        economyManager.AddMoney(amount);
-        CitySaveRepository.SaveTaxes(state);
+        economy.AddMoney(amount);
 
         return new TaxCollectionResult(
             TaxCollectionStatus.Collected,
             amount,
-            economyManager.Money
+            economy.Money
         );
     }
 
@@ -138,7 +141,7 @@ public class TaxAccrualService : MonoBehaviour
             state.accruedTax = 0d;
         }
 
-        CitySaveRepository.SaveTaxes(state);
+        GameSessionProvider.Current.SaveTaxes(state);
     }
 
     private void AccrueUntil(long now, int marketLevel)
@@ -202,7 +205,7 @@ public class TaxAccrualService : MonoBehaviour
         }
 
         AccrueUntil(GetCurrentUnixSeconds(), localMarket.State.level);
-        CitySaveRepository.SaveTaxes(state);
+        GameSessionProvider.Current.SaveTaxes(state);
     }
 
     private static long GetCurrentUnixSeconds()

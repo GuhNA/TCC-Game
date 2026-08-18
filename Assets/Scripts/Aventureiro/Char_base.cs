@@ -9,6 +9,13 @@ public enum Classes{ guerreiro, arqueiro, ladrão, mago}
 [CreateAssetMenu(fileName = "aventureiro", menuName = "Personagem")]
 public class Char_base : ScriptableObject
 {
+    [SerializeField]
+    private string persistenceId;
+
+    public string PersistenceId => string.IsNullOrWhiteSpace(persistenceId)
+        ? name
+        : persistenceId;
+
     public Sprite sprite;
     [Header("Status base")]
     public ushort vida;

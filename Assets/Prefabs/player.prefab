@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5133770876563344789}
   - component: {fileID: 7136469782779526277}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d42333ea30cd3b468bd0fd5ef5951f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AdmAventureiro
-  inventario: {fileID: 11400000, guid: 8be4e02ecb8d63e49846336bf40a6fef, type: 2}
   popup_aventureiro: {fileID: 0}
   popup: {fileID: 0}
   aventureiro: {fileID: 0}

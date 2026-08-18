@@ -1,5 +1,5 @@
+using TCCGame.Core.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TaxCollectorNpc : MonoBehaviour
 {
@@ -14,8 +14,7 @@ public class TaxCollectorNpc : MonoBehaviour
     private void Update()
     {
         if (!playerNearby ||
-            Keyboard.current == null ||
-            !Keyboard.current.eKey.wasPressedThisFrame)
+            !GameInput.WasInteractPressedThisFrame())
         {
             return;
         }

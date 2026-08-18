@@ -1,188 +1,246 @@
 using System;
-using UnityEngine.UI;
+using System.Globalization;
+using TMPro;
+using TCCGame.Core;
+using TCCGame.Core.Input;
+using TCCGame.Gameplay.Recruitment;
 using UnityEngine;
-using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 public class NPCVenda : MonoBehaviour
 {
-    //Supor valor de mago, soldado e arqueiro
-    //Valor de compra
-    //Arqueiro = 5 
-    //Mago = 8
-    //Guerreiro = 4
-    public GameManager game;
-    TimeSpan tempo_atualiza;
-    bool aberto, dentro;
     public PopupAlerta alerta;
     public GameObject popup;
-    public Text arqueiro_texto, guerreiro_texto, mago_texto, tempo_texto;
-    public Inventario inventario;
-    public Construcoes cidade;
-    byte arqueiro_value = 5, guerreiro_value = 3, mago_value = 8;
-    
-    DateTime data_renova;
-    int escolha = 0;
+    public TMP_Text arqueiro_texto;
+    public TMP_Text guerreiro_texto;
+    public TMP_Text mago_texto;
+    public TMP_Text tempo_texto;
 
-    void Start()
+    private bool aberto;
+    private bool dentro;
+    private UnitType? escolha;
+
+    private RecruitmentService Recruitment =>
+        GameSessionProvider.Current.Recruitment;
+
+    private void Start()
     {
         aberto = false;
         dentro = false;
-        popup.SetActive(false);
-        data_renova = DateTime.Parse(cidade.data_renova);
-        print(data_renova);
+
+        if (popup != null)
+        {
+            popup.SetActive(false);
+        }
     }
 
-    void Update()
+    private void Update()
     {
         if (aberto)
         {
-            tempo_atualiza = data_renova.AddHours(6).Subtract(DateTime.Now);
-            tempo_texto.text = "Tempo: "+ tempo_atualiza.ToString()[..8];
-        }        
+            AtualizaTempo();
+        }
 
-        if(dentro)
+        if (!dentro ||
+            !GameInput.WasInteractPressedThisFrame())
         {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
+            return;
+        }
 
-                if (!aberto) abrir_popup();
-                else {popup.SetActive(false); aberto = false;}
-            }
+        if (!aberto)
+        {
+            abrir_popup();
+            return;
+        }
+
+        popup.SetActive(false);
+        aberto = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponentInParent<moviment>() != null)
+        {
+            dentro = true;
         }
     }
-    void OnTriggerEnter2D()
-    {  
-        dentro = true;
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponentInParent<moviment>() != null)
+        {
+            dentro = false;
+        }
     }
 
-    void OnTriggerExit2D()
+    private void abrir_popup()
     {
-        dentro = false;
-    }
-    void abrir_popup()
-    {
+        Recruitment.RefreshStockIfDue();
         atualizaTexto();
+        AtualizaTempo();
         aberto = true;
-        //Verifica se passou de 6h de CD
-        //Necessario login para voltar a atualizar  NON E INTERESSANTE
-        if(DateTime.Compare(DateTime.Now,data_renova.AddHours(6)) == 1)
-        {
-            cidade.data_renova = DateTime.Now.ToString();
-            data_renova = DateTime.Now;
-            atualizaDados();
-            atualizaTexto();
-        }
         popup.SetActive(true);
     }
 
     public void vendaCalculo(int intValue)
-    { 
-        uint value = (uint)intValue;
-        //Botão arqueiro = 1, guerreiro = 2, mago = 3;
-        switch (escolha)
+    {
+        if (!escolha.HasValue)
         {
-            case 1:
-                if(value <= cidade.arqueirosDis)
-                {
-                    cidade.arqueirosDis -=value;
-                    inventario.arqueiro += value;
-                    inventario.moedas -= arqueiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+cidade.arqueirosDis));
-                    atualizaTexto();
-                }
-                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de arqueiro"));
-                break;
-            case 2:
-                if(value <= cidade.guerreirosDis)
-                {
-                    cidade.guerreirosDis -=value;
-                    inventario.guerreiro += value;
-                    inventario.moedas -= guerreiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+cidade.guerreirosDis));
-                    atualizaTexto();
-                }
-                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de guerreiro"));
-            break;
-
-            case 3:
-                if(value <= cidade.magosDis)
-                {
-                    cidade.magosDis -=value;
-                    inventario.mago += value;
-                    inventario.moedas -= mago_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+cidade.magosDis));
-                    atualizaTexto();
-                }
-                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de mago"));
-                break;
+            ExibirAlerta("Selecione um tipo de tropa.");
+            return;
         }
 
+        ProcessarCompra(escolha.Value, intValue);
     }
+
     public void compraEscolha(int value)
     {
-        escolha = value;
-    }
-    void atualizaTexto()
-    {
-        arqueiro_texto.text = "Arqueiros: "+cidade.arqueirosDis;
-        guerreiro_texto.text = "Guerreiros: "+cidade.guerreirosDis;
-        mago_texto.text = "Magos: "+cidade.magosDis;
-        game.atualizaOuro();
-
-    }
-
-    void atualizaDados()
-    {
-        //reset a cada 6h
-        cidade.arqueirosDis = (uint)((cidade.quartel_arqueiro*1.3f*cidade.arqueirosDis > 0) ? cidade.quartel_arqueiro*1.3f*cidade.arqueirosDis :  10);
-        cidade.guerreirosDis = (uint)((cidade.quartel_guerreiro*1.3f*cidade.guerreirosDis > 0)? cidade.quartel_guerreiro*1.3f*cidade.guerreirosDis : 10);
-        cidade.magosDis = (uint)((cidade.escola_mago*1.3f*cidade.magosDis > 0)? cidade.escola_mago*1.3f*cidade.magosDis : 10);
+        escolha = value switch
+        {
+            1 => UnitType.Archer,
+            2 => UnitType.Warrior,
+            3 => UnitType.Mage,
+            _ => null
+        };
     }
 
     public void porInput(InputField input)
     {
-        if(input.name == "arqueiroInput")
+        if (input == null)
         {
-            if(Regex.IsMatch(input.text , @"\d+"))
-            {
-                if(uint.Parse(input.text) <= cidade.arqueirosDis)
-                {
-                    cidade.arqueirosDis -=uint.Parse(input.text);
-                    inventario.arqueiro += uint.Parse(input.text);
-                    inventario.moedas -= arqueiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, arqueiros disponíveis: "+cidade.arqueirosDis));
-                    atualizaTexto();
-                }
-                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de arqueiro"));
-            }
+            return;
         }
-        else if(input.name == "guerreiroInput")
+
+        if (!TryGetUnitType(input.name, out UnitType unitType) ||
+            !int.TryParse(
+                input.text?.Trim(),
+                NumberStyles.None,
+                CultureInfo.InvariantCulture,
+                out int quantity
+            ))
         {
-            if(Regex.IsMatch(input.text , @"\d+"))
-            {
-                if(uint.Parse(input.text) <= cidade.guerreirosDis)
-                {
-                    cidade.guerreirosDis -=uint.Parse(input.text);
-                    inventario.guerreiro += uint.Parse(input.text);
-                    inventario.moedas -= guerreiro_value;
-                    StartCoroutine(alerta.attTexto("Compra realizada, guerreiros disponíveis: "+cidade.guerreirosDis));
-                    atualizaTexto();
-                }
-                else  StartCoroutine(alerta.attTexto("Quantidade indisponível de guerreiro"));
-            }
+            ExibirAlerta("Quantidade inválida");
+            input.text = string.Empty;
+            return;
         }
-        else if(input.name == "magoInput")
+
+        ProcessarCompra(unitType, quantity);
+        input.text = string.Empty;
+    }
+
+    private void ProcessarCompra(UnitType unitType, int quantity)
+    {
+        RecruitmentPurchaseResult result =
+            Recruitment.TryPurchase(unitType, quantity);
+
+        switch (result.Status)
         {
-            if(uint.Parse(input.text) <= cidade.magosDis)
-            {
-                cidade.magosDis -=uint.Parse(input.text);;
-                inventario.mago += uint.Parse(input.text);;
-                inventario.moedas -= mago_value;
-                StartCoroutine(alerta.attTexto("Compra realizada, magos disponíveis: "+cidade.magosDis));
-                atualizaTexto();
-            }
-            else  StartCoroutine(alerta.attTexto("Quantidade indisponível de mago"));
+            case RecruitmentPurchaseStatus.Purchased:
+                ExibirAlerta(
+                    $"Compra realizada, {GetPluralName(unitType)} " +
+                    $"disponíveis: {result.Available}"
+                );
+                break;
+
+            case RecruitmentPurchaseStatus.OutOfStock:
+                ExibirAlerta(
+                    $"Quantidade indisponível de {GetSingularName(unitType)}"
+                );
+                break;
+
+            case RecruitmentPurchaseStatus.InsufficientMoney:
+                ExibirAlerta("Dinheiro insuficiente");
+                break;
+
+            default:
+                ExibirAlerta("Quantidade inválida");
+                break;
         }
-        input.text = "";
+
+        atualizaTexto();
+    }
+
+    private void atualizaTexto()
+    {
+        arqueiro_texto.text =
+            $"Arqueiros: {Recruitment.GetAvailable(UnitType.Archer)}";
+        guerreiro_texto.text =
+            $"Guerreiros: {Recruitment.GetAvailable(UnitType.Warrior)}";
+        mago_texto.text =
+            $"Magos: {Recruitment.GetAvailable(UnitType.Mage)}";
+    }
+
+    private void AtualizaTempo()
+    {
+        if (tempo_texto == null)
+        {
+            return;
+        }
+
+        TimeSpan remaining = Recruitment.GetTimeUntilRestock();
+        int totalHours = Mathf.FloorToInt((float)remaining.TotalHours);
+
+        tempo_texto.text = string.Format(
+            CultureInfo.InvariantCulture,
+            "Tempo: {0:00}:{1:00}:{2:00}",
+            totalHours,
+            remaining.Minutes,
+            remaining.Seconds
+        );
+    }
+
+    private void ExibirAlerta(string message)
+    {
+        if (alerta != null)
+        {
+            StartCoroutine(alerta.attTexto(message));
+        }
+    }
+
+    private static bool TryGetUnitType(
+        string inputName,
+        out UnitType unitType
+    )
+    {
+        switch (inputName)
+        {
+            case "arqueiroInput":
+                unitType = UnitType.Archer;
+                return true;
+
+            case "guerreiroInput":
+                unitType = UnitType.Warrior;
+                return true;
+
+            case "magoInput":
+                unitType = UnitType.Mage;
+                return true;
+
+            default:
+                unitType = default;
+                return false;
+        }
+    }
+
+    private static string GetSingularName(UnitType unitType)
+    {
+        return unitType switch
+        {
+            UnitType.Archer => "arqueiro",
+            UnitType.Warrior => "guerreiro",
+            UnitType.Mage => "mago",
+            _ => "tropa"
+        };
+    }
+
+    private static string GetPluralName(UnitType unitType)
+    {
+        return unitType switch
+        {
+            UnitType.Archer => "arqueiros",
+            UnitType.Warrior => "guerreiros",
+            UnitType.Mage => "magos",
+            _ => "tropas"
+        };
     }
 }

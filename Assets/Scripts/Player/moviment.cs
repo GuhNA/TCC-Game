@@ -1,5 +1,5 @@
+using TCCGame.Core.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class moviment : MonoBehaviour
@@ -17,19 +17,13 @@ public class moviment : MonoBehaviour
 
     void Update()
     {
-        if (movementBlocked || Keyboard.current == null)
+        if (movementBlocked)
         {
             movementInput = Vector2.zero;
             return;
         }
 
-        float axisX = Keyboard.current.aKey.isPressed ? -1 :
-            Keyboard.current.dKey.isPressed ? 1 : 0;
-
-        float axisY = Keyboard.current.sKey.isPressed ? -1 :
-            Keyboard.current.wKey.isPressed ? 1 : 0;
-
-        movementInput = new Vector2(axisX, axisY);
+        movementInput = GameInput.ReadMovement();
     }
 
     void FixedUpdate()
