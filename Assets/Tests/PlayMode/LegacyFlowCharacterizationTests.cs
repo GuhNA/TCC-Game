@@ -154,8 +154,7 @@ namespace TCCGame.Tests.PlayMode
             });
             VendorHarness harness = CreateVendorHarness();
 
-            harness.Vendor.compraEscolha(1);
-            harness.Vendor.vendaCalculo(1);
+            harness.Vendor.Purchase(UnitType.Archer, 1);
 
             Assert.That(Session.Economy.Money, Is.EqualTo(95));
             Assert.That(
@@ -185,8 +184,7 @@ namespace TCCGame.Tests.PlayMode
             });
             VendorHarness harness = CreateVendorHarness();
 
-            harness.Vendor.compraEscolha(2);
-            harness.Vendor.vendaCalculo(1);
+            harness.Vendor.Purchase(UnitType.Warrior, 1);
 
             Assert.That(Session.Economy.Money, Is.EqualTo(100));
             Assert.That(
@@ -211,8 +209,7 @@ namespace TCCGame.Tests.PlayMode
             });
             VendorHarness harness = CreateVendorHarness();
 
-            harness.Vendor.compraEscolha(1);
-            harness.Vendor.vendaCalculo(10);
+            harness.Vendor.Purchase(UnitType.Archer, 10);
 
             Assert.That(Session.Economy.Money, Is.EqualTo(50));
             Assert.That(
@@ -237,8 +234,7 @@ namespace TCCGame.Tests.PlayMode
             });
             VendorHarness harness = CreateVendorHarness();
 
-            harness.Vendor.compraEscolha(3);
-            harness.Vendor.vendaCalculo(1);
+            harness.Vendor.Purchase(UnitType.Mage, 1);
 
             Assert.That(Session.Economy.Money, Is.Zero);
             Assert.That(
@@ -263,8 +259,7 @@ namespace TCCGame.Tests.PlayMode
             });
             VendorHarness harness = CreateVendorHarness();
 
-            harness.Vendor.compraEscolha(1);
-            harness.Vendor.vendaCalculo(0);
+            harness.Vendor.Purchase(UnitType.Archer, 0);
 
             Assert.That(Session.Economy.Money, Is.EqualTo(100));
             Assert.That(
@@ -284,9 +279,12 @@ namespace TCCGame.Tests.PlayMode
         {
             ConfigureGame(data => data.money = 100);
             VendorHarness harness = CreateVendorHarness();
-            InputField input = harness.CreateInput("magoInput", string.Empty);
+            RecruitmentRowView row = harness.CreateInputRow(
+                UnitType.Mage,
+                string.Empty
+            );
 
-            Assert.DoesNotThrow(() => harness.Vendor.porInput(input));
+            Assert.DoesNotThrow(row.SubmitInput);
             Assert.That(
                 Session.Recruitment.GetOwned(UnitType.Mage),
                 Is.Zero
@@ -300,12 +298,12 @@ namespace TCCGame.Tests.PlayMode
         {
             ConfigureGame(data => data.money = 100);
             VendorHarness harness = CreateVendorHarness();
-            InputField input = harness.CreateInput(
-                "arqueiroInput",
+            RecruitmentRowView row = harness.CreateInputRow(
+                UnitType.Archer,
                 "1 inválido"
             );
 
-            Assert.DoesNotThrow(() => harness.Vendor.porInput(input));
+            Assert.DoesNotThrow(row.SubmitInput);
             Assert.That(
                 Session.Recruitment.GetOwned(UnitType.Archer),
                 Is.Zero
@@ -424,14 +422,22 @@ namespace TCCGame.Tests.PlayMode
                 Vendor.tempo_texto = timeText;
             }
 
-            public InputField CreateInput(string objectName, string value)
+            public RecruitmentRowView CreateInputRow(
+                UnitType unitType,
+                string value
+            )
             {
-                GameObject inputObject = CreateObject(objectName);
-                var input = inputObject.AddComponent<InputField>();
-                Text inputText = CreateText($"{objectName}Text");
-                input.textComponent = inputText;
+                GameObject rowObject = CreateObject($"{unitType}Row");
+                RecruitmentRowView row =
+                    rowObject.AddComponent<RecruitmentRowView>();
+                SetPrivateField(row, "unitType", unitType);
+
+                GameObject inputObject = new GameObject("Input");
+                inputObject.transform.SetParent(rowObject.transform);
+                var input = inputObject.AddComponent<TMP_InputField>();
                 input.text = value;
-                return input;
+                SetPrivateField(row, "quantityInput", input);
+                return row;
             }
 
             public void Dispose()

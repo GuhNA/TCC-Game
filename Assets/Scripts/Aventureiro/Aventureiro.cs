@@ -1,10 +1,16 @@
 using UnityEngine;
 
-public class Aventureiro : MonoBehaviour
+public class Aventureiro : MonoBehaviour, IInteractable, IInteractionExitAware
 {
     public Char_base charBase;
 
-    void Start()
+    public AdventurerRuntimeState RuntimeState { get; private set; }
+
+    public AdventurerStats Stats => RuntimeState?.Stats ?? default;
+
+    public bool CanInteract => enabled && charBase != null;
+
+    private void Start()
     {
         if (charBase == null)
         {
@@ -12,15 +18,19 @@ public class Aventureiro : MonoBehaviour
             return;
         }
 
-        charBase.vivo = true;
-        //inteligencia .1, destreza 1.5, força .5
-        charBase.dano_max = (ushort)(4 + charBase.destreza*charBase.escalaDexMax
-                                    + charBase.inteligencia*charBase.escalaIntMax 
-                                    + charBase.forca*charBase.escalaForMax);
-        charBase.dano_min = (ushort)(charBase.destreza*charBase.escalaDexMin
-                                    + charBase.inteligencia*charBase.escalaIntMin 
-                                    + charBase.forca*charBase.escalaForMin);
-        charBase.calculaVida();
+        RuntimeState = new AdventurerRuntimeState(
+            AdventurerStatsCalculator.Calculate(charBase)
+        );
+    }
+
+    public void Interact(GameObject player)
+    {
+        player.GetComponent<AdmAventureiro>()?.Open(this);
+    }
+
+    public void OnExitInteractionRange(GameObject player)
+    {
+        player.GetComponent<AdmAventureiro>()?.Close(this);
     }
 
 }

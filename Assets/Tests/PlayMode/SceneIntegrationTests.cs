@@ -140,7 +140,7 @@ namespace TCCGame.Tests.PlayMode
                 GameSessionProvider.Current.Economy.Money,
                 Is.EqualTo(777)
             );
-            Assert.That(archerStand.State.level, Is.EqualTo(2));
+            Assert.That(archerStand.Level, Is.EqualTo(2));
 
             GameSessionProvider.Current.Economy.AddMoney(1);
 

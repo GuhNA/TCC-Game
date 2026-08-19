@@ -1,6 +1,8 @@
 using System;
 using TCCGame.Core;
 using TCCGame.Core.Persistence;
+using TCCGame.Core.Time;
+using TCCGame.Gameplay.City;
 using TCCGame.Gameplay.Economy;
 using UnityEngine;
 
@@ -29,82 +31,56 @@ public readonly struct TaxCollectionResult
     }
 }
 
-public class TaxAccrualService : MonoBehaviour
+public sealed class TaxService
 {
     private const double MaximumAccrualSeconds = 24d * 60d * 60d;
 
-    [SerializeField]
-    private BuildingBehaviour localMarket;
+    private readonly GameSaveData state;
+    private readonly EconomyService economy;
+    private readonly BuildingService buildings;
+    private readonly IClock clock;
+    private readonly Action commit;
 
-    private TaxAccrualSaveData state;
-    private EconomyService economy;
-
-    private bool isInitialized;
-
-    private void Start()
+    public TaxService(
+        GameSaveData state,
+        EconomyService economy,
+        BuildingService buildings,
+        IClock clock,
+        Action commit
+    )
     {
-        Initialize();
+        this.state = state ?? throw new ArgumentNullException(nameof(state));
+        this.economy = economy ??
+            throw new ArgumentNullException(nameof(economy));
+        this.buildings = buildings ??
+            throw new ArgumentNullException(nameof(buildings));
+        this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+        this.commit = commit ?? throw new ArgumentNullException(nameof(commit));
+
+        InitializeIfNeeded();
+        buildings.LevelChanged += HandleBuildingLevelChanged;
     }
 
-    private void Initialize()
+    public TaxCollectionResult CollectTaxes()
     {
-        if (isInitialized)
-        {
-            return;
-        }
+        int marketLevel = GetMarketLevel();
 
-        if (localMarket == null)
-        {
-            Debug.LogError(
-                "TaxAccrualService requires a LocalMarket reference.",
-                this
-            );
-
-            return;
-        }
-
-        GameSession session = GameSessionProvider.Current;
-        economy = session.Economy;
-        state = session.Taxes;
-
-        long now = GetCurrentUnixSeconds();
-
-        if (state == null || !state.initialized)
-        {
-            state = new TaxAccrualSaveData
-            {
-                initialized = true,
-                lastCalculatedUnixSeconds = now,
-                lastCollectedUnixSeconds = now
-            };
-
-            GameSessionProvider.Current.SaveTaxes(state);
-        }
-
-        localMarket.LevelChanged += HandleMarketLevelChanged;
-        isInitialized = true;
-    }
-
-    internal TaxCollectionResult CollectTaxes()
-    {
-        if (!isInitialized || localMarket.State.level <= 0)
+        if (marketLevel <= 0)
         {
             return new TaxCollectionResult(
                 TaxCollectionStatus.MarketNotBuilt,
                 0,
-                economy?.Money ?? 0
+                economy.Money
             );
         }
 
-        long now = GetCurrentUnixSeconds();
-        AccrueUntil(now, localMarket.State.level);
+        AccrueUntil(clock.UnixSeconds, marketLevel);
 
-        int amount = (int)Math.Floor(state.accruedTax + 0.0000001d);
+        int amount = (int)Math.Floor(state.taxes.accruedTax + 0.0000001d);
 
         if (amount <= 0)
         {
-            GameSessionProvider.Current.SaveTaxes(state);
-
+            commit();
             return new TaxCollectionResult(
                 TaxCollectionStatus.NothingAvailable,
                 0,
@@ -112,10 +88,9 @@ public class TaxAccrualService : MonoBehaviour
             );
         }
 
-        state.accruedTax -= amount;
-        state.eligibleSecondsSinceCollection = 0d;
-        state.lastCollectedUnixSeconds = now;
-
+        state.taxes.accruedTax -= amount;
+        state.taxes.eligibleSecondsSinceCollection = 0d;
+        state.taxes.lastCollectedUnixSeconds = clock.UnixSeconds;
         economy.AddMoney(amount);
 
         return new TaxCollectionResult(
@@ -125,40 +100,61 @@ public class TaxAccrualService : MonoBehaviour
         );
     }
 
-    private void HandleMarketLevelChanged(
-        BuildingBehaviour building,
+    public void SaveCurrentAccrual()
+    {
+        AccrueUntil(clock.UnixSeconds, GetMarketLevel());
+        commit();
+    }
+
+    private void InitializeIfNeeded()
+    {
+        if (state.taxes.initialized)
+        {
+            return;
+        }
+
+        long now = clock.UnixSeconds;
+        state.taxes.initialized = true;
+        state.taxes.lastCalculatedUnixSeconds = now;
+        state.taxes.lastCollectedUnixSeconds = now;
+    }
+
+    private void HandleBuildingLevelChanged(
+        BuildingType type,
         int previousLevel,
         int newLevel
     )
     {
-        long now = GetCurrentUnixSeconds();
+        if (type != BuildingType.LocalMarket)
+        {
+            return;
+        }
+
+        long now = clock.UnixSeconds;
         AccrueUntil(now, previousLevel);
 
         if (previousLevel <= 0 && newLevel > 0)
         {
-            state.lastCollectedUnixSeconds = now;
-            state.eligibleSecondsSinceCollection = 0d;
-            state.accruedTax = 0d;
+            state.taxes.lastCollectedUnixSeconds = now;
+            state.taxes.eligibleSecondsSinceCollection = 0d;
+            state.taxes.accruedTax = 0d;
         }
 
-        GameSessionProvider.Current.SaveTaxes(state);
+        commit();
     }
 
     private void AccrueUntil(long now, int marketLevel)
     {
-        if (now < state.lastCalculatedUnixSeconds)
+        if (now < state.taxes.lastCalculatedUnixSeconds)
         {
-            state.lastCalculatedUnixSeconds = now;
+            state.taxes.lastCalculatedUnixSeconds = now;
             return;
         }
 
-        double elapsedSeconds = now - state.lastCalculatedUnixSeconds;
-        state.lastCalculatedUnixSeconds = now;
+        double elapsedSeconds = now - state.taxes.lastCalculatedUnixSeconds;
+        state.taxes.lastCalculatedUnixSeconds = now;
 
-        int productionPerMinute = BuildingCalculator.GetProduction(
-            localMarket.Definition,
-            marketLevel
-        );
+        int productionPerMinute = GetProduction(marketLevel);
 
         if (productionPerMinute <= 0)
         {
@@ -167,49 +163,74 @@ public class TaxAccrualService : MonoBehaviour
 
         double eligibleSeconds = TaxCalculator.GetEligibleSeconds(
             elapsedSeconds,
-            state.eligibleSecondsSinceCollection,
+            state.taxes.eligibleSecondsSinceCollection,
             MaximumAccrualSeconds
         );
 
-        state.accruedTax += TaxCalculator.CalculateAccruedTax(
+        state.taxes.accruedTax += TaxCalculator.CalculateAccruedTax(
             productionPerMinute,
             eligibleSeconds
         );
+        state.taxes.eligibleSecondsSinceCollection += eligibleSeconds;
+    }
 
-        state.eligibleSecondsSinceCollection += eligibleSeconds;
+    private int GetMarketLevel()
+    {
+        return buildings.GetLevel(BuildingType.LocalMarket);
+    }
+
+    private int GetProduction(int marketLevel)
+    {
+        return marketLevel <= 0
+            ? 0
+            : buildings.GetProduction(BuildingType.LocalMarket, marketLevel);
+    }
+}
+
+public class TaxAccrualService : MonoBehaviour
+{
+    [SerializeField]
+    private BuildingBehaviour localMarket;
+
+    private TaxService service;
+
+    private void Start()
+    {
+        if (localMarket == null ||
+            localMarket.Definition == null ||
+            localMarket.Definition.type != BuildingType.LocalMarket)
+        {
+            Debug.LogError(
+                "TaxAccrualService requires a LocalMarket reference.",
+                this
+            );
+            return;
+        }
+
+        service = GameSessionProvider.Current.Taxes;
+    }
+
+    internal TaxCollectionResult CollectTaxes()
+    {
+        return service == null
+            ? new TaxCollectionResult(
+                TaxCollectionStatus.MarketNotBuilt,
+                0,
+                GameSessionProvider.Current.Economy.Money
+            )
+            : service.CollectTaxes();
     }
 
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
         {
-            SaveCurrentAccrual();
+            service?.SaveCurrentAccrual();
         }
     }
 
     private void OnDestroy()
     {
-        if (localMarket != null)
-        {
-            localMarket.LevelChanged -= HandleMarketLevelChanged;
-        }
-
-        SaveCurrentAccrual();
-    }
-
-    private void SaveCurrentAccrual()
-    {
-        if (!isInitialized || localMarket == null)
-        {
-            return;
-        }
-
-        AccrueUntil(GetCurrentUnixSeconds(), localMarket.State.level);
-        GameSessionProvider.Current.SaveTaxes(state);
-    }
-
-    private static long GetCurrentUnixSeconds()
-    {
-        return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        service?.SaveCurrentAccrual();
     }
 }

@@ -1,9 +1,8 @@
 using System;
-using TCCGame.Core.Input;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class BuildingBehaviour : MonoBehaviour
+public class BuildingBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private BuildingDefinition definition;
@@ -11,49 +10,35 @@ public class BuildingBehaviour : MonoBehaviour
     [SerializeField]
     private SpriteRenderer spriteRenderer;
 
-    private BuildingState state;
-    private bool playerInContact;
+    private int level;
+
+    public bool CanInteract => enabled && definition != null;
 
     public BuildingDefinition Definition => definition;
-    public BuildingState State => state;
+    public int Level => level;
 
     public event Action<BuildingBehaviour> Selected;
-    public event Action<BuildingBehaviour, int, int> LevelChanged;
 
-    internal void Initialize(BuildingState buildingState)
+    internal void Initialize(int initialLevel)
     {
-        state = buildingState;
+        level = Mathf.Clamp(initialLevel, 0, definition.maximumLevel);
         RefreshView();
     }
 
-    internal void IncreaseLevel()
+    internal void RenderLevel(int newLevel)
     {
-        if (state == null)
-        {
-            throw new InvalidOperationException(
-                "Building has not been initialized."
-            );
-        }
-
-        if (state.level >= definition.maximumLevel)
-        {
-            return;
-        }
-
-        int previousLevel = state.level;
-        state.level++;
+        level = Mathf.Clamp(newLevel, 0, definition.maximumLevel);
         RefreshView();
-        LevelChanged?.Invoke(this, previousLevel, state.level);
     }
 
     private void RefreshView()
     {
-        if (state == null || spriteRenderer == null)
+        if (definition == null || spriteRenderer == null)
         {
             return;
         }
 
-        if (state.level == 0)
+        if (level == 0)
         {
             spriteRenderer.sprite = definition.unbuiltSprite;
             return;
@@ -66,7 +51,7 @@ public class BuildingBehaviour : MonoBehaviour
         }
 
         int spriteIndex = Mathf.Clamp(
-            state.level - 1,
+            level - 1,
             0,
             definition.levelSprites.Length - 1
         );
@@ -74,32 +59,8 @@ public class BuildingBehaviour : MonoBehaviour
         spriteRenderer.sprite = definition.levelSprites[spriteIndex];
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Interact(GameObject player)
     {
-        if (collision.gameObject.GetComponentInParent<moviment>() == null)
-        {
-            return;
-        }
-
-        playerInContact = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponentInParent<moviment>() == null)
-        {
-            return;
-        }
-
-        playerInContact = false;
-    }
-
-    private void Update()
-    {
-        if (playerInContact &&
-            GameInput.WasInteractPressedThisFrame())
-        {
-            Selected?.Invoke(this);
-        }
+        Selected?.Invoke(this);
     }
 }

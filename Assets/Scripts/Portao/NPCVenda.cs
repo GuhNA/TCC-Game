@@ -1,13 +1,13 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using TMPro;
 using TCCGame.Core;
 using TCCGame.Core.Input;
 using TCCGame.Gameplay.Recruitment;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class NPCVenda : MonoBehaviour
+public class NPCVenda : MonoBehaviour, IInteractable
 {
     public PopupAlerta alerta;
     public GameObject popup;
@@ -16,9 +16,11 @@ public class NPCVenda : MonoBehaviour
     public TMP_Text mago_texto;
     public TMP_Text tempo_texto;
 
+    private RecruitmentRowView[] rows;
+
     private bool aberto;
-    private bool dentro;
-    private UnitType? escolha;
+
+    public bool CanInteract => popup != null;
 
     private RecruitmentService Recruitment =>
         GameSessionProvider.Current.Recruitment;
@@ -26,11 +28,33 @@ public class NPCVenda : MonoBehaviour
     private void Start()
     {
         aberto = false;
-        dentro = false;
+        rows = popup == null
+            ? System.Array.Empty<RecruitmentRowView>()
+            : popup.GetComponentsInChildren<RecruitmentRowView>(true);
+
+        foreach (RecruitmentRowView row in rows)
+        {
+            row.PurchaseRequested += HandlePurchaseRequested;
+            row.InputInvalid += HandleInvalidInput;
+        }
 
         if (popup != null)
         {
             popup.SetActive(false);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (rows == null)
+        {
+            return;
+        }
+
+        foreach (RecruitmentRowView row in rows)
+        {
+            row.PurchaseRequested -= HandlePurchaseRequested;
+            row.InputInvalid -= HandleInvalidInput;
         }
     }
 
@@ -41,12 +65,10 @@ public class NPCVenda : MonoBehaviour
             AtualizaTempo();
         }
 
-        if (!dentro ||
-            !GameInput.WasInteractPressedThisFrame())
-        {
-            return;
-        }
+    }
 
+    public void Interact(GameObject player)
+    {
         if (!aberto)
         {
             abrir_popup();
@@ -55,22 +77,6 @@ public class NPCVenda : MonoBehaviour
 
         popup.SetActive(false);
         aberto = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GetComponentInParent<moviment>() != null)
-        {
-            dentro = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.GetComponentInParent<moviment>() != null)
-        {
-            dentro = false;
-        }
     }
 
     private void abrir_popup()
@@ -82,50 +88,19 @@ public class NPCVenda : MonoBehaviour
         popup.SetActive(true);
     }
 
-    public void vendaCalculo(int intValue)
+    private void HandlePurchaseRequested(UnitType unitType, int quantity)
     {
-        if (!escolha.HasValue)
-        {
-            ExibirAlerta("Selecione um tipo de tropa.");
-            return;
-        }
-
-        ProcessarCompra(escolha.Value, intValue);
+        Purchase(unitType, quantity);
     }
 
-    public void compraEscolha(int value)
+    private void HandleInvalidInput()
     {
-        escolha = value switch
-        {
-            1 => UnitType.Archer,
-            2 => UnitType.Warrior,
-            3 => UnitType.Mage,
-            _ => null
-        };
+        ExibirAlerta("Quantidade inválida");
     }
 
-    public void porInput(InputField input)
+    public void Purchase(UnitType unitType, int quantity)
     {
-        if (input == null)
-        {
-            return;
-        }
-
-        if (!TryGetUnitType(input.name, out UnitType unitType) ||
-            !int.TryParse(
-                input.text?.Trim(),
-                NumberStyles.None,
-                CultureInfo.InvariantCulture,
-                out int quantity
-            ))
-        {
-            ExibirAlerta("Quantidade inválida");
-            input.text = string.Empty;
-            return;
-        }
-
         ProcessarCompra(unitType, quantity);
-        input.text = string.Empty;
     }
 
     private void ProcessarCompra(UnitType unitType, int quantity)
@@ -168,6 +143,11 @@ public class NPCVenda : MonoBehaviour
             $"Guerreiros: {Recruitment.GetAvailable(UnitType.Warrior)}";
         mago_texto.text =
             $"Magos: {Recruitment.GetAvailable(UnitType.Mage)}";
+
+        foreach (RecruitmentRowView row in rows ?? Enumerable.Empty<RecruitmentRowView>())
+        {
+            row.Refresh(Recruitment.GetAvailable(row.UnitType));
+        }
     }
 
     private void AtualizaTempo()
@@ -194,31 +174,6 @@ public class NPCVenda : MonoBehaviour
         if (alerta != null)
         {
             StartCoroutine(alerta.attTexto(message));
-        }
-    }
-
-    private static bool TryGetUnitType(
-        string inputName,
-        out UnitType unitType
-    )
-    {
-        switch (inputName)
-        {
-            case "arqueiroInput":
-                unitType = UnitType.Archer;
-                return true;
-
-            case "guerreiroInput":
-                unitType = UnitType.Warrior;
-                return true;
-
-            case "magoInput":
-                unitType = UnitType.Mage;
-                return true;
-
-            default:
-                unitType = default;
-                return false;
         }
     }
 

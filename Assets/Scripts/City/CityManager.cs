@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using TCCGame.Core;
 using TCCGame.Gameplay.City;
 using TCCGame.Gameplay.Economy;
@@ -12,26 +11,27 @@ public class CityManager : MonoBehaviour
     [SerializeField]
     private BuildingBehaviour[] buildings;
 
-    private readonly Dictionary<BuildingType, BuildingState>
-        buildingStates = new();
-
     private BuildingBehaviour selectedBuilding;
     private EconomyService economy;
+    private BuildingService buildingService;
 
     private void Awake()
     {
-        economy = GameSessionProvider.Current.Economy;
-        CreateInitialStates();
+        GameSession session = GameSessionProvider.Current;
+        economy = session.Economy;
+        buildingService = session.Buildings;
         InitializeBuildings();
 
         buildingPanel.UpgradeRequested += UpgradeSelectedBuilding;
         economy.MoneyChanged += HandleMoneyChanged;
+        buildingService.LevelChanged += HandleBuildingLevelChanged;
     }
 
     private void OnDestroy()
     {
         buildingPanel.UpgradeRequested -= UpgradeSelectedBuilding;
         economy.MoneyChanged -= HandleMoneyChanged;
+        buildingService.LevelChanged -= HandleBuildingLevelChanged;
 
         foreach (BuildingBehaviour building in buildings)
         {
@@ -39,43 +39,14 @@ public class CityManager : MonoBehaviour
         }
     }
 
-    private void CreateInitialStates()
-    {
-        foreach (BuildingBehaviour building in buildings)
-        {
-            BuildingType type = building.Definition.type;
-
-            if (buildingStates.ContainsKey(type))
-            {
-                Debug.LogError(
-                    $"Building type duplicated: {type}"
-                );
-
-                continue;
-            }
-
-            buildingStates.Add(
-                type,
-                new BuildingState(
-                    type,
-                    Mathf.Clamp(
-                        GameSessionProvider.Current.Buildings
-                            .GetLevel(type),
-                        0,
-                        building.Definition.maximumLevel
-                    )
-                )
-            );
-        }
-    }
-
     private void InitializeBuildings()
     {
         foreach (BuildingBehaviour building in buildings)
         {
+            buildingService.RegisterDefinition(building.Definition);
             BuildingType type = building.Definition.type;
 
-            building.Initialize(buildingStates[type]);
+            building.Initialize(buildingService.GetLevel(type));
             building.Selected += SelectBuilding;
         }
     }
@@ -93,28 +64,31 @@ public class CityManager : MonoBehaviour
             return;
         }
 
-        BuildingDefinition definition =
-            selectedBuilding.Definition;
-
-        BuildingState state =
-            selectedBuilding.State;
-
-        if (state.level >= definition.maximumLevel)
-        {
-            return;
-        }
-
-        BuildingUpgradeStatus result =
-            GameSessionProvider.Current.Buildings.TryUpgrade(definition);
+        BuildingDefinition definition = selectedBuilding.Definition;
+        BuildingUpgradeStatus result = buildingService.TryUpgrade(definition);
 
         if (result != BuildingUpgradeStatus.Upgraded)
         {
             RefreshSelectedBuildingPanel();
             return;
         }
-
-        selectedBuilding.IncreaseLevel();
         RefreshSelectedBuildingPanel();
+    }
+
+    private void HandleBuildingLevelChanged(
+        BuildingType type,
+        int previousLevel,
+        int newLevel
+    )
+    {
+        foreach (BuildingBehaviour building in buildings)
+        {
+            if (building.Definition.type == type)
+            {
+                building.RenderLevel(newLevel);
+                break;
+            }
+        }
     }
 
     private void HandleMoneyChanged(int newMoney)
@@ -134,7 +108,7 @@ public class CityManager : MonoBehaviour
 
         int cost = BuildingCalculator.GetUpgradeCost(
             selectedBuilding.Definition,
-            selectedBuilding.State.level
+            selectedBuilding.Level
         );
 
         bool canAfford = economy.CanAfford(cost);

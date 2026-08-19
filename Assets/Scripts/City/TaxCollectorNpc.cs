@@ -1,7 +1,7 @@
 using TCCGame.Core.Input;
 using UnityEngine;
 
-public class TaxCollectorNpc : MonoBehaviour
+public class TaxCollectorNpc : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private TaxAccrualService taxService;
@@ -9,16 +9,10 @@ public class TaxCollectorNpc : MonoBehaviour
     [SerializeField]
     private PopupAlerta alert;
 
-    private bool playerNearby;
+    public bool CanInteract => enabled && taxService != null;
 
-    private void Update()
+    public void Interact(GameObject player)
     {
-        if (!playerNearby ||
-            !GameInput.WasInteractPressedThisFrame())
-        {
-            return;
-        }
-
         TaxCollectionResult result = taxService.CollectTaxes();
         string message;
 
@@ -40,21 +34,5 @@ public class TaxCollectorNpc : MonoBehaviour
         }
 
         StartCoroutine(alert.attTexto(message));
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.GetComponentInParent<moviment>() != null)
-        {
-            playerNearby = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.GetComponentInParent<moviment>() != null)
-        {
-            playerNearby = false;
-        }
     }
 }

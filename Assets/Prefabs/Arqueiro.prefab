@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7250975752397279343}
   - component: {fileID: 7964176068623365827}
   - component: {fileID: 6563834855348916515}
-  - component: {fileID: 7512639216775033397}
   - component: {fileID: 77788658928511511}
   m_Layer: 0
   m_Name: Arqueiro
@@ -117,22 +116,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &7512639216775033397
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3912086951211481155}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: af133fee67e49fd4483e65e19b2f9d26, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!114 &77788658928511511
 MonoBehaviour:
   m_ObjectHideFlags: 0

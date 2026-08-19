@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 312181254}
   - component: {fileID: 312181253}
   - component: {fileID: 312181256}
-  - component: {fileID: 312181255}
   - component: {fileID: 312181257}
   m_Layer: 0
   m_Name: Arqueiro
@@ -344,22 +343,6 @@ Transform:
   - {fileID: 1174320011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &312181255
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312181250}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: af133fee67e49fd4483e65e19b2f9d26, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!95 &312181256
 Animator:
   serializedVersion: 7

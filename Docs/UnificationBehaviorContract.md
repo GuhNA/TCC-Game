@@ -50,8 +50,16 @@ unificação e separa explicitamente os defeitos que não devem ser preservados.
 - O HUD é somente visual: ele não bloqueia raycasts nem mantém uma cópia do
   saldo.
 - Os textos visuais do popup de venda usam TextMesh Pro, com fonte, material,
-  cor e opacidade explícitos. O sistema legado permanece apenas nos textos
-  internos dos `InputField`, que ainda dependem de `UnityEngine.UI.Text`.
+  cor e opacidade explícitos. O popup também usa `TMP_InputField`; não há
+  `UnityEngine.UI.Text` ou `InputField` legado nessa interface.
+- As definições de aventureiros e itens são somente dados; atributos calculados,
+  vida e estado vivo pertencem à instância runtime do aventureiro.
+- A ação `Player/Interact` é processada uma única vez pelo `PlayerInteractor`.
+  Alvos de interação implementam `IInteractable` e não leem o input diretamente.
+- O nível de cada construção pertence ao `BuildingService`. Componentes de cena
+  apenas renderizam o nível recebido do serviço.
+- Cada linha do vendedor é um `RecruitmentRowView` identificado por `UnitType`;
+  botões e entradas não dependem de nomes de GameObjects.
 
 ## Limpeza após a migração
 

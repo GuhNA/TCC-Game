@@ -1161,26 +1161,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 403003946425386677, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 3698702541367410582, guid: bca838e85e1194045bf5d16c90abbdc0, type: 3}
-    - target: {fileID: 403003946425386677, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403003946425386677, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403003946425386677, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 403003946425386677, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 6144357783189342494, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.66
@@ -1224,18 +1204,6 @@ PrefabInstance:
     - target: {fileID: 6329151862046803151, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136469782779526277, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Radius
-      value: 0.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136469782779526277, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7136469782779526277, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

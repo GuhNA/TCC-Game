@@ -18,7 +18,7 @@ namespace TCCGame.Core
         public BuildingService Buildings { get; }
         public RecruitmentService Recruitment { get; }
         public PlayerInventoryService Inventory { get; }
-        public TaxAccrualSaveData Taxes => State.taxes;
+        public TaxService Taxes { get; }
 
         public GameSession(
             IGameSaveRepository repository,
@@ -42,12 +42,13 @@ namespace TCCGame.Core
                 Economy,
                 Commit
             );
-        }
-
-        public void SaveTaxes(TaxAccrualSaveData taxes)
-        {
-            State.taxes = taxes ?? new TaxAccrualSaveData();
-            Commit();
+            Taxes = new TaxService(
+                State,
+                Economy,
+                Buildings,
+                clock,
+                Commit
+            );
         }
 
         private void Commit()

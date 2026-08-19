@@ -38,6 +38,15 @@ namespace TCCGame.Tests.EditMode
             data.money = 100;
             var repository = new InMemoryGameSaveRepository(data);
             GameSession session = CreateSession(repository);
+            BuildingType changedType = default;
+            int previousLevel = -1;
+            int newLevel = -1;
+            session.Buildings.LevelChanged += (type, previous, current) =>
+            {
+                changedType = type;
+                previousLevel = previous;
+                newLevel = current;
+            };
 
             BuildingUpgradeStatus result =
                 session.Buildings.TryUpgrade(buildingDefinition);
@@ -51,6 +60,9 @@ namespace TCCGame.Tests.EditMode
                 Is.EqualTo(1)
             );
             Assert.That(repository.SaveCount, Is.EqualTo(1));
+            Assert.That(changedType, Is.EqualTo(BuildingType.Barracks));
+            Assert.That(previousLevel, Is.Zero);
+            Assert.That(newLevel, Is.EqualTo(1));
         }
 
         [Test]

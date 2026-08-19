@@ -1,5 +1,4 @@
 using TCCGame.Core;
-using TCCGame.Core.Input;
 using TCCGame.Gameplay.Player;
 using UnityEngine;
 
@@ -7,8 +6,8 @@ using UnityEngine;
 public class AdmAventureiro : MonoBehaviour
 {
     moviment movimento;
-    bool aventureiro_proximo;
     bool ativaPopup;
+    private PlayerInteractor interactor;
     public GameObject popup_aventureiro;
     public AventureiroPopup popup;
     public Aventureiro aventureiro;
@@ -17,71 +16,54 @@ public class AdmAventureiro : MonoBehaviour
     private void Awake()
     {
         movimento = GetComponent<moviment>();
+        interactor = GetComponent<PlayerInteractor>();
     }
 
     private void OnDisable()
     {
+        interactor?.CloseAllModals();
+
         if (movimento != null)
         {
             movimento.SetMovementBlocked(false);
         }
     }
 
-    private void Update() 
+    public void Open(Aventureiro target)
     {
-        if(aventureiro_proximo)
+        if (ativaPopup && aventureiro == target)
         {
-            if(GameInput.WasInteractPressedThisFrame())
-            {
-                ativaPopup = !ativaPopup;
-            }
+            Close(target);
+            return;
         }
-        if(ativaPopup) 
-        {
-            if (aventureiro != null && popup != null)
-            {
-                attDados(aventureiro);
-                movimento.SetMovementBlocked(true);
-            }
-            else
-            {
-                ativaPopup = false;
-                movimento.SetMovementBlocked(false);
-            }
-        }
-        else
-        {
-            if (popup_aventureiro != null)
-            {
-                popup_aventureiro.SetActive(false);
-            }
 
-            movimento.SetMovementBlocked(false);
-        }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {   
-  
-        if(collision.gameObject.GetComponentInParent<Aventureiro>())
+        if (ativaPopup)
         {
-            //pegando dados do npc
-            aventureiro = collision.gameObject.GetComponentInParent<Aventureiro>();
-            //abrindo/fechando popup
-            aventureiro_proximo = true;
+            ClearPopup();
+        }
+
+        aventureiro = target;
+        ativaPopup = aventureiro != null && popup != null;
+
+        if (ativaPopup)
+        {
+            attDados(aventureiro);
+            interactor?.SetModalOpen(true);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void Close(Aventureiro target)
     {
-        Aventureiro exitingAdventurer =
-            other.GetComponentInParent<Aventureiro>();
-
-        if (exitingAdventurer == null ||
-            exitingAdventurer != aventureiro)
+        if (aventureiro != target)
         {
             return;
         }
 
+        ClearPopup();
+    }
+
+    private void ClearPopup()
+    {
         if (popup != null)
         {
             //removendo dados pegos do aventureiro
@@ -90,16 +72,20 @@ public class AdmAventureiro : MonoBehaviour
             popup.inte.text = "";
             popup.forca.text = "";
             popup.foto.sprite = null;
+            popup_aventureiro?.SetActive(false);
+        }
+        else
+        {
+            popup_aventureiro?.SetActive(false);
         }
 
-        aventureiro_proximo = false;
         ativaPopup = false;
         aventureiro = null;
-        movimento.SetMovementBlocked(false);
+        interactor?.SetModalOpen(false);
     }   
     void attDados(Aventureiro aventureiro)
     {
-        popup.vida.text = aventureiro.charBase.vida.ToString();
+        popup.vida.text = aventureiro.Stats.MaxHealth.ToString();
         popup.dex.text = aventureiro.charBase.destreza.ToString();
         popup.inte.text = aventureiro.charBase.inteligencia.ToString();
         popup.forca.text = aventureiro.charBase.forca.ToString();
@@ -126,7 +112,7 @@ public class AdmAventureiro : MonoBehaviour
                 aventureiro.charBase.preco
             );
 
-        ativaPopup = false;
+        ClearPopup();
 
         switch (result)
         {

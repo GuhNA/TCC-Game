@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TCCGame.Core.Persistence;
 using TCCGame.Gameplay.Economy;
 
@@ -16,6 +17,10 @@ namespace TCCGame.Gameplay.City
         private readonly GameSaveData state;
         private readonly EconomyService economy;
         private readonly Action commit;
+        private readonly Dictionary<BuildingType, BuildingDefinition>
+            definitions = new();
+
+        public event Action<BuildingType, int, int> LevelChanged;
 
         public BuildingService(
             GameSaveData state,
@@ -34,6 +39,39 @@ namespace TCCGame.Gameplay.City
         public int GetLevel(BuildingType type)
         {
             return state.GetBuildingLevel(type);
+        }
+
+        public void RegisterDefinition(BuildingDefinition definition)
+        {
+            if (definition == null)
+            {
+                throw new ArgumentNullException(nameof(definition));
+            }
+
+            if (definitions.TryGetValue(definition.type, out BuildingDefinition existing) &&
+                existing != definition)
+            {
+                throw new InvalidOperationException(
+                    $"Building type duplicated: {definition.type}"
+                );
+            }
+
+            definitions[definition.type] = definition;
+        }
+
+        public int GetProduction(BuildingType type)
+        {
+            return GetProduction(type, GetLevel(type));
+        }
+
+        public int GetProduction(BuildingType type, int level)
+        {
+            return definitions.TryGetValue(
+                type,
+                out BuildingDefinition definition
+            )
+                ? BuildingCalculator.GetProduction(definition, level)
+                : 0;
         }
 
         public BuildingUpgradeStatus TryUpgrade(
@@ -79,6 +117,7 @@ namespace TCCGame.Gameplay.City
             }
 
             economy.PublishChange();
+            LevelChanged?.Invoke(definition.type, previousLevel, newLevel);
             return BuildingUpgradeStatus.Upgraded;
         }
     }

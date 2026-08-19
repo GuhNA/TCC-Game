@@ -52,7 +52,7 @@ public class BuildingPanel : MonoBehaviour
         }
 
         BuildingDefinition definition = building.Definition;
-        int currentLevel = building.State.level;
+        int currentLevel = building.Level;
 
         buildingNameText.text = definition.displayName;
         descriptionText.text = definition.description;

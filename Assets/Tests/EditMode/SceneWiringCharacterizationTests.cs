@@ -103,50 +103,34 @@ namespace TCCGame.Tests.EditMode
             GoldBalancePresenter goldPresenter =
                 ComponentsInScene<GoldBalancePresenter>(scene).Single();
 
-            int chooseCalls = 0;
-            int calculateCalls = 0;
-            int inputCalls = 0;
+            RecruitmentRowView[] rows =
+                vendor.popup.GetComponentsInChildren<RecruitmentRowView>(true);
+            Assert.That(rows, Has.Length.EqualTo(3));
 
-            foreach (Button button in ComponentsInScene<Button>(scene))
+            int rowButtonCalls = 0;
+            foreach (Button button in
+                     vendor.popup.GetComponentsInChildren<Button>(true))
             {
-                int chooseIndex = -1;
-                int calculateIndex = -1;
-
                 for (int index = 0;
                      index < button.onClick.GetPersistentEventCount();
                      index++)
                 {
-                    if (button.onClick.GetPersistentTarget(index) != vendor)
+                    if (button.onClick.GetPersistentTarget(index)
+                        is RecruitmentRowView)
                     {
-                        continue;
+                        rowButtonCalls++;
+                        Assert.That(
+                            new[] {
+                                nameof(RecruitmentRowView.PurchaseOne),
+                                nameof(RecruitmentRowView.PurchaseTen),
+                                nameof(RecruitmentRowView.PurchaseHundred),
+                                nameof(RecruitmentRowView.SubmitInput)
+                            },
+                            Does.Contain(
+                                button.onClick.GetPersistentMethodName(index)
+                            )
+                        );
                     }
-
-                    switch (button.onClick.GetPersistentMethodName(index))
-                    {
-                        case "compraEscolha":
-                            chooseCalls++;
-                            chooseIndex = index;
-                            break;
-
-                        case "vendaCalculo":
-                            calculateCalls++;
-                            calculateIndex = index;
-                            break;
-
-                        case "porInput":
-                            inputCalls++;
-                            break;
-                    }
-                }
-
-                if (chooseIndex >= 0 && calculateIndex >= 0)
-                {
-                    Assert.That(
-                        chooseIndex,
-                        Is.LessThan(calculateIndex),
-                        $"Button {button.name} must select the unit " +
-                        "before calculating the purchase."
-                    );
                 }
             }
 
@@ -161,29 +145,39 @@ namespace TCCGame.Tests.EditMode
             AssertSaleText(vendor.mago_texto);
             AssertSaleText(vendor.tempo_texto);
 
-            foreach (Text legacyText in
-                     vendor.popup.GetComponentsInChildren<Text>(true))
+            Assert.That(
+                vendor.popup.GetComponentsInChildren<Text>(true),
+                Is.Empty
+            );
+            Assert.That(
+                vendor.popup.GetComponentsInChildren<InputField>(true),
+                Is.Empty
+            );
+
+            foreach (TMP_InputField input in
+                     vendor.popup.GetComponentsInChildren<TMP_InputField>(true))
             {
-                Assert.That(
-                    legacyText.GetComponentInParent<InputField>(),
-                    Is.Not.Null,
-                    $"{legacyText.name} should use TextMesh Pro unless " +
-                    "it belongs to a legacy InputField."
-                );
+                TMP_Text inputText = input.textComponent as TMP_Text;
+                Assert.That(inputText, Is.Not.Null);
+                AssertRenderableText(inputText, requireOpaque: false);
+                TMP_Text placeholder = input.placeholder as TMP_Text;
+                if (placeholder != null)
+                {
+                    AssertRenderableText(placeholder, requireOpaque: false);
+                }
             }
 
             foreach (TMP_Text saleText in
                      vendor.popup.GetComponentsInChildren<TMP_Text>(true))
             {
-                Assert.That(saleText.font, Is.Not.Null);
-                Assert.That(saleText.fontSharedMaterial, Is.Not.Null);
-                Assert.That(saleText.color.a, Is.GreaterThan(0.99f));
-                Assert.That(saleText.raycastTarget, Is.False);
+                AssertRenderableText(saleText, requireOpaque: false);
             }
             AssertGoldHudWiring(goldPresenter);
-            Assert.That(chooseCalls, Is.EqualTo(9));
-            Assert.That(calculateCalls, Is.EqualTo(9));
-            Assert.That(inputCalls, Is.EqualTo(3));
+            Assert.That(rowButtonCalls, Is.EqualTo(12));
+            Assert.That(
+                ComponentsInScene<PlayerInteractor>(scene).Count(),
+                Is.EqualTo(1)
+            );
             Assert.That(
                 ComponentsInScene<moviment>(scene).Count(),
                 Is.EqualTo(1)
@@ -253,6 +247,25 @@ namespace TCCGame.Tests.EditMode
             Assert.That(text.font, Is.Not.Null);
             Assert.That(text.fontSharedMaterial, Is.Not.Null);
             Assert.That(text.color, Is.EqualTo(Color.white));
+            Assert.That(text.raycastTarget, Is.False);
+        }
+
+        private static void AssertRenderableText(
+            TMP_Text text,
+            bool requireOpaque = true
+        )
+        {
+            Assert.That(text, Is.Not.Null);
+            Assert.That(text.font, Is.Not.Null);
+            Assert.That(text.fontSharedMaterial, Is.Not.Null);
+            if (requireOpaque)
+            {
+                Assert.That(text.color.a, Is.GreaterThan(0.99f));
+            }
+            else
+            {
+                Assert.That(text.color.a, Is.GreaterThan(0f));
+            }
             Assert.That(text.raycastTarget, Is.False);
         }
     }
