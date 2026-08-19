@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class NPCVenda : MonoBehaviour, IInteractable
 {
-    public PopupAlerta alerta;
+    public AlertPopup alerta;
     public GameObject popup;
     public TMP_Text arqueiro_texto;
     public TMP_Text guerreiro_texto;
@@ -171,10 +171,7 @@ public class NPCVenda : MonoBehaviour, IInteractable
 
     private void ExibirAlerta(string message)
     {
-        if (alerta != null)
-        {
-            StartCoroutine(alerta.attTexto(message));
-        }
+        alerta?.Show(message);
     }
 
     private static string GetSingularName(UnitType unitType)

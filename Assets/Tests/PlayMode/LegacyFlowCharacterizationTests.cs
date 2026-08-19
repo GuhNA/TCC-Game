@@ -101,16 +101,32 @@ namespace TCCGame.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator AdventurerPurchase_UsesSharedPersistentInventory()
+        public IEnumerator AdventurerPurchase_UsesPanelAndPersistentInventory()
         {
             ConfigureGame(data => data.money = 200);
 
             var player = new GameObject("Adventurer buyer");
             otherObjects.Add(player);
+            player.SetActive(false);
             player.AddComponent<Rigidbody2D>();
             player.AddComponent<moviment>();
-            AdmAventureiro administrator =
-                player.AddComponent<AdmAventureiro>();
+            PlayerInteractor interactor =
+                player.AddComponent<PlayerInteractor>();
+            AdventurerRecruitmentController controller =
+                player.AddComponent<AdventurerRecruitmentController>();
+
+            var panelObject = new GameObject("Adventurer recruitment panel");
+            otherObjects.Add(panelObject);
+            panelObject.SetActive(false);
+            AdventurerRecruitmentPanel panel =
+                panelObject.AddComponent<AdventurerRecruitmentPanel>();
+            Button purchaseButton = new GameObject("Purchase button")
+                .AddComponent<Button>();
+            purchaseButton.transform.SetParent(panelObject.transform);
+            SetPrivateField(panel, "panelRoot", panelObject);
+            SetPrivateField(panel, "purchaseButton", purchaseButton);
+            SetPrivateField(controller, "panel", panel);
+            player.SetActive(true);
 
             var npcObject = new GameObject("Recruitable adventurer");
             otherObjects.Add(npcObject);
@@ -121,12 +137,18 @@ namespace TCCGame.Tests.PlayMode
             definition.name = "adventurer.test";
             definition.preco = 150;
             adventurer.charBase = definition;
-            administrator.aventureiro = adventurer;
+            npcObject.SetActive(true);
+            yield return null;
 
-            administrator.ComprarPersonagem();
-            administrator.ComprarPersonagem();
+            controller.Open(adventurer);
+            Assert.That(interactor.HasModalOpen, Is.True);
+            purchaseButton.onClick.Invoke();
+
+            controller.Open(adventurer);
+            purchaseButton.onClick.Invoke();
 
             Assert.That(Session.Economy.Money, Is.EqualTo(50));
+            Assert.That(interactor.HasModalOpen, Is.False);
             Assert.That(
                 Session.Inventory.IsAdventurerRecruited(
                     "adventurer.test"
@@ -409,9 +431,9 @@ namespace TCCGame.Tests.PlayMode
                 SetPrivateField(goldPresenter, "goldText", GoldText);
 
                 var popupObject = CreateObject("Popup");
-                var alert = CreateObject("Alert").AddComponent<PopupAlerta>();
-                alert.popup = popupObject;
-                alert.texto = CreateText("AlertText");
+                var alert = CreateObject("Alert").AddComponent<AlertPopup>();
+                SetPrivateField(alert, "popupRoot", popupObject);
+                SetPrivateField(alert, "messageText", CreateText("AlertText"));
 
                 Vendor = CreateObject("Vendor").AddComponent<NPCVenda>();
                 Vendor.alerta = alert;

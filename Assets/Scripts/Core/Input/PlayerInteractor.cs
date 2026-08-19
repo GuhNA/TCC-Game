@@ -7,11 +7,11 @@ using UnityEngine;
 public sealed class PlayerInteractor : MonoBehaviour
 {
     private readonly Dictionary<IInteractable, int> candidates = new();
+    private readonly HashSet<object> modalLockOwners = new();
 
     private moviment movement;
-    private int modalLocks;
 
-    public bool HasModalOpen => modalLocks > 0;
+    public bool HasModalOpen => modalLockOwners.Count > 0;
 
     private void Awake()
     {
@@ -28,19 +28,30 @@ public sealed class PlayerInteractor : MonoBehaviour
         GetCurrentInteractable()?.Interact(gameObject);
     }
 
-    public void SetModalOpen(bool open)
+    private void OnDisable()
     {
-        modalLocks = open
-            ? modalLocks + 1
-            : Mathf.Max(0, modalLocks - 1);
-
-        movement.SetMovementBlocked(HasModalOpen);
+        modalLockOwners.Clear();
+        movement?.SetMovementBlocked(false);
     }
 
-    public void CloseAllModals()
+    public void AcquireModalLock(object owner)
     {
-        modalLocks = 0;
-        movement.SetMovementBlocked(false);
+        if (owner == null || !modalLockOwners.Add(owner))
+        {
+            return;
+        }
+
+        movement.SetMovementBlocked(true);
+    }
+
+    public void ReleaseModalLock(object owner)
+    {
+        if (owner == null || !modalLockOwners.Remove(owner))
+        {
+            return;
+        }
+
+        movement.SetMovementBlocked(HasModalOpen);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

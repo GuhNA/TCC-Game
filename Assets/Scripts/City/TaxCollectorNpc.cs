@@ -7,7 +7,7 @@ public class TaxCollectorNpc : MonoBehaviour, IInteractable
     private TaxAccrualService taxService;
 
     [SerializeField]
-    private PopupAlerta alert;
+    private AlertPopup alert;
 
     public bool CanInteract => enabled && taxService != null;
 
@@ -33,6 +33,6 @@ public class TaxCollectorNpc : MonoBehaviour, IInteractable
                 break;
         }
 
-        StartCoroutine(alert.attTexto(message));
+        alert?.Show(message);
     }
 }

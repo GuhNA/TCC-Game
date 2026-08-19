@@ -767,9 +767,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b5062573acb2994e9695fb230f41a29, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PopupAlerta
-  popup: {fileID: 1883430248}
-  texto: {fileID: 1527674773}
+  m_EditorClassIdentifier: Assembly-CSharp::AlertPopup
+  popupRoot: {fileID: 1883430248}
+  messageText: {fileID: 1527674773}
+  visibleDurationSeconds: 1
 --- !u!1 &143213252
 GameObject:
   m_ObjectHideFlags: 0

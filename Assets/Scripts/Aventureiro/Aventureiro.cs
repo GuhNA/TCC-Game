@@ -25,12 +25,12 @@ public class Aventureiro : MonoBehaviour, IInteractable, IInteractionExitAware
 
     public void Interact(GameObject player)
     {
-        player.GetComponent<AdmAventureiro>()?.Open(this);
+        player.GetComponent<AdventurerRecruitmentController>()?.Open(this);
     }
 
     public void OnExitInteractionRange(GameObject player)
     {
-        player.GetComponent<AdmAventureiro>()?.Close(this);
+        player.GetComponent<AdventurerRecruitmentController>()?.Close(this);
     }
 
 }

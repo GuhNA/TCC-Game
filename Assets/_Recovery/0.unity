@@ -1260,13 +1260,15 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 729a0bd1a9b5249479342263f002e723, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AventureiroPopup
-  vida: {fileID: 745638616}
-  dex: {fileID: 1217712036}
-  inte: {fileID: 970538805}
-  forca: {fileID: 901511267}
-  comprar: {fileID: 0}
-  foto: {fileID: 1770079810}
+  m_EditorClassIdentifier: Assembly-CSharp::AdventurerRecruitmentPanel
+  panelRoot: {fileID: 1142398993}
+  healthText: {fileID: 745638616}
+  dexterityText: {fileID: 1217712036}
+  intelligenceText: {fileID: 970538805}
+  strengthText: {fileID: 901511267}
+  priceText: {fileID: 0}
+  portraitImage: {fileID: 1770079810}
+  purchaseButton: {fileID: 0}
 --- !u!4 &1142398995
 Transform:
   m_ObjectHideFlags: 0

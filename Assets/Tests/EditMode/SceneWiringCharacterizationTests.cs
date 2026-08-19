@@ -185,6 +185,76 @@ namespace TCCGame.Tests.EditMode
         }
 
         [Test]
+        public void MapaGeralScene_UsesSceneSpecificRecruitmentController()
+        {
+            Scene scene = EditorSceneManager.OpenScene(
+                "Assets/Scenes/mapa_geral.unity",
+                OpenSceneMode.Single
+            );
+
+            AdventurerRecruitmentController controller =
+                ComponentsInScene<AdventurerRecruitmentController>(scene)
+                    .Single();
+            AdventurerRecruitmentPanel panel =
+                ComponentsInScene<AdventurerRecruitmentPanel>(scene)
+                    .Single();
+            SerializedObject serializedController =
+                new SerializedObject(controller);
+            SerializedObject serializedPanel = new SerializedObject(panel);
+
+            Assert.That(
+                serializedController.FindProperty("panel")
+                    .objectReferenceValue,
+                Is.SameAs(panel)
+            );
+            Assert.That(
+                serializedController.FindProperty("alert")
+                    .objectReferenceValue,
+                Is.Not.Null
+            );
+
+            foreach (string fieldName in new[]
+                     {
+                         "panelRoot",
+                         "healthText",
+                         "dexterityText",
+                         "intelligenceText",
+                         "strengthText",
+                         "priceText",
+                         "portraitImage",
+                         "purchaseButton"
+                     })
+            {
+                Assert.That(
+                    serializedPanel.FindProperty(fieldName)
+                        .objectReferenceValue,
+                    Is.Not.Null,
+                    fieldName
+                );
+            }
+
+            Button purchaseButton = (Button)serializedPanel
+                .FindProperty("purchaseButton")
+                .objectReferenceValue;
+            Assert.That(
+                purchaseButton.onClick.GetPersistentEventCount(),
+                Is.Zero
+            );
+
+            GameObject playerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(
+                "Assets/Prefabs/Player.prefab"
+            );
+            Assert.That(
+                playerPrefab.GetComponent<AdventurerRecruitmentController>(),
+                Is.Null
+            );
+            Assert.That(
+                controller.GetComponent<PlayerInteractor>(),
+                Is.Not.Null
+            );
+        }
+
+        [Test]
         public void ProjectInputActions_DefinesSharedMovementAndInteraction()
         {
             InputActionAsset actions = AssetDatabase.LoadAssetAtPath<
