@@ -1,3 +1,5 @@
 ﻿<Solution>
-  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="TCCGame.PlayModeTests.csproj" />
+  <Project Path="TCCGame.Runtime.csproj" />
+  <Project Path="TCCGame.EditModeTests.csproj" />
 </Solution>
