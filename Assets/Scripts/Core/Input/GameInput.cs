@@ -8,6 +8,7 @@ namespace TCCGame.Core.Input
         private const string MoveAction = "Player/Move";
         private const string InteractAction = "Player/Interact";
 
+
         public static Vector2 ReadMovement()
         {
             InputAction action = FindAction(MoveAction);

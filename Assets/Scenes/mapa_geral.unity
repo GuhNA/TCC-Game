@@ -2099,7 +2099,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d42333ea30cd3b468bd0fd5ef5951f7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: TCCGame.Runtime::AdventurerRecruitmentController
   panel: {fileID: 308363322}
   alert: {fileID: 1332453024}
@@ -2154,6 +2154,26 @@ PrefabInstance:
     - target: {fileID: 7250975752397279343, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331262922396537403, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2487271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331262922396537403, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2487271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331262922396537403, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2487271
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331262922396537403, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331262922396537403, guid: 2485d55b4446b1e49a6e64e540a3d786, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

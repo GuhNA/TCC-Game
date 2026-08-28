@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TCCGame.Core.Input;
@@ -22,7 +23,8 @@ public sealed class PlayerInteractor : MonoBehaviour
     {
         if (HasModalOpen || !GameInput.WasInteractPressedThisFrame())
         {
-            return;
+            if(GameInput.WasInteractPressedThisFrame()) OnDisable();
+            else return;
         }
 
         GetCurrentInteractable()?.Interact(gameObject);
