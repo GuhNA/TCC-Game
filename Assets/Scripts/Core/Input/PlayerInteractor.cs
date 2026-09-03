@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System;
 using System.Linq;
+using TCCGame.Core;
 using TCCGame.Core.Input;
 using UnityEngine;
 
@@ -13,6 +15,9 @@ public sealed class PlayerInteractor : MonoBehaviour
     private moviment movement;
 
     public bool HasModalOpen => modalLockOwners.Count > 0;
+    public IInteractable CurrentInteractable { get; private set; }
+
+    public event Action<IInteractable> CurrentInteractableChanged;
 
     private void Awake()
     {
@@ -21,18 +26,33 @@ public sealed class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        if (HasModalOpen || !GameInput.WasInteractPressedThisFrame())
+        RefreshCurrentInteractable();
+
+        if (HasModalOpen)
         {
-            if(GameInput.WasInteractPressedThisFrame()) OnDisable();
-            else return;
+            if (GameInput.WasInteractPressedThisFrame())
+            {
+                modalLockOwners
+                    .OfType<IModalInteractionOwner>()
+                    .FirstOrDefault()
+                    ?.CloseModal();
+            }
+
+            return;
         }
 
-        GetCurrentInteractable()?.Interact(gameObject);
+        if (!GameInput.WasInteractPressedThisFrame())
+        {
+            return;
+        }
+
+        CurrentInteractable?.Interact(gameObject);
     }
 
     private void OnDisable()
     {
         modalLockOwners.Clear();
+        SetCurrentInteractable(null);
         movement?.SetMovementBlocked(false);
     }
 
@@ -83,6 +103,8 @@ public sealed class PlayerInteractor : MonoBehaviour
             candidates.TryGetValue(interactable, out int count);
             candidates[interactable] = count + 1;
         }
+
+        RefreshCurrentInteractable();
     }
 
     private void RemoveCandidates(Collider2D collider)
@@ -107,6 +129,24 @@ public sealed class PlayerInteractor : MonoBehaviour
                 exitAware.OnExitInteractionRange(gameObject);
             }
         }
+
+        RefreshCurrentInteractable();
+    }
+
+    private void RefreshCurrentInteractable()
+    {
+        SetCurrentInteractable(GetCurrentInteractable());
+    }
+
+    private void SetCurrentInteractable(IInteractable interactable)
+    {
+        if (ReferenceEquals(CurrentInteractable, interactable))
+        {
+            return;
+        }
+
+        CurrentInteractable = interactable;
+        CurrentInteractableChanged?.Invoke(CurrentInteractable);
     }
 
     private IInteractable GetCurrentInteractable()

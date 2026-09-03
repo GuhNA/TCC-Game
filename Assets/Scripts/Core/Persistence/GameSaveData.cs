@@ -115,7 +115,7 @@ namespace TCCGame.Core.Persistence
     [Serializable]
     public class GameSaveData
     {
-        public const int CurrentVersion = 3;
+        public const int CurrentVersion = 7;
         public const int DefaultMoney = 1000;
 
         public int version = CurrentVersion;
@@ -125,6 +125,8 @@ namespace TCCGame.Core.Persistence
         public ArmySaveData army = new();
         public RecruitmentSaveData recruitment = new();
         public PlayerInventorySaveData playerInventory = new();
+        public CampaignSaveData campaign = new();
+        public NavigationSaveData navigation = new();
 
         public int GetBuildingLevel(BuildingType type)
         {

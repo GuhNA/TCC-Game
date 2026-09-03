@@ -7,6 +7,8 @@ namespace TCCGame.Core.Input
     {
         private const string MoveAction = "Player/Move";
         private const string InteractAction = "Player/Interact";
+        private const string SubmitAction = "UI/Submit";
+        private const string CancelAction = "UI/Cancel";
 
 
         public static Vector2 ReadMovement()
@@ -19,6 +21,16 @@ namespace TCCGame.Core.Input
         {
             return FindAction(InteractAction)?.WasPressedThisFrame() ??
                 false;
+        }
+
+        public static bool WasSubmitPressedThisFrame()
+        {
+            return FindAction(SubmitAction)?.WasPressedThisFrame() ?? false;
+        }
+
+        public static bool WasCancelPressedThisFrame()
+        {
+            return FindAction(CancelAction)?.WasPressedThisFrame() ?? false;
         }
 
         private static InputAction FindAction(string actionName)

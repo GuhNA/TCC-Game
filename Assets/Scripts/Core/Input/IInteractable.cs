@@ -7,7 +7,17 @@ public interface IInteractable
     void Interact(GameObject player);
 }
 
+public interface IInteractionPromptProvider
+{
+    string InteractionPrompt { get; }
+}
+
 public interface IInteractionExitAware
 {
     void OnExitInteractionRange(GameObject player);
+}
+
+public interface IModalInteractionOwner
+{
+    void CloseModal();
 }

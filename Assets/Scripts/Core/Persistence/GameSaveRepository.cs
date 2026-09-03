@@ -22,11 +22,46 @@ namespace TCCGame.Core.Persistence
     public sealed class GameSaveRepository : IGameSaveRepository
     {
         public const string SaveKey = "tcc.game.save.v2";
+        public const string CorruptSaveKey = SaveKey + ".corrupt";
         public const string LegacyCitySaveKey = "tcc.city.save.v1";
 
         public GameSaveData Load()
         {
-            GameSaveData saveData = LoadCurrentSave();
+            bool hasCurrentSave = PlayerPrefs.HasKey(SaveKey);
+            string rawCurrentSave = hasCurrentSave
+                ? PlayerPrefs.GetString(SaveKey)
+                : null;
+            GameSaveData saveData = null;
+
+            if (hasCurrentSave)
+            {
+                try
+                {
+                    if (string.IsNullOrWhiteSpace(rawCurrentSave))
+                    {
+                        throw new ArgumentException(
+                            "The current save is empty."
+                        );
+                    }
+
+                    saveData = JsonUtility.FromJson<GameSaveData>(
+                        rawCurrentSave
+                    );
+                    if (saveData == null)
+                    {
+                        throw new ArgumentException(
+                            "The current save could not be parsed."
+                        );
+                    }
+                }
+                catch (ArgumentException exception)
+                {
+                    return RecoverFromCorruptCurrentSave(
+                        rawCurrentSave,
+                        exception
+                    );
+                }
+            }
 
             if (saveData != null)
             {
@@ -46,6 +81,30 @@ namespace TCCGame.Core.Persistence
             Save(saveData);
 
             return saveData;
+        }
+
+        private static GameSaveData RecoverFromCorruptCurrentSave(
+            string rawSave,
+            Exception exception
+        )
+        {
+            if (!PlayerPrefs.HasKey(CorruptSaveKey))
+            {
+                PlayerPrefs.SetString(CorruptSaveKey, rawSave ?? string.Empty);
+            }
+
+            Debug.LogWarning(
+                "The current save is invalid; a default save was created. " +
+                exception.GetType().Name
+            );
+            GameSaveData recovered = GameSaveData.CreateDefault();
+            Normalize(recovered);
+            PlayerPrefs.SetString(
+                SaveKey,
+                JsonUtility.ToJson(recovered)
+            );
+            PlayerPrefs.Save();
+            return recovered;
         }
 
         public void Save(GameSaveData saveData)
@@ -86,10 +145,21 @@ namespace TCCGame.Core.Persistence
                 return migrated;
             }
 
-            LegacyCitySaveData legacy =
-                JsonUtility.FromJson<LegacyCitySaveData>(
-                PlayerPrefs.GetString(LegacyCitySaveKey)
-            );
+            LegacyCitySaveData legacy;
+            try
+            {
+                legacy = JsonUtility.FromJson<LegacyCitySaveData>(
+                    PlayerPrefs.GetString(LegacyCitySaveKey)
+                );
+            }
+            catch (ArgumentException exception)
+            {
+                Debug.LogWarning(
+                    "The legacy save is invalid; using a default state. " +
+                    exception.GetType().Name
+                );
+                return migrated;
+            }
 
             if (legacy == null)
             {
@@ -144,6 +214,8 @@ namespace TCCGame.Core.Persistence
             saveData.army ??= new ArmySaveData();
             saveData.recruitment ??= new RecruitmentSaveData();
             saveData.playerInventory ??= new PlayerInventorySaveData();
+            CampaignSaveDataUtility.Normalize(saveData);
+            NavigationSaveDataUtility.Normalize(saveData);
             saveData.playerInventory.recruitedAdventurerIds ??=
                 new List<string>();
             saveData.playerInventory.items ??=

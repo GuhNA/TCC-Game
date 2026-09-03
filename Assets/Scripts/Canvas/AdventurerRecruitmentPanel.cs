@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TCCGame.Core.Input;
 
 public readonly struct AdventurerRecruitmentViewData
 {
@@ -69,6 +70,7 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
 
     private void OnDisable()
     {
+        UiMenuState.SetOpen(this, false);
         purchaseButton?.onClick.RemoveListener(NotifyPurchaseRequested);
     }
 
@@ -86,10 +88,12 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         }
 
         (panelRoot ?? gameObject).SetActive(true);
+        UiMenuState.SetOpen(this, true);
     }
 
     public void Hide()
     {
+        UiMenuState.SetOpen(this, false);
         ClearText(healthText);
         ClearText(dexterityText);
         ClearText(intelligenceText);

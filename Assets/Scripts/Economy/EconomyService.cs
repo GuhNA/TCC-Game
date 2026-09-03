@@ -67,7 +67,22 @@ namespace TCCGame.Gameplay.Economy
 
         internal void PublishChange()
         {
-            MoneyChanged?.Invoke(state.money);
+            if (MoneyChanged == null)
+            {
+                return;
+            }
+
+            foreach (Action<int> handler in MoneyChanged.GetInvocationList())
+            {
+                try
+                {
+                    handler(state.money);
+                }
+                catch (Exception)
+                {
+                    // Presentation observers must not interrupt economy state updates.
+                }
+            }
         }
     }
 }

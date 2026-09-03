@@ -1,6 +1,8 @@
 using System;
 using TMPro;
+using TCCGame.Core.Input;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BuildingPanel : MonoBehaviour
@@ -92,18 +94,29 @@ public class BuildingPanel : MonoBehaviour
                     : "Melhorar";
         }
 
+        // The scene asset historically hid this root by setting its scale to
+        // zero. Reactivating it alone leaves every button with no hit area.
+        transform.localScale = Vector3.one;
         gameObject.SetActive(true);
+        UiMenuState.SetOpen(this, true);
         playerMovement?.SetMovementBlocked(true);
+        EventSystem.current?.SetSelectedGameObject(
+            upgradeButton != null && upgradeButton.interactable
+                ? upgradeButton.gameObject
+                : null
+        );
     }
 
     public void Hide()
     {
+        UiMenuState.SetOpen(this, false);
         playerMovement?.SetMovementBlocked(false);
         gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
+        UiMenuState.SetOpen(this, false);
         playerMovement?.SetMovementBlocked(false);
     }
 }

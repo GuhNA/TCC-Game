@@ -7,7 +7,10 @@ using TCCGame.Core.Input;
 using TCCGame.Gameplay.Recruitment;
 using UnityEngine;
 
-public class NPCVenda : MonoBehaviour, IInteractable
+public class NPCVenda : MonoBehaviour,
+    IInteractable,
+    IInteractionExitAware,
+    IModalInteractionOwner
 {
     public AlertPopup alerta;
     public GameObject popup;
@@ -17,6 +20,7 @@ public class NPCVenda : MonoBehaviour, IInteractable
     public TMP_Text tempo_texto;
 
     private RecruitmentRowView[] rows;
+    private PlayerInteractor lockedInteractor;
 
     private bool aberto;
 
@@ -46,6 +50,8 @@ public class NPCVenda : MonoBehaviour, IInteractable
 
     private void OnDestroy()
     {
+        CloseModal();
+
         if (rows == null)
         {
             return;
@@ -63,6 +69,11 @@ public class NPCVenda : MonoBehaviour, IInteractable
         if (aberto)
         {
             AtualizaTempo();
+
+            if (GameInput.WasCancelPressedThisFrame())
+            {
+                CloseModal();
+            }
         }
 
     }
@@ -71,21 +82,55 @@ public class NPCVenda : MonoBehaviour, IInteractable
     {
         if (!aberto)
         {
-            abrir_popup();
+            OpenPopup(player);
             return;
         }
 
-        popup.SetActive(false);
-        aberto = false;
+        CloseModal();
     }
 
-    private void abrir_popup()
+    private void OpenPopup(GameObject player)
     {
+        PlayerInteractor interactor = player == null
+            ? null
+            : player.GetComponent<PlayerInteractor>();
+
         Recruitment.RefreshStockIfDue();
         atualizaTexto();
         AtualizaTempo();
+        lockedInteractor = interactor;
+        lockedInteractor?.AcquireModalLock(this);
         aberto = true;
         popup.SetActive(true);
+        UiMenuState.SetOpen(this, true);
+    }
+
+    // Mantém compatibilidade com o botão/SendMessage legado da cena.
+    private void abrir_popup()
+    {
+        PlayerInteractor interactor = FindFirstObjectByType<PlayerInteractor>();
+        OpenPopup(interactor == null ? null : interactor.gameObject);
+    }
+
+    public void CloseModal()
+    {
+        if (popup != null)
+        {
+            popup.SetActive(false);
+        }
+
+        aberto = false;
+        UiMenuState.SetOpen(this, false);
+        if (lockedInteractor != null)
+        {
+            lockedInteractor.ReleaseModalLock(this);
+            lockedInteractor = null;
+        }
+    }
+
+    public void OnExitInteractionRange(GameObject player)
+    {
+        CloseModal();
     }
 
     private void HandlePurchaseRequested(UnitType unitType, int quantity)

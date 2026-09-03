@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TMPro;
+using TCCGame.Gameplay.Navigation;
+using TCCGame.Gameplay.Campaign;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -181,6 +183,67 @@ namespace TCCGame.Tests.EditMode
             Assert.That(
                 ComponentsInScene<moviment>(scene).Count(),
                 Is.EqualTo(1)
+            );
+        }
+
+        [Test]
+        public void CityScenes_ExposeTravelNpcsSpawnMarkersAndGateContext()
+        {
+            Scene center = EditorSceneManager.OpenScene(
+                "Assets/Scenes/Centro.unity",
+                OpenSceneMode.Single
+            );
+            CityTravelNpc[] centerNpcs = ComponentsInScene<CityTravelNpc>(center)
+                .ToArray();
+
+            Assert.That(centerNpcs, Has.Length.EqualTo(4));
+            Assert.That(
+                centerNpcs.All(npc =>
+                    npc.Destination.Kind == TravelDestinationKind.Gate),
+                Is.True
+            );
+            Assert.That(
+                centerNpcs.Select(npc => npc.Destination.GateId).Distinct().Count(),
+                Is.EqualTo(4)
+            );
+            Assert.That(GameObject.Find("CenterDefaultSpawn"), Is.Not.Null);
+            Assert.That(GameObject.Find("CenterFromNorthSpawn"), Is.Not.Null);
+            Assert.That(GameObject.Find("CenterFromEastSpawn"), Is.Not.Null);
+            Assert.That(GameObject.Find("CenterFromSouthSpawn"), Is.Not.Null);
+            Assert.That(GameObject.Find("CenterFromWestSpawn"), Is.Not.Null);
+
+            Scene gate = EditorSceneManager.OpenScene(
+                "Assets/Scenes/Portão.unity",
+                OpenSceneMode.Single
+            );
+            CityTravelNpc[] gateNpcs = ComponentsInScene<CityTravelNpc>(gate)
+                .ToArray();
+
+            Assert.That(gateNpcs, Has.Length.EqualTo(1));
+            Assert.That(
+                gateNpcs[0].Destination.Kind,
+                Is.EqualTo(TravelDestinationKind.Center)
+            );
+            Assert.That(GameObject.Find("GateEntranceSpawn"), Is.Not.Null);
+            Assert.That(
+                ComponentsInScene<GateContextPresenter>(gate).Count(),
+                Is.EqualTo(1)
+            );
+            Assert.That(
+                ComponentsInScene<CaptainNpc>(gate).Count(),
+                Is.EqualTo(1)
+            );
+        }
+
+        [Test]
+        public void BuildSettings_StartAtCenterAndIncludeSharedGateScene()
+        {
+            EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
+
+            Assert.That(scenes[0].path, Is.EqualTo("Assets/Scenes/Centro.unity"));
+            Assert.That(
+                scenes.Any(scene => scene.path.Contains("Port")),
+                Is.True
             );
         }
 

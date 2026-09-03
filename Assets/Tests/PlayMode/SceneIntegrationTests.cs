@@ -158,12 +158,16 @@ namespace TCCGame.Tests.PlayMode
             GoldBalancePresenter goldPresenter =
                 Object.FindFirstObjectByType<GoldBalancePresenter>();
             NPCVenda vendor = Object.FindFirstObjectByType<NPCVenda>();
+            PlayerInteractor interactor =
+                Object.FindFirstObjectByType<PlayerInteractor>();
 
             vendor.SendMessage(
                 "abrir_popup",
                 SendMessageOptions.RequireReceiver
             );
 
+            Assert.That(interactor, Is.Not.Null);
+            Assert.That(interactor.HasModalOpen, Is.True);
             Assert.That(goldPresenter, Is.Not.Null);
             Assert.That(goldPresenter.GoldText.text, Is.EqualTo("Ouro: 778"));
             Assert.That(
@@ -201,6 +205,9 @@ namespace TCCGame.Tests.PlayMode
                     .GetOwned(UnitType.Archer),
                 Is.EqualTo(1)
             );
+
+            vendor.CloseModal();
+            Assert.That(interactor.HasModalOpen, Is.False);
         }
 
         private static bool HasAncestorContaining(
