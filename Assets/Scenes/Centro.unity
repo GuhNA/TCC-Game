@@ -1260,6 +1260,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4062801830742269912, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
+      propertyPath: useGateSpawnAnchors
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6144357783189342494, guid: 7cda9e63da717f747855e7ce699ef02b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.66

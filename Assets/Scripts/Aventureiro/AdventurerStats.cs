@@ -5,16 +5,22 @@ public readonly struct AdventurerStats
     public ushort MaxHealth { get; }
     public ushort MinimumDamage { get; }
     public ushort MaximumDamage { get; }
+    public byte Speed { get; }
+    public DamageType DamageType { get; }
 
     public AdventurerStats(
         ushort maxHealth,
         ushort minimumDamage,
-        ushort maximumDamage
+        ushort maximumDamage,
+        byte speed,
+        DamageType damageType
     )
     {
         MaxHealth = maxHealth;
         MinimumDamage = minimumDamage;
         MaximumDamage = maximumDamage;
+        Speed = speed;
+        DamageType = damageType;
     }
 }
 
@@ -48,7 +54,9 @@ public static class AdventurerStatsCalculator
         return new AdventurerStats(
             ToUShort(maxHealth),
             ToUShort(minimumDamage),
-            ToUShort(maximumDamage)
+            ToUShort(maximumDamage),
+            definition.velocidade,
+            definition.tipoDano
         );
     }
 

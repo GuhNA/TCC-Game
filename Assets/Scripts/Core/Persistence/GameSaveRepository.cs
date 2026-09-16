@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using TCCGame.Gameplay.Exploration;
 
 namespace TCCGame.Core.Persistence
 {
@@ -214,6 +215,8 @@ namespace TCCGame.Core.Persistence
             saveData.army ??= new ArmySaveData();
             saveData.recruitment ??= new RecruitmentSaveData();
             saveData.playerInventory ??= new PlayerInventorySaveData();
+            saveData.exploration ??= new ExplorationSaveData();
+            saveData.exploration.missions ??= new List<ExplorationMissionSaveData>();
             CampaignSaveDataUtility.Normalize(saveData);
             NavigationSaveDataUtility.Normalize(saveData);
             saveData.playerInventory.recruitedAdventurerIds ??=

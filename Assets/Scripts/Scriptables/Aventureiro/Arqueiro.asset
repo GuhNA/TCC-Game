@@ -22,6 +22,8 @@ MonoBehaviour:
   forca: 3
   mana: 100
   ganho_mana: 0
+  velocidade: 10
+  tipoDano: 0
   classe: 1
   "tra\xE7os": []
   distancia: 1

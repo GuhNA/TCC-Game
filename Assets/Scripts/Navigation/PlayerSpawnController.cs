@@ -10,6 +10,15 @@ namespace TCCGame.Gameplay.Navigation
         private const string CenterDefaultAnchor = "CenterDefaultSpawn";
         private const string GateEntranceAnchor = "GateEntranceSpawn";
 
+        [Header("Gate spawn anchors")]
+        [Tooltip(
+            "When enabled, the player uses GateEntranceSpawn and " +
+            "CenterFrom[Gate]Spawn anchors. When disabled, every scene " +
+            "uses CenterDefaultSpawn."
+        )]
+        [SerializeField]
+        private bool useGateSpawnAnchors;
+
         [RuntimeInitializeOnLoadMethod(
             RuntimeInitializeLoadType.AfterSceneLoad
         )]
@@ -32,7 +41,9 @@ namespace TCCGame.Gameplay.Navigation
                 return;
             }
 
-            string anchorName = GetAnchorName();
+            string anchorName = GetAnchorName(
+                ShouldUseGateSpawnAnchors()
+            );
             GameObject anchor = GameObject.Find(anchorName);
 
             if (anchor == null)
@@ -54,8 +65,21 @@ namespace TCCGame.Gameplay.Navigation
             }
         }
 
-        private static string GetAnchorName()
+        private static bool ShouldUseGateSpawnAnchors()
         {
+            PlayerSpawnController controller =
+                Object.FindFirstObjectByType<PlayerSpawnController>();
+
+            return controller != null && controller.useGateSpawnAnchors;
+        }
+
+        private static string GetAnchorName(bool useGateSpawnAnchors)
+        {
+            if (!useGateSpawnAnchors)
+            {
+                return CenterDefaultAnchor;
+            }
+
             string sceneName = SceneManager.GetActiveScene().name;
 
             if (sceneName == SceneCatalog.Gate)

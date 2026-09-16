@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum Classes{ guerreiro, arqueiro, ladrão, mago}
 
+/// <summary>
+/// Defines which defense reduces an adventurer's attack during exploration battles.
+/// </summary>
+public enum DamageType
+{
+    Physical,
+    Magical
+}
+
 
 [System.Serializable]
 
@@ -21,6 +30,12 @@ public class Char_base : ScriptableObject
     public ushort vida;
     public byte resistência_magica, armadura, destreza, inteligencia, forca, mana,
     ganho_mana;
+
+    [Tooltip("Determina a ordem dos turnos: valores maiores atacam primeiro.")]
+    public byte velocidade = 10;
+
+    [Tooltip("Dano físico é reduzido por armadura; dano mágico, por resistência mágica.")]
+    public DamageType tipoDano = DamageType.Physical;
     [Space(10)][Header("Classe")]
     public Classes classe;
     public List<Tracos> traços;

@@ -3,7 +3,8 @@ using TCCGame.Gameplay.Player;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInteractor))]
-public sealed class AdventurerRecruitmentController : MonoBehaviour
+public sealed class AdventurerRecruitmentController : MonoBehaviour,
+    IModalInteractionOwner
 {
     [SerializeField]
     private AdventurerRecruitmentPanel panel;
@@ -69,6 +70,11 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour
         {
             CloseCurrent();
         }
+    }
+
+    public void CloseModal()
+    {
+        CloseCurrent();
     }
 
     public void PurchaseSelected()

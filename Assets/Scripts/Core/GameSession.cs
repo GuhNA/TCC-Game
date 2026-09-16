@@ -3,6 +3,7 @@ using TCCGame.Core.Time;
 using TCCGame.Gameplay.Campaign;
 using TCCGame.Gameplay.City;
 using TCCGame.Gameplay.Economy;
+using TCCGame.Gameplay.Exploration;
 using TCCGame.Gameplay.Navigation;
 using TCCGame.Gameplay.Player;
 using TCCGame.Gameplay.Recruitment;
@@ -26,6 +27,7 @@ namespace TCCGame.Core
         public BattleResolutionService Battles { get; }
         public ThreatPresentationService Threats { get; }
         public NavigationService Navigation { get; }
+        public ExplorationService Exploration { get; }
 
         public GameSession(
             IGameSaveRepository repository,
@@ -83,6 +85,7 @@ namespace TCCGame.Core
             );
             Threats = new ThreatPresentationService(Campaign, campaignRules);
             Navigation = new NavigationService(State, Commit);
+            Exploration = new ExplorationService(State, clock, Commit);
         }
 
         private void Commit()

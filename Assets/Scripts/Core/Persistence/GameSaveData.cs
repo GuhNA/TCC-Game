@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TCCGame.Core;
+using TCCGame.Gameplay.Exploration;
 using UnityEngine;
 
 namespace TCCGame.Core.Persistence
@@ -127,6 +128,7 @@ namespace TCCGame.Core.Persistence
         public PlayerInventorySaveData playerInventory = new();
         public CampaignSaveData campaign = new();
         public NavigationSaveData navigation = new();
+        public ExplorationSaveData exploration = new();
 
         public int GetBuildingLevel(BuildingType type)
         {
