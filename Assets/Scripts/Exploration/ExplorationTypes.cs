@@ -2,8 +2,29 @@ using System;
 
 namespace TCCGame.Gameplay.Exploration
 {
-    /// <summary>Initial locations available from the exploration map.</summary>
-    public enum ExplorationEnvironment { Forest, Ruins, Cavern }
+    /// <summary>
+    /// Every battle destination visible on the world map. Explicit numeric values
+    /// protect existing save files because the first three environments already
+    /// existed before the remaining destinations were introduced.
+    /// Porto Azul is the player's hub and therefore is not a battle destination.
+    /// </summary>
+    public enum ExplorationEnvironment
+    {
+        ColinasDeVento = 0,
+        FlorestaDasSombras = 1,
+        CavernaDeGelo = 2,
+        TorreAntiga = 3,
+        VilaDoMar = 4,
+        FlorestaEsmeralda = 5,
+        MontanhasGelidas = 6,
+        ReinoReal = 7,
+        IlhaVerde = 8,
+        CavernaSombria = 9,
+        MontanhaDeFogo = 10,
+        DesertoDosVentos = 11,
+        Santuario = 12,
+        IlhasCoral = 13
+    }
 
     /// <summary>Persistent lifecycle of a party sent to an environment.</summary>
     public enum ExplorationMissionStatus { Travelling, ReadyForBattle, InBattle, Won, Retreated }
@@ -39,6 +60,8 @@ namespace TCCGame.Gameplay.Exploration
     {
         public int nextMissionId = 1;
         public System.Collections.Generic.List<ExplorationMissionSaveData> missions = new();
+        public System.Collections.Generic.List<ExplorationEnvironment>
+            completedEnvironments = new();
     }
 
     /// <summary>

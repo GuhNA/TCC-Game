@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TCCGame.Gameplay.Exploration;
 
@@ -217,6 +218,16 @@ namespace TCCGame.Core.Persistence
             saveData.playerInventory ??= new PlayerInventorySaveData();
             saveData.exploration ??= new ExplorationSaveData();
             saveData.exploration.missions ??= new List<ExplorationMissionSaveData>();
+            saveData.exploration.completedEnvironments ??=
+                new List<ExplorationEnvironment>();
+            saveData.exploration.completedEnvironments = saveData.exploration
+                .completedEnvironments
+                .Where(environment => Enum.IsDefined(
+                    typeof(ExplorationEnvironment),
+                    environment
+                ))
+                .Distinct()
+                .ToList();
             CampaignSaveDataUtility.Normalize(saveData);
             NavigationSaveDataUtility.Normalize(saveData);
             saveData.playerInventory.recruitedAdventurerIds ??=

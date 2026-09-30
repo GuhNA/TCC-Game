@@ -13,6 +13,7 @@ namespace TCCGame.Gameplay.Exploration
     /// </summary>
     public sealed class ExplorationService
     {
+        public const int MinimumPartySize = 1;
         public const int TravelSeconds = 5;
         private readonly GameSaveData state;
         private readonly IClock clock;
@@ -27,14 +28,34 @@ namespace TCCGame.Gameplay.Exploration
             this.commit = commit ?? throw new ArgumentNullException(nameof(commit));
             state.exploration ??= new ExplorationSaveData();
             state.exploration.missions ??= new List<ExplorationMissionSaveData>();
+            state.exploration.completedEnvironments ??=
+                new List<ExplorationEnvironment>();
         }
 
         public IReadOnlyList<ExplorationMissionSaveData> Missions => state.exploration.missions.AsReadOnly();
 
+        public IReadOnlyList<ExplorationEnvironment> CompletedEnvironments =>
+            state.exploration.completedEnvironments.AsReadOnly();
+
+        public bool IsEnvironmentUnlocked(ExplorationEnvironment environment)
+        {
+            return ExplorationProgression.IsUnlocked(
+                environment,
+                state.exploration.completedEnvironments
+            );
+        }
+
         public bool TrySendParty(ExplorationEnvironment environment, IEnumerable<Char_base> party, out string error)
         {
+            if (!Enum.IsDefined(typeof(ExplorationEnvironment), environment) ||
+                !IsEnvironmentUnlocked(environment))
+            {
+                error = "Conclua as regiões anteriores para liberar este destino.";
+                return false;
+            }
+
             List<Char_base> selected = party?.Where(item => item != null).Distinct().ToList();
-            if (selected == null || selected.Count == 0) { error = "Selecione ao menos um aventureiro."; return false; }
+            if (selected == null || selected.Count < MinimumPartySize) { error = "Selecione ao menos um aventureiro."; return false; }
             if (selected.Any(item => !state.playerInventory.recruitedAdventurerIds.Contains(item.PersistenceId))) { error = "O grupo possui um aventureiro não contratado."; return false; }
             if (state.exploration.missions.Any(m => m.status == ExplorationMissionStatus.Travelling || m.status == ExplorationMissionStatus.ReadyForBattle || m.status == ExplorationMissionStatus.InBattle)) { error = "Já existe uma expedição em andamento."; return false; }
 
@@ -58,7 +79,27 @@ namespace TCCGame.Gameplay.Exploration
         }
 
         public ExplorationMissionSaveData GetMission(int id) => state.exploration.missions.Find(m => m.id == id);
-        public void SetStatus(int id, ExplorationMissionStatus status) { ExplorationMissionSaveData mission = GetMission(id); if (mission == null) return; mission.status = status; commit(); }
+        public void SetStatus(int id, ExplorationMissionStatus status)
+        {
+            ExplorationMissionSaveData mission = GetMission(id);
+            if (mission == null)
+            {
+                return;
+            }
+
+            mission.status = status;
+            if (status == ExplorationMissionStatus.Won &&
+                !state.exploration.completedEnvironments.Contains(
+                    mission.environment
+                ))
+            {
+                state.exploration.completedEnvironments.Add(
+                    mission.environment
+                );
+            }
+
+            commit();
+        }
 
         private static ExplorationCombatantSaveData CreateSnapshot(Char_base adventurer)
         {
