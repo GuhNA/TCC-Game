@@ -4,6 +4,8 @@ using TCCGame.Core.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
+using TCCGame.Core;
 
 public class BuildingPanel : MonoBehaviour
 {
@@ -67,7 +69,9 @@ public class BuildingPanel : MonoBehaviour
             currentLevel
         );
 
-        productionText.text = $"Produção: {production}";
+        productionText.text = definition.type == BuildingType.ExplorersLodge
+            ? $"Exploradores disponíveis: {currentLevel}"
+            : $"Produção: {production}";
 
         bool isMaximumLevel =
             currentLevel >= definition.maximumLevel;
@@ -85,7 +89,16 @@ public class BuildingPanel : MonoBehaviour
                 currentLevel
             );
 
-            upgradeCostText.text = $"Custo: {cost}";
+            BuildingResourceRequirement[] resources = BuildingCalculator
+                .GetResourceRequirements(definition, currentLevel);
+            string resourceCosts = string.Join(", ", resources
+                .Where(requirement => requirement?.resource != null)
+                .Select(requirement =>
+                    $"{GameSessionProvider.Current.Buildings.GetResourceQuantity(requirement.ResourceId)}/" +
+                    $"{requirement.quantity} {requirement.DisplayName}"));
+            upgradeCostText.text = resourceCosts.Length == 0
+                ? $"Custo: {cost} ouro"
+                : $"Custo: {cost} ouro\n{resourceCosts}";
             upgradeButton.interactable = canAfford;
 
             upgradeButtonText.text =

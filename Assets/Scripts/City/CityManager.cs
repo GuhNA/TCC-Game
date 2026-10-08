@@ -106,12 +106,9 @@ public class CityManager : MonoBehaviour
             return;
         }
 
-        int cost = BuildingCalculator.GetUpgradeCost(
-            selectedBuilding.Definition,
-            selectedBuilding.Level
+        bool canAfford = buildingService.CanAffordUpgrade(
+            selectedBuilding.Definition
         );
-
-        bool canAfford = economy.CanAfford(cost);
 
         buildingPanel.Show(
             selectedBuilding,

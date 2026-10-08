@@ -38,6 +38,11 @@ namespace TCCGame.Gameplay.Exploration
         {
             definition = adventurer;
             selectionRequested = onSelectionRequested;
+            if (selectionButton != null)
+            {
+                selectionButton.gameObject.SetActive(true);
+                selectionButton.interactable = true;
+            }
             AdventurerStats stats = AdventurerStatsCalculator.Calculate(
                 adventurer
             );
@@ -78,6 +83,53 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             SetSelected(selected);
+        }
+
+        /// <summary>
+        /// Reuses the same card layout as a read-only post-battle report.
+        /// The saved snapshot is used so the displayed health is exactly the
+        /// value left by that battle, even if the asset is later rebalanced.
+        /// </summary>
+        public void BindReport(
+            Char_base adventurer,
+            ExplorationCombatantSaveData snapshot
+        )
+        {
+            definition = adventurer;
+            selectionRequested = null;
+            if (portraitImage != null)
+            {
+                portraitImage.sprite = adventurer != null
+                    ? adventurer.sprite
+                    : null;
+                portraitImage.preserveAspect = true;
+            }
+
+            if (nameText != null)
+            {
+                nameText.text = string.IsNullOrWhiteSpace(snapshot?.displayName)
+                    ? adventurer != null ? adventurer.name : "Aventureiro"
+                    : snapshot.displayName;
+            }
+
+            if (statsText != null && snapshot != null)
+            {
+                statsText.text =
+                    $"Vida restante: {snapshot.currentHealth}/{snapshot.maxHealth}\n" +
+                    $"Dano: {snapshot.minimumDamage}-{snapshot.maximumDamage}\n" +
+                    $"Velocidade: {snapshot.speed}\n" +
+                    $"Armadura: {snapshot.armor}\n" +
+                    $"Res. mágica: {snapshot.magicResistance}\n" +
+                    $"Estado: {(snapshot.currentHealth > 0 ? "Retornou" : "Caído")}";
+            }
+
+            selectedHighlight?.SetActive(false);
+            if (selectionButton != null)
+            {
+                selectionButton.onClick.RemoveListener(NotifySelection);
+                selectionButton.interactable = false;
+                selectionButton.gameObject.SetActive(false);
+            }
         }
 
         public void SetSelected(bool selected)

@@ -1,7 +1,8 @@
 public enum BuildingType
 {
-    MagicSchool,
-    ArcherStand,
-    Barracks,
-    LocalMarket
+    MagicSchool = 0,
+    ArcherStand = 1,
+    Barracks = 2,
+    LocalMarket = 3,
+    ExplorersLodge = 4
 }

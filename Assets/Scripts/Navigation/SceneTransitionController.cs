@@ -18,6 +18,8 @@ namespace TCCGame.Gameplay.Navigation
         private CampaignService pausedCampaign;
         private bool isTransitioning;
         private bool initialRestoreChecked;
+        private string explorationReturnScene =
+            SceneCatalog.DefaultExplorationReturn;
 
         [SerializeField]
         private GameObject fadePrefab;
@@ -97,11 +99,50 @@ namespace TCCGame.Gameplay.Navigation
             return instance.BeginReturnToCenter();
         }
 
+        public static bool TryEnterExplorationCombat(
+            int missionId,
+            out string error
+        )
+        {
+            if (instance == null || !instance.enabled ||
+                instance.fadeImage == null || instance.isTransitioning)
+            {
+                error = "A transição de cena ainda não está disponível.";
+                return false;
+            }
+
+            if (!Application.CanStreamedLevelBeLoaded(
+                    SceneCatalog.ExplorationCombat
+                ))
+            {
+                error =
+                    "Adicione a cena ExplorationCombat ao Build Settings.";
+                return false;
+            }
+
+            return instance.BeginExplorationCombat(missionId, out error);
+        }
+
+        public static bool TryReturnFromExplorationCombat()
+        {
+            if (instance == null || !instance.enabled ||
+                instance.fadeImage == null || instance.isTransitioning)
+            {
+                return false;
+            }
+
+            instance.StartCoroutine(instance.LoadSceneRoutine(
+                instance.explorationReturnScene,
+                true
+            ));
+            return true;
+        }
+
         private bool BeginTravelToGate(GateId gateId)
         {
             GameSession session = GameSessionProvider.Current;
             session.Navigation.EnterGate(gateId);
-            StartCoroutine(LoadSceneRoutine(SceneCatalog.Gate));
+            StartCoroutine(LoadSceneRoutine(SceneCatalog.Gate, true));
             return true;
         }
 
@@ -114,7 +155,29 @@ namespace TCCGame.Gameplay.Navigation
                 return false;
             }
 
-            StartCoroutine(LoadSceneRoutine(SceneCatalog.Center));
+            StartCoroutine(LoadSceneRoutine(SceneCatalog.Center, true));
+            return true;
+        }
+
+        private bool BeginExplorationCombat(
+            int missionId,
+            out string error
+        )
+        {
+            if (!GameSessionProvider.Current.Exploration.TryBeginBattle(
+                    missionId,
+                    out _,
+                    out error
+                ))
+            {
+                return false;
+            }
+
+            explorationReturnScene = SceneManager.GetActiveScene().name;
+            StartCoroutine(LoadSceneRoutine(
+                SceneCatalog.ExplorationCombat,
+                false
+            ));
             return true;
         }
 
@@ -136,10 +199,13 @@ namespace TCCGame.Gameplay.Navigation
             }
 
             SetFade(1f);
-            StartCoroutine(LoadSceneRoutine(SceneCatalog.Gate));
+            StartCoroutine(LoadSceneRoutine(SceneCatalog.Gate, true));
         }
 
-        private IEnumerator LoadSceneRoutine(string sceneName)
+        private IEnumerator LoadSceneRoutine(
+            string sceneName,
+            bool placePlayerAfterLoad
+        )
         {
             if (isTransitioning)
             {
@@ -163,7 +229,10 @@ namespace TCCGame.Gameplay.Navigation
             }
 
             yield return null;
-            PlayerSpawnController.PlacePlayerInActiveScene();
+            if (placePlayerAfterLoad)
+            {
+                PlayerSpawnController.PlacePlayerInActiveScene();
+            }
             yield return FadeTo(0f);
 
             ReleaseCampaignPause();

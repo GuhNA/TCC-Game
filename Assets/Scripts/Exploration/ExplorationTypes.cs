@@ -27,7 +27,31 @@ namespace TCCGame.Gameplay.Exploration
     }
 
     /// <summary>Persistent lifecycle of a party sent to an environment.</summary>
-    public enum ExplorationMissionStatus { Travelling, ReadyForBattle, InBattle, Won, Retreated }
+    public enum ExplorationMissionStatus
+    {
+        Travelling = 0,
+        ReadyForBattle = 1,
+        InBattle = 2,
+        Won = 3,
+        Retreated = 4,
+        Defeated = 5,
+        Returning = 6,
+        Returned = 7
+    }
+
+    public enum ExplorationMissionKind
+    {
+        Capture = 0,
+        Defense = 1
+    }
+
+    [Serializable]
+    public sealed class ExplorationRewardSaveData
+    {
+        public string resourceId;
+        public string displayName;
+        public int quantity;
+    }
 
     [Serializable]
     public sealed class ExplorationCombatantSaveData
@@ -49,10 +73,32 @@ namespace TCCGame.Gameplay.Exploration
     {
         public int id;
         public ExplorationEnvironment environment;
+        public ExplorationMissionKind kind;
         public ExplorationMissionStatus status;
         public long arrivalUnixSeconds;
         public bool arrivalAnnounced;
+        public long returnUnixSeconds;
+        public bool returnAnnounced;
+        public bool rewardsClaimed;
+        public bool reportAcknowledged;
+        public System.Collections.Generic.List<ExplorationRewardSaveData>
+            rewards = new();
         public System.Collections.Generic.List<ExplorationCombatantSaveData> party = new();
+    }
+
+    [Serializable]
+    public sealed class ExplorationAreaSaveData
+    {
+        public ExplorationEnvironment environment;
+        public bool captured;
+        public int assignedWorkers;
+        public long nextWorkerCollectionUnixSeconds;
+        public System.Collections.Generic.List<ExplorationRewardSaveData>
+            lastWorkerLoot = new();
+        public long nextEnemyAttackUnixSeconds;
+        public bool enemyAttackPending;
+        public System.Collections.Generic.List<ExplorationCombatantSaveData>
+            guardParty = new();
     }
 
     [Serializable]
@@ -62,6 +108,8 @@ namespace TCCGame.Gameplay.Exploration
         public System.Collections.Generic.List<ExplorationMissionSaveData> missions = new();
         public System.Collections.Generic.List<ExplorationEnvironment>
             completedEnvironments = new();
+        public System.Collections.Generic.List<ExplorationAreaSaveData> areas =
+            new();
     }
 
     /// <summary>

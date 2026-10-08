@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6b8ed736016f346a405d06f7f30c84, type: 3}
+  m_Name: goblin
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
+  persistenceId: enemy.goblin.simple
+  displayName: Goblin
+  portrait: {fileID: 2572365745140355499, guid: 4528534f9caabde4e9b7d19ebaa32cd6, type: 3}
+  combatPrefab: {fileID: 4691438587948023579, guid: 8a7c455c01e88a842bc71bf5c4a8353c, type: 3}
+  combatLocalPosition: {x: 0, y: 0, z: 0}
+  combatLocalEulerAngles: {x: 0, y: 0, z: 0}
+  combatLocalScale: {x: 0.12496, y: 0.12496, z: 0.12496}
+  flipCombatVisualX: 1
+  maximumHealth: 80
+  minimumDamage: 4
+  maximumDamage: 7
+  speed: 5
+  armor: 0
+  magicResistance: 0
+  damageType: 0

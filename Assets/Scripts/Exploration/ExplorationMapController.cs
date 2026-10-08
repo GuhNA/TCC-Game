@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using TCCGame.Core;
 using TCCGame.Core.Input;
+using TCCGame.Gameplay.Navigation;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -39,24 +40,46 @@ namespace TCCGame.Gameplay.Exploration
         [SerializeField] private TMP_Text selectedDestinationText;
         [SerializeField] private TMP_Text emptyRosterMessage;
         [SerializeField] private Button confirmPartyButton;
+        [SerializeField] private TMP_Text confirmPartyButtonText;
         [SerializeField] private Button backButton;
+
+        [Header("Captured-area management")]
+        [Tooltip("Optional. If empty, buttons are cloned from Confirm at runtime.")]
+        [SerializeField] private Button assignExplorerButton;
+        [SerializeField] private Button removeExplorerButton;
+        [SerializeField] private bool createExplorerButtonsAtRuntime = true;
 
         [Header("Adventurer definitions")]
         [Tooltip("Complete catalog. Only recruited entries are shown at runtime.")]
         [FormerlySerializedAs("availableAdventurers")]
         [SerializeField] private Char_base[] adventurerCatalog;
+        [SerializeField] private ExplorationEncounterCatalog encounterCatalog;
         [SerializeField] private bool autoPopulateCatalogInEditor = true;
 
         [Header("Rules and feedback")]
-        [SerializeField, Min(1)] private int maximumPartySize = 6;
+        [SerializeField, Range(
+            ExplorationService.MinimumPartySize,
+            ExplorationService.MaximumPartySize
+        )]
+        private int maximumPartySize = ExplorationService.MaximumPartySize;
         [SerializeField] private AlertPopup alert;
 
         private readonly HashSet<Char_base> selectedParty = new();
         private readonly Dictionary<Char_base, AdventurerSelectionCardView>
             cards = new();
+        private readonly List<AdventurerSelectionCardView> spawnedCards = new();
         private List<Char_base> recruitedAdventurers = new();
         private PlayerInteractor interactor;
         private ExplorationEnvironment selectedEnvironment;
+        private PanelMode panelMode;
+        private ExplorationMissionSaveData visibleReport;
+
+        private enum PanelMode
+        {
+            Mission,
+            Report,
+            Guard
+        }
 
         public bool CanInteract => enabled && mapPopupRoot != null;
         public IReadOnlyList<Char_base> RecruitedAdventurers =>
@@ -65,6 +88,16 @@ namespace TCCGame.Gameplay.Exploration
         private void Awake()
         {
             partySelectionPopupRoot?.SetActive(false);
+            if (confirmPartyButtonText == null && confirmPartyButton != null)
+            {
+                confirmPartyButtonText = confirmPartyButton
+                    .GetComponentInChildren<TMP_Text>(true);
+            }
+            EnsureExplorerButtons();
+            SetExplorerButtonsVisible(false);
+            encounterCatalog ??= Resources.Load<ExplorationEncounterCatalog>(
+                ExplorationEncounterCatalog.ResourcesPath
+            );
         }
 
         private void OnEnable()
@@ -72,6 +105,8 @@ namespace TCCGame.Gameplay.Exploration
             closeMapButton?.onClick.AddListener(CloseModal);
             confirmPartyButton?.onClick.AddListener(SendParty);
             backButton?.onClick.AddListener(ClosePartySelection);
+            assignExplorerButton?.onClick.AddListener(AssignExplorer);
+            removeExplorerButton?.onClick.AddListener(RemoveExplorer);
         }
 
         private void OnDisable()
@@ -79,12 +114,28 @@ namespace TCCGame.Gameplay.Exploration
             closeMapButton?.onClick.RemoveListener(CloseModal);
             confirmPartyButton?.onClick.RemoveListener(SendParty);
             backButton?.onClick.RemoveListener(ClosePartySelection);
+            assignExplorerButton?.onClick.RemoveListener(AssignExplorer);
+            removeExplorerButton?.onClick.RemoveListener(RemoveExplorer);
             CloseModal();
         }
 
         private void Update()
         {
-            GameSessionProvider.Current.Exploration.RefreshArrivals();
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            bool changed = service.RefreshArrivals();
+            changed |= service.RefreshExplorerCollections(encounterCatalog);
+            if (changed &&
+                mapPopupRoot != null && mapPopupRoot.activeInHierarchy)
+            {
+                RefreshDestinationButtons();
+                if (panelMode == PanelMode.Report &&
+                    partySelectionPopupRoot != null &&
+                    partySelectionPopupRoot.activeInHierarchy)
+                {
+                    OpenAreaReport((int)selectedEnvironment);
+                }
+            }
         }
 
         public void Interact(GameObject player)
@@ -133,7 +184,18 @@ namespace TCCGame.Gameplay.Exploration
                 return;
             }
 
+            if (GameSessionProvider.Current.Exploration.GetActiveMission() !=
+                null)
+            {
+                alert?.Show(
+                    "Conclua ou recue da expedição atual antes de enviar outra."
+                );
+                return;
+            }
+
             selectedEnvironment = environment;
+            panelMode = PanelMode.Mission;
+            SetExplorerButtonsVisible(false);
             selectedParty.Clear();
             BuildRecruitedRoster();
 
@@ -145,13 +207,113 @@ namespace TCCGame.Gameplay.Exploration
 
             partySelectionPopupRoot?.SetActive(true);
             SetEnvironmentSelectionEnabled(false);
+            if (confirmPartyButton != null)
+            {
+                confirmPartyButton.gameObject.SetActive(true);
+            }
             UpdateConfirmButton();
+        }
+
+        public void OpenAreaReport(int environmentValue)
+        {
+            if (!Enum.IsDefined(
+                    typeof(ExplorationEnvironment),
+                    environmentValue))
+            {
+                return;
+            }
+
+            selectedEnvironment = (ExplorationEnvironment)environmentValue;
+            panelMode = PanelMode.Report;
+            selectedParty.Clear();
+            visibleReport = GameSessionProvider.Current.Exploration
+                .GetLatestMissionForEnvironment(selectedEnvironment);
+            BuildReportCards(visibleReport);
+
+            if (selectedDestinationText != null)
+            {
+                selectedDestinationText.text =
+                    "Relatório — " + ExplorationProgression.GetDisplayName(
+                        selectedEnvironment
+                    );
+            }
+
+            if (emptyRosterMessage != null)
+            {
+                emptyRosterMessage.gameObject.SetActive(true);
+                emptyRosterMessage.text = BuildReportSummary(visibleReport) +
+                    "\n" + BuildExplorerSummary();
+            }
+
+            if (visibleReport != null &&
+                visibleReport.status == ExplorationMissionStatus.Returned)
+            {
+                GameSessionProvider.Current.Exploration.AcknowledgeReport(
+                    visibleReport.id
+                );
+            }
+
+            partySelectionPopupRoot?.SetActive(true);
+            SetEnvironmentSelectionEnabled(false);
+            SetConfirmButtonLabel("Definir guarda");
+            if (confirmPartyButton != null)
+            {
+                confirmPartyButton.gameObject.SetActive(true);
+                confirmPartyButton.interactable = true;
+            }
+            SetExplorerButtonsVisible(true);
+            UpdateExplorerButtons();
         }
 
         // Compatibility with Inspector events from the original controller.
         public void SelectEnvironment(int environmentValue)
         {
             OpenPartySelection(environmentValue);
+        }
+
+        /// <summary>
+        /// Called by a destination whose travelling party has arrived. The same
+        /// map button changes from Enviar to Batalhar, then loads the reusable
+        /// combat scene with the mission saved as InBattle.
+        /// </summary>
+        public void EnterBattle(int environmentValue)
+        {
+            if (!Enum.IsDefined(
+                    typeof(ExplorationEnvironment),
+                    environmentValue
+                ))
+            {
+                alert?.Show("Destino de batalha inválido.");
+                return;
+            }
+
+            ExplorationEnvironment environment =
+                (ExplorationEnvironment)environmentValue;
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            service.RefreshArrivals();
+            ExplorationMissionSaveData mission =
+                service.GetActiveMissionForEnvironment(environment);
+
+            if (mission == null ||
+                (mission.status != ExplorationMissionStatus.ReadyForBattle &&
+                 mission.status != ExplorationMissionStatus.InBattle))
+            {
+                alert?.Show("A equipe ainda não chegou a este destino.");
+                RefreshDestinationButtons();
+                return;
+            }
+
+            if (!SceneTransitionController.TryEnterExplorationCombat(
+                    mission.id,
+                    out string error
+                ))
+            {
+                alert?.Show(error);
+                return;
+            }
+
+            CloseModal();
         }
 
         /// <summary>
@@ -171,6 +333,12 @@ namespace TCCGame.Gameplay.Exploration
 
         public void SendParty()
         {
+            if (panelMode == PanelMode.Report)
+            {
+                BeginGuardSelection();
+                return;
+            }
+
             if (selectedParty.Count < ExplorationService.MinimumPartySize)
             {
                 alert?.Show(
@@ -179,6 +347,22 @@ namespace TCCGame.Gameplay.Exploration
                     " aventureiro."
                 );
                 UpdateConfirmButton();
+                return;
+            }
+
+            if (panelMode == PanelMode.Guard)
+            {
+                if (GameSessionProvider.Current.Exploration.TryAssignGuardParty(
+                        selectedEnvironment,
+                        selectedParty,
+                        out string guardError))
+                {
+                    alert?.Show("Equipe de guarda posicionada.");
+                    OpenAreaReport((int)selectedEnvironment);
+                    return;
+                }
+
+                alert?.Show(guardError);
                 return;
             }
 
@@ -206,6 +390,8 @@ namespace TCCGame.Gameplay.Exploration
         public void ClosePartySelection()
         {
             selectedParty.Clear();
+            visibleReport = null;
+            SetExplorerButtonsVisible(false);
             partySelectionPopupRoot?.SetActive(false);
             SetEnvironmentSelectionEnabled(true);
             UpdateConfirmButton();
@@ -216,6 +402,9 @@ namespace TCCGame.Gameplay.Exploration
             mapPopupRoot?.SetActive(false);
             partySelectionPopupRoot?.SetActive(false);
             selectedParty.Clear();
+            visibleReport = null;
+            panelMode = PanelMode.Mission;
+            SetExplorerButtonsVisible(false);
             SetEnvironmentSelectionEnabled(true);
             UiMenuState.SetOpen(this, false);
             interactor?.ReleaseModalLock(this);
@@ -237,6 +426,13 @@ namespace TCCGame.Gameplay.Exploration
                 .Select(group => group.First())
                 .Where(definition =>
                     recruitedIds.Contains(definition.PersistenceId))
+                .Where(definition =>
+                    !GameSessionProvider.Current.Exploration.IsAdventurerBusy(
+                        definition.PersistenceId,
+                        panelMode == PanelMode.Guard
+                            ? selectedEnvironment
+                            : null
+                    ))
                 .OrderBy(definition => definition.name)
                 .ToList();
 
@@ -266,6 +462,225 @@ namespace TCCGame.Gameplay.Exploration
                 );
                 card.Bind(adventurer, false, ToggleAdventurer);
                 cards.Add(adventurer, card);
+                spawnedCards.Add(card);
+            }
+        }
+
+        private void BeginGuardSelection()
+        {
+            panelMode = PanelMode.Guard;
+            SetExplorerButtonsVisible(false);
+            selectedParty.Clear();
+            BuildRecruitedRoster();
+            if (selectedDestinationText != null)
+            {
+                selectedDestinationText.text =
+                    "Guarda — " + ExplorationProgression.GetDisplayName(
+                        selectedEnvironment
+                    );
+            }
+
+            SetConfirmButtonLabel("Confirmar guarda");
+            UpdateConfirmButton();
+        }
+
+        private void BuildReportCards(ExplorationMissionSaveData report)
+        {
+            ClearCards();
+            if (partyListContent == null || cardPrefab == null || report == null)
+            {
+                return;
+            }
+
+            var catalog = (adventurerCatalog ?? Array.Empty<Char_base>())
+                .Where(item => item != null)
+                .GroupBy(item => item.PersistenceId)
+                .ToDictionary(group => group.Key, group => group.First());
+            foreach (ExplorationCombatantSaveData member in report.party ??
+                     new List<ExplorationCombatantSaveData>())
+            {
+                if (member == null)
+                {
+                    continue;
+                }
+
+                catalog.TryGetValue(member.adventurerId, out Char_base definition);
+                AdventurerSelectionCardView card = Instantiate(
+                    cardPrefab,
+                    partyListContent
+                );
+                card.BindReport(definition, member);
+                spawnedCards.Add(card);
+            }
+        }
+
+        private static string BuildReportSummary(
+            ExplorationMissionSaveData report
+        )
+        {
+            if (report == null)
+            {
+                return "Região capturada. Ainda não existe relatório salvo.";
+            }
+
+            string status = report.status switch
+            {
+                ExplorationMissionStatus.Returning =>
+                    "A equipe está retornando com os recursos.",
+                ExplorationMissionStatus.Returned =>
+                    "A equipe retornou à cidade.",
+                ExplorationMissionStatus.Defeated =>
+                    "A equipe foi derrotada.",
+                _ => "Operação em andamento."
+            };
+            string rewards = report.rewards == null ||
+                report.rewards.Count == 0
+                    ? "Recursos: nenhum."
+                    : "Recursos: " + string.Join(", ", report.rewards.Select(
+                        reward => reward.quantity + "x " + reward.displayName
+                    ));
+            return status + "\n" + rewards;
+        }
+
+        private void SetConfirmButtonLabel(string value)
+        {
+            if (confirmPartyButtonText != null)
+            {
+                confirmPartyButtonText.text = value;
+            }
+        }
+
+        public void AssignExplorer()
+        {
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            ExplorationAreaSaveData area = service.GetArea(selectedEnvironment);
+            int current = area?.assignedWorkers ?? 0;
+            if (!service.TrySetAssignedWorkers(
+                    selectedEnvironment,
+                    current + 1,
+                    out string error))
+            {
+                alert?.Show(error);
+                return;
+            }
+
+            alert?.Show("Explorador enviado para a região.");
+            OpenAreaReport((int)selectedEnvironment);
+        }
+
+        public void RemoveExplorer()
+        {
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            ExplorationAreaSaveData area = service.GetArea(selectedEnvironment);
+            int current = area?.assignedWorkers ?? 0;
+            if (!service.TrySetAssignedWorkers(
+                    selectedEnvironment,
+                    Mathf.Max(0, current - 1),
+                    out string error))
+            {
+                alert?.Show(error);
+                return;
+            }
+
+            alert?.Show("Explorador retirado da região.");
+            OpenAreaReport((int)selectedEnvironment);
+        }
+
+        private string BuildExplorerSummary()
+        {
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            int assignedHere = service.GetArea(selectedEnvironment)?
+                .assignedWorkers ?? 0;
+            ExplorationAreaSaveData area = service.GetArea(
+                selectedEnvironment
+            );
+            string lastLoot = area?.lastWorkerLoot == null ||
+                area.lastWorkerLoot.Count == 0
+                    ? "Última coleta: nenhuma."
+                    : "Última coleta: " + string.Join(", ",
+                        area.lastWorkerLoot.Select(reward =>
+                            reward.quantity + "x " + reward.displayName));
+            return "Exploradores nesta região: " + assignedHere +
+                " | Disponíveis: " + service.AvailableExplorers +
+                "/" + service.TotalExplorers + "\n" + lastLoot;
+        }
+
+        private void EnsureExplorerButtons()
+        {
+            if (!createExplorerButtonsAtRuntime || confirmPartyButton == null)
+            {
+                return;
+            }
+
+            assignExplorerButton ??= CloneManagementButton(
+                "Assign Explorer",
+                "+ Explorador",
+                -0.55f
+            );
+            removeExplorerButton ??= CloneManagementButton(
+                "Remove Explorer",
+                "- Explorador",
+                0.55f
+            );
+        }
+
+        private Button CloneManagementButton(
+            string objectName,
+            string label,
+            float horizontalMultiplier
+        )
+        {
+            GameObject clone = Instantiate(
+                confirmPartyButton.gameObject,
+                confirmPartyButton.transform.parent,
+                false
+            );
+            clone.name = objectName;
+            Button button = clone.GetComponent<Button>();
+            button.onClick = new Button.ButtonClickedEvent();
+            TMP_Text text = clone.GetComponentInChildren<TMP_Text>(true);
+            if (text != null)
+            {
+                text.text = label;
+            }
+
+            if (clone.transform is RectTransform cloneRect &&
+                confirmPartyButton.transform is RectTransform sourceRect)
+            {
+                float width = sourceRect.rect.width > 1f
+                    ? sourceRect.rect.width
+                    : Mathf.Max(180f, sourceRect.sizeDelta.x);
+                cloneRect.anchoredPosition = sourceRect.anchoredPosition +
+                    new Vector2(width * horizontalMultiplier,
+                        sourceRect.rect.height + 12f);
+            }
+
+            return button;
+        }
+
+        private void SetExplorerButtonsVisible(bool visible)
+        {
+            assignExplorerButton?.gameObject.SetActive(visible);
+            removeExplorerButton?.gameObject.SetActive(visible);
+        }
+
+        private void UpdateExplorerButtons()
+        {
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            int assignedHere = service.GetArea(selectedEnvironment)?
+                .assignedWorkers ?? 0;
+            if (assignExplorerButton != null)
+            {
+                assignExplorerButton.interactable =
+                    service.AvailableExplorers > 0;
+            }
+            if (removeExplorerButton != null)
+            {
+                removeExplorerButton.interactable = assignedHere > 0;
             }
         }
 
@@ -304,6 +719,9 @@ namespace TCCGame.Gameplay.Exploration
         {
             ExplorationService service =
                 GameSessionProvider.Current.Exploration;
+            service.RefreshArrivals();
+            ExplorationMissionSaveData activeMission =
+                service.GetActiveMission();
             var completed = new HashSet<ExplorationEnvironment>(
                 service.CompletedEnvironments
             );
@@ -318,10 +736,17 @@ namespace TCCGame.Gameplay.Exploration
                 }
 
                 ExplorationEnvironment environment = destination.Environment;
+                ExplorationMissionSaveData environmentMission =
+                    service.GetActiveMissionForEnvironment(environment);
+                ExplorationAreaSaveData area = service.GetArea(environment);
                 destination.Initialize(
                     this,
                     service.IsEnvironmentUnlocked(environment),
-                    completed.Contains(environment)
+                    completed.Contains(environment),
+                    environmentMission?.status,
+                    activeMission == null,
+                    area?.enemyAttackPending ?? false,
+                    service.GetLatestMissionForEnvironment(environment) != null
                 );
             }
         }
@@ -333,6 +758,11 @@ namespace TCCGame.Gameplay.Exploration
                 confirmPartyButton.interactable =
                     selectedParty.Count >= ExplorationService.MinimumPartySize &&
                     selectedParty.Count <= maximumPartySize;
+            }
+
+            if (panelMode == PanelMode.Mission)
+            {
+                SetConfirmButtonLabel("Enviar");
             }
         }
 
@@ -350,7 +780,7 @@ namespace TCCGame.Gameplay.Exploration
 
         private void ClearCards()
         {
-            foreach (AdventurerSelectionCardView card in cards.Values)
+            foreach (AdventurerSelectionCardView card in spawnedCards)
             {
                 if (card != null)
                 {
@@ -360,6 +790,7 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             cards.Clear();
+            spawnedCards.Clear();
         }
 
 #if UNITY_EDITOR
@@ -367,6 +798,10 @@ namespace TCCGame.Gameplay.Exploration
         {
             maximumPartySize = Mathf.Max(
                 ExplorationService.MinimumPartySize,
+                maximumPartySize
+            );
+            maximumPartySize = Mathf.Min(
+                ExplorationService.MaximumPartySize,
                 maximumPartySize
             );
 

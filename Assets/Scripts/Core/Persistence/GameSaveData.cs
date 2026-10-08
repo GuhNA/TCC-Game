@@ -116,7 +116,7 @@ namespace TCCGame.Core.Persistence
     [Serializable]
     public class GameSaveData
     {
-        public const int CurrentVersion = 7;
+        public const int CurrentVersion = 8;
         public const int DefaultMoney = 1000;
 
         public int version = CurrentVersion;

@@ -218,6 +218,21 @@ namespace TCCGame.Core.Persistence
             saveData.playerInventory ??= new PlayerInventorySaveData();
             saveData.exploration ??= new ExplorationSaveData();
             saveData.exploration.missions ??= new List<ExplorationMissionSaveData>();
+            saveData.exploration.areas ??= new List<ExplorationAreaSaveData>();
+            foreach (ExplorationMissionSaveData mission in
+                     saveData.exploration.missions.Where(mission => mission != null))
+            {
+                mission.party ??= new List<ExplorationCombatantSaveData>();
+                mission.rewards ??= new List<ExplorationRewardSaveData>();
+            }
+            foreach (ExplorationAreaSaveData area in
+                     saveData.exploration.areas.Where(area => area != null))
+            {
+                area.guardParty ??= new List<ExplorationCombatantSaveData>();
+                area.lastWorkerLoot ??=
+                    new List<ExplorationRewardSaveData>();
+                area.assignedWorkers = Mathf.Max(0, area.assignedWorkers);
+            }
             saveData.exploration.completedEnvironments ??=
                 new List<ExplorationEnvironment>();
             saveData.exploration.completedEnvironments = saveData.exploration

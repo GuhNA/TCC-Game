@@ -7,7 +7,7 @@
 3. Um botão liberado abre a popup de seleção.
 4. O controller cruza o catálogo de `Char_base` com os IDs contratados no save.
 5. Um `AdventurerSelectionCardView` é criado para cada aventureiro contratado.
-6. O jogador seleciona até seis aventureiros e confirma o envio.
+6. O jogador seleciona até três aventureiros e confirma o envio.
 
 ## Hierarquia recomendada do Canvas
 
@@ -50,7 +50,8 @@ No `Viewport`, use `RectMask2D`. No `Content`, configure:
 - `Spacing`, por exemplo `20 x 20`;
 - `ContentSizeFitter`: horizontal `Unconstrained`, vertical `Preferred Size`.
 
-Três colunas por duas linhas deixam seis cartões visíveis. O sétimo cartão cria
+Três colunas por duas linhas deixam seis cartões visíveis, embora apenas três
+possam ser enviados por batalha. O sétimo cartão cria
 uma terceira linha, aumenta a altura preferida do `Content` e ativa a rolagem.
 
 ## Prefab do cartão

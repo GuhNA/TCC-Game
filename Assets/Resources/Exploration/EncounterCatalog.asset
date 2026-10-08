@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c6eeeace1604d4cb63612322c1295c, type: 3}
+  m_Name: EncounterCatalog
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEncounterCatalog
+  encounters:
+  - {fileID: 11400000, guid: 42e25b5a0cf5fae4882c34c70d8987b9, type: 2}
+  - {fileID: 11400000, guid: 955d854234aa6c94e85b4a0e57960fc5, type: 2}
+  - {fileID: 11400000, guid: dd569858b90f93b4ea3336a87eb39b01, type: 2}
+  - {fileID: 11400000, guid: 95a5b2ae29221d640833cbecd0181bfd, type: 2}
+  - {fileID: 11400000, guid: 8061dfe740e50bb409b10434a4dd619b, type: 2}
+  - {fileID: 11400000, guid: a6e34ef6be7754c46a87f10e9aad770b, type: 2}
+  - {fileID: 11400000, guid: cbf8eb85b08737a43be49e9be2e4e2f6, type: 2}
+  - {fileID: 11400000, guid: e4bec819324315541a6e8af0948893bf, type: 2}
+  - {fileID: 11400000, guid: eef9e212b2fe85e4685732bf295ce773, type: 2}
+  - {fileID: 11400000, guid: 0f96929ee447bd248a7f5c85b1faf09d, type: 2}
+  - {fileID: 11400000, guid: b2fbf160044d4dd4bb5ff9aad684cba4, type: 2}
+  - {fileID: 11400000, guid: 88ba68ec0861acf4c93950d1112d46a4, type: 2}
+  - {fileID: 11400000, guid: 5acca757cb2dcfd4d86760a07bde5a8e, type: 2}
+  - {fileID: 11400000, guid: 6ca790a1c95a6cd40bc275d385b73a85, type: 2}

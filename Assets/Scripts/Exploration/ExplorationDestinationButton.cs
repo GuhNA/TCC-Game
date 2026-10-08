@@ -28,16 +28,28 @@ namespace TCCGame.Gameplay.Exploration
         private bool interactionEnabled = true;
         private bool isUnlocked;
         private bool isCompleted;
+        private bool canStartNewMission;
+        private bool counterAttackPending;
+        private bool hasReport;
+        private ExplorationMissionStatus? activeMissionStatus;
 
         public ExplorationEnvironment Environment => environment;
 
         public void Initialize(
             ExplorationMapController owner,
             bool unlocked,
-            bool completed
+            bool completed,
+            ExplorationMissionStatus? missionStatus,
+            bool canSendNewParty,
+            bool underCounterAttack,
+            bool reportAvailable
         )
         {
             controller = owner;
+            activeMissionStatus = missionStatus;
+            canStartNewMission = canSendNewParty;
+            counterAttackPending = underCounterAttack;
+            hasReport = reportAvailable;
             sendButton ??= GetComponent<Button>();
             sendButton?.onClick.RemoveListener(OpenSelection);
             sendButton?.onClick.AddListener(OpenSelection);
@@ -60,15 +72,24 @@ namespace TCCGame.Gameplay.Exploration
 
             if (sendButton != null)
             {
-                sendButton.interactable =
-                    interactionEnabled && unlocked && !completed;
+                bool readyForBattle = activeMissionStatus ==
+                    ExplorationMissionStatus.ReadyForBattle;
+                bool canResumeBattle = activeMissionStatus ==
+                    ExplorationMissionStatus.InBattle;
+                bool canOpenCapturedArea = completed &&
+                    (hasReport || counterAttackPending);
+                bool canInspectReturn = activeMissionStatus ==
+                    ExplorationMissionStatus.Returning;
+                sendButton.interactable = interactionEnabled && unlocked &&
+                    (readyForBattle || canResumeBattle || canInspectReturn ||
+                     canOpenCapturedArea ||
+                     (!completed && activeMissionStatus == null &&
+                      canStartNewMission));
             }
 
             if (buttonText != null)
             {
-                buttonText.text = completed
-                    ? "Concluído"
-                    : unlocked ? "Enviar" : "Bloqueado";
+                buttonText.text = GetButtonText(unlocked, completed);
             }
         }
 
@@ -94,7 +115,43 @@ namespace TCCGame.Gameplay.Exploration
 
         private void OpenSelection()
         {
+            if (activeMissionStatus ==
+                    ExplorationMissionStatus.ReadyForBattle ||
+                activeMissionStatus == ExplorationMissionStatus.InBattle)
+            {
+                controller?.EnterBattle((int)environment);
+                return;
+            }
+
+            if (activeMissionStatus == ExplorationMissionStatus.Returning ||
+                (isCompleted && !counterAttackPending))
+            {
+                controller?.OpenAreaReport((int)environment);
+                return;
+            }
+
             controller?.OpenPartySelection((int)environment);
+        }
+
+        private string GetButtonText(bool unlocked, bool completed)
+        {
+            if (!unlocked)
+            {
+                return "Bloqueado";
+            }
+
+            return activeMissionStatus switch
+            {
+                ExplorationMissionStatus.Travelling => "A caminho...",
+                ExplorationMissionStatus.ReadyForBattle => "Batalhar",
+                ExplorationMissionStatus.InBattle => "Retomar batalha",
+                ExplorationMissionStatus.Returning => "Retornando...",
+                _ => counterAttackPending
+                    ? "Defender"
+                    : completed
+                        ? hasReport ? "Relatório" : "Administrar"
+                        : canStartNewMission ? "Enviar" : "Expedição ativa"
+            };
         }
 
         private GameObject GetOrCreateLockedState()

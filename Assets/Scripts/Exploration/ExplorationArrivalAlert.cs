@@ -16,6 +16,7 @@ namespace TCCGame.Gameplay.Exploration
         {
             service = GameSessionProvider.Current.Exploration;
             service.MissionArrived += ShowArrival;
+            service.MissionReturned += ShowReturn;
             service.RefreshArrivals();
         }
 
@@ -23,12 +24,24 @@ namespace TCCGame.Gameplay.Exploration
 
         private void OnDisable()
         {
-            if (service != null) service.MissionArrived -= ShowArrival;
+            if (service != null)
+            {
+                service.MissionArrived -= ShowArrival;
+                service.MissionReturned -= ShowReturn;
+            }
         }
 
         private void ShowArrival(ExplorationMissionSaveData mission)
         {
             alert?.Show($"O grupo chegou a {mission.environment}. Abra o mapa para iniciar a batalha.");
+        }
+
+        private void ShowReturn(ExplorationMissionSaveData mission)
+        {
+            alert?.Show(
+                $"A equipe retornou de {mission.environment} com os recursos. " +
+                "Abra o mapa e selecione a região para ver o relatório."
+            );
         }
     }
 }

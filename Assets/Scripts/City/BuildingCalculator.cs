@@ -7,6 +7,15 @@ public static class BuildingCalculator
         int currentLevel
     )
     {
+        BuildingUpgradeLevelCost configured = GetConfiguredLevelCost(
+            definition,
+            currentLevel
+        );
+        if (configured != null && configured.goldCost >= 0)
+        {
+            return configured.goldCost;
+        }
+
         return Mathf.RoundToInt(
             definition.baseUpgradeCost *
             Mathf.Pow(
@@ -14,6 +23,34 @@ public static class BuildingCalculator
                 currentLevel
             )
         );
+    }
+
+    public static BuildingResourceRequirement[] GetResourceRequirements(
+        BuildingDefinition definition,
+        int currentLevel
+    )
+    {
+        BuildingUpgradeLevelCost configured = GetConfiguredLevelCost(
+            definition,
+            currentLevel
+        );
+        return configured?.resources ??
+            System.Array.Empty<BuildingResourceRequirement>();
+    }
+
+    private static BuildingUpgradeLevelCost GetConfiguredLevelCost(
+        BuildingDefinition definition,
+        int currentLevel
+    )
+    {
+        if (definition == null || currentLevel < 0 ||
+            definition.levelUpgradeCosts == null ||
+            currentLevel >= definition.levelUpgradeCosts.Length)
+        {
+            return null;
+        }
+
+        return definition.levelUpgradeCosts[currentLevel];
     }
 
     public static int GetProduction(

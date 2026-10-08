@@ -5,6 +5,7 @@ using TCCGame.Core.Time;
 using TCCGame.Gameplay.City;
 using TCCGame.Gameplay.Player;
 using TCCGame.Gameplay.Recruitment;
+using TCCGame.Gameplay.Exploration;
 using UnityEngine;
 
 namespace TCCGame.Tests.EditMode
@@ -85,6 +86,128 @@ namespace TCCGame.Tests.EditMode
                 Is.Zero
             );
             Assert.That(repository.SaveCount, Is.Zero);
+        }
+
+        [Test]
+        public void ExplorerBuildingUpgrade_ConsumesGoldAndMapResourcesAtomically()
+        {
+            ExplorationResourceDefinition wood =
+                ScriptableObject.CreateInstance<
+                    ExplorationResourceDefinition>();
+            wood.name = "resource.wood";
+            buildingDefinition.type = BuildingType.ExplorersLodge;
+            buildingDefinition.levelUpgradeCosts = new[]
+            {
+                new BuildingUpgradeLevelCost
+                {
+                    goldCost = 100,
+                    resources = new[]
+                    {
+                        new BuildingResourceRequirement
+                        {
+                            resource = wood,
+                            quantity = 5
+                        }
+                    }
+                }
+            };
+            GameSaveData data = CreateInitializedData();
+            data.money = 100;
+            data.playerInventory.items.Add(new InventoryItemSaveData
+            {
+                itemId = wood.PersistenceId,
+                quantity = 5
+            });
+            var repository = new InMemoryGameSaveRepository(data);
+            GameSession session = CreateSession(repository);
+
+            BuildingUpgradeStatus result =
+                session.Buildings.TryUpgrade(buildingDefinition);
+
+            Assert.That(result, Is.EqualTo(BuildingUpgradeStatus.Upgraded));
+            Assert.That(session.Economy.Money, Is.Zero);
+            Assert.That(session.Inventory.GetItemQuantity(wood.PersistenceId),
+                Is.Zero);
+            Assert.That(session.Buildings.GetLevel(
+                BuildingType.ExplorersLodge), Is.EqualTo(1));
+            Assert.That(repository.SaveCount, Is.EqualTo(1));
+            Object.DestroyImmediate(wood);
+        }
+
+        [Test]
+        public void ExplorerBuildingUpgrade_WithMissingResourceChangesNothing()
+        {
+            ExplorationResourceDefinition wood =
+                ScriptableObject.CreateInstance<
+                    ExplorationResourceDefinition>();
+            wood.name = "resource.wood";
+            buildingDefinition.type = BuildingType.ExplorersLodge;
+            buildingDefinition.levelUpgradeCosts = new[]
+            {
+                new BuildingUpgradeLevelCost
+                {
+                    goldCost = 100,
+                    resources = new[]
+                    {
+                        new BuildingResourceRequirement
+                        {
+                            resource = wood,
+                            quantity = 5
+                        }
+                    }
+                }
+            };
+            GameSaveData data = CreateInitializedData();
+            data.money = 100;
+            var repository = new InMemoryGameSaveRepository(data);
+            GameSession session = CreateSession(repository);
+
+            BuildingUpgradeStatus result =
+                session.Buildings.TryUpgrade(buildingDefinition);
+
+            Assert.That(result,
+                Is.EqualTo(BuildingUpgradeStatus.InsufficientResources));
+            Assert.That(session.Economy.Money, Is.EqualTo(100));
+            Assert.That(session.Buildings.GetLevel(
+                BuildingType.ExplorersLodge), Is.Zero);
+            Assert.That(repository.SaveCount, Is.Zero);
+            Object.DestroyImmediate(wood);
+        }
+
+        [Test]
+        public void ExplorerAssignments_CannotExceedExplorerBuildingLevel()
+        {
+            GameSaveData data = CreateInitializedData();
+            data.SetBuildingLevel(BuildingType.ExplorersLodge, 2);
+            data.exploration.areas.Add(new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.ColinasDeVento,
+                captured = true
+            });
+            data.exploration.areas.Add(new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.FlorestaDasSombras,
+                captured = true
+            });
+            var repository = new InMemoryGameSaveRepository(data);
+            GameSession session = CreateSession(repository);
+
+            bool first = session.Exploration.TrySetAssignedWorkers(
+                ExplorationEnvironment.ColinasDeVento,
+                2,
+                out string firstError
+            );
+            bool second = session.Exploration.TrySetAssignedWorkers(
+                ExplorationEnvironment.FlorestaDasSombras,
+                1,
+                out string secondError
+            );
+
+            Assert.That(first, Is.True, firstError);
+            Assert.That(second, Is.False);
+            Assert.That(secondError, Does.Contain("Construção de Exploradores"));
+            Assert.That(session.Exploration.TotalExplorers, Is.EqualTo(2));
+            Assert.That(session.Exploration.AvailableExplorers, Is.Zero);
         }
 
         [Test]

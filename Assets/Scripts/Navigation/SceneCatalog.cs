@@ -4,5 +4,7 @@ namespace TCCGame.Gameplay.Navigation
     {
         public const string Center = "Centro";
         public const string Gate = "Portão";
+        public const string ExplorationCombat = "ExplorationCombat";
+        public const string DefaultExplorationReturn = "Taverna";
     }
 }
