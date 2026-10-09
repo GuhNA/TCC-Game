@@ -15,11 +15,11 @@ namespace TCCGame.Gameplay.Exploration
             ExplorationEnvironment[]
         > Prerequisites = new()
         {
-            { ExplorationEnvironment.ColinasDeVento, Array.Empty<ExplorationEnvironment>() },
+            { ExplorationEnvironment.ColinasDoVento, Array.Empty<ExplorationEnvironment>() },
             { ExplorationEnvironment.FlorestaDasSombras, Array.Empty<ExplorationEnvironment>() },
             { ExplorationEnvironment.CavernaDeGelo, Array.Empty<ExplorationEnvironment>() },
-            { ExplorationEnvironment.TorreAntiga, new[] { ExplorationEnvironment.ColinasDeVento } },
-            { ExplorationEnvironment.VilaDoMar, new[] { ExplorationEnvironment.ColinasDeVento } },
+            { ExplorationEnvironment.TorreAntiga, new[] { ExplorationEnvironment.ColinasDoVento } },
+            { ExplorationEnvironment.VilaDoMar, new[] { ExplorationEnvironment.ColinasDoVento } },
             { ExplorationEnvironment.FlorestaEsmeralda, new[] { ExplorationEnvironment.FlorestaDasSombras } },
             { ExplorationEnvironment.MontanhasGelidas, new[] { ExplorationEnvironment.CavernaDeGelo } },
             { ExplorationEnvironment.ReinoReal, new[] { ExplorationEnvironment.FlorestaEsmeralda, ExplorationEnvironment.MontanhasGelidas } },
@@ -56,7 +56,7 @@ namespace TCCGame.Gameplay.Exploration
         {
             return environment switch
             {
-                ExplorationEnvironment.ColinasDeVento => "Colinas do Vento",
+                ExplorationEnvironment.ColinasDoVento => "Colinas do Vento",
                 ExplorationEnvironment.FlorestaDasSombras => "Floresta das Sombras",
                 ExplorationEnvironment.CavernaDeGelo => "Caverna do Gelo",
                 ExplorationEnvironment.TorreAntiga => "Torre Antiga",

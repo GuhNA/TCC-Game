@@ -60,7 +60,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -115,10 +115,10 @@ TextureImporter:
       name: bars_0
       rect:
         serializedVersion: 2
-        x: 72
+        x: 69
         y: 400
         width: 2030
-        height: 224
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: bars_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 110
+        x: 70
+        y: 122
         width: 2034
-        height: 219
+        height: 202
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

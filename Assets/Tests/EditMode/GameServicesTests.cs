@@ -181,7 +181,7 @@ namespace TCCGame.Tests.EditMode
             data.SetBuildingLevel(BuildingType.ExplorersLodge, 2);
             data.exploration.areas.Add(new ExplorationAreaSaveData
             {
-                environment = ExplorationEnvironment.ColinasDeVento,
+                environment = ExplorationEnvironment.ColinasDoVento,
                 captured = true
             });
             data.exploration.areas.Add(new ExplorationAreaSaveData
@@ -193,7 +193,7 @@ namespace TCCGame.Tests.EditMode
             GameSession session = CreateSession(repository);
 
             bool first = session.Exploration.TrySetAssignedWorkers(
-                ExplorationEnvironment.ColinasDeVento,
+                ExplorationEnvironment.ColinasDoVento,
                 2,
                 out string firstError
             );

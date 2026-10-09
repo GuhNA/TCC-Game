@@ -33,13 +33,20 @@ namespace TCCGame.Gameplay.Exploration
 
         private void ShowArrival(ExplorationMissionSaveData mission)
         {
-            alert?.Show($"O grupo chegou a {mission.environment}. Abra o mapa para iniciar a batalha.");
+            string environmentName =
+                ExplorationProgression.GetDisplayName(mission.environment);
+            alert?.Show(
+                $"O grupo chegou a {environmentName}. " +
+                "Abra o mapa para iniciar a batalha."
+            );
         }
 
         private void ShowReturn(ExplorationMissionSaveData mission)
         {
+            string environmentName =
+                ExplorationProgression.GetDisplayName(mission.environment);
             alert?.Show(
-                $"A equipe retornou de {mission.environment} com os recursos. " +
+                $"A equipe retornou de {environmentName} com os recursos. " +
                 "Abra o mapa e selecione a região para ver o relatório."
             );
         }

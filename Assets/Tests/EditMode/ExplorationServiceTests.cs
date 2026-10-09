@@ -16,7 +16,7 @@ namespace TCCGame.Tests.EditMode
             var mission = new ExplorationMissionSaveData
             {
                 id = 1,
-                environment = ExplorationEnvironment.ColinasDeVento,
+                environment = ExplorationEnvironment.ColinasDoVento,
                 status = ExplorationMissionStatus.InBattle
             };
             state.exploration.missions.Add(mission);
@@ -52,7 +52,7 @@ namespace TCCGame.Tests.EditMode
             state.exploration.missions.Add(new ExplorationMissionSaveData
             {
                 id = 1,
-                environment = ExplorationEnvironment.ColinasDeVento,
+                environment = ExplorationEnvironment.ColinasDoVento,
                 status = ExplorationMissionStatus.InBattle
             });
             var service = new ExplorationService(state, clock, () => { });
@@ -69,7 +69,7 @@ namespace TCCGame.Tests.EditMode
                 guard.PersistenceId
             );
             Assert.That(service.TryAssignGuardParty(
-                ExplorationEnvironment.ColinasDeVento,
+                ExplorationEnvironment.ColinasDoVento,
                 new[] { guard },
                 out string error), Is.True, error);
 

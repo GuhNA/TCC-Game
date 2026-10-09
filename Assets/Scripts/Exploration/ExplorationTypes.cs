@@ -10,7 +10,7 @@ namespace TCCGame.Gameplay.Exploration
     /// </summary>
     public enum ExplorationEnvironment
     {
-        ColinasDeVento = 0,
+        ColinasDoVento = 0,
         FlorestaDasSombras = 1,
         CavernaDeGelo = 2,
         TorreAntiga = 3,

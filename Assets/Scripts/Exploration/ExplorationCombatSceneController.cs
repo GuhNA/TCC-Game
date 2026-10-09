@@ -59,6 +59,7 @@ namespace TCCGame.Gameplay.Exploration
 
         private void Awake()
         {
+            ConfigureCombatLog();
             battleButton?.onClick.AddListener(StartBattle);
             retreatButton?.onClick.AddListener(Retreat);
         }
@@ -380,13 +381,153 @@ namespace TCCGame.Gameplay.Exploration
 
             combatHistory.Append(message.Trim());
             combatLogText.text = combatHistory.ToString();
+            RefreshCombatLogLayout();
             StartCoroutine(ScrollCombatLogToBottom());
+        }
+
+        /// <summary>
+        /// Repara as referências e o layout do log mesmo que sua hierarquia tenha
+        /// sido ajustada manualmente. O Content da cena antiga podia iniciar com
+        /// altura zero, fazendo a Mask recortar todo o texto e deixar só o painel
+        /// preto visível.
+        /// </summary>
+        private void ConfigureCombatLog()
+        {
+            if (combatLogText == null && combatLogScrollRect != null)
+            {
+                combatLogText = combatLogScrollRect
+                    .GetComponentInChildren<TMP_Text>(true);
+            }
+
+            if (combatLogScrollRect == null && combatLogText != null)
+            {
+                combatLogScrollRect =
+                    combatLogText.GetComponentInParent<ScrollRect>(true);
+            }
+
+            if (combatLogText == null)
+            {
+                return;
+            }
+
+            if (combatLogScrollRect == null ||
+                combatLogScrollRect.viewport == null)
+            {
+                return;
+            }
+
+            TMP_Text template = combatLogText;
+            RectTransform viewport = combatLogScrollRect.viewport;
+
+            // O Mask antigo dependia de stencil e estava recortando todo o texto.
+            // RectMask2D trabalha apenas com o retângulo da Viewport e é mais
+            // previsível para este painel transparente.
+            Mask stencilMask = viewport.GetComponent<Mask>();
+            if (stencilMask != null)
+            {
+                stencilMask.enabled = false;
+            }
+
+            RectMask2D rectMask = viewport.GetComponent<RectMask2D>();
+            if (rectMask == null)
+            {
+                rectMask = viewport.gameObject.AddComponent<RectMask2D>();
+            }
+            rectMask.enabled = true;
+
+            // Cria somente o texto funcional em tempo de execução. A moldura, o
+            // painel, as dimensões e todos os elementos visuais salvos permanecem
+            // exatamente como foram configurados pelo usuário.
+            var logObject = new GameObject(
+                "Combat Log Runtime Text",
+                typeof(RectTransform)
+            );
+            logObject.layer = viewport.gameObject.layer;
+            RectTransform textRect = logObject.GetComponent<RectTransform>();
+            textRect.SetParent(viewport, false);
+            textRect.anchorMin = new Vector2(0f, 1f);
+            textRect.anchorMax = new Vector2(1f, 1f);
+            textRect.pivot = new Vector2(0.5f, 1f);
+            textRect.anchoredPosition = Vector2.zero;
+            textRect.sizeDelta = Vector2.zero;
+            textRect.SetAsLastSibling();
+
+            var runtimeText = logObject.AddComponent<TextMeshProUGUI>();
+            runtimeText.font = template.font;
+            runtimeText.fontSize = template.fontSize > 0f
+                ? template.fontSize
+                : 20f;
+            runtimeText.fontStyle = template.fontStyle;
+            runtimeText.color = Color.white;
+            runtimeText.alignment = TextAlignmentOptions.TopLeft;
+            runtimeText.textWrappingMode = TextWrappingModes.Normal;
+            runtimeText.overflowMode = TextOverflowModes.Overflow;
+            runtimeText.margin = new Vector4(6f, 4f, 6f, 4f);
+            runtimeText.raycastTarget = false;
+            runtimeText.maskable = true;
+            runtimeText.text = template.text;
+            runtimeText.canvasRenderer.cull = false;
+
+            template.gameObject.SetActive(false);
+            combatLogText = runtimeText;
+
+            combatLogScrollRect.gameObject.SetActive(true);
+            combatLogScrollRect.horizontal = false;
+            combatLogScrollRect.vertical = true;
+            combatLogScrollRect.movementType =
+                ScrollRect.MovementType.Clamped;
+            combatLogScrollRect.inertia = true;
+            combatLogScrollRect.scrollSensitivity = 30f;
+            combatLogScrollRect.content = textRect;
+        }
+
+        private void RefreshCombatLogLayout()
+        {
+            if (combatLogText == null)
+            {
+                return;
+            }
+
+            Canvas.ForceUpdateCanvases();
+            RectTransform viewport = combatLogScrollRect?.viewport;
+            float availableWidth = viewport == null
+                ? combatLogText.rectTransform.rect.width
+                : viewport.rect.width;
+            if (availableWidth <= 1f)
+            {
+                availableWidth = 600f;
+            }
+
+            combatLogText.ForceMeshUpdate();
+            float minimumHeight = viewport == null
+                ? combatLogText.fontSize + 8f
+                : viewport.rect.height;
+            float preferredHeight = Mathf.Max(
+                minimumHeight,
+                combatLogText.GetPreferredValues(
+                    combatLogText.text,
+                    Mathf.Max(1f, availableWidth - 12f),
+                    0f
+                ).y + 8f
+            );
+
+            combatLogText.rectTransform.SetSizeWithCurrentAnchors(
+                RectTransform.Axis.Vertical,
+                preferredHeight
+            );
+
+            RectTransform content = combatLogScrollRect?.content;
+            if (content != null)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+            }
         }
 
         private IEnumerator ScrollCombatLogToBottom()
         {
             yield return null;
             Canvas.ForceUpdateCanvases();
+            RefreshCombatLogLayout();
             if (combatLogScrollRect != null)
             {
                 combatLogScrollRect.verticalNormalizedPosition = 0f;

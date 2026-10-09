@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -149,7 +149,6 @@ GameObject:
   - component: {fileID: 4389499444105835490}
   - component: {fileID: 1084610959489124742}
   - component: {fileID: 2758713448418783371}
-  - component: {fileID: 4543936537281606698}
   m_Layer: 5
   m_Name: Disponivel
   m_TagString: Untagged
@@ -259,21 +258,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4543936537281606698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7048794514806294739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec94dde8d03fb73489c5694e2af8ab06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationDestinationButton
-  environment: 2
-  sendButton: {fileID: 2758713448418783371}
-  buttonText: {fileID: 7640172767938928069}
-  availableStateRoot: {fileID: 0}
-  lockedStatePrefabOrInstance: {fileID: 3530401949871960385, guid: 3f450763dd08c894d9da26406b4545bb, type: 3}
-  lockedStateParent: {fileID: 0}
