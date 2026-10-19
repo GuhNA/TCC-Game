@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 51f6b9163f5d42747983965b737f0ae4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1143268684525854506
+    second: tavern_fireplace_loop_0
+  - first:
+      213: -5088111016770715130
+    second: tavern_fireplace_loop_1
+  - first:
+      213: 8197926047243158338
+    second: tavern_fireplace_loop_2
+  - first:
+      213: -8118088056889669990
+    second: tavern_fireplace_loop_3
+  - first:
+      213: -1168988563604761869
+    second: tavern_fireplace_loop_4
+  - first:
+      213: -5944824857969767586
+    second: tavern_fireplace_loop_5
+  - first:
+      213: 3889872319063234233
+    second: tavern_fireplace_loop_6
+  - first:
+      213: -810877592501377913
+    second: tavern_fireplace_loop_7
+  - first:
+      213: -2249786437900124145
+    second: tavern_fireplace_loop_8
+  - first:
+      213: 5075715384478587117
+    second: tavern_fireplace_loop_9
+  - first:
+      213: -4547400508491198239
+    second: tavern_fireplace_loop_10
+  - first:
+      213: -6664161366047023821
+    second: tavern_fireplace_loop_11
+  - first:
+      213: 2215652080686498475
+    second: tavern_fireplace_loop_12
+  - first:
+      213: 1663365209040743674
+    second: tavern_fireplace_loop_13
+  - first:
+      213: 7136315842555890733
+    second: tavern_fireplace_loop_14
+  - first:
+      213: 2675959489945779637
+    second: tavern_fireplace_loop_15
+  - first:
+      213: -1364281536939547831
+    second: tavern_fireplace_loop_16
+  - first:
+      213: 3828732559677045997
+    second: tavern_fireplace_loop_17
+  - first:
+      213: 1110756439771511671
+    second: tavern_fireplace_loop_18
+  - first:
+      213: 1325609360051166111
+    second: tavern_fireplace_loop_19
+  - first:
+      213: -5811622079660892949
+    second: tavern_fireplace_loop_20
+  - first:
+      213: -7650417211047445487
+    second: tavern_fireplace_loop_21
+  - first:
+      213: 7958311067305857187
+    second: tavern_fireplace_loop_22
+  - first:
+      213: 4045860157045930452
+    second: tavern_fireplace_loop_23
+  - first:
+      213: 4421297380391275826
+    second: tavern_fireplace_loop_24
+  - first:
+      213: 7179492337111563110
+    second: tavern_fireplace_loop_25
+  - first:
+      213: 1771294924321652353
+    second: tavern_fireplace_loop_26
+  - first:
+      213: 5381856099126541432
+    second: tavern_fireplace_loop_27
+  - first:
+      213: -7632293314748895253
+    second: tavern_fireplace_loop_28
+  - first:
+      213: 3808010379516022223
+    second: tavern_fireplace_loop_29
+  - first:
+      213: 5733976680095313323
+    second: tavern_fireplace_loop_30
+  - first:
+      213: 4433445042047665814
+    second: tavern_fireplace_loop_31
+  - first:
+      213: -3395789223447340173
+    second: tavern_fireplace_loop_32
+  - first:
+      213: -1894047337050316732
+    second: tavern_fireplace_loop_33
+  - first:
+      213: 2809672208118592690
+    second: tavern_fireplace_loop_34
+  - first:
+      213: -2402351335373179616
+    second: tavern_fireplace_loop_35
+  - first:
+      213: -7329030392611840256
+    second: tavern_fireplace_loop_36
+  - first:
+      213: -1009563190782756136
+    second: tavern_fireplace_loop_37
+  - first:
+      213: -5868539258398193599
+    second: tavern_fireplace_loop_38
+  - first:
+      213: 8017052302701964039
+    second: tavern_fireplace_loop_39
+  - first:
+      213: 8754865455218549638
+    second: tavern_fireplace_loop_40
+  - first:
+      213: -5227209392066834089
+    second: tavern_fireplace_loop_41
+  - first:
+      213: 4101099790243012474
+    second: tavern_fireplace_loop_42
+  - first:
+      213: 7902321521143440149
+    second: tavern_fireplace_loop_43
+  - first:
+      213: 3340828852565841813
+    second: tavern_fireplace_loop_44
+  - first:
+      213: -2347402881061554831
+    second: tavern_fireplace_loop_45
+  - first:
+      213: -6271402401238989608
+    second: tavern_fireplace_loop_46
+  - first:
+      213: -3547837757151394503
+    second: tavern_fireplace_loop_47
+  - first:
+      213: 6343976112591658747
+    second: tavern_fireplace_loop_48
+  - first:
+      213: 8883201673614609158
+    second: tavern_fireplace_loop_49
+  - first:
+      213: 8097097654866566673
+    second: tavern_fireplace_loop_50
+  - first:
+      213: 2737453039595084644
+    second: tavern_fireplace_loop_51
+  - first:
+      213: 8593193759793522238
+    second: tavern_fireplace_loop_52
+  - first:
+      213: 9020886789328007130
+    second: tavern_fireplace_loop_53
+  - first:
+      213: 18547745189559963
+    second: tavern_fireplace_loop_54
+  - first:
+      213: 4890038489833079538
+    second: tavern_fireplace_loop_55
+  - first:
+      213: 9066165937931989107
+    second: tavern_fireplace_loop_56
+  - first:
+      213: 5556291235575604612
+    second: tavern_fireplace_loop_57
+  - first:
+      213: -7978823452049411150
+    second: tavern_fireplace_loop_58
+  - first:
+      213: -6047947259108329213
+    second: tavern_fireplace_loop_59
+  - first:
+      213: 4018696070663555925
+    second: tavern_fireplace_loop_60
+  - first:
+      213: -2244861175605551213
+    second: TavernFireplace_0
+  - first:
+      213: -4849852380567080541
+    second: TavernFireplace_1
+  - first:
+      213: 3036707165832869879
+    second: TavernFireplace_2
+  - first:
+      213: 7843626358905294954
+    second: TavernFireplace_3
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tavern_fireplace_loop_0
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 617
+        width: 526
+        height: 496
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff58ac9f7a4ba54c80bb273d7d6f166
+      internalID: -1143268684525854506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tavern_fireplace_loop_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 617
+        width: 526
+        height: 496
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eed12c5ee0cda1438d188171f37210a
+      internalID: -5088111016770715130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tavern_fireplace_loop_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 97
+        width: 526
+        height: 496
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4312cbf8412a51c41b4c8cedce1c84d0
+      internalID: 8197926047243158338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tavern_fireplace_loop_3
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 98
+        width: 526
+        height: 496
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f85b894c7b98944fad640eb94725012
+      internalID: -8118088056889669990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 4e2ac72eea6d4854dbeca84eac9c253c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":2.0},"gridSpriteSize":{"x":665.0,"y":591.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      TavernFireplace_0: -2244861175605551213
+      TavernFireplace_1: -4849852380567080541
+      TavernFireplace_2: 3036707165832869879
+      TavernFireplace_3: 7843626358905294954
+      tavern_fireplace_loop_0: -1143268684525854506
+      tavern_fireplace_loop_1: -5088111016770715130
+      tavern_fireplace_loop_2: 8197926047243158338
+      tavern_fireplace_loop_3: -8118088056889669990
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
