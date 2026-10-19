@@ -19,10 +19,13 @@ namespace TCCGame.Gameplay.Exploration
         public const int TravelSeconds = 5;
         public const int ReturnSeconds = 5;
         public const int EnemyCounterAttackSeconds = 300;
-        public const int ExplorerCollectionSeconds = 60;
+        // Default production interval. A scene component can override this per
+        // session through SetExplorerCollectionIntervalSeconds.
+        public const int ExplorerCollectionSeconds = 300;
         private readonly GameSaveData state;
         private readonly IClock clock;
         private readonly Action commit;
+        private int explorerCollectionIntervalSeconds = ExplorerCollectionSeconds;
 
         public event Action<ExplorationMissionSaveData> MissionArrived;
         public event Action<ExplorationMissionSaveData> MissionReturned;
@@ -51,6 +54,8 @@ namespace TCCGame.Gameplay.Exploration
             {
                 area.guardParty ??= new List<ExplorationCombatantSaveData>();
                 area.lastWorkerLoot ??=
+                    new List<ExplorationRewardSaveData>();
+                area.pendingWorkerLoot ??=
                     new List<ExplorationRewardSaveData>();
             }
 
@@ -86,6 +91,30 @@ namespace TCCGame.Gameplay.Exploration
             0,
             TotalExplorers - AssignedExplorers
         );
+
+        public int ExplorerCollectionIntervalSeconds =>
+            explorerCollectionIntervalSeconds;
+
+        /// <summary>
+        /// True whenever the tavern action board has work waiting for the
+        /// player: an arrived party / battle, an unread return report, or
+        /// explorer resources still waiting for transport.
+        /// </summary>
+        public bool HasTavernActionPending =>
+            state.exploration.missions.Any(mission => mission != null &&
+                mission.status == ExplorationMissionStatus.ReadyForBattle) ||
+            state.exploration.missions.Any(mission => mission != null &&
+                mission.status == ExplorationMissionStatus.Returned &&
+                !mission.reportAcknowledged) ||
+            state.exploration.areas.Any(area => area != null &&
+                area.pendingWorkerLoot != null &&
+                area.pendingWorkerLoot.Any(reward => reward != null &&
+                    reward.quantity > 0));
+
+        public void SetExplorerCollectionIntervalSeconds(int seconds)
+        {
+            explorerCollectionIntervalSeconds = Math.Max(1, seconds);
+        }
 
         public ExplorationMissionSaveData GetActiveMission()
         {
@@ -493,7 +522,7 @@ namespace TCCGame.Gameplay.Exploration
             area.nextWorkerCollectionUnixSeconds = workerCount > 0
                 ? area.nextWorkerCollectionUnixSeconds > clock.UnixSeconds
                     ? area.nextWorkerCollectionUnixSeconds
-                    : clock.UnixSeconds + ExplorerCollectionSeconds
+                    : clock.UnixSeconds + explorerCollectionIntervalSeconds
                 : 0;
             commit();
             error = null;
@@ -518,7 +547,7 @@ namespace TCCGame.Gameplay.Exploration
                 if (area.nextWorkerCollectionUnixSeconds <= 0)
                 {
                     area.nextWorkerCollectionUnixSeconds =
-                        clock.UnixSeconds + ExplorerCollectionSeconds;
+                        clock.UnixSeconds + explorerCollectionIntervalSeconds;
                     changed = true;
                     continue;
                 }
@@ -540,17 +569,10 @@ namespace TCCGame.Gameplay.Exploration
                         encounter,
                         area.nextWorkerCollectionUnixSeconds
                     );
-                    foreach (ExplorationRewardSaveData reward in
-                             area.lastWorkerLoot)
-                    {
-                        AddRewardToInventory(
-                            reward.resourceId,
-                            reward.quantity
-                        );
-                    }
+                    AddPendingWorkerLoot(area, area.lastWorkerLoot);
 
                     area.nextWorkerCollectionUnixSeconds +=
-                        ExplorerCollectionSeconds;
+                        explorerCollectionIntervalSeconds;
                     processedCycles++;
                     changed = true;
                 }
@@ -562,6 +584,39 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             return changed;
+        }
+
+        /// <summary>
+        /// Moves every pending worker reward for one captured area into the
+        /// player's inventory. The tavern UI should call this from its
+        /// "Transportar recursos" action.
+        /// </summary>
+        public bool TryTransportWorkerLoot(
+            ExplorationEnvironment environment,
+            out string error
+        )
+        {
+            ExplorationAreaSaveData area = GetArea(environment);
+            if (area == null || area.pendingWorkerLoot == null ||
+                !area.pendingWorkerLoot.Any(reward => reward != null &&
+                    reward.quantity > 0))
+            {
+                error = "Não há recursos aguardando transporte nesta região.";
+                return false;
+            }
+
+            foreach (ExplorationRewardSaveData reward in area.pendingWorkerLoot)
+            {
+                if (reward != null)
+                {
+                    AddRewardToInventory(reward.resourceId, reward.quantity);
+                }
+            }
+
+            area.pendingWorkerLoot.Clear();
+            commit();
+            error = null;
+            return true;
         }
 
         private bool RefreshAreaThreats()
@@ -720,6 +775,41 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             return rewards.Values.ToList();
+        }
+
+        private static void AddPendingWorkerLoot(
+            ExplorationAreaSaveData area,
+            IEnumerable<ExplorationRewardSaveData> collectedLoot
+        )
+        {
+            area.pendingWorkerLoot ??= new List<ExplorationRewardSaveData>();
+            foreach (ExplorationRewardSaveData reward in collectedLoot ??
+                     Enumerable.Empty<ExplorationRewardSaveData>())
+            {
+                if (reward == null || reward.quantity <= 0 ||
+                    string.IsNullOrWhiteSpace(reward.resourceId))
+                {
+                    continue;
+                }
+
+                ExplorationRewardSaveData pending = area.pendingWorkerLoot.Find(
+                    candidate => candidate != null &&
+                        candidate.resourceId == reward.resourceId
+                );
+                if (pending == null)
+                {
+                    area.pendingWorkerLoot.Add(new ExplorationRewardSaveData
+                    {
+                        resourceId = reward.resourceId,
+                        displayName = reward.displayName,
+                        quantity = reward.quantity
+                    });
+                }
+                else
+                {
+                    pending.quantity = checked(pending.quantity + reward.quantity);
+                }
+            }
         }
 
         private void AddRewardToInventory(string resourceId, int quantity)

@@ -47,6 +47,7 @@ namespace TCCGame.Gameplay.Exploration
         [Tooltip("Optional. If empty, buttons are cloned from Confirm at runtime.")]
         [SerializeField] private Button assignExplorerButton;
         [SerializeField] private Button removeExplorerButton;
+        [SerializeField] private Button transportLootButton;
         [SerializeField] private bool createExplorerButtonsAtRuntime = true;
 
         [Header("Adventurer definitions")]
@@ -107,6 +108,7 @@ namespace TCCGame.Gameplay.Exploration
             backButton?.onClick.AddListener(ClosePartySelection);
             assignExplorerButton?.onClick.AddListener(AssignExplorer);
             removeExplorerButton?.onClick.AddListener(RemoveExplorer);
+            transportLootButton?.onClick.AddListener(TransportExplorerLoot);
         }
 
         private void OnDisable()
@@ -116,6 +118,7 @@ namespace TCCGame.Gameplay.Exploration
             backButton?.onClick.RemoveListener(ClosePartySelection);
             assignExplorerButton?.onClick.RemoveListener(AssignExplorer);
             removeExplorerButton?.onClick.RemoveListener(RemoveExplorer);
+            transportLootButton?.onClick.RemoveListener(TransportExplorerLoot);
             CloseModal();
         }
 
@@ -588,24 +591,44 @@ namespace TCCGame.Gameplay.Exploration
             OpenAreaReport((int)selectedEnvironment);
         }
 
+        public void TransportExplorerLoot()
+        {
+            ExplorationService service =
+                GameSessionProvider.Current.Exploration;
+            if (!service.TryTransportWorkerLoot(selectedEnvironment, out string error))
+            {
+                alert?.Show(error);
+                return;
+            }
+
+            alert?.Show("Recursos transportados para o inventário.");
+            OpenAreaReport((int)selectedEnvironment);
+        }
+
         private string BuildExplorerSummary()
         {
             ExplorationService service =
                 GameSessionProvider.Current.Exploration;
-            int assignedHere = service.GetArea(selectedEnvironment)?
-                .assignedWorkers ?? 0;
-            ExplorationAreaSaveData area = service.GetArea(
-                selectedEnvironment
-            );
+            ExplorationAreaSaveData area = service.GetArea(selectedEnvironment);
+            int assignedHere = area?.assignedWorkers ?? 0;
             string lastLoot = area?.lastWorkerLoot == null ||
                 area.lastWorkerLoot.Count == 0
                     ? "Última coleta: nenhuma."
                     : "Última coleta: " + string.Join(", ",
                         area.lastWorkerLoot.Select(reward =>
                             reward.quantity + "x " + reward.displayName));
+            string pendingLoot = area?.pendingWorkerLoot == null ||
+                area.pendingWorkerLoot.Count == 0
+                    ? "Aguardando transporte: nenhum."
+                    : "Aguardando transporte: " + string.Join(", ",
+                        area.pendingWorkerLoot.Where(reward =>
+                                reward != null && reward.quantity > 0)
+                            .Select(reward => reward.quantity + "x " +
+                                reward.displayName));
             return "Exploradores nesta região: " + assignedHere +
                 " | Disponíveis: " + service.AvailableExplorers +
-                "/" + service.TotalExplorers + "\n" + lastLoot;
+                "/" + service.TotalExplorers + "\n" + lastLoot + "\n" +
+                pendingLoot;
         }
 
         private void EnsureExplorerButtons()
@@ -624,6 +647,11 @@ namespace TCCGame.Gameplay.Exploration
                 "Remove Explorer",
                 "- Explorador",
                 0.55f
+            );
+            transportLootButton ??= CloneManagementButton(
+                "Transport Explorer Loot",
+                "Transportar",
+                0f
             );
         }
 
@@ -665,14 +693,15 @@ namespace TCCGame.Gameplay.Exploration
         {
             assignExplorerButton?.gameObject.SetActive(visible);
             removeExplorerButton?.gameObject.SetActive(visible);
+            transportLootButton?.gameObject.SetActive(visible);
         }
 
         private void UpdateExplorerButtons()
         {
             ExplorationService service =
                 GameSessionProvider.Current.Exploration;
-            int assignedHere = service.GetArea(selectedEnvironment)?
-                .assignedWorkers ?? 0;
+            ExplorationAreaSaveData area = service.GetArea(selectedEnvironment);
+            int assignedHere = area?.assignedWorkers ?? 0;
             if (assignExplorerButton != null)
             {
                 assignExplorerButton.interactable =
@@ -681,6 +710,12 @@ namespace TCCGame.Gameplay.Exploration
             if (removeExplorerButton != null)
             {
                 removeExplorerButton.interactable = assignedHere > 0;
+            }
+            if (transportLootButton != null)
+            {
+                transportLootButton.interactable = area?.pendingWorkerLoot != null &&
+                    area.pendingWorkerLoot.Any(reward =>
+                        reward != null && reward.quantity > 0);
             }
         }
 

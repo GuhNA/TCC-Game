@@ -95,6 +95,10 @@ namespace TCCGame.Gameplay.Exploration
         public long nextWorkerCollectionUnixSeconds;
         public System.Collections.Generic.List<ExplorationRewardSaveData>
             lastWorkerLoot = new();
+        // Loot is intentionally kept outside of the inventory until the player
+        // transports it from the tavern action board.
+        public System.Collections.Generic.List<ExplorationRewardSaveData>
+            pendingWorkerLoot = new();
         public long nextEnemyAttackUnixSeconds;
         public bool enemyAttackPending;
         public System.Collections.Generic.List<ExplorationCombatantSaveData>
