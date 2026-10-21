@@ -216,9 +216,31 @@ namespace TCCGame.Core.Persistence
             saveData.army ??= new ArmySaveData();
             saveData.recruitment ??= new RecruitmentSaveData();
             saveData.playerInventory ??= new PlayerInventorySaveData();
+            saveData.tavernRecruitmentWave ??=
+                new TavernRecruitmentWaveSaveData();
+            saveData.tavernRecruitmentWave.adventurerIds ??=
+                new List<string>();
+            saveData.tavernRecruitmentWave.adventurerIds =
+                saveData.tavernRecruitmentWave.adventurerIds
+                    .Where(id => !string.IsNullOrWhiteSpace(id))
+                    .Select(id => id.Trim())
+                    .Distinct()
+                    .ToList();
+            saveData.tavernRecruitmentWave.sequence = Mathf.Max(
+                0,
+                saveData.tavernRecruitmentWave.sequence
+            );
+            saveData.tavernRecruitmentWave.expiresUnixSeconds = Math.Max(
+                0,
+                saveData.tavernRecruitmentWave.expiresUnixSeconds
+            );
             saveData.exploration ??= new ExplorationSaveData();
             saveData.exploration.missions ??= new List<ExplorationMissionSaveData>();
             saveData.exploration.areas ??= new List<ExplorationAreaSaveData>();
+            saveData.exploration.lostExplorers = Mathf.Max(
+                0,
+                saveData.exploration.lostExplorers
+            );
             foreach (ExplorationMissionSaveData mission in
                      saveData.exploration.missions.Where(mission => mission != null))
             {
@@ -230,6 +252,8 @@ namespace TCCGame.Core.Persistence
             {
                 area.guardParty ??= new List<ExplorationCombatantSaveData>();
                 area.lastWorkerLoot ??=
+                    new List<ExplorationRewardSaveData>();
+                area.pendingWorkerLoot ??=
                     new List<ExplorationRewardSaveData>();
                 area.assignedWorkers = Mathf.Max(0, area.assignedWorkers);
             }

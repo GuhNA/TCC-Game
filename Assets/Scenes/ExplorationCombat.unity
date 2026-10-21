@@ -5756,6 +5756,8 @@ MonoBehaviour:
   adventurerCatalog:
   - {fileID: 11400000, guid: b86197fd39e4b0e4b89b733a15ca9ac7, type: 2}
   - {fileID: 11400000, guid: 840c80adcaf5a7547ab2128be4f29ab7, type: 2}
+  - {fileID: 11400000, guid: 2f8c908ccffc4d96a0acf66fbd68cdca, type: 2}
+  - {fileID: 11400000, guid: 4ce9651c44cc4fd1bfb653351aaf5e0c, type: 2}
   battleBackground: {fileID: 73864680}
   adventurerViews:
   - {fileID: 101073630}

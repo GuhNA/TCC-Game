@@ -109,6 +109,9 @@ namespace TCCGame.Gameplay.Exploration
     public sealed class ExplorationSaveData
     {
         public int nextMissionId = 1;
+        // Exploradores mortos em ataques sem guarda. Eles deixam de contar na
+        // capacidade concedida pela Construção de Exploradores.
+        public int lostExplorers;
         public System.Collections.Generic.List<ExplorationMissionSaveData> missions = new();
         public System.Collections.Generic.List<ExplorationEnvironment>
             completedEnvironments = new();

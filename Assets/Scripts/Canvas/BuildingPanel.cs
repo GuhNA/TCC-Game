@@ -69,9 +69,14 @@ public class BuildingPanel : MonoBehaviour
             currentLevel
         );
 
-        productionText.text = definition.type == BuildingType.ExplorersLodge
-            ? $"Exploradores disponíveis: {currentLevel}"
-            : $"Produção: {production}";
+        productionText.text = definition.type switch
+        {
+            BuildingType.ExplorersLodge =>
+                $"Exploradores disponíveis: {currentLevel}",
+            BuildingType.Tavern =>
+                $"Aventureiros por onda: {(currentLevel <= 0 ? 0 : currentLevel + 1)}",
+            _ => $"Produção: {production}"
+        };
 
         bool isMaximumLevel =
             currentLevel >= definition.maximumLevel;

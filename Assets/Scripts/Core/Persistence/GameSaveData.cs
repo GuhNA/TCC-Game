@@ -113,10 +113,22 @@ namespace TCCGame.Core.Persistence
         public List<InventoryItemSaveData> items = new();
     }
 
+    /// <summary>
+    /// O conteúdo e o prazo da onda atual da taverna ficam no save. Isso evita
+    /// rerolls gratuitos ao trocar de cena ou reiniciar o jogo.
+    /// </summary>
+    [Serializable]
+    public class TavernRecruitmentWaveSaveData
+    {
+        public int sequence;
+        public long expiresUnixSeconds;
+        public List<string> adventurerIds = new();
+    }
+
     [Serializable]
     public class GameSaveData
     {
-        public const int CurrentVersion = 8;
+        public const int CurrentVersion = 10;
         public const int DefaultMoney = 1000;
 
         public int version = CurrentVersion;
@@ -126,6 +138,7 @@ namespace TCCGame.Core.Persistence
         public ArmySaveData army = new();
         public RecruitmentSaveData recruitment = new();
         public PlayerInventorySaveData playerInventory = new();
+        public TavernRecruitmentWaveSaveData tavernRecruitmentWave = new();
         public CampaignSaveData campaign = new();
         public NavigationSaveData navigation = new();
         public ExplorationSaveData exploration = new();

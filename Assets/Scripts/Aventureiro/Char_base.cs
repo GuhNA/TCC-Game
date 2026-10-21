@@ -27,6 +27,10 @@ public class Char_base : ScriptableObject
 
     public Sprite sprite;
 
+    [Space(10)][Header("Visual de recrutamento na Taverna")]
+    [Tooltip("Prefab específico deste aventureiro quando ele aparece para recrutamento. O prefab precisa possuir o componente Aventureiro.")]
+    public Aventureiro recruitablePrefab;
+
     [Space(10)][Header("Visual no combate de exploração")]
     [Tooltip("Prefab 2D instanciado na cena de combate. Se ficar vazio, o campo Sprite será usado como alternativa.")]
     public GameObject combatPrefab;

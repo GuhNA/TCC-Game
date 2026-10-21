@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using TCCGame.Core;
 using TCCGame.Core.Persistence;
@@ -404,6 +405,55 @@ namespace TCCGame.Tests.EditMode
                 Is.EqualTo(System.TimeSpan.FromHours(6))
             );
             Assert.That(repository.SaveCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void TavernWave_StartsOnEntryAndOnlyRefreshesAfterExpiry()
+        {
+            GameSaveData data = CreateInitializedData();
+            var repository = new InMemoryGameSaveRepository(data);
+            var clock = new FakeClock { UnixSeconds = 100 };
+            var session = new GameSession(repository, clock);
+            string[] candidates =
+            {
+                "adventurer.archer",
+                "adventurer.mage",
+                "adventurer.bandit",
+                "adventurer.warrior"
+            };
+
+            var firstWave = session.TavernRecruitment.EnterTavern(
+                candidates,
+                2,
+                120
+            ).ToArray();
+            clock.UnixSeconds = 150;
+            var sameWave = session.TavernRecruitment.EnterTavern(
+                candidates,
+                2,
+                120
+            ).ToArray();
+
+            Assert.That(firstWave.Length, Is.EqualTo(2));
+            CollectionAssert.AreEqual(firstWave, sameWave);
+            Assert.That(session.TavernRecruitment.RemainingSeconds,
+                Is.EqualTo(70));
+            Assert.That(repository.SaveCount, Is.EqualTo(1));
+
+            clock.UnixSeconds = 220;
+            Assert.That(session.TavernRecruitment.IsCurrentWaveExpired,
+                Is.True);
+
+            // Esta chamada representa uma nova entrada na cena da Taverna.
+            var refreshedWave = session.TavernRecruitment.EnterTavern(
+                candidates,
+                2,
+                120
+            );
+            Assert.That(refreshedWave.Count, Is.EqualTo(2));
+            Assert.That(session.TavernRecruitment.RemainingSeconds,
+                Is.EqualTo(120));
+            Assert.That(repository.SaveCount, Is.EqualTo(2));
         }
 
         private static GameSession CreateSession(

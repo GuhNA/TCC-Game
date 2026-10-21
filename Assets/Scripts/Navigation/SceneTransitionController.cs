@@ -99,6 +99,20 @@ namespace TCCGame.Gameplay.Navigation
             return instance.BeginReturnToCenter();
         }
 
+        public static bool TryEnterTavern()
+        {
+            return instance != null && instance.enabled &&
+                instance.fadeImage != null && !instance.isTransitioning &&
+                instance.BeginTavernTransition(SceneCatalog.Tavern);
+        }
+
+        public static bool TryExitTavern()
+        {
+            return instance != null && instance.enabled &&
+                instance.fadeImage != null && !instance.isTransitioning &&
+                instance.BeginTavernTransition(SceneCatalog.Center);
+        }
+
         public static bool TryEnterExplorationCombat(
             int missionId,
             out string error
@@ -156,6 +170,23 @@ namespace TCCGame.Gameplay.Navigation
             }
 
             StartCoroutine(LoadSceneRoutine(SceneCatalog.Center, true));
+            return true;
+        }
+
+        private bool BeginTavernTransition(string destinationScene)
+        {
+            if (!Application.CanStreamedLevelBeLoaded(destinationScene))
+            {
+                Debug.LogError(
+                    $"Adicione a cena {destinationScene} ao Build Settings."
+                );
+                return false;
+            }
+
+            // A Taverna pertence ao Centro. Limpamos uma eventual entrada de
+            // portão antiga para que a volta use CenterDefaultSpawn.
+            GameSessionProvider.Current.Navigation.RecoverToCenter();
+            StartCoroutine(LoadSceneRoutine(destinationScene, true));
             return true;
         }
 

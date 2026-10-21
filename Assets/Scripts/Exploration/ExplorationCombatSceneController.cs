@@ -103,8 +103,15 @@ namespace TCCGame.Gameplay.Exploration
                 return;
             }
 
+            float enemyPowerMultiplier = mission.kind ==
+                ExplorationMissionKind.Defense
+                ? 1f - encounter.DefensePowerReduction
+                : 1f;
             List<ExplorationEnemyDefinition> enemies =
-                encounter.RollEnemyParty(unchecked(mission.id * 486187739));
+                encounter.RollEnemyParty(
+                    unchecked(mission.id * 486187739),
+                    enemyPowerMultiplier
+                );
             if (enemies.Count == 0)
             {
                 ShowFatalError("Este encontro não possui inimigos configurados.");

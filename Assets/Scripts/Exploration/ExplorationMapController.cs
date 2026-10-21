@@ -627,7 +627,9 @@ namespace TCCGame.Gameplay.Exploration
                                 reward.displayName));
             return "Exploradores nesta região: " + assignedHere +
                 " | Disponíveis: " + service.AvailableExplorers +
-                "/" + service.TotalExplorers + "\n" + lastLoot + "\n" +
+                "/" + service.TotalExplorers +
+                " | Perdidos: " + service.LostExplorers + "\n" +
+                lastLoot + "\n" +
                 pendingLoot;
         }
 

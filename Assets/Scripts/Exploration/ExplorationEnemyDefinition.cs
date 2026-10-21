@@ -25,6 +25,8 @@ namespace TCCGame.Gameplay.Exploration
         [SerializeField] private bool flipCombatVisualX;
 
         [Header("Combat stats")]
+        [Tooltip("Valor usado para montar equipes dentro do poder mínimo e máximo do local.")]
+        [SerializeField, Min(1)] private int battlePower = 10;
         [SerializeField, Min(1)] private int maximumHealth = 20;
         [SerializeField, Min(1)] private int minimumDamage = 2;
         [SerializeField, Min(1)] private int maximumDamage = 5;
@@ -45,6 +47,7 @@ namespace TCCGame.Gameplay.Exploration
         public Vector3 CombatLocalEulerAngles => combatLocalEulerAngles;
         public Vector3 CombatLocalScale => combatLocalScale;
         public bool FlipCombatVisualX => flipCombatVisualX;
+        public int BattlePower => battlePower;
         public int MaximumHealth => maximumHealth;
         public int MinimumDamage => minimumDamage;
         public int MaximumDamage => maximumDamage;
@@ -55,6 +58,7 @@ namespace TCCGame.Gameplay.Exploration
 
         private void OnValidate()
         {
+            battlePower = Mathf.Max(1, battlePower);
             maximumHealth = Mathf.Max(1, maximumHealth);
             minimumDamage = Mathf.Max(1, minimumDamage);
             maximumDamage = Mathf.Max(minimumDamage, maximumDamage);

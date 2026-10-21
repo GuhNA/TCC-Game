@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using TCCGame.Core;
 using TCCGame.Core.Persistence;
 using TCCGame.Core.Time;
 using TCCGame.Gameplay.Exploration;
@@ -84,6 +85,42 @@ namespace TCCGame.Tests.EditMode
             Assert.That(defense.status,
                 Is.EqualTo(ExplorationMissionStatus.ReadyForBattle));
             Object.DestroyImmediate(guard);
+        }
+
+        [Test]
+        public void UndefendedArea_LosesExplorersAndMustBeRecaptured()
+        {
+            var state = GameSaveData.CreateDefault();
+            var clock = new FakeClock { UnixSeconds = 100 };
+            state.SetBuildingLevel(BuildingType.ExplorersLodge, 2);
+            state.exploration.completedEnvironments.Add(
+                ExplorationEnvironment.ColinasDoVento
+            );
+            state.exploration.areas.Add(new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.ColinasDoVento,
+                captured = true,
+                assignedWorkers = 2,
+                nextEnemyAttackUnixSeconds = 100
+            });
+            var service = new ExplorationService(state, clock, () => { });
+
+            service.RefreshArrivals();
+
+            ExplorationAreaSaveData area = service.GetArea(
+                ExplorationEnvironment.ColinasDoVento
+            );
+            Assert.That(area.captured, Is.False);
+            Assert.That(area.assignedWorkers, Is.Zero);
+            Assert.That(service.LostExplorers, Is.EqualTo(2));
+            Assert.That(service.TotalExplorers, Is.Zero);
+            CollectionAssert.DoesNotContain(
+                service.CompletedEnvironments,
+                ExplorationEnvironment.ColinasDoVento
+            );
+            Assert.That(service.GetLatestMissionForEnvironment(
+                    ExplorationEnvironment.ColinasDoVento).status,
+                Is.EqualTo(ExplorationMissionStatus.Defeated));
         }
 
         private sealed class FakeClock : IClock

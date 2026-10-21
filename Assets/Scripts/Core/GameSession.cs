@@ -21,6 +21,7 @@ namespace TCCGame.Core
         public BuildingService Buildings { get; }
         public RecruitmentService Recruitment { get; }
         public PlayerInventoryService Inventory { get; }
+        public TavernRecruitmentWaveService TavernRecruitment { get; }
         public TaxService Taxes { get; }
         public CampaignService Campaign { get; }
         public TroopDeploymentService TroopDeployment { get; }
@@ -57,6 +58,11 @@ namespace TCCGame.Core
             Inventory = new PlayerInventoryService(
                 State,
                 Economy,
+                Commit
+            );
+            TavernRecruitment = new TavernRecruitmentWaveService(
+                State,
+                clock,
                 Commit
             );
             Taxes = new TaxService(

@@ -78,9 +78,15 @@ namespace TCCGame.Gameplay.Exploration
         public IReadOnlyList<ExplorationEnvironment> CompletedEnvironments =>
             state.exploration.completedEnvironments.AsReadOnly();
 
+        public int LostExplorers => Math.Max(
+            0,
+            state.exploration.lostExplorers
+        );
+
         public int TotalExplorers => Math.Max(
             0,
-            state.GetBuildingLevel(BuildingType.ExplorersLodge)
+            state.GetBuildingLevel(BuildingType.ExplorersLodge) -
+            LostExplorers
         );
 
         public int AssignedExplorers => state.exploration.areas
@@ -629,11 +635,17 @@ namespace TCCGame.Gameplay.Exploration
                          area.nextEnemyAttackUnixSeconds > 0 &&
                          clock.UnixSeconds >= area.nextEnemyAttackUnixSeconds))
             {
-                area.enemyAttackPending = true;
-                area.nextEnemyAttackUnixSeconds = 0;
-                area.nextWorkerCollectionUnixSeconds = 0;
+                if (area.guardParty == null || area.guardParty.Count == 0)
+                {
+                    LoseUndefendedArea(area);
+                }
+                else
+                {
+                    area.enemyAttackPending = true;
+                    area.nextEnemyAttackUnixSeconds = 0;
+                    area.nextWorkerCollectionUnixSeconds = 0;
+                }
                 changed = true;
-
             }
 
             ExplorationAreaSaveData guardedArea = state.exploration.areas
@@ -663,6 +675,37 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             return changed;
+        }
+
+        private void LoseUndefendedArea(ExplorationAreaSaveData area)
+        {
+            int explorersLost = Math.Max(0, area.assignedWorkers);
+            state.exploration.lostExplorers = checked(
+                Math.Max(0, state.exploration.lostExplorers) + explorersLost
+            );
+
+            area.captured = false;
+            area.assignedWorkers = 0;
+            area.nextWorkerCollectionUnixSeconds = 0;
+            area.nextEnemyAttackUnixSeconds = 0;
+            area.enemyAttackPending = false;
+            area.guardParty.Clear();
+            area.lastWorkerLoot.Clear();
+            area.pendingWorkerLoot.Clear();
+            state.exploration.completedEnvironments.Remove(area.environment);
+
+            // O relatório deixa explícito que a região foi perdida mesmo sem
+            // abrir a cena de combate (não existia guarda para lutar).
+            state.exploration.missions.Add(new ExplorationMissionSaveData
+            {
+                id = state.exploration.nextMissionId++,
+                environment = area.environment,
+                kind = ExplorationMissionKind.Defense,
+                status = ExplorationMissionStatus.Defeated,
+                arrivalUnixSeconds = clock.UnixSeconds,
+                arrivalAnnounced = true,
+                reportAcknowledged = false
+            });
         }
 
         private static ExplorationCombatantSaveData CloneCombatant(

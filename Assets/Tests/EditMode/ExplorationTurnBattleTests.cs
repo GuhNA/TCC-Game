@@ -1,6 +1,8 @@
 using System;
+using System.Reflection;
 using NUnit.Framework;
 using TCCGame.Gameplay.Exploration;
+using UnityEngine;
 
 namespace TCCGame.Tests.EditMode
 {
@@ -29,6 +31,34 @@ namespace TCCGame.Tests.EditMode
 
             Assert.That(turn.Attacker, Is.SameAs(hero));
             Assert.That(turn.Round, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void DoubleSpeedActsTwiceBeforeSlowerCombatant()
+        {
+            ExplorationBattleCombatant fast = Create(
+                "fast",
+                ExplorationCombatTeam.Adventurers,
+                speed: 20
+            );
+            ExplorationBattleCombatant slow = Create(
+                "slow",
+                ExplorationCombatTeam.Enemies,
+                speed: 10
+            );
+            var battle = new ExplorationTurnBattle(
+                new[] { fast },
+                new[] { slow },
+                1
+            );
+
+            ExplorationTurnResult first = battle.ExecuteNextTurn();
+            ExplorationTurnResult second = battle.ExecuteNextTurn();
+            ExplorationTurnResult third = battle.ExecuteNextTurn();
+
+            Assert.That(first.Attacker, Is.SameAs(fast));
+            Assert.That(second.Attacker, Is.SameAs(fast));
+            Assert.That(third.Attacker, Is.SameAs(slow));
         }
 
         [Test]
@@ -150,6 +180,48 @@ namespace TCCGame.Tests.EditMode
             ExplorationTurnResult turn = battle.ExecuteNextTurn();
 
             Assert.That(turn.Target, Is.SameAs(rightHero));
+        }
+
+        [Test]
+        public void EncounterRollsRepeatedEnemiesInsidePowerRange()
+        {
+            var enemy = ScriptableObject.CreateInstance<
+                ExplorationEnemyDefinition>();
+            SetPrivateField(enemy, "battlePower", 10);
+            var encounter = ScriptableObject.CreateInstance<
+                ExplorationEncounterDefinition>();
+            SetPrivateField(encounter, "minimumEnemyCount", 1);
+            SetPrivateField(encounter, "maximumEnemyCount", 3);
+            SetPrivateField(encounter, "allowRepeatedEnemies", true);
+            SetPrivateField(encounter, "minimumEnemyBattlePower", 20);
+            SetPrivateField(encounter, "maximumEnemyBattlePower", 20);
+            SetPrivateField(
+                encounter,
+                "enemies",
+                new[] { enemy }
+            );
+
+            var party = encounter.RollEnemyParty(123);
+
+            Assert.That(party.Count, Is.EqualTo(2));
+            Assert.That(party[0], Is.SameAs(enemy));
+            Assert.That(party[1], Is.SameAs(enemy));
+            UnityEngine.Object.DestroyImmediate(encounter);
+            UnityEngine.Object.DestroyImmediate(enemy);
+        }
+
+        private static void SetPrivateField<T>(
+            object target,
+            string fieldName,
+            T value
+        )
+        {
+            FieldInfo field = target.GetType().GetField(
+                fieldName,
+                BindingFlags.Instance | BindingFlags.NonPublic
+            );
+            Assert.That(field, Is.Not.Null, fieldName);
+            field.SetValue(target, value);
         }
 
         private static ExplorationBattleCombatant Create(

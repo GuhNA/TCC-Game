@@ -92,17 +92,22 @@ namespace TCCGame.Gameplay.Exploration
     }
 
     /// <summary>
-    /// Deterministic turn engine. At the beginning of every round all living
-    /// combatants are ordered by speed (highest first). Adventurers always hit
-    /// the leftmost living enemy; enemies always hit the rightmost living
-    /// adventurer. This preserves the visual front-line formation.
+    /// Motor determinístico por iniciativa. Cada pulso soma a velocidade à
+    /// barra do combatente; ao alcançar 100 ele age e gasta 100 pontos. Assim,
+    /// ao longo do combate, velocidade 20 produz duas ações para cada ação de
+    /// velocidade 10. Adventurers always hit the leftmost living enemy; enemies
+    /// always hit the rightmost living adventurer.
     /// </summary>
     public sealed class ExplorationTurnBattle
     {
         private readonly List<ExplorationBattleCombatant> adventurers;
         private readonly List<ExplorationBattleCombatant> enemies;
         private readonly System.Random random;
-        private Queue<ExplorationBattleCombatant> turnQueue = new();
+        private const int InitiativeThreshold = 100;
+        private readonly Dictionary<ExplorationBattleCombatant, int>
+            initiative = new();
+        private readonly HashSet<ExplorationBattleCombatant>
+            actedInCurrentRound = new();
 
         public IReadOnlyList<ExplorationBattleCombatant> Adventurers =>
             adventurers;
@@ -133,6 +138,12 @@ namespace TCCGame.Gameplay.Exploration
                 nameof(enemyParty)
             );
             random = new System.Random(randomSeed);
+            foreach (ExplorationBattleCombatant combatant in
+                     adventurers.Concat(enemies))
+            {
+                initiative[combatant] = 0;
+            }
+            Round = 1;
         }
 
         public ExplorationTurnResult ExecuteNextTurn()
@@ -174,26 +185,44 @@ namespace TCCGame.Gameplay.Exploration
 
         private ExplorationBattleCombatant GetNextAttacker()
         {
-            while (true)
+            if (AllLivingCombatantsActed())
             {
-                if (turnQueue.Count == 0)
-                {
-                    Round++;
-                    turnQueue = new Queue<ExplorationBattleCombatant>(
-                        adventurers.Concat(enemies)
-                            .Where(unit => unit.IsAlive)
-                            .OrderByDescending(unit => unit.Speed)
-                            .ThenBy(unit => unit.Team)
-                            .ThenBy(unit => unit.DisplayName)
-                    );
-                }
+                actedInCurrentRound.Clear();
+                Round++;
+            }
 
-                ExplorationBattleCombatant attacker = turnQueue.Dequeue();
-                if (attacker.IsAlive)
+            List<ExplorationBattleCombatant> living = adventurers
+                .Concat(enemies)
+                .Where(unit => unit.IsAlive)
+                .ToList();
+            while (living.All(unit =>
+                       initiative[unit] < InitiativeThreshold))
+            {
+                foreach (ExplorationBattleCombatant unit in living)
                 {
-                    return attacker;
+                    // Velocidade zero ainda recebe o mínimo de um ponto para
+                    // impedir que uma unidade válida fique travada para sempre.
+                    initiative[unit] += Math.Max(1, unit.Speed);
                 }
             }
+
+            ExplorationBattleCombatant attacker = living
+                .Where(unit => initiative[unit] >= InitiativeThreshold)
+                .OrderByDescending(unit => initiative[unit])
+                .ThenByDescending(unit => unit.Speed)
+                .ThenBy(unit => unit.Team)
+                .ThenBy(unit => unit.DisplayName)
+                .First();
+            initiative[attacker] -= InitiativeThreshold;
+            actedInCurrentRound.Add(attacker);
+            return attacker;
+        }
+
+        private bool AllLivingCombatantsActed()
+        {
+            return adventurers.Concat(enemies)
+                .Where(unit => unit.IsAlive)
+                .All(unit => actedInCurrentRound.Contains(unit));
         }
 
         private static List<ExplorationBattleCombatant> ValidateParty(

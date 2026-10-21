@@ -20,6 +20,7 @@ MonoBehaviour:
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
   combatLocalScale: {x: 0.12496, y: 0.12496, z: 0.12496}
   flipCombatVisualX: 1
+  battlePower: 10
   maximumHealth: 80
   minimumDamage: 4
   maximumDamage: 7

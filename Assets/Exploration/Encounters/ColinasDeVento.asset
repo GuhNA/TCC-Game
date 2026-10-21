@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEncounterDefinition
   environment: 0
   background: {fileID: 21300000, guid: 86da6ae130241a0458ad405d9ff89c1f, type: 3}
+  minimumEnemyCount: 1
+  maximumEnemyCount: 3
+  allowRepeatedEnemies: 1
+  minimumEnemyBattlePower: 10
+  maximumEnemyBattlePower: 30
+  defensePowerReduction: 0.4
   enemies:
   - {fileID: 11400000, guid: fae60643390f5a94b876d19b1fc7f1b6, type: 2}
   possibleRewards:

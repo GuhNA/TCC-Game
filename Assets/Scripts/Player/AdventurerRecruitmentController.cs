@@ -54,7 +54,9 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
             return;
         }
 
+        selectedAdventurer?.SetBeingInspected(false);
         selectedAdventurer = target;
+        selectedAdventurer.SetBeingInspected(true);
         panel.Show(CreateViewData(target));
 
         if (!ownsModalLock)
@@ -101,6 +103,7 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
     private void CloseCurrent()
     {
         panel?.Hide();
+        selectedAdventurer?.SetBeingInspected(false);
         selectedAdventurer = null;
 
         if (!ownsModalLock)

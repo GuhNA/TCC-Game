@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Mago
   m_EditorClassIdentifier: Assembly-CSharp::Char_base
   persistenceId: adventurer.mage
-  sprite: {fileID: 0}
+  sprite: {fileID: 1889912218, guid: c422416117fea4b4ea664b5ddc9e7b6f, type: 3}
+  recruitablePrefab: {fileID: 100004, guid: 8d42ec2618ca4d2f90cd91484026cbbc, type: 3}
+  combatPrefab: {fileID: 0}
+  combatLocalPosition: {x: 0, y: 0, z: 0}
+  combatLocalEulerAngles: {x: 0, y: 0, z: 0}
+  combatLocalScale: {x: 1, y: 1, z: 1}
+  flipCombatVisualX: 0
   vida: 90
   "resist\xEAncia_magica": 15
   armadura: 0
@@ -22,6 +28,8 @@ MonoBehaviour:
   forca: 1
   mana: 100
   ganho_mana: 10
+  velocidade: 8
+  tipoDano: 1
   classe: 3
   "tra\xE7os": []
   distancia: 1
@@ -31,7 +39,7 @@ MonoBehaviour:
   acessorio: {fileID: 0}
   dano_min: 0
   dano_max: 0
-  vivo: 0
+  vivo: 1
   escalaDexMax: 0.2
   escalaIntMax: 1.8
   escalaForMax: 0.1

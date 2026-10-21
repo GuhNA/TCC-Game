@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290f57902b84105409f99b1cbad8a4f6, type: 3}
+  m_Name: Guerreiro
+  m_EditorClassIdentifier: Assembly-CSharp::Char_base
+  persistenceId: adventurer.warrior
+  sprite: {fileID: 1889912218, guid: c422416117fea4b4ea664b5ddc9e7b6f, type: 3}
+  recruitablePrefab: {fileID: 100004, guid: f0f1668279b148cb92b149a3a113f153, type: 3}
+  combatPrefab: {fileID: 0}
+  combatLocalPosition: {x: 0, y: 0, z: 0}
+  combatLocalEulerAngles: {x: 0, y: 0, z: 0}
+  combatLocalScale: {x: 1, y: 1, z: 1}
+  flipCombatVisualX: 0
+  vida: 180
+  "resist\xEAncia_magica": 8
+  armadura: 18
+  destreza: 3
+  inteligencia: 1
+  forca: 8
+  mana: 100
+  ganho_mana: 2
+  velocidade: 6
+  tipoDano: 0
+  classe: 0
+  "tra\xE7os": []
+  distancia: 0
+  preco: 180
+  mao: {fileID: 0}
+  torso: {fileID: 0}
+  acessorio: {fileID: 0}
+  dano_min: 4
+  dano_max: 10
+  vivo: 1
+  escalaDexMax: 0.2
+  escalaIntMax: 0
+  escalaForMax: 0.7
+  escalaDexMin: 0
+  escalaIntMin: 0
+  escalaForMin: 0.35

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TCCGame.Gameplay.Exploration
@@ -55,6 +56,12 @@ namespace TCCGame.Gameplay.Exploration
         private int maximumEnemyCount = MaximumTeamSize;
         [Tooltip("Allows the same enemy definition to be rolled more than once.")]
         [SerializeField] private bool allowRepeatedEnemies = true;
+        [Tooltip("Poder total mínimo da equipe inimiga neste local.")]
+        [SerializeField, Min(1)] private int minimumEnemyBattlePower = 10;
+        [Tooltip("Poder total máximo da equipe inimiga neste local.")]
+        [SerializeField, Min(1)] private int maximumEnemyBattlePower = 30;
+        [Tooltip("Redução do poder inimigo nas batalhas de defesa. 0.4 significa 40%.")]
+        [SerializeField, Range(0f, 1f)] private float defensePowerReduction = 0.4f;
         [SerializeField] private ExplorationEnemyDefinition[] enemies =
             Array.Empty<ExplorationEnemyDefinition>();
         [SerializeField] private ExplorationRewardEntry[] possibleRewards =
@@ -65,16 +72,22 @@ namespace TCCGame.Gameplay.Exploration
         public int MinimumEnemyCount => minimumEnemyCount;
         public int MaximumEnemyCount => maximumEnemyCount;
         public bool AllowRepeatedEnemies => allowRepeatedEnemies;
+        public int MinimumEnemyBattlePower => minimumEnemyBattlePower;
+        public int MaximumEnemyBattlePower => maximumEnemyBattlePower;
+        public float DefensePowerReduction => defensePowerReduction;
         public IReadOnlyList<ExplorationEnemyDefinition> Enemies => enemies;
         public IReadOnlyList<ExplorationRewardEntry> PossibleRewards =>
             possibleRewards;
 
         /// <summary>
-        /// Builds one party from the configured enemy pool. Sampling with
-        /// replacement is deliberate: a pool containing only Goblin can produce
-        /// Goblin/Goblin/Goblin when Allow Repeated Enemies is enabled.
+        /// Monta todas as combinações possíveis de até três inimigos e sorteia
+        /// somente entre as que respeitam a quantidade e a faixa de poder.
+        /// Repetições são combinações válidas quando habilitadas no Inspector.
         /// </summary>
-        public List<ExplorationEnemyDefinition> RollEnemyParty(int seed)
+        public List<ExplorationEnemyDefinition> RollEnemyParty(
+            int seed,
+            float powerMultiplier = 1f
+        )
         {
             var pool = new List<ExplorationEnemyDefinition>();
             foreach (ExplorationEnemyDefinition enemy in enemies ??
@@ -91,33 +104,132 @@ namespace TCCGame.Gameplay.Exploration
                 return new List<ExplorationEnemyDefinition>();
             }
 
-            var random = new System.Random(seed);
             int allowedMaximum = allowRepeatedEnemies
                 ? MaximumTeamSize
                 : Math.Min(MaximumTeamSize, pool.Count);
             int minimum = Math.Clamp(minimumEnemyCount, 1, allowedMaximum);
             int maximum = Math.Clamp(maximumEnemyCount, minimum, allowedMaximum);
-            int count = random.Next(minimum, maximum + 1);
-            var result = new List<ExplorationEnemyDefinition>(count);
+            float normalizedMultiplier = Mathf.Max(0.01f, powerMultiplier);
+            int targetMinimumPower = Math.Max(
+                1,
+                Mathf.RoundToInt(minimumEnemyBattlePower *
+                    normalizedMultiplier)
+            );
+            int targetMaximumPower = Math.Max(
+                targetMinimumPower,
+                Mathf.RoundToInt(maximumEnemyBattlePower *
+                    normalizedMultiplier)
+            );
 
-            if (allowRepeatedEnemies)
+            var everyParty = new List<List<ExplorationEnemyDefinition>>();
+            BuildPartyCombinations(
+                pool,
+                0,
+                maximum,
+                new List<ExplorationEnemyDefinition>(),
+                everyParty
+            );
+
+            List<List<ExplorationEnemyDefinition>> validParties = everyParty
+                .Where(party => party.Count >= minimum &&
+                    PartyPower(party) >= targetMinimumPower &&
+                    PartyPower(party) <= targetMaximumPower)
+                .ToList();
+            var random = new System.Random(seed);
+
+            if (validParties.Count == 0)
             {
-                for (int index = 0; index < count; index++)
-                {
-                    result.Add(pool[random.Next(0, pool.Count)]);
-                }
+                // Uma configuração impossível não deve bloquear o carregamento
+                // da batalha. Escolhemos a combinação mais próxima e avisamos o
+                // DEV para que ajuste os poderes no Inspector.
+                validParties = everyParty
+                    .Where(party => party.Count >= minimum)
+                    .OrderBy(party => DistanceFromPowerRange(
+                        PartyPower(party),
+                        targetMinimumPower,
+                        targetMaximumPower
+                    ))
+                    .Take(1)
+                    .ToList();
+                Debug.LogWarning(
+                    $"{name}: nenhuma equipe inimiga atende ao poder " +
+                    $"{targetMinimumPower}-{targetMaximumPower}. " +
+                    "A combinação mais próxima será usada.",
+                    this
+                );
             }
-            else
+
+            if (validParties.Count == 0)
             {
-                while (result.Count < count)
-                {
-                    int index = random.Next(0, pool.Count);
-                    result.Add(pool[index]);
-                    pool.RemoveAt(index);
-                }
+                return new List<ExplorationEnemyDefinition>();
+            }
+
+            var result = new List<ExplorationEnemyDefinition>(
+                validParties[random.Next(validParties.Count)]
+            );
+            // A combinação define quem participa; a ordem visual também pode
+            // variar sem alterar o poder final da equipe.
+            for (int index = result.Count - 1; index > 0; index--)
+            {
+                int other = random.Next(index + 1);
+                (result[index], result[other]) =
+                    (result[other], result[index]);
             }
 
             return result;
+        }
+
+        private void BuildPartyCombinations(
+            IReadOnlyList<ExplorationEnemyDefinition> pool,
+            int firstAllowedIndex,
+            int maximumCount,
+            List<ExplorationEnemyDefinition> current,
+            List<List<ExplorationEnemyDefinition>> result
+        )
+        {
+            if (current.Count > 0)
+            {
+                result.Add(new List<ExplorationEnemyDefinition>(current));
+            }
+
+            if (current.Count >= maximumCount)
+            {
+                return;
+            }
+
+            for (int index = firstAllowedIndex; index < pool.Count; index++)
+            {
+                current.Add(pool[index]);
+                BuildPartyCombinations(
+                    pool,
+                    allowRepeatedEnemies ? index : index + 1,
+                    maximumCount,
+                    current,
+                    result
+                );
+                current.RemoveAt(current.Count - 1);
+            }
+        }
+
+        private static int PartyPower(
+            IEnumerable<ExplorationEnemyDefinition> party
+        )
+        {
+            return party.Sum(enemy => Math.Max(1, enemy.BattlePower));
+        }
+
+        private static int DistanceFromPowerRange(
+            int power,
+            int minimum,
+            int maximum
+        )
+        {
+            if (power < minimum)
+            {
+                return minimum - power;
+            }
+
+            return power > maximum ? power - maximum : 0;
         }
 
         private void OnValidate()
@@ -133,6 +245,12 @@ namespace TCCGame.Gameplay.Exploration
                 minimumEnemyCount,
                 MaximumTeamSize
             );
+            minimumEnemyBattlePower = Mathf.Max(1, minimumEnemyBattlePower);
+            maximumEnemyBattlePower = Mathf.Max(
+                minimumEnemyBattlePower,
+                maximumEnemyBattlePower
+            );
+            defensePowerReduction = Mathf.Clamp01(defensePowerReduction);
 
             possibleRewards ??= Array.Empty<ExplorationRewardEntry>();
         }

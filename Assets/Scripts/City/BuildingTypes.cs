@@ -4,5 +4,6 @@ public enum BuildingType
     ArcherStand = 1,
     Barracks = 2,
     LocalMarket = 3,
-    ExplorersLodge = 4
+    ExplorersLodge = 4,
+    Tavern = 5
 }
