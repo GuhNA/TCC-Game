@@ -42,7 +42,6 @@ public sealed class TavernRecruitableSpawner : MonoBehaviour
     private readonly List<Vector3> usedSpawnPoints = new();
     private BoxCollider spawnArea;
     private TavernRecruitmentWaveService waveService;
-    private bool waveExpiredInThisVisit;
 
     private void Awake()
     {
@@ -69,33 +68,6 @@ public sealed class TavernRecruitableSpawner : MonoBehaviour
         ShowWaveForCurrentTavernLevel();
     }
 
-    private void Update()
-    {
-        if (waveExpiredInThisVisit)
-        {
-            return;
-        }
-
-        HideAdventurersAlreadyRecruited();
-        if (!waveService.IsCurrentWaveExpired)
-        {
-            return;
-        }
-
-        // Não chamamos EnterTavern novamente aqui. A próxima onda fica
-        // pendente até este componente ser recriado por uma nova entrada na
-        // cena, conforme a regra de atualização solicitada.
-        waveExpiredInThisVisit = true;
-        foreach (Aventureiro recruitable in spawnedRecruitables)
-        {
-            CloseRecruitmentPanel(recruitable);
-            if (recruitable != null)
-            {
-                recruitable.gameObject.SetActive(false);
-            }
-        }
-    }
-
     private void ShowWaveForCurrentTavernLevel()
     {
         int tavernLevel = GameSessionProvider.Current.Buildings.GetLevel(
@@ -119,8 +91,6 @@ public sealed class TavernRecruitableSpawner : MonoBehaviour
             .GroupBy(definition => definition.PersistenceId)
             .ToDictionary(group => group.Key, group => group.First());
         List<Char_base> visibleDefinitions = waveIds
-            .Where(id => !GameSessionProvider.Current.Inventory
-                .IsAdventurerRecruited(id))
             .Where(definitions.ContainsKey)
             .Select(id => definitions[id])
             .ToList();
@@ -151,34 +121,6 @@ public sealed class TavernRecruitableSpawner : MonoBehaviour
             recruitable.name = "Recrutável - " + definition.name;
             usedSpawnPoints.Add(spawnPoint);
         }
-    }
-
-    private void HideAdventurersAlreadyRecruited()
-    {
-        foreach (Aventureiro recruitable in spawnedRecruitables)
-        {
-            if (recruitable == null || !recruitable.gameObject.activeSelf ||
-                recruitable.charBase == null ||
-                !GameSessionProvider.Current.Inventory.IsAdventurerRecruited(
-                    recruitable.charBase.PersistenceId))
-            {
-                continue;
-            }
-
-            CloseRecruitmentPanel(recruitable);
-            recruitable.gameObject.SetActive(false);
-        }
-    }
-
-    private static void CloseRecruitmentPanel(Aventureiro recruitable)
-    {
-        if (recruitable == null || !recruitable.IsBeingInspected)
-        {
-            return;
-        }
-
-        FindFirstObjectByType<AdventurerRecruitmentController>()?
-            .Close(recruitable);
     }
 
     private Vector3 GetSeparatedSpawnPoint()

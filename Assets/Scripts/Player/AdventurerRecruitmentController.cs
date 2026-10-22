@@ -57,7 +57,12 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
         selectedAdventurer?.SetBeingInspected(false);
         selectedAdventurer = target;
         selectedAdventurer.SetBeingInspected(true);
-        panel.Show(CreateViewData(target));
+        string suggestedName = GameSessionProvider.Current.Inventory
+            .GetNextDefaultAdventurerName(
+                target.charBase.PersistenceId,
+                target.charBase.name
+            );
+        panel.Show(CreateViewData(target, suggestedName));
 
         if (!ownsModalLock)
         {
@@ -89,14 +94,30 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
             return;
         }
 
-        Char_base definition = selectedAdventurer.charBase;
+        Aventureiro purchasedOffer = selectedAdventurer;
+        Char_base definition = purchasedOffer.charBase;
         AdventurerRecruitmentStatus result =
             GameSessionProvider.Current.Inventory.TryRecruitAdventurer(
                 definition.PersistenceId,
-                definition.preco
+                definition.name,
+                panel?.AdventurerName,
+                definition.preco,
+                out _
             );
 
+        if (result == AdventurerRecruitmentStatus.Recruited)
+        {
+            GameSessionProvider.Current.TavernRecruitment.ClaimOffer(
+                definition.PersistenceId
+            );
+        }
+
         CloseCurrent();
+        if (result == AdventurerRecruitmentStatus.Recruited &&
+            purchasedOffer != null)
+        {
+            purchasedOffer.gameObject.SetActive(false);
+        }
         alert?.Show(MessageFor(result));
     }
 
@@ -116,7 +137,8 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
     }
 
     private static AdventurerRecruitmentViewData CreateViewData(
-        Aventureiro adventurer
+        Aventureiro adventurer,
+        string suggestedName
     )
     {
         Char_base definition = adventurer.charBase;
@@ -127,7 +149,8 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
             definition.inteligencia,
             definition.forca,
             definition.preco,
-            definition.sprite
+            definition.sprite,
+            suggestedName
         );
     }
 

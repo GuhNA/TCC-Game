@@ -224,7 +224,6 @@ namespace TCCGame.Core.Persistence
                 saveData.tavernRecruitmentWave.adventurerIds
                     .Where(id => !string.IsNullOrWhiteSpace(id))
                     .Select(id => id.Trim())
-                    .Distinct()
                     .ToList();
             saveData.tavernRecruitmentWave.sequence = Mathf.Max(
                 0,
@@ -271,6 +270,8 @@ namespace TCCGame.Core.Persistence
             NavigationSaveDataUtility.Normalize(saveData);
             saveData.playerInventory.recruitedAdventurerIds ??=
                 new List<string>();
+            saveData.playerInventory.recruitedAdventurers ??=
+                new List<RecruitedAdventurerSaveData>();
             saveData.playerInventory.items ??=
                 new List<InventoryItemSaveData>();
 
@@ -320,24 +321,7 @@ namespace TCCGame.Core.Persistence
                 saveData.recruitment.availableMages
             );
 
-            var normalizedAdventurerIds = new List<string>();
-
-            foreach (string adventurerId in
-                     saveData.playerInventory.recruitedAdventurerIds)
-            {
-                string normalizedId = adventurerId?.Trim();
-
-                if (string.IsNullOrEmpty(normalizedId) ||
-                    normalizedAdventurerIds.Contains(normalizedId))
-                {
-                    continue;
-                }
-
-                normalizedAdventurerIds.Add(normalizedId);
-            }
-
-            saveData.playerInventory.recruitedAdventurerIds =
-                normalizedAdventurerIds;
+            NormalizeRecruitedAdventurers(saveData);
 
             var normalizedItems = new List<InventoryItemSaveData>();
 
@@ -375,6 +359,177 @@ namespace TCCGame.Core.Persistence
             }
 
             saveData.playerInventory.items = normalizedItems;
+        }
+
+        private static void NormalizeRecruitedAdventurers(
+            GameSaveData saveData
+        )
+        {
+            PlayerInventorySaveData inventory = saveData.playerInventory;
+            List<string> legacyIds = inventory.recruitedAdventurerIds
+                .Select(id => id?.Trim())
+                .Where(id => !string.IsNullOrEmpty(id))
+                .ToList();
+            var normalized = new List<RecruitedAdventurerSaveData>();
+            var usedInstanceIds = new HashSet<string>();
+            var nextNumberByDefinition = new Dictionary<string, int>();
+
+            foreach (RecruitedAdventurerSaveData record in
+                     inventory.recruitedAdventurers)
+            {
+                string definitionId = record?.definitionId?.Trim();
+                if (string.IsNullOrEmpty(definitionId))
+                {
+                    continue;
+                }
+
+                int nextNumber = nextNumberByDefinition.TryGetValue(
+                    definitionId,
+                    out int knownNext
+                ) ? knownNext : 1;
+                int recruitmentNumber = Math.Max(
+                    nextNumber,
+                    record.recruitmentNumber
+                );
+                string instanceId = record.instanceId?.Trim();
+                if (string.IsNullOrEmpty(instanceId) ||
+                    !usedInstanceIds.Add(instanceId))
+                {
+                    instanceId = BuildAdventurerInstanceId(
+                        definitionId,
+                        recruitmentNumber
+                    );
+                    while (!usedInstanceIds.Add(instanceId))
+                    {
+                        recruitmentNumber++;
+                        instanceId = BuildAdventurerInstanceId(
+                            definitionId,
+                            recruitmentNumber
+                        );
+                    }
+                }
+
+                normalized.Add(new RecruitedAdventurerSaveData
+                {
+                    instanceId = instanceId,
+                    definitionId = definitionId,
+                    displayName = record.displayName?.Trim() ?? string.Empty,
+                    recruitmentNumber = recruitmentNumber
+                });
+                nextNumberByDefinition[definitionId] =
+                    recruitmentNumber + 1;
+            }
+
+            // Cada ID dos saves antigos representava uma contratação. Criamos
+            // uma instância correspondente sem apagar os registros novos.
+            foreach (IGrouping<string, string> legacyGroup in
+                     legacyIds.GroupBy(id => id))
+            {
+                int existingCount = normalized.Count(record =>
+                    record.definitionId == legacyGroup.Key);
+                int missingCount = legacyGroup.Count() - existingCount;
+                for (int index = 0; index < missingCount; index++)
+                {
+                    int number = nextNumberByDefinition.TryGetValue(
+                        legacyGroup.Key,
+                        out int next
+                    ) ? next : 1;
+                    string instanceId = BuildAdventurerInstanceId(
+                        legacyGroup.Key,
+                        number
+                    );
+                    while (!usedInstanceIds.Add(instanceId))
+                    {
+                        number++;
+                        instanceId = BuildAdventurerInstanceId(
+                            legacyGroup.Key,
+                            number
+                        );
+                    }
+
+                    normalized.Add(new RecruitedAdventurerSaveData
+                    {
+                        instanceId = instanceId,
+                        definitionId = legacyGroup.Key,
+                        displayName = string.Empty,
+                        recruitmentNumber = number
+                    });
+                    nextNumberByDefinition[legacyGroup.Key] = number + 1;
+                }
+            }
+
+            inventory.recruitedAdventurers = normalized;
+            inventory.recruitedAdventurerIds = normalized
+                .Select(record => record.definitionId)
+                .ToList();
+
+            foreach (ExplorationMissionSaveData mission in
+                     saveData.exploration.missions)
+            {
+                NormalizeCombatantReferences(mission?.party, normalized);
+            }
+
+            foreach (ExplorationAreaSaveData area in
+                     saveData.exploration.areas)
+            {
+                NormalizeCombatantReferences(area?.guardParty, normalized);
+            }
+        }
+
+        private static void NormalizeCombatantReferences(
+            IEnumerable<ExplorationCombatantSaveData> combatants,
+            IReadOnlyList<RecruitedAdventurerSaveData> adventurers
+        )
+        {
+            if (combatants == null)
+            {
+                return;
+            }
+
+            foreach (ExplorationCombatantSaveData combatant in combatants)
+            {
+                if (combatant == null)
+                {
+                    continue;
+                }
+
+                RecruitedAdventurerSaveData byInstance = adventurers
+                    .FirstOrDefault(record =>
+                        record.instanceId == combatant.adventurerId);
+                if (byInstance != null)
+                {
+                    combatant.definitionId = byInstance.definitionId;
+                    continue;
+                }
+
+                string legacyDefinitionId = string.IsNullOrWhiteSpace(
+                    combatant.definitionId)
+                        ? combatant.adventurerId?.Trim()
+                        : combatant.definitionId.Trim();
+                RecruitedAdventurerSaveData migrated = adventurers
+                    .FirstOrDefault(record =>
+                        record.definitionId == legacyDefinitionId);
+                if (migrated == null)
+                {
+                    combatant.definitionId = legacyDefinitionId;
+                    continue;
+                }
+
+                combatant.adventurerId = migrated.instanceId;
+                combatant.definitionId = migrated.definitionId;
+                if (string.IsNullOrWhiteSpace(combatant.displayName))
+                {
+                    combatant.displayName = migrated.displayName;
+                }
+            }
+        }
+
+        private static string BuildAdventurerInstanceId(
+            string definitionId,
+            int recruitmentNumber
+        )
+        {
+            return definitionId + ".recruit." + recruitmentNumber;
         }
     }
 }

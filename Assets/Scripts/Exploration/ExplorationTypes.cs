@@ -56,7 +56,11 @@ namespace TCCGame.Gameplay.Exploration
     [Serializable]
     public sealed class ExplorationCombatantSaveData
     {
+        // Identificador único do personagem recrutado.
         public string adventurerId;
+        // Identificador do Char_base usado para reconstruir sprite e atributos.
+        // Saves antigos não possuem este campo e usam adventurerId como classe.
+        public string definitionId;
         public string displayName;
         public int maxHealth;
         public int currentHealth;

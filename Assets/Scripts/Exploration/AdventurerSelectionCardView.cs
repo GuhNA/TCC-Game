@@ -23,7 +23,7 @@ namespace TCCGame.Gameplay.Exploration
             new(0.75f, 0.15f, 0.15f, 1f);
 
         private Char_base definition;
-        private Action<Char_base> selectionRequested;
+        private Action selectionRequested;
         private bool isSelected;
         private bool buttonColorsCached;
         private ColorBlock defaultButtonColors;
@@ -34,6 +34,21 @@ namespace TCCGame.Gameplay.Exploration
             Char_base adventurer,
             bool selected,
             Action<Char_base> onSelectionRequested
+        )
+        {
+            Bind(
+                adventurer,
+                adventurer != null ? adventurer.name : "Aventureiro",
+                selected,
+                () => onSelectionRequested?.Invoke(adventurer)
+            );
+        }
+
+        public void Bind(
+            Char_base adventurer,
+            string displayName,
+            bool selected,
+            Action onSelectionRequested
         )
         {
             definition = adventurer;
@@ -55,7 +70,9 @@ namespace TCCGame.Gameplay.Exploration
 
             if (nameText != null)
             {
-                nameText.text = adventurer.name;
+                nameText.text = string.IsNullOrWhiteSpace(displayName)
+                    ? adventurer.name
+                    : displayName;
             }
 
             if (statsText != null)
@@ -164,7 +181,7 @@ namespace TCCGame.Gameplay.Exploration
 
         private void NotifySelection()
         {
-            selectionRequested?.Invoke(definition);
+            selectionRequested?.Invoke();
         }
 
         private void UpdateButtonColors(bool selected)

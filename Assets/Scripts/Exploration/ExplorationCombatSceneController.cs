@@ -128,7 +128,7 @@ namespace TCCGame.Gameplay.Exploration
                 return;
             }
 
-            BuildVisualLookups(enemies);
+            BuildVisualLookups(enemies, party);
             battle = new ExplorationTurnBattle(
                 party.Select(CreateAdventurerCombatant),
                 enemies.Select(CreateEnemyCombatant),
@@ -602,16 +602,18 @@ namespace TCCGame.Gameplay.Exploration
         }
 
         private void BuildVisualLookups(
-            IEnumerable<ExplorationEnemyDefinition> enemies
+            IEnumerable<ExplorationEnemyDefinition> enemies,
+            IEnumerable<ExplorationCombatantSaveData> party
         )
         {
             adventurerVisuals.Clear();
+            var visualsByDefinition = new Dictionary<string, CombatVisualData>();
             foreach (Char_base adventurer in adventurerCatalog ??
                      Array.Empty<Char_base>())
             {
                 if (adventurer != null)
                 {
-                    adventurerVisuals[adventurer.PersistenceId] =
+                    visualsByDefinition[adventurer.PersistenceId] =
                         new CombatVisualData(
                             adventurer.combatPrefab,
                             adventurer.sprite,
@@ -620,6 +622,26 @@ namespace TCCGame.Gameplay.Exploration
                             adventurer.combatLocalScale,
                             adventurer.flipCombatVisualX
                         );
+                }
+            }
+
+            foreach (ExplorationCombatantSaveData member in party ??
+                     Array.Empty<ExplorationCombatantSaveData>())
+            {
+                if (member == null)
+                {
+                    continue;
+                }
+
+                string definitionId = string.IsNullOrWhiteSpace(
+                    member.definitionId)
+                        ? member.adventurerId
+                        : member.definitionId;
+                if (visualsByDefinition.TryGetValue(
+                        definitionId,
+                        out CombatVisualData visual))
+                {
+                    adventurerVisuals[member.adventurerId] = visual;
                 }
             }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TCCGame.Core.Persistence;
 using TCCGame.Core.Time;
+using TCCGame.Gameplay.Player;
 
 namespace TCCGame.Gameplay.Exploration
 {
@@ -168,7 +169,20 @@ namespace TCCGame.Gameplay.Exploration
             );
         }
 
-        public bool TrySendParty(ExplorationEnvironment environment, IEnumerable<Char_base> party, out string error)
+        public bool TrySendParty(
+            ExplorationEnvironment environment,
+            IEnumerable<Char_base> party,
+            out string error
+        )
+        {
+            return TrySendParty(
+                environment,
+                ResolveLegacySelections(party),
+                out error
+            );
+        }
+
+        public bool TrySendParty(ExplorationEnvironment environment, IEnumerable<RecruitedAdventurer> party, out string error)
         {
             if (!Enum.IsDefined(typeof(ExplorationEnvironment), environment) ||
                 !IsEnvironmentUnlocked(environment))
@@ -187,11 +201,15 @@ namespace TCCGame.Gameplay.Exploration
                 return false;
             }
 
-            List<Char_base> selected = party?.Where(item => item != null).Distinct().ToList();
+            List<RecruitedAdventurer> selected = party?
+                .Where(item => item != null)
+                .GroupBy(item => item.InstanceId)
+                .Select(group => group.First())
+                .ToList();
             if (selected == null || selected.Count < MinimumPartySize) { error = "Selecione ao menos um aventureiro."; return false; }
             if (selected.Count > MaximumPartySize) { error = "O grupo pode ter no máximo três aventureiros."; return false; }
-            if (selected.Any(item => !state.playerInventory.recruitedAdventurerIds.Contains(item.PersistenceId))) { error = "O grupo possui um aventureiro não contratado."; return false; }
-            if (selected.Any(item => IsAdventurerBusy(item.PersistenceId)))
+            if (selected.Any(item => !IsOwnedAdventurer(item))) { error = "O grupo possui um aventureiro não contratado."; return false; }
+            if (selected.Any(item => IsAdventurerBusy(item.InstanceId)))
             {
                 error = "O grupo possui um aventureiro que já está em missão ou na guarda.";
                 return false;
@@ -199,7 +217,7 @@ namespace TCCGame.Gameplay.Exploration
             if (state.exploration.missions.Any(IsActive)) { error = "Já existe uma expedição em andamento."; return false; }
 
             var mission = new ExplorationMissionSaveData { id = state.exploration.nextMissionId++, environment = environment, kind = isDefense ? ExplorationMissionKind.Defense : ExplorationMissionKind.Capture, status = ExplorationMissionStatus.Travelling, arrivalUnixSeconds = clock.UnixSeconds + TravelSeconds };
-            foreach (Char_base adventurer in selected) mission.party.Add(CreateSnapshot(adventurer));
+            foreach (RecruitedAdventurer adventurer in selected) mission.party.Add(CreateSnapshot(adventurer));
             state.exploration.missions.Add(mission);
             commit(); error = null; return true;
         }
@@ -431,6 +449,19 @@ namespace TCCGame.Gameplay.Exploration
             out string error
         )
         {
+            return TryAssignGuardParty(
+                environment,
+                ResolveLegacySelections(party),
+                out error
+            );
+        }
+
+        public bool TryAssignGuardParty(
+            ExplorationEnvironment environment,
+            IEnumerable<RecruitedAdventurer> party,
+            out string error
+        )
+        {
             ExplorationAreaSaveData area = GetArea(environment);
             if (area == null || !area.captured)
             {
@@ -438,10 +469,11 @@ namespace TCCGame.Gameplay.Exploration
                 return false;
             }
 
-            List<Char_base> selected = party?
+            List<RecruitedAdventurer> selected = party?
                 .Where(item => item != null)
-                .Distinct()
-                .ToList() ?? new List<Char_base>();
+                .GroupBy(item => item.InstanceId)
+                .Select(group => group.First())
+                .ToList() ?? new List<RecruitedAdventurer>();
             if (selected.Count < MinimumPartySize ||
                 selected.Count > MaximumPartySize)
             {
@@ -449,16 +481,14 @@ namespace TCCGame.Gameplay.Exploration
                 return false;
             }
 
-            if (selected.Any(item =>
-                    !state.playerInventory.recruitedAdventurerIds.Contains(
-                        item.PersistenceId)))
+            if (selected.Any(item => !IsOwnedAdventurer(item)))
             {
                 error = "A guarda possui um aventureiro não contratado.";
                 return false;
             }
 
             if (selected.Any(item => IsAdventurerBusy(
-                    item.PersistenceId,
+                    item.InstanceId,
                     environment)))
             {
                 error = "Um dos aventureiros selecionados já está ocupado.";
@@ -715,6 +745,7 @@ namespace TCCGame.Gameplay.Exploration
             return new ExplorationCombatantSaveData
             {
                 adventurerId = source.adventurerId,
+                definitionId = source.definitionId,
                 displayName = source.displayName,
                 maxHealth = source.maxHealth,
                 currentHealth = source.maxHealth,
@@ -875,10 +906,91 @@ namespace TCCGame.Gameplay.Exploration
             item.quantity = checked(item.quantity + quantity);
         }
 
-        private static ExplorationCombatantSaveData CreateSnapshot(Char_base adventurer)
+        private bool IsOwnedAdventurer(RecruitedAdventurer adventurer)
         {
-            AdventurerStats stats = AdventurerStatsCalculator.Calculate(adventurer);
-            return new ExplorationCombatantSaveData { adventurerId = adventurer.PersistenceId, displayName = adventurer.name, maxHealth = stats.MaxHealth, currentHealth = stats.MaxHealth, minimumDamage = stats.MinimumDamage, maximumDamage = stats.MaximumDamage, speed = stats.Speed, armor = adventurer.armadura, magicResistance = adventurer.resistência_magica, damageType = stats.DamageType };
+            if (adventurer == null)
+            {
+                return false;
+            }
+
+            bool hasInstance = state.playerInventory.recruitedAdventurers?
+                .Any(record => record != null &&
+                    record.instanceId == adventurer.InstanceId &&
+                    record.definitionId == adventurer.DefinitionId) ?? false;
+            if (hasInstance)
+            {
+                return true;
+            }
+
+            // Compatibilidade com testes e saves antigos que ainda possuem
+            // somente o ID da definição.
+            return adventurer.InstanceId == adventurer.DefinitionId &&
+                state.playerInventory.recruitedAdventurerIds.Contains(
+                    adventurer.DefinitionId
+                );
+        }
+
+        private IEnumerable<RecruitedAdventurer> ResolveLegacySelections(
+            IEnumerable<Char_base> party
+        )
+        {
+            if (party == null)
+            {
+                return Array.Empty<RecruitedAdventurer>();
+            }
+
+            var usedInstances = new HashSet<string>();
+            var result = new List<RecruitedAdventurer>();
+            foreach (Char_base definition in party.Where(item => item != null))
+            {
+                RecruitedAdventurerSaveData record =
+                    state.playerInventory.recruitedAdventurers?
+                        .FirstOrDefault(candidate => candidate != null &&
+                            candidate.definitionId == definition.PersistenceId &&
+                            !usedInstances.Contains(candidate.instanceId));
+                record ??= state.playerInventory.recruitedAdventurerIds
+                    .Contains(definition.PersistenceId)
+                        ? new RecruitedAdventurerSaveData
+                        {
+                            instanceId = definition.PersistenceId,
+                            definitionId = definition.PersistenceId,
+                            displayName = definition.name,
+                            recruitmentNumber = 1
+                        }
+                        : null;
+                if (record == null || !usedInstances.Add(record.instanceId))
+                {
+                    continue;
+                }
+
+                result.Add(new RecruitedAdventurer(record, definition));
+            }
+
+            return result;
+        }
+
+        private static ExplorationCombatantSaveData CreateSnapshot(
+            RecruitedAdventurer adventurer
+        )
+        {
+            Char_base definition = adventurer.Definition;
+            AdventurerStats stats = AdventurerStatsCalculator.Calculate(
+                definition
+            );
+            return new ExplorationCombatantSaveData
+            {
+                adventurerId = adventurer.InstanceId,
+                definitionId = adventurer.DefinitionId,
+                displayName = adventurer.DisplayName,
+                maxHealth = stats.MaxHealth,
+                currentHealth = stats.MaxHealth,
+                minimumDamage = stats.MinimumDamage,
+                maximumDamage = stats.MaximumDamage,
+                speed = stats.Speed,
+                armor = definition.armadura,
+                magicResistance = definition.resistência_magica,
+                damageType = stats.DamageType
+            };
         }
     }
 }

@@ -267,29 +267,46 @@ namespace TCCGame.Tests.EditMode
         }
 
         [Test]
-        public void AdventurerRecruitment_DebitsPersistsAndRejectsDuplicate()
+        public void AdventurerRecruitment_AllowsRepeatedClassWithUniqueNames()
         {
             GameSaveData data = CreateInitializedData();
-            data.money = 200;
+            data.money = 500;
             var repository = new InMemoryGameSaveRepository(data);
             GameSession session = CreateSession(repository);
 
             AdventurerRecruitmentStatus first =
                 session.Inventory.TryRecruitAdventurer(
                     "adventurer.archer",
-                    150
+                    "Arqueiro",
+                    null,
+                    150,
+                    out _
                 );
-            AdventurerRecruitmentStatus duplicate =
+            AdventurerRecruitmentStatus second =
                 session.Inventory.TryRecruitAdventurer(
                     "adventurer.archer",
-                    150
+                    "Arqueiro",
+                    "Robin",
+                    150,
+                    out _
+                );
+            AdventurerRecruitmentStatus third =
+                session.Inventory.TryRecruitAdventurer(
+                    "adventurer.archer",
+                    "Arqueiro",
+                    null,
+                    150,
+                    out _
                 );
 
             Assert.That(first, Is.EqualTo(
                 AdventurerRecruitmentStatus.Recruited
             ));
-            Assert.That(duplicate, Is.EqualTo(
-                AdventurerRecruitmentStatus.AlreadyRecruited
+            Assert.That(second, Is.EqualTo(
+                AdventurerRecruitmentStatus.Recruited
+            ));
+            Assert.That(third, Is.EqualTo(
+                AdventurerRecruitmentStatus.Recruited
             ));
             Assert.That(session.Economy.Money, Is.EqualTo(50));
             Assert.That(
@@ -309,6 +326,8 @@ namespace TCCGame.Tests.EditMode
                 Is.True
             );
             Assert.That(reloaded.Economy.Money, Is.EqualTo(50));
+            Assert.That(reloaded.Inventory.RecruitedAdventurers.Count,
+                Is.EqualTo(3));
         }
 
         [Test]
@@ -404,7 +423,14 @@ namespace TCCGame.Tests.EditMode
                 session.Recruitment.GetTimeUntilRestock(),
                 Is.EqualTo(System.TimeSpan.FromHours(6))
             );
-            Assert.That(repository.SaveCount, Is.EqualTo(1));
+            Assert.That(session.Inventory.RecruitedAdventurers.Count,
+                Is.EqualTo(2));
+            Assert.That(
+                session.Inventory.RecruitedAdventurers
+                    .Select(item => item.displayName),
+                Is.EqualTo(new[] { "Archer", "Archer 2" })
+            );
+            Assert.That(repository.SaveCount, Is.EqualTo(2));
         }
 
         [Test]
@@ -438,7 +464,12 @@ namespace TCCGame.Tests.EditMode
             CollectionAssert.AreEqual(firstWave, sameWave);
             Assert.That(session.TavernRecruitment.RemainingSeconds,
                 Is.EqualTo(70));
-            Assert.That(repository.SaveCount, Is.EqualTo(1));
+            Assert.That(
+                session.Inventory.RecruitedAdventurers
+                    .Select(item => item.displayName),
+                Is.EqualTo(new[] { "Arqueiro", "Robin", "Arqueiro 3" })
+            );
+            Assert.That(repository.SaveCount, Is.EqualTo(3));
 
             clock.UnixSeconds = 220;
             Assert.That(session.TavernRecruitment.IsCurrentWaveExpired,

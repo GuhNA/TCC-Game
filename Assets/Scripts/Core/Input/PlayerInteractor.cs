@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System;
 using System.Linq;
+using TMPro;
 using TCCGame.Core;
 using TCCGame.Core.Input;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(moviment))]
 public sealed class PlayerInteractor : MonoBehaviour
@@ -32,6 +33,13 @@ public sealed class PlayerInteractor : MonoBehaviour
         {
             if (GameInput.WasInteractPressedThisFrame())
             {
+                // Quando um campo de texto está focado, a tecla E pertence à
+                // digitação. Fechar o modal aqui impediria nomes com a letra E.
+                if (IsEditingText())
+                {
+                    return;
+                }
+
                 modalLockOwners
                     .OfType<IModalInteractionOwner>()
                     .FirstOrDefault()
@@ -47,6 +55,29 @@ public sealed class PlayerInteractor : MonoBehaviour
         }
 
         CurrentInteractable?.Interact(gameObject);
+    }
+
+    private static bool IsEditingText()
+    {
+        GameObject selected = EventSystem.current?
+            .currentSelectedGameObject;
+        if (selected == null)
+        {
+            return false;
+        }
+
+        TMP_InputField tmpInput = selected.GetComponentInParent<
+            TMP_InputField>();
+        if (tmpInput != null && tmpInput.isFocused)
+        {
+            return true;
+        }
+
+        // Mantém compatibilidade com algum InputField legado que ainda possa
+        // existir em outras telas do projeto.
+        UnityEngine.UI.InputField legacyInput = selected
+            .GetComponentInParent<UnityEngine.UI.InputField>();
+        return legacyInput != null && legacyInput.isFocused;
     }
 
     private void OnDisable()

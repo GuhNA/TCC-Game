@@ -106,10 +106,28 @@ namespace TCCGame.Core.Persistence
         public int quantity;
     }
 
+    /// <summary>
+    /// Uma contratação individual. definitionId identifica a classe/asset,
+    /// enquanto instanceId identifica este personagem específico em missões,
+    /// guardas e relatórios. Assim podem existir vários aventureiros da mesma
+    /// classe sem compartilharem nome ou estado de ocupação.
+    /// </summary>
+    [Serializable]
+    public class RecruitedAdventurerSaveData
+    {
+        public string instanceId;
+        public string definitionId;
+        public string displayName;
+        public int recruitmentNumber;
+    }
+
     [Serializable]
     public class PlayerInventorySaveData
     {
+        // Campo legado preservado para migrar saves anteriores à versão 11.
+        // Novos sistemas devem usar recruitedAdventurers.
         public List<string> recruitedAdventurerIds = new();
+        public List<RecruitedAdventurerSaveData> recruitedAdventurers = new();
         public List<InventoryItemSaveData> items = new();
     }
 
@@ -128,7 +146,7 @@ namespace TCCGame.Core.Persistence
     [Serializable]
     public class GameSaveData
     {
-        public const int CurrentVersion = 10;
+        public const int CurrentVersion = 11;
         public const int DefaultMoney = 1000;
 
         public int version = CurrentVersion;

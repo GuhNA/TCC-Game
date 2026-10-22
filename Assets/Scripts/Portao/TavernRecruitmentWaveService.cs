@@ -68,8 +68,7 @@ namespace TCCGame.Gameplay.Recruitment
             TavernRecruitmentWaveSaveData wave =
                 state.tavernRecruitmentWave;
             if (!IsCurrentWaveExpired &&
-                wave.expiresUnixSeconds > clock.UnixSeconds &&
-                wave.adventurerIds.Count > 0)
+                wave.expiresUnixSeconds > clock.UnixSeconds)
             {
                 return wave.adventurerIds.AsReadOnly();
             }
@@ -78,28 +77,68 @@ namespace TCCGame.Gameplay.Recruitment
                 .Select(id => id?.Trim())
                 .Where(id => !string.IsNullOrEmpty(id))
                 .Distinct()
-                .Where(id => !state.playerInventory.recruitedAdventurerIds
-                    .Contains(id))
                 .ToList() ?? new List<string>();
 
             wave.sequence = checked(wave.sequence + 1);
             wave.adventurerIds.Clear();
-            int count = Math.Clamp(offerCount, 0, candidates.Count);
+            int count = candidates.Count == 0
+                ? 0
+                : Math.Max(0, offerCount);
             var random = new Random(unchecked(
                 wave.sequence * 486187739 ^ clock.UnixSeconds.GetHashCode()
             ));
-            for (int index = candidates.Count - 1; index > 0; index--)
+
+            // Trabalhamos em ciclos embaralhados. Enquanto houver vagas, todas
+            // as classes aparecem uma vez antes de uma classe poder se repetir.
+            // Isso permite ondas maiores que o catálogo sem excluir classes já
+            // recrutadas pelo jogador.
+            var shuffledCycle = new List<string>(candidates);
+            while (wave.adventurerIds.Count < count)
             {
-                int other = random.Next(index + 1);
-                (candidates[index], candidates[other]) =
-                    (candidates[other], candidates[index]);
+                for (int index = shuffledCycle.Count - 1; index > 0; index--)
+                {
+                    int other = random.Next(index + 1);
+                    (shuffledCycle[index], shuffledCycle[other]) =
+                        (shuffledCycle[other], shuffledCycle[index]);
+                }
+
+                int remaining = count - wave.adventurerIds.Count;
+                wave.adventurerIds.AddRange(
+                    shuffledCycle.Take(Math.Min(
+                        remaining,
+                        shuffledCycle.Count
+                    ))
+                );
             }
 
-            wave.adventurerIds.AddRange(candidates.Take(count));
             wave.expiresUnixSeconds = clock.UnixSeconds +
                 Math.Max(1, durationSeconds);
             commit();
             return wave.adventurerIds.AsReadOnly();
+        }
+
+        /// <summary>
+        /// Consome somente a vaga comprada. Outras ofertas da mesma classe
+        /// continuam independentes e a onda vazia não é renovada antes do prazo.
+        /// </summary>
+        public void ClaimOffer(string adventurerDefinitionId)
+        {
+            string normalizedId = adventurerDefinitionId?.Trim();
+            if (string.IsNullOrEmpty(normalizedId))
+            {
+                return;
+            }
+
+            int index = state.tavernRecruitmentWave.adventurerIds.IndexOf(
+                normalizedId
+            );
+            if (index < 0)
+            {
+                return;
+            }
+
+            state.tavernRecruitmentWave.adventurerIds.RemoveAt(index);
+            commit();
         }
     }
 }

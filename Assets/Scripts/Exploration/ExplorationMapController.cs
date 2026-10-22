@@ -5,6 +5,7 @@ using TMPro;
 using TCCGame.Core;
 using TCCGame.Core.Input;
 using TCCGame.Gameplay.Navigation;
+using TCCGame.Gameplay.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -65,11 +66,11 @@ namespace TCCGame.Gameplay.Exploration
         private int maximumPartySize = ExplorationService.MaximumPartySize;
         [SerializeField] private AlertPopup alert;
 
-        private readonly HashSet<Char_base> selectedParty = new();
-        private readonly Dictionary<Char_base, AdventurerSelectionCardView>
+        private readonly HashSet<RecruitedAdventurer> selectedParty = new();
+        private readonly Dictionary<RecruitedAdventurer, AdventurerSelectionCardView>
             cards = new();
         private readonly List<AdventurerSelectionCardView> spawnedCards = new();
-        private List<Char_base> recruitedAdventurers = new();
+        private List<RecruitedAdventurer> recruitedAdventurers = new();
         private PlayerInteractor interactor;
         private ExplorationEnvironment selectedEnvironment;
         private PanelMode panelMode;
@@ -83,7 +84,7 @@ namespace TCCGame.Gameplay.Exploration
         }
 
         public bool CanInteract => enabled && mapPopupRoot != null;
-        public IReadOnlyList<Char_base> RecruitedAdventurers =>
+        public IReadOnlyList<RecruitedAdventurer> RecruitedAdventurers =>
             recruitedAdventurers.AsReadOnly();
 
         private void Awake()
@@ -417,26 +418,16 @@ namespace TCCGame.Gameplay.Exploration
         private void BuildRecruitedRoster()
         {
             ClearCards();
-            var recruitedIds = new HashSet<string>(
-                GameSessionProvider.Current.Inventory
-                    .RecruitedAdventurerIds
-            );
-
-            recruitedAdventurers = (adventurerCatalog ??
-                    Array.Empty<Char_base>())
-                .Where(definition => definition != null)
-                .GroupBy(definition => definition.PersistenceId)
-                .Select(group => group.First())
-                .Where(definition =>
-                    recruitedIds.Contains(definition.PersistenceId))
-                .Where(definition =>
+            recruitedAdventurers = GameSessionProvider.Current.Inventory
+                .ResolveAdventurers(adventurerCatalog)
+                .Where(adventurer =>
                     !GameSessionProvider.Current.Exploration.IsAdventurerBusy(
-                        definition.PersistenceId,
+                        adventurer.InstanceId,
                         panelMode == PanelMode.Guard
                             ? selectedEnvironment
                             : null
                     ))
-                .OrderBy(definition => definition.name)
+                .OrderBy(adventurer => adventurer.DisplayName)
                 .ToList();
 
             emptyRosterMessage?.gameObject.SetActive(
@@ -457,13 +448,18 @@ namespace TCCGame.Gameplay.Exploration
                 return;
             }
 
-            foreach (Char_base adventurer in recruitedAdventurers)
+            foreach (RecruitedAdventurer adventurer in recruitedAdventurers)
             {
                 AdventurerSelectionCardView card = Instantiate(
                     cardPrefab,
                     partyListContent
                 );
-                card.Bind(adventurer, false, ToggleAdventurer);
+                card.Bind(
+                    adventurer.Definition,
+                    adventurer.DisplayName,
+                    false,
+                    () => ToggleAdventurer(adventurer)
+                );
                 cards.Add(adventurer, card);
                 spawnedCards.Add(card);
             }
@@ -507,7 +503,11 @@ namespace TCCGame.Gameplay.Exploration
                     continue;
                 }
 
-                catalog.TryGetValue(member.adventurerId, out Char_base definition);
+                string definitionId = string.IsNullOrWhiteSpace(
+                    member.definitionId)
+                        ? member.adventurerId
+                        : member.definitionId;
+                catalog.TryGetValue(definitionId, out Char_base definition);
                 AdventurerSelectionCardView card = Instantiate(
                     cardPrefab,
                     partyListContent
@@ -721,7 +721,7 @@ namespace TCCGame.Gameplay.Exploration
             }
         }
 
-        private void ToggleAdventurer(Char_base adventurer)
+        private void ToggleAdventurer(RecruitedAdventurer adventurer)
         {
             bool selected;
             if (selectedParty.Contains(adventurer))
