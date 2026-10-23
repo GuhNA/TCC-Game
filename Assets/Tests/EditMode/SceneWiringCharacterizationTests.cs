@@ -123,10 +123,12 @@ namespace TCCGame.Tests.EditMode
                         rowButtonCalls++;
                         Assert.That(
                             new[] {
-                                nameof(RecruitmentRowView.PurchaseOne),
-                                nameof(RecruitmentRowView.PurchaseTen),
-                                nameof(RecruitmentRowView.PurchaseHundred),
-                                nameof(RecruitmentRowView.SubmitInput)
+                                nameof(RecruitmentRowView.DecreaseQuantity),
+                                nameof(RecruitmentRowView.IncreaseQuantity),
+                                nameof(RecruitmentRowView.SelectOne),
+                                nameof(RecruitmentRowView.SelectTen),
+                                nameof(RecruitmentRowView.SelectMaximum),
+                                nameof(RecruitmentRowView.ConfirmPurchase)
                             },
                             Does.Contain(
                                 button.onClick.GetPersistentMethodName(index)
@@ -175,7 +177,11 @@ namespace TCCGame.Tests.EditMode
                 AssertRenderableText(saleText, requireOpaque: false);
             }
             AssertGoldHudWiring(goldPresenter);
-            Assert.That(rowButtonCalls, Is.EqualTo(12));
+            Assert.That(rowButtonCalls, Is.EqualTo(18));
+            Assert.That(
+                PrefabUtility.GetCorrespondingObjectFromSource(vendor.popup),
+                Is.Not.Null
+            );
             Assert.That(
                 ComponentsInScene<PlayerInteractor>(scene).Count(),
                 Is.EqualTo(1)

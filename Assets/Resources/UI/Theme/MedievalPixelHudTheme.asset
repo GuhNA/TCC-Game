@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d14e33d91f93334eb092420e09f6e13, type: 3}
+  m_Name: MedievalPixelHudTheme
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.UI.MedievalHudTheme
+  font: {fileID: 11400000, guid: 2ec3024566ffb7d4d9b4253276fad1bb, type: 2}
+  woodPanel: {fileID: 21300000, guid: 604666faae9627c4ba5c0c4b020e682f, type: 3}
+  parchmentPanel: {fileID: 21300000, guid: eb22faed6a7d1b148a4948a66263df1e, type: 3}
+  metalPanel: {fileID: 21300000, guid: b01f4cdabf2d1f04986f079db91553da, type: 3}
+  goldButton: {fileID: 21300000, guid: 40251b33615d1ac4396ca3968f2c341d, type: 3}
+  bronzeButton: {fileID: 21300000, guid: c419d430b9f8ae5499677ff44ccb3144, type: 3}
+  redButton: {fileID: 21300000, guid: f3d3c188e409ae046960a27ca1122805, type: 3}
+  warriorBanner: {fileID: 21300000, guid: d5bf5cd2b195f234daf80c14f66040c9, type: 3}
+  archerBanner: {fileID: 21300000, guid: fa6e49e2a86f5a841953afeac121d228, type: 3}
+  mageBanner: {fileID: 21300000, guid: b975fdbf938f5e94e989d51df57e1c32, type: 3}
+  coinIcon: {fileID: 21300000, guid: af968f9e1d982fd4386ed76b928f62f1, type: 3}
+  hourglassIcon: {fileID: 21300000, guid: cbe3cc9e8d04ffc49a1f9fc5b0542e9b, type: 3}
+  checkIcon: {fileID: 21300000, guid: b3db8f7520e0ebb49b5af77701f48fb4, type: 3}
+  helmetIcon: {fileID: 21300000, guid: 84218cea67998104880a2fbe0f7ee028, type: 3}
+  headerDrape: {fileID: 21300000, guid: 5b132471a0c696441a4e19e79e7ee64b, type: 3}
+  modalOverlay: {r: 0.025, g: 0.035, b: 0.05, a: 0.76}
+  title: {r: 1, g: 0.77, b: 0.28, a: 1}
+  subtitle: {r: 0.86, g: 0.78, b: 0.62, a: 1}
+  goldText: {r: 1, g: 0.82, b: 0.33, a: 1}
+  parchmentText: {r: 0.22, g: 0.16, b: 0.1, a: 1}
+  priceText: {r: 0.53, g: 0.31, b: 0.07, a: 1}
+  success: {r: 0.57, g: 0.9, b: 0.49, a: 1}
+  goldButtonLabel: {r: 0.2, g: 0.11, b: 0.04, a: 1}
+  textOutline: {r: 0.16862746, g: 0.09803922, b: 0.05490196, a: 0.9019608}

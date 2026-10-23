@@ -4,12 +4,14 @@ using TCCGame.Core.Persistence;
 using TCCGame.Gameplay.Campaign;
 using UnityEngine;
 using UnityEngine.UI;
+using TCCGame.UI;
 
 namespace TCCGame.Gameplay.Navigation
 {
     public sealed class GateContextPresenter : MonoBehaviour
     {
         private TMP_Text contextText;
+        private GateHudView themedView;
         private double nextRefreshAt;
 
         [SerializeField]
@@ -37,6 +39,7 @@ namespace TCCGame.Gameplay.Navigation
 
         private void Refresh()
         {
+            if (contextText == null && themedView == null) return;
             nextRefreshAt = Time.unscaledTimeAsDouble + 0.25d;
             NavigationSnapshot navigation =
                 GameSessionProvider.Current.Navigation.Current;
@@ -47,6 +50,12 @@ namespace TCCGame.Gameplay.Navigation
                 .BuildGateCard(navigation.ActiveGateId);
             GateStateSnapshot gate = GameSessionProvider.Current.Campaign
                 .GetGate(navigation.ActiveGateId);
+            if (themedView != null)
+            {
+                themedView.Refresh($"PORTÃO {gateName}", gate.CurrentHealth,
+                    GateSaveData.DefaultHealth, threat.Status, threat.Countdown, threat.Threat);
+                return;
+            }
             contextText.text = $"PORTÃO {gateName}\n" +
                 $"Integridade: {gate.CurrentHealth}/" +
                 $"{GateSaveData.DefaultHealth}\n" +
@@ -72,6 +81,7 @@ namespace TCCGame.Gameplay.Navigation
             }
 
             GameObject instance = Instantiate(contextPrefab, transform);
+            themedView = instance.GetComponentInChildren<GateHudView>(true);
             contextText = instance.GetComponentInChildren<TMP_Text>(true);
             if (contextText == null)
             {

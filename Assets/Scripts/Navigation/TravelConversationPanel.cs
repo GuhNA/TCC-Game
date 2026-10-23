@@ -4,6 +4,8 @@ using TCCGame.Core.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TCCGame.UI;
+using TCCGame.Core.Persistence;
 
 namespace TCCGame.Gameplay.Navigation
 {
@@ -23,6 +25,8 @@ namespace TCCGame.Gameplay.Navigation
         private CityTravelNpc sourceNpc;
         private PlayerInteractor lockedInteractor;
         private bool visible;
+        private TravelHudView themedView;
+        private float refreshAt;
 
         [SerializeField]
         private GameObject interfacePrefab;
@@ -84,6 +88,12 @@ namespace TCCGame.Gameplay.Navigation
                 return;
             }
 
+            if (themedView != null && Time.unscaledTime >= refreshAt)
+            {
+                RefreshThemedDestination();
+                refreshAt = Time.unscaledTime + .25f;
+            }
+
             if (GameInput.WasCancelPressedThisFrame())
             {
                 Close();
@@ -110,7 +120,7 @@ namespace TCCGame.Gameplay.Navigation
 
         private void Open(CityTravelNpc npc, GameObject player)
         {
-            if (visible || SceneTransitionController.IsTransitioning)
+            if (visible || UiMenuState.HasOpenMenu || SceneTransitionController.IsTransitioning)
             {
                 return;
             }
@@ -138,6 +148,8 @@ namespace TCCGame.Gameplay.Navigation
                 SetButtonLabel(confirmButton, "Voltar ao Centro");
             }
 
+            if (themedView != null) RefreshThemedDestination();
+
             visible = true;
             panelRoot.SetActive(true);
             UiMenuState.SetOpen(this, true);
@@ -163,6 +175,20 @@ namespace TCCGame.Gameplay.Navigation
             {
                 SceneTransitionController.TryReturnToCenter();
             }
+        }
+
+        private void RefreshThemedDestination()
+        {
+            if (sourceNpc == null) return;
+            TravelDestination destination = sourceNpc.Destination;
+            bool isGate = destination.Kind == TravelDestinationKind.Gate;
+            var session = GameSessionProvider.Current;
+            var gate = session.Campaign.GetGate(destination.GateId);
+            var threat = session.Threats.BuildGateCard(destination.GateId);
+            themedView.Present(isGate ? $"PORTÃO {GateDisplayNames.GetUppercase(destination.GateId)}" : "CENTRO DA CIDADE",
+                isGate, gate.CurrentHealth, GateSaveData.DefaultHealth, threat.Status, threat.Countdown, threat.Threat);
+            bodyText.text = isGate ? "Confirme a viagem para este portão."
+                : "Na cidade você pode redistribuir a guarda e consultar os demais portões.";
         }
 
         private void Close()
@@ -204,6 +230,7 @@ namespace TCCGame.Gameplay.Navigation
             }
 
             GameObject instance = Instantiate(interfacePrefab, transform);
+            themedView = instance.GetComponentInChildren<TravelHudView>(true);
             panelRoot = FindChild(instance, "Travel Dialog");
             titleText = FindChild(instance, "Title")
                 ?.GetComponent<TextMeshProUGUI>();

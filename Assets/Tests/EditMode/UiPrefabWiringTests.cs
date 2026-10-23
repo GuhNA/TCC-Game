@@ -15,6 +15,7 @@ namespace TCCGame.Tests.EditMode
         [TestCase("UI/GateContextCanvas")]
         [TestCase("UI/TravelConversationCanvas")]
         [TestCase("UI/GarrisonManagementCanvas")]
+        [TestCase("UI/RecruitmentCanvas")]
         public void UiPrefab_ContainsCanvasAndText(string resourcePath)
         {
             GameObject prefab = Resources.Load<GameObject>(resourcePath);
@@ -52,6 +53,28 @@ namespace TCCGame.Tests.EditMode
         }
 
         [Test]
+        public void RecruitmentPrefab_ContainsThreeFunctionalCards()
+        {
+            AssertNamedChildren(
+                "UI/RecruitmentCanvas",
+                "Recruitment Dialog", "Prototype Board", "Title", "Subtitle",
+                "Gold", "Timer", "Feedback", "Close", "GUERREIRO Card",
+                "ARQUEIRO Card", "MAGO Card"
+            );
+            GameObject prefab = Resources.Load<GameObject>(
+                "UI/RecruitmentCanvas"
+            );
+            Assert.That(
+                prefab.GetComponentsInChildren<RecruitmentRowView>(true),
+                Has.Length.EqualTo(3)
+            );
+            Assert.That(
+                prefab.GetComponentsInChildren<Button>(true),
+                Has.Length.EqualTo(19)
+            );
+        }
+
+        [Test]
         public void SceneFadePrefab_CoversScreenAtHighestUiOrder()
         {
             GameObject prefab = Resources.Load<GameObject>("UI/SceneFadeCanvas");
@@ -76,6 +99,7 @@ namespace TCCGame.Tests.EditMode
         [TestCase("UI/GateContextCanvas")]
         [TestCase("UI/TravelConversationCanvas")]
         [TestCase("UI/GarrisonManagementCanvas")]
+        [TestCase("UI/RecruitmentCanvas")]
         public void EditableUiPrefab_HasNoEmptyTextPlaceholders(
             string resourcePath
         )

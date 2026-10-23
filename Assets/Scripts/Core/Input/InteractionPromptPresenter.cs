@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TCCGame.UI;
 
 namespace TCCGame.Core.Input
 {
@@ -13,6 +14,7 @@ namespace TCCGame.Core.Input
         private PlayerInteractor interactor;
         private CanvasGroup canvasGroup;
         private TMP_Text promptText;
+        private InteractionPromptView themedView;
 
         [SerializeField]
         private GameObject promptPrefab;
@@ -132,7 +134,8 @@ namespace TCCGame.Core.Input
                 ? provider.InteractionPrompt
                 : "Interagir";
 
-            promptText.text = $"[E] {description}";
+            if (themedView != null) themedView.SetDescription(description);
+            else promptText.text = $"[E] {description}";
             SetVisible(true);
         }
 
@@ -170,6 +173,7 @@ namespace TCCGame.Core.Input
             instance.name = "Interaction Prompt Canvas";
             canvasGroup = instance.GetComponentInChildren<CanvasGroup>(true);
             promptText = instance.GetComponentInChildren<TMP_Text>(true);
+            themedView = instance.GetComponentInChildren<InteractionPromptView>(true);
             if (canvasGroup == null || promptText == null)
             {
                 Debug.LogError(

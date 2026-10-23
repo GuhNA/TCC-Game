@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public sealed class AlertPopup : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public sealed class AlertPopup : MonoBehaviour
     [SerializeField]
     private Text messageText;
 
+    [SerializeField] private GameObject themedFeedbackPrefab;
+    private TMP_Text themedMessage;
+
     [SerializeField, Min(0f)]
     private float visibleDurationSeconds = 1f;
 
@@ -18,6 +23,21 @@ public sealed class AlertPopup : MonoBehaviour
     private void Awake()
     {
         popupRoot?.SetActive(false);
+        if (themedFeedbackPrefab != null)
+        {
+            GameObject instance = Instantiate(themedFeedbackPrefab);
+            popupRoot = instance;
+            themedMessage = instance.GetComponentsInChildren<TMP_Text>(true)
+                .FirstOrDefault(text => text.name == "Feedback Message");
+            Button dismiss = instance.GetComponentInChildren<Button>(true);
+            if (dismiss != null) dismiss.onClick.AddListener(Hide);
+            instance.SetActive(false);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (themedMessage != null && popupRoot != null) Destroy(popupRoot);
     }
 
     private void OnDisable()
@@ -28,11 +48,12 @@ public sealed class AlertPopup : MonoBehaviour
         }
 
         hideRoutine = null;
+        popupRoot?.SetActive(false);
     }
 
     public void Show(string message)
     {
-        if (popupRoot == null || messageText == null)
+        if (popupRoot == null || (messageText == null && themedMessage == null))
         {
             return;
         }
@@ -42,7 +63,8 @@ public sealed class AlertPopup : MonoBehaviour
             StopCoroutine(hideRoutine);
         }
 
-        messageText.text = message ?? string.Empty;
+        if (themedMessage != null) themedMessage.text = message ?? string.Empty;
+        else messageText.text = message ?? string.Empty;
         popupRoot.SetActive(true);
         hideRoutine = StartCoroutine(HideAfterDelay());
     }

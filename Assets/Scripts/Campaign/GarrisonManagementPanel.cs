@@ -8,6 +8,8 @@ using TCCGame.Gameplay.Navigation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TCCGame.UI;
+using TCCGame.Core.Persistence;
 
 namespace TCCGame.Gameplay.Campaign
 {
@@ -37,6 +39,7 @@ namespace TCCGame.Gameplay.Campaign
         private int destinationIndex;
         private float refreshAt;
         private bool visible;
+        private GarrisonHudView themedView;
 
         [SerializeField]
         private GameObject interfacePrefab;
@@ -125,7 +128,7 @@ namespace TCCGame.Gameplay.Campaign
         {
             NavigationSnapshot navigation =
                 GameSessionProvider.Current.Navigation.Current;
-            if (visible || !navigation.IsAtGate)
+            if (visible || UiMenuState.HasOpenMenu || !navigation.IsAtGate)
             {
                 return;
             }
@@ -275,7 +278,7 @@ namespace TCCGame.Gameplay.Campaign
             titleText.text =
                 $"CAPITÃO — PORTÃO {GateDisplayNames.GetUppercase(currentGate)}";
             RefreshReport();
-            summaryText.text =
+            summaryText.text = themedView != null ? BuildTransitSummary(deployment) :
                 $"RESERVA   G {deployment.GetReserveCount(UnitType.Warrior)}  " +
                 $"A {deployment.GetReserveCount(UnitType.Archer)}  " +
                 $"M {deployment.GetReserveCount(UnitType.Mage)}\n" +
@@ -288,6 +291,17 @@ namespace TCCGame.Gameplay.Campaign
             foreach (Button button in commandButtons)
             {
                 button.interactable = campaignActive;
+            }
+            if (themedView != null)
+            {
+                var session = GameSessionProvider.Current;
+                var gate = session.Campaign.GetGate(currentGate);
+                var threat = session.Threats.BuildGateCard(currentGate);
+                themedView.SetStrategicState(gate.CurrentHealth, GateSaveData.DefaultHealth,
+                    threat.Threat, threat.Countdown);
+                for (int i = 0; i < UnitTypes.Length; i++)
+                    themedView.SetUnit(i, deployment.GetGateCount(currentGate, UnitTypes[i]),
+                        deployment.GetReserveCount(UnitTypes[i]), campaignActive);
             }
             RefreshDestination();
         }
@@ -403,6 +417,7 @@ namespace TCCGame.Gameplay.Campaign
             }
 
             GameObject instance = Instantiate(interfacePrefab, transform);
+            themedView = instance.GetComponentInChildren<GarrisonHudView>(true);
             panelRoot = FindChild(instance, "Garrison Dialog");
             titleText = FindText(instance, "Title");
             reportText = FindText(instance, "Battle Report");

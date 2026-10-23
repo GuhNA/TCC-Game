@@ -6,6 +6,7 @@ using TCCGame.Core;
 using TCCGame.Core.Input;
 using TCCGame.Gameplay.Recruitment;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPCVenda : MonoBehaviour,
     IInteractable,
@@ -18,6 +19,15 @@ public class NPCVenda : MonoBehaviour,
     public TMP_Text guerreiro_texto;
     public TMP_Text mago_texto;
     public TMP_Text tempo_texto;
+
+    [SerializeField]
+    private TMP_Text goldText;
+
+    [SerializeField]
+    private TMP_Text feedbackText;
+
+    [SerializeField]
+    private Button closeButton;
 
     private RecruitmentRowView[] rows;
     private PlayerInteractor lockedInteractor;
@@ -42,6 +52,8 @@ public class NPCVenda : MonoBehaviour,
             row.InputInvalid += HandleInvalidInput;
         }
 
+        closeButton?.onClick.AddListener(CloseModal);
+
         if (popup != null)
         {
             popup.SetActive(false);
@@ -51,6 +63,8 @@ public class NPCVenda : MonoBehaviour,
     private void OnDestroy()
     {
         CloseModal();
+
+        closeButton?.onClick.RemoveListener(CloseModal);
 
         if (rows == null)
         {
@@ -160,6 +174,8 @@ public class NPCVenda : MonoBehaviour,
                     $"Compra realizada, {GetPluralName(unitType)} " +
                     $"disponíveis: {result.Available}"
                 );
+                rows?.FirstOrDefault(row => row.UnitType == unitType)
+                    ?.ResetSelection();
                 break;
 
             case RecruitmentPurchaseStatus.OutOfStock:
@@ -182,16 +198,36 @@ public class NPCVenda : MonoBehaviour,
 
     private void atualizaTexto()
     {
-        arqueiro_texto.text =
-            $"Arqueiros: {Recruitment.GetAvailable(UnitType.Archer)}";
-        guerreiro_texto.text =
-            $"Guerreiros: {Recruitment.GetAvailable(UnitType.Warrior)}";
-        mago_texto.text =
-            $"Magos: {Recruitment.GetAvailable(UnitType.Mage)}";
+        if (arqueiro_texto != null)
+        {
+            arqueiro_texto.text =
+                $"Arqueiros: {Recruitment.GetAvailable(UnitType.Archer)}";
+        }
+        if (guerreiro_texto != null)
+        {
+            guerreiro_texto.text =
+                $"Guerreiros: {Recruitment.GetAvailable(UnitType.Warrior)}";
+        }
+        if (mago_texto != null)
+        {
+            mago_texto.text =
+                $"Magos: {Recruitment.GetAvailable(UnitType.Mage)}";
+        }
+
+        int money = GameSessionProvider.Current.Economy.Money;
+        if (goldText != null)
+        {
+            goldText.text = $"Ouro: {money}";
+        }
 
         foreach (RecruitmentRowView row in rows ?? Enumerable.Empty<RecruitmentRowView>())
         {
-            row.Refresh(Recruitment.GetAvailable(row.UnitType));
+            row.Refresh(
+                Recruitment.GetAvailable(row.UnitType),
+                Recruitment.GetOwned(row.UnitType),
+                Recruitment.GetUnitPrice(row.UnitType),
+                money
+            );
         }
     }
 
@@ -207,7 +243,7 @@ public class NPCVenda : MonoBehaviour,
 
         tempo_texto.text = string.Format(
             CultureInfo.InvariantCulture,
-            "Tempo: {0:00}:{1:00}:{2:00}",
+            "Novos recrutas em {0:00}:{1:00}:{2:00}",
             totalHours,
             remaining.Minutes,
             remaining.Seconds
@@ -216,6 +252,12 @@ public class NPCVenda : MonoBehaviour,
 
     private void ExibirAlerta(string message)
     {
+        if (feedbackText != null)
+        {
+            feedbackText.text = message ?? string.Empty;
+            return;
+        }
+
         alerta?.Show(message);
     }
 

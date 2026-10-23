@@ -19,6 +19,9 @@ namespace TCCGame.Editor
             CreateStage3Prefabs();
             CreateSceneFadePrefab();
             AssignUiPrefabsToScenes();
+            PortaoHudStageOneSetup.Apply();
+            PortaoHudStageTwoSetup.Apply();
+            PortaoHudStageThreeSetup.Apply();
         }
 
         [MenuItem("TCC Game/UI/Assign UI Prefabs To Scenes")]

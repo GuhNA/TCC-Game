@@ -172,24 +172,34 @@ namespace TCCGame.Tests.PlayMode
             Assert.That(goldPresenter.GoldText.text, Is.EqualTo("Ouro: 778"));
             Assert.That(
                 vendor.arqueiro_texto.text,
-                Is.EqualTo("Arqueiros: 16")
+                Is.EqualTo("Estoque: 16")
             );
             Assert.That(
                 GameSessionProvider.Current.Economy.Money,
                 Is.EqualTo(778)
             );
 
-            Button archerPlusOne = Object
+            Button archerSelectOne = Object
                 .FindObjectsByType<Button>(
                     FindObjectsInactive.Include,
                     FindObjectsSortMode.None
                 )
                 .Single(
-                    button => button.name == "+1" &&
+                    button => button.name == "Select 1" &&
+                        HasAncestorContaining(button.transform, "arqueiro")
+                );
+            Button archerConfirm = Object
+                .FindObjectsByType<Button>(
+                    FindObjectsInactive.Include,
+                    FindObjectsSortMode.None
+                )
+                .Single(
+                    button => button.name == "Confirm Purchase" &&
                         HasAncestorContaining(button.transform, "arqueiro")
                 );
 
-            archerPlusOne.onClick.Invoke();
+            archerSelectOne.onClick.Invoke();
+            archerConfirm.onClick.Invoke();
 
             Assert.That(
                 GameSessionProvider.Current.Economy.Money,
@@ -198,7 +208,7 @@ namespace TCCGame.Tests.PlayMode
             Assert.That(goldPresenter.GoldText.text, Is.EqualTo("Ouro: 773"));
             Assert.That(
                 vendor.arqueiro_texto.text,
-                Is.EqualTo("Arqueiros: 15")
+                Is.EqualTo("Estoque: 15")
             );
             Assert.That(
                 GameSessionProvider.Current.Recruitment

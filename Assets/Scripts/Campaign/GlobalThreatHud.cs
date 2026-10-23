@@ -5,6 +5,7 @@ using TCCGame.Core;
 using TCCGame.Core.Input;
 using UnityEngine;
 using UnityEngine.UI;
+using TCCGame.UI;
 
 namespace TCCGame.Gameplay.Campaign
 {
@@ -18,6 +19,7 @@ namespace TCCGame.Gameplay.Campaign
         private CanvasGroup bannerGroup;
         private Image bannerBackground;
         private TextMeshProUGUI bannerText;
+        private WaveAlertView themedView;
         private AudioSource audioSource;
         [SerializeField]
         private GameObject alertPrefab;
@@ -143,6 +145,7 @@ namespace TCCGame.Gameplay.Campaign
 
         private void UpdateBanner()
         {
+            if (bannerGroup == null) return;
             if (UiMenuState.HasOpenMenu)
             {
                 bannerGroup.alpha = 0f;
@@ -160,6 +163,9 @@ namespace TCCGame.Gameplay.Campaign
                 ShowNextAlert();
             }
 
+            // A modal pauses the active alert; restore it when the menu closes.
+            bannerGroup.alpha = 1f;
+
             alertRemaining -= Time.unscaledDeltaTime;
             if (alertRemaining > 0f)
             {
@@ -175,8 +181,12 @@ namespace TCCGame.Gameplay.Campaign
             WaveAlertMessage alert = alertQueue.Dequeue();
             activeAlert = alert;
             alertRemaining = config.bannerDurationSeconds;
-            bannerText.text = alert.Text;
-            bannerBackground.color = GetAlertColor(alert.Stage);
+            if (themedView != null) themedView.Present(alert, GetAlertColor(alert.Stage));
+            else
+            {
+                bannerText.text = alert.Text;
+                bannerBackground.color = GetAlertColor(alert.Stage);
+            }
             bannerGroup.alpha = 1f;
 
             if (config.enableAudio && config.audioVolume > 0f)
@@ -201,6 +211,7 @@ namespace TCCGame.Gameplay.Campaign
             }
 
             GameObject instance = Instantiate(alertPrefab, transform);
+            themedView = instance.GetComponentInChildren<WaveAlertView>(true);
             bannerGroup = instance.GetComponentInChildren<CanvasGroup>(true);
             bannerBackground = instance.GetComponentInChildren<Image>(true);
             bannerText = instance.GetComponentInChildren<TextMeshProUGUI>(true);

@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: c63b757b60e8e984f96530395fa1620d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8758304526191698767
+    second: WarriorBanner_0
+  - first:
+      213: -1404141861703289331
+    second: WarriorBanner_1
+  - first:
+      213: 6907920481553395223
+    second: WarriorBanner_2
+  - first:
+      213: -5505383728228869427
+    second: WarriorBanner_3
+  - first:
+      213: -2038071561097126739
+    second: WarriorBanner_4
+  - first:
+      213: 8732328740448115022
+    second: WarriorBanner_5
+  - first:
+      213: -4915854527501214276
+    second: WarriorBanner_6
+  - first:
+      213: -6998853938353074043
+    second: WarriorBanner_7
+  - first:
+      213: 7132437825547610414
+    second: WarriorBanner_8
+  - first:
+      213: -7898665284769632437
+    second: WarriorBanner_9
+  - first:
+      213: 5440962351695459551
+    second: WarriorBanner_10
+  - first:
+      213: 4252647419169584928
+    second: WarriorBanner_11
+  - first:
+      213: -7605581911514995587
+    second: WarriorBanner_12
+  - first:
+      213: -8460104750765056179
+    second: WarriorBanner_13
+  - first:
+      213: -8975324760063436490
+    second: WarriorBanner_14
+  - first:
+      213: 7468098886584552056
+    second: WarriorBanner_15
+  - first:
+      213: -3754504443997491481
+    second: WarriorBanner_16
+  - first:
+      213: 3209270742078536293
+    second: WarriorBanner_17
+  - first:
+      213: -140088024472596689
+    second: WarriorBanner_18
+  - first:
+      213: -8762022760837356359
+    second: WarriorBanner_19
+  - first:
+      213: -1753985598070354980
+    second: WarriorBanner_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WarriorBanner_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1233
+        height: 1184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f432a56209fbb8970800000000000000
+      internalID: 8758304526191698767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_1
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 839
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d067bee8a6c738ce0800000000000000
+      internalID: -1404141861703289331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_2
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 783
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71ea2a7041ddddf50800000000000000
+      internalID: 6907920481553395223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_3
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 784
+        width: 179
+        height: 359
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcad3befaa2f893b0800000000000000
+      internalID: -5505383728228869427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_4
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 551
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dacdafd96b057b3e0800000000000000
+      internalID: -2038071561097126739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_5
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 687
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49185c39b67f2970800000000000000
+      internalID: 8732328740448115022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_6
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 673
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd5bc04a5067cbb0800000000000000
+      internalID: -4915854527501214276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_7
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 541
+        width: 65
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5801f91bc631fde90800000000000000
+      internalID: -6998853938353074043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_8
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 493
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e29235eb9628bf260800000000000000
+      internalID: 7132437825547610414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_9
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 444
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4fa89db5cd426290800000000000000
+      internalID: -7898665284769632437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_10
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 452
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4f4117e6e228b40800000000000000
+      internalID: 5440962351695459551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_11
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 315
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 027b596db40740b30800000000000000
+      internalID: 4252647419169584928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_12
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 274
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74230e2c8b837690800000000000000
+      internalID: -7605581911514995587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_13
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 266
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4fdd008d8ba79a80800000000000000
+      internalID: -8460104750765056179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_14
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 234
+        width: 7
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63996ac1fad317380800000000000000
+      internalID: -8975324760063436490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_15
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 240
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87acc52ae5404a760800000000000000
+      internalID: 7468098886584552056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_16
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 248
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ee67e3b91255ebc0800000000000000
+      internalID: -3754504443997491481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_17
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 232
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a35a98cbe998c20800000000000000
+      internalID: 3209270742078536293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_18
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 120
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2f46081fae4e0ef0800000000000000
+      internalID: -140088024472596689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_19
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 56
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4e662e8ba076680800000000000000
+      internalID: -8762022760837356359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WarriorBanner_20
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 37
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdb8ddd346798a7e0800000000000000
+      internalID: -1753985598070354980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      WarriorBanner_0: 8758304526191698767
+      WarriorBanner_1: -1404141861703289331
+      WarriorBanner_10: 5440962351695459551
+      WarriorBanner_11: 4252647419169584928
+      WarriorBanner_12: -7605581911514995587
+      WarriorBanner_13: -8460104750765056179
+      WarriorBanner_14: -8975324760063436490
+      WarriorBanner_15: 7468098886584552056
+      WarriorBanner_16: -3754504443997491481
+      WarriorBanner_17: 3209270742078536293
+      WarriorBanner_18: -140088024472596689
+      WarriorBanner_19: -8762022760837356359
+      WarriorBanner_2: 6907920481553395223
+      WarriorBanner_20: -1753985598070354980
+      WarriorBanner_3: -5505383728228869427
+      WarriorBanner_4: -2038071561097126739
+      WarriorBanner_5: 8732328740448115022
+      WarriorBanner_6: -4915854527501214276
+      WarriorBanner_7: -6998853938353074043
+      WarriorBanner_8: 7132437825547610414
+      WarriorBanner_9: -7898665284769632437
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

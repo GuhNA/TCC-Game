@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portão — revisão do conjunto de HUDs</title>
+<style>
+body{margin:0;background:#171918;color:#eee2c5;font:17px/1.5 system-ui,sans-serif}
+main{max-width:1400px;margin:auto;padding:32px}h1{color:#e6bc61;font-size:30px}
+p{max-width:900px}nav{display:flex;flex-wrap:wrap;gap:12px;position:sticky;top:0;background:#171918;padding:14px 0}
+a{color:#e6bc61}nav a{padding:6px 12px;border:1px solid #7c633a;border-radius:4px;text-decoration:none}
+section{scroll-margin-top:80px;margin:36px 0}img{width:100%;height:auto;border:1px solid #716044;image-rendering:auto}
+small{color:#c4b697}h2{font-size:23px}
+</style>
+<main>
+<h1>Portão — proposta para o conjunto de HUDs</h1>
+<p><a href="PortaoHudStageOneReview.html">Etapa 1 aplicada ao jogo: ver capturas de produção</a></p>
+<p><a href="PortaoHudStageTwoReview.html">Etapa 2: alertas do Portão</a></p>
+<p><a href="PortaoHudStageThreeReview.html">Etapa 3: viagem e guarnição integradas</a></p>
+<p>Protótipos renderizados no Unity com o kit visual do recrutamento aprovado.
+Os dados são fixos para avaliar hierarquia, escala, legibilidade e composição.
+Esta rodada aguarda avaliação visual.</p>
+<nav><a href="#jogo">Durante o jogo</a><a href="#compacto">1366 × 768</a><a href="#viagem">Viagem</a><a href="#guarnicao">Guarnição</a><a href="#alerta">Alerta</a></nav>
+<section id="jogo"><h2>Durante o jogo</h2><p>Integridade, ouro, aviso de onda, interação e indicador do capitão. O alerta e a interação aparecem juntos nesta captura para avaliar o espaço disponível.</p><img alt="HUD do Portão em 1920 por 1080" src="../../Artifacts/VisualTests/portao-hud/captures/gameplay-1920x1080.png"></section>
+<section id="compacto"><h2>Resolução compacta — 1366 × 768</h2><img alt="HUD compacto" src="../../Artifacts/VisualTests/portao-hud/captures/gameplay-compact-1366x768.png"></section>
+<section id="viagem"><h2>Confirmação de viagem</h2><img alt="Protótipo do modal de viagem" src="../../Artifacts/VisualTests/portao-hud/captures/travel-modal-1920x1080.png"></section>
+<section id="guarnicao"><h2>Gestão da guarnição</h2><p>Relatório de batalha à esquerda; tropas, recebimento, envio, destino e trânsito à direita.</p><img alt="Protótipo da gestão da guarnição" src="../../Artifacts/VisualTests/portao-hud/captures/garrison-modal-1920x1080.png"></section>
+<section id="alerta"><h2>Alerta com confirmação</h2><img alt="Protótipo de alerta" src="../../Artifacts/VisualTests/portao-hud/captures/alert-modal-1920x1080.png"></section>
+<small>O recrutamento mantém sua baseline. O fade de cena continua como transição técnica. Os controles desta vitrine ainda não executam ações de jogo.</small>
+</main>
+</html>
