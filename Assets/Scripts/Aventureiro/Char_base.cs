@@ -41,12 +41,6 @@ public class Char_base : ScriptableObject
     [Tooltip("Rotação local aplicada somente ao visual instanciado no combate.")]
     public Vector3 combatLocalEulerAngles;
 
-    [Tooltip("Escala local aplicada ao prefab. Use (1,1,1) para manter a escala original dele.")]
-    public Vector3 combatLocalScale = Vector3.one;
-
-    [Tooltip("Espelha o visual horizontalmente sem alterar o prefab original.")]
-    public bool flipCombatVisualX;
-
     [Header("Status base")]
     public ushort vida;
     public byte resistência_magica, armadura, destreza, inteligencia, forca, mana,

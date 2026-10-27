@@ -106,9 +106,7 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         StopNameHintAnimation();
         UiMenuState.SetOpen(this, false);
         purchaseButton?.onClick.RemoveListener(NotifyPurchaseRequested);
-        adventurerNameInput?.onValueChanged.RemoveListener(
-            FormatNameAsStackedWords
-        );
+        UnbindNameInputEvents();
     }
 
     public void Show(AdventurerRecruitmentViewData data)
@@ -172,9 +170,10 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
             return;
         }
 
-        string value = ConvertSpacesToLineBreaks(
-            suggestedName ?? string.Empty
-        );
+        // O nome sugerido vem do sistema e deve manter sua formatação original.
+        // Assim "Arqueiro 2" continua em uma linha. Somente um espaço digitado
+        // pelo jogador é transformado em quebra de linha.
+        string value = suggestedName ?? string.Empty;
         adventurerNameInput.SetTextWithoutNotify(value);
 
         // SetTextWithoutNotify atualiza o valor lógico, mas um TMP_InputField
@@ -378,7 +377,8 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         text.enableAutoSizing = true;
         text.fontSizeMin = 24f;
         text.fontSizeMax = 200f;
-        text.alignment = TextAlignmentOptions.MidlineLeft;
+        // Centraliza tanto nomes de uma linha quanto nomes compostos empilhados.
+        text.alignment = TextAlignmentOptions.Center;
         text.overflowMode = TextOverflowModes.Truncate;
     }
 
@@ -395,19 +395,59 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         adventurerNameInput.onValueChanged.AddListener(
             FormatNameAsStackedWords
         );
+        adventurerNameInput.onValidateInput -= ValidateNameCharacter;
+        adventurerNameInput.onValidateInput += ValidateNameCharacter;
+    }
+
+    private void UnbindNameInputEvents()
+    {
+        if (adventurerNameInput == null)
+        {
+            return;
+        }
+
+        adventurerNameInput.onValueChanged.RemoveListener(
+            FormatNameAsStackedWords
+        );
+        adventurerNameInput.onValidateInput -= ValidateNameCharacter;
+    }
+
+    /// <summary>
+    /// Transforma o primeiro espaço digitado em Enter. Enquanto a quebra existir,
+    /// outros espaços/Enters são recusados. Ao apagar a quebra e voltar para uma
+    /// linha, a própria verificação do texto libera um novo espaço imediatamente.
+    /// </summary>
+    private char ValidateNameCharacter(
+        string currentText,
+        int characterIndex,
+        char addedCharacter
+    )
+    {
+        bool isRequestedSeparator = addedCharacter == ' ' ||
+            addedCharacter == '\n' ||
+            addedCharacter == '\r';
+        if (!isRequestedSeparator)
+        {
+            return addedCharacter;
+        }
+
+        return ContainsLineBreak(currentText) ? '\0' : '\n';
     }
 
     private void FormatNameAsStackedWords(string value)
     {
-        if (adventurerNameInput == null ||
-            string.IsNullOrEmpty(value) ||
-            !value.Contains(" "))
+        if (adventurerNameInput == null || string.IsNullOrEmpty(value))
         {
             return;
         }
 
         int caretPosition = adventurerNameInput.stringPosition;
-        string formatted = ConvertSpacesToLineBreaks(value);
+        string formatted = KeepOnlyFirstPlayerLineBreak(value);
+        if (string.Equals(value, formatted, StringComparison.Ordinal))
+        {
+            return;
+        }
+
         adventurerNameInput.SetTextWithoutNotify(formatted);
         adventurerNameInput.stringPosition = Mathf.Clamp(
             caretPosition,
@@ -417,28 +457,55 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         adventurerNameInput.ForceLabelUpdate();
     }
 
-    private static string ConvertSpacesToLineBreaks(string value)
+    /// <summary>
+    /// Também protege contra colagem de textos com vários espaços ou Enters.
+    /// A primeira separação entre palavras vira uma quebra; as demais são
+    /// removidas para manter o nome limitado a duas linhas.
+    /// </summary>
+    private static string KeepOnlyFirstPlayerLineBreak(string value)
     {
         if (string.IsNullOrEmpty(value))
         {
             return string.Empty;
         }
 
-        char[] characters = value.ToCharArray();
-        for (int index = 0; index < characters.Length - 1; index++)
+        var result = new System.Text.StringBuilder(value.Length);
+        bool alreadyHasLineBreak = false;
+        for (int index = 0; index < value.Length; index++)
         {
-            // Nomes compostos digitados pelo jogador são empilhados quando o
-            // próximo termo começa com letra: "Pedro Arthur". Sufixos
-            // numéricos gerados pelo sistema permanecem na mesma linha:
-            // "Arqueiro 2".
-            if (characters[index] == ' ' &&
-                char.IsLetter(characters[index + 1]))
+            char character = value[index];
+            bool isLineBreak = character == '\n' || character == '\r';
+            bool isCompoundNameSpace = character == ' ' &&
+                index + 1 < value.Length &&
+                char.IsLetter(value[index + 1]);
+
+            if (!isLineBreak && !isCompoundNameSpace)
             {
-                characters[index] = '\n';
+                result.Append(character);
+                continue;
+            }
+
+            // Trata CRLF como uma única quebra.
+            if (character == '\r' && index + 1 < value.Length &&
+                value[index + 1] == '\n')
+            {
+                index++;
+            }
+
+            if (!alreadyHasLineBreak)
+            {
+                result.Append('\n');
+                alreadyHasLineBreak = true;
             }
         }
 
-        return new string(characters);
+        return result.ToString();
+    }
+
+    private static bool ContainsLineBreak(string value)
+    {
+        return !string.IsNullOrEmpty(value) &&
+            (value.IndexOf('\n') >= 0 || value.IndexOf('\r') >= 0);
     }
 
     private static string ConvertLineBreaksToSpaces(string value)
@@ -473,7 +540,7 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         TMP_Text text = textObject.GetComponent<TextMeshProUGUI>();
         text.font = TMP_Settings.defaultFontAsset;
         text.fontSize = 28;
-        text.alignment = TextAlignmentOptions.MidlineLeft;
+        text.alignment = TextAlignmentOptions.Center;
         text.color = color;
         text.text = value;
         text.richText = false;

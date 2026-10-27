@@ -269,7 +269,8 @@ namespace TCCGame.EditorTools
             backgroundObject.transform.position = new Vector3(0f, 0f, 5f);
             SpriteRenderer renderer =
                 backgroundObject.GetComponent<SpriteRenderer>();
-            renderer.sortingOrder = -100;
+            // O runtime reserva 1, 2 e 3 para os combatentes.
+            renderer.sortingOrder = 0;
             renderer.color = Color.white;
 
             ExplorationBattleBackground background =
@@ -385,8 +386,6 @@ namespace TCCGame.EditorTools
             SetObject(serializedView, "nameText", unitName);
             SetObject(serializedView, "healthText", health);
             SetObject(serializedView, "healthFill", healthFill);
-            serializedView.FindProperty("fallbackTargetHeight").floatValue =
-                fallbackHeight;
             serializedView.ApplyModifiedPropertiesWithoutUndo();
             return view;
         }

@@ -685,7 +685,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -100
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -814,7 +814,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 1675932700}
   healthFill: {fileID: 478961488}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 3.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!1 &136881218
@@ -1020,7 +1019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5005951, y: 2.1130066}
+  m_AnchoredPosition: {x: 0.50061035, y: 2.112976}
   m_SizeDelta: {x: -38.0421, y: -30.7496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &164877757
@@ -2262,7 +2261,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 769508413}
   healthFill: {fileID: 1809834495}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 3.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!4 &718785120
@@ -2448,7 +2446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.85852087, y: 0.089}
   m_AnchorMax: {x: 0.947, y: 0.20400001}
-  m_AnchoredPosition: {x: 0.7999878, y: -0.5}
+  m_AnchoredPosition: {x: 0.8000488, y: -0.5}
   m_SizeDelta: {x: -103.2852, y: -75.018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &740119772
@@ -4023,7 +4021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.34988, y: -45.8}
+  m_AnchoredPosition: {x: 0.34988403, y: -45.800003}
   m_SizeDelta: {x: 0.69973, y: -34.5447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1295974061
@@ -4343,7 +4341,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 740119774}
   healthFill: {fileID: 1527391071}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 2.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!4 &1373011403
@@ -5755,9 +5752,9 @@ MonoBehaviour:
   encounterCatalog: {fileID: 11400000, guid: d04b24fad0462df4f80e604318764be1, type: 2}
   adventurerCatalog:
   - {fileID: 11400000, guid: b86197fd39e4b0e4b89b733a15ca9ac7, type: 2}
-  - {fileID: 11400000, guid: 840c80adcaf5a7547ab2128be4f29ab7, type: 2}
   - {fileID: 11400000, guid: 2f8c908ccffc4d96a0acf66fbd68cdca, type: 2}
   - {fileID: 11400000, guid: 4ce9651c44cc4fd1bfb653351aaf5e0c, type: 2}
+  - {fileID: 11400000, guid: 840c80adcaf5a7547ab2128be4f29ab7, type: 2}
   battleBackground: {fileID: 73864680}
   adventurerViews:
   - {fileID: 101073630}
@@ -5767,6 +5764,8 @@ MonoBehaviour:
   - {fileID: 1984964163}
   - {fileID: 1749858713}
   - {fileID: 1373011402}
+  combatantSlotSpacing: 0.25
+  combatantVerticalSpacing: 0.2
   environmentTitleText: {fileID: 1515689562}
   roundText: {fileID: 1393250743}
   combatLogText: {fileID: 560062773}
@@ -6402,7 +6401,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 817100030}
   healthFill: {fileID: 2008029700}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 2.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!21 &1797665555
@@ -7175,7 +7173,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 1993423067}
   healthFill: {fileID: 2085348751}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 3.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!1 &1984964160
@@ -7280,7 +7277,6 @@ MonoBehaviour:
   healthEmptyRenderer: {fileID: 10491563}
   healthFill: {fileID: 1319513252}
   drainHealthFromLeftToRight: 0
-  fallbackTargetHeight: 2.35
   attackStepDistance: 0.25
   feedbackDuration: 0.12
 --- !u!1 &1993423065

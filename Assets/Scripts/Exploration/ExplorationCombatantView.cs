@@ -31,8 +31,6 @@ namespace TCCGame.Gameplay.Exploration
             "Marcado: a parte cinza aparece da esquerda para a direita."
         )]
         [SerializeField] private bool drainHealthFromLeftToRight = true;
-        [SerializeField, Min(0.1f)] private float fallbackTargetHeight = 3f;
-
         [Header("Feedback")]
         [SerializeField, Min(0f)] private float attackStepDistance = 0.25f;
         [SerializeField, Min(0.01f)] private float feedbackDuration = 0.12f;
@@ -46,8 +44,92 @@ namespace TCCGame.Gameplay.Exploration
         private Image healthEmptyImage;
         private Image healthFullImage;
         private Coroutine feedbackRoutine;
+        private Transform healthBarRoot;
 
         public ExplorationBattleCombatant Combatant => combatant;
+
+        /// <summary>
+        /// Limites visuais usados pelo controlador para reservar espaço de acordo
+        /// com o tamanho real do prefab, inclusive para criaturas maiores.
+        /// </summary>
+        public bool TryGetVisualWorldBounds(out Bounds bounds)
+        {
+            Transform root = visualRoot != null ? visualRoot : transform;
+            SpriteRenderer[] renderers =
+                root.GetComponentsInChildren<SpriteRenderer>(true);
+            bool found = false;
+            bounds = new Bounds(transform.position, Vector3.zero);
+            foreach (SpriteRenderer renderer in renderers)
+            {
+                if (renderer == null || !renderer.enabled ||
+                    renderer.sprite == null)
+                {
+                    continue;
+                }
+
+                if (!found)
+                {
+                    bounds = renderer.bounds;
+                    found = true;
+                }
+                else
+                {
+                    bounds.Encapsulate(renderer.bounds);
+                }
+            }
+
+            return found;
+        }
+
+        public bool TryGetHealthBarAnchorWorldY(out float worldY)
+        {
+            ResolveHealthBarRoot();
+            worldY = healthBarRoot != null
+                ? healthBarRoot.position.y
+                : transform.position.y;
+            return healthBarRoot != null;
+        }
+
+        public void SetHealthBarAnchorWorldY(float worldY)
+        {
+            ResolveHealthBarRoot();
+            if (healthBarRoot == null)
+            {
+                return;
+            }
+
+            Vector3 position = healthBarRoot.position;
+            position.y = worldY;
+            healthBarRoot.position = position;
+        }
+
+        /// <summary>
+        /// Ordem vertical final: barra de vida, espaço, personagem, espaço e nome.
+        /// A barra não se move aqui; ela é a referência fixa compartilhada pela
+        /// equipe. O tamanho real do SpriteRenderer define as outras posições.
+        /// </summary>
+        public void AlignVisualBetweenHealthBarAndName(float spacing)
+        {
+            spacing = Mathf.Max(0f, spacing);
+            if (!TryGetVisualWorldBounds(out Bounds visualBounds) ||
+                !TryGetHealthBarTopWorldY(out float healthBarTopY))
+            {
+                return;
+            }
+
+            Transform root = visualRoot != null ? visualRoot : transform;
+            Vector3 visualPosition = root.position;
+            visualPosition.y += healthBarTopY + spacing - visualBounds.min.y;
+            root.position = visualPosition;
+
+            if (!TryGetVisualWorldBounds(out visualBounds))
+            {
+                return;
+            }
+
+            PositionNameAboveVisual(visualBounds.max.y + spacing);
+            ResizeInteractionAreaToVisual();
+        }
 
         private void Awake()
         {
@@ -66,6 +148,7 @@ namespace TCCGame.Gameplay.Exploration
             Transform health = FindDescendant("Health");
             Transform full = FindDescendant("Full");
             Transform empty = FindDescendant("Empty");
+            healthBarRoot = FindDescendant("Health Bar");
 
             if (healthText == null && health != null)
             {
@@ -250,8 +333,6 @@ namespace TCCGame.Gameplay.Exploration
             Sprite fallbackSprite,
             Vector3 localPosition,
             Vector3 localEulerAngles,
-            Vector3 localScale,
-            bool flipX,
             Action<ExplorationBattleCombatant> onInspectRequested
         )
         {
@@ -272,13 +353,14 @@ namespace TCCGame.Gameplay.Exploration
             Transform parent = visualRoot != null ? visualRoot : transform;
             if (combatPrefab != null)
             {
-                instantiatedVisual = Instantiate(combatPrefab, parent);
+                // worldPositionStays false conserva a escala local salva no
+                // prefab. Posição e rotação continuam com ajustes opcionais do
+                // Scriptable, mas a escala nunca mais é sobrescrita pelo código.
+                instantiatedVisual = Instantiate(combatPrefab, parent, false);
                 instantiatedVisual.name = combatPrefab.name + " (Combat Visual)";
                 instantiatedVisual.transform.localPosition = localPosition;
                 instantiatedVisual.transform.localRotation =
                     Quaternion.Euler(localEulerAngles);
-                instantiatedVisual.transform.localScale = SafeScale(localScale);
-                ApplyHorizontalFlip(instantiatedVisual.transform, flipX);
                 if (fallbackRenderer != null)
                 {
                     fallbackRenderer.enabled = false;
@@ -291,10 +373,76 @@ namespace TCCGame.Gameplay.Exploration
                 fallbackRenderer.transform.localPosition = localPosition;
                 fallbackRenderer.transform.localRotation =
                     Quaternion.Euler(localEulerAngles);
-                FitFallbackSprite(fallbackRenderer, SafeScale(localScale), flipX);
+                // Sem prefab, respeita a escala já configurada no renderer do
+                // slot. Não existe mais normalização automática por altura.
             }
 
+            ResizeInteractionAreaToVisual();
             Refresh();
+        }
+
+        /// <summary>
+        /// Aplica uma única Order in Layer ao corpo do combatente. Barras e textos
+        /// continuam em seus próprios renderizadores para permanecerem legíveis.
+        /// </summary>
+        public void SetCombatSortingOrder(int sortingOrder)
+        {
+            Transform root = visualRoot != null ? visualRoot : transform;
+            foreach (SpriteRenderer renderer in
+                     root.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                renderer.sortingOrder = sortingOrder;
+            }
+        }
+
+        private void ResolveHealthBarRoot()
+        {
+            if (healthBarRoot != null)
+            {
+                return;
+            }
+
+            healthBarRoot = FindDescendant("Health Bar");
+            if (healthBarRoot == null && healthEmptyRenderer != null)
+            {
+                healthBarRoot = healthEmptyRenderer.transform.parent;
+            }
+        }
+
+        private bool TryGetHealthBarTopWorldY(out float topWorldY)
+        {
+            ResolveHealthBarReferences();
+            if (healthEmptyRenderer != null &&
+                healthEmptyRenderer.sprite != null)
+            {
+                topWorldY = healthEmptyRenderer.bounds.max.y;
+                return true;
+            }
+
+            ResolveHealthBarRoot();
+            topWorldY = healthBarRoot != null
+                ? healthBarRoot.position.y
+                : transform.position.y;
+            return healthBarRoot != null;
+        }
+
+        private void PositionNameAboveVisual(float desiredBottomWorldY)
+        {
+            if (nameText == null)
+            {
+                return;
+            }
+
+            nameText.ForceMeshUpdate(true, true);
+            Renderer nameRenderer = nameText.GetComponent<Renderer>();
+            if (nameRenderer == null)
+            {
+                return;
+            }
+
+            Vector3 position = nameText.transform.position;
+            position.y += desiredBottomWorldY - nameRenderer.bounds.min.y;
+            nameText.transform.position = position;
         }
 
         public void Refresh()
@@ -421,38 +569,29 @@ namespace TCCGame.Gameplay.Exploration
             return null;
         }
 
-        private void FitFallbackSprite(
-            SpriteRenderer renderer,
-            Vector3 requestedScale,
-            bool flipX
-        )
+        private void ResizeInteractionAreaToVisual()
         {
-            float spriteHeight = renderer.sprite == null
-                ? 1f
-                : Mathf.Max(0.01f, renderer.sprite.bounds.size.y);
-            float fit = fallbackTargetHeight / spriteHeight;
-            renderer.transform.localScale = new Vector3(
-                requestedScale.x * fit * (flipX ? -1f : 1f),
-                requestedScale.y * fit,
-                requestedScale.z
-            );
-        }
-
-        private static Vector3 SafeScale(Vector3 value)
-        {
-            return value == Vector3.zero ? Vector3.one : value;
-        }
-
-        private static void ApplyHorizontalFlip(Transform target, bool flipX)
-        {
-            if (!flipX)
+            if (!TryGetVisualWorldBounds(out Bounds bounds))
             {
                 return;
             }
 
-            Vector3 scale = target.localScale;
-            scale.x *= -1f;
-            target.localScale = scale;
+            BoxCollider2D interactionArea = GetComponent<BoxCollider2D>();
+            if (interactionArea == null)
+            {
+                return;
+            }
+
+            Vector3 localMinimum = transform.InverseTransformPoint(bounds.min);
+            Vector3 localMaximum = transform.InverseTransformPoint(bounds.max);
+            interactionArea.offset = new Vector2(
+                (localMinimum.x + localMaximum.x) * 0.5f,
+                (localMinimum.y + localMaximum.y) * 0.5f
+            );
+            interactionArea.size = new Vector2(
+                Mathf.Max(0.1f, Mathf.Abs(localMaximum.x - localMinimum.x)),
+                Mathf.Max(0.1f, Mathf.Abs(localMaximum.y - localMinimum.y))
+            );
         }
 
         private void SetVisualAlpha(float alpha)

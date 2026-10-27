@@ -120,8 +120,17 @@ public class Aventureiro : MonoBehaviour, IInteractable, IInteractionExitAware
         int playerOrder = playerRenderer != null
             ? playerRenderer.sortingOrder
             : fallbackPlayerSortingOrder;
-        float heightDifference = transform.position.y -
-            playerTransform.position.y;
+        // A profundidade visual deve ser decidida pela posição dos pés, não
+        // pelo pivô do objeto (que pode estar no centro ou até na cabeça).
+        float adventurerFeetY = GetFeetWorldY(
+            sortingRenderer,
+            transform
+        );
+        float playerFeetY = GetFeetWorldY(
+            playerRenderer,
+            playerTransform
+        );
+        float heightDifference = adventurerFeetY - playerFeetY;
 
         // Em um cenário 2D visto de cima, quem está mais abaixo precisa ser
         // desenhado por cima. Exemplo com Player em 1000:
@@ -138,6 +147,26 @@ public class Aventureiro : MonoBehaviour, IInteractable, IInteractionExitAware
         {
             sortingRenderer.sortingOrder = playerOrder;
         }
+    }
+
+    /// <summary>
+    /// O limite inferior do SpriteRenderer representa os pés no mundo. Caso o
+    /// renderer ainda não esteja disponível, o Transform permanece como fallback
+    /// para não interromper a ordenação durante a inicialização da cena.
+    /// </summary>
+    private static float GetFeetWorldY(
+        SpriteRenderer renderer,
+        Transform fallbackTransform
+    )
+    {
+        if (renderer != null && renderer.sprite != null)
+        {
+            return renderer.bounds.min.y;
+        }
+
+        return fallbackTransform != null
+            ? fallbackTransform.position.y
+            : 0f;
     }
 
 }

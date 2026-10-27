@@ -34,6 +34,18 @@ namespace TCCGame.Gameplay.Exploration
         [SerializeField] private ExplorationCombatantView[] adventurerViews;
         [SerializeField] private ExplorationCombatantView[] enemyViews;
 
+        [Tooltip(
+            "Espaço horizontal, em unidades do mundo, mantido entre os limites " +
+            "visuais de dois combatentes. O mesmo valor vale para as duas equipes."
+        )]
+        [SerializeField, Min(0f)] private float combatantSlotSpacing = 0.25f;
+
+        [Tooltip(
+            "Espaço vertical entre barra de vida e personagem, e entre " +
+            "personagem e nome. O mesmo valor vale para todos os slots."
+        )]
+        [SerializeField, Min(0f)] private float combatantVerticalSpacing = 0.3f;
+
         [Header("Interface")]
         [SerializeField] private TMP_Text environmentTitleText;
         [SerializeField] private TMP_Text roundText;
@@ -282,6 +294,16 @@ namespace TCCGame.Gameplay.Exploration
                 adventurerVisuals
             );
             BindTeamViews(enemyViews, battle.Enemies, enemyVisuals);
+
+            // Os prefabs já estão instanciados neste ponto, portanto seus Bounds
+            // reais podem ser usados para acomodar personagens grandes sem que
+            // um slot invada o próximo.
+            ArrangeTeamVertically(adventurerViews);
+            ArrangeTeamVertically(enemyViews);
+            ArrangeTeamByVisualSize(adventurerViews);
+            ArrangeTeamByVisualSize(enemyViews);
+            ApplyTeamSortingOrders(adventurerViews, startFromRight: false);
+            ApplyTeamSortingOrders(enemyViews, startFromRight: true);
         }
 
         private void BindTeamViews(
@@ -312,10 +334,125 @@ namespace TCCGame.Gameplay.Exploration
                     visual.FallbackSprite,
                     visual.LocalPosition,
                     visual.LocalEulerAngles,
-                    visual.LocalScale,
-                    visual.FlipX,
                     ShowDetails
                 );
+            }
+        }
+
+        /// <summary>
+        /// Mantém as barras dos slots irmãos na mesma altura e usa essa barra
+        /// como âncora do personagem. Cada nome acompanha o topo real de seu
+        /// próprio sprite, portanto personagens altos não invadem o texto.
+        /// </summary>
+        private void ArrangeTeamVertically(
+            IEnumerable<ExplorationCombatantView> teamViews
+        )
+        {
+            List<ExplorationCombatantView> activeViews = (teamViews ??
+                    Array.Empty<ExplorationCombatantView>())
+                .Where(view => view != null && view.gameObject.activeSelf)
+                .ToList();
+            if (activeViews.Count == 0 ||
+                !activeViews[0].TryGetHealthBarAnchorWorldY(
+                    out float sharedHealthBarY))
+            {
+                return;
+            }
+
+            foreach (ExplorationCombatantView view in activeViews)
+            {
+                view.SetHealthBarAnchorWorldY(sharedHealthBarY);
+            }
+
+            float spacing = Mathf.Max(0f, combatantVerticalSpacing);
+            foreach (ExplorationCombatantView view in activeViews)
+            {
+                view.AlignVisualBetweenHealthBarAndName(spacing);
+            }
+        }
+
+        /// <summary>
+        /// Reposiciona os slots usando as bordas reais dos sprites. O centro médio
+        /// configurado na cena é preservado; somente a distância necessária entre
+        /// os slots muda. Isso mantém o layout feito pelo DEV e abre espaço para
+        /// prefabs largos, como o HobGoblin.
+        /// </summary>
+        private void ArrangeTeamByVisualSize(
+            IEnumerable<ExplorationCombatantView> teamViews
+        )
+        {
+            List<SlotLayoutData> slots = (teamViews ??
+                    Array.Empty<ExplorationCombatantView>())
+                .Where(view => view != null && view.gameObject.activeSelf)
+                .OrderBy(view => view.transform.position.x)
+                .Select(CreateSlotLayoutData)
+                .ToList();
+            if (slots.Count == 0)
+            {
+                return;
+            }
+
+            float originalCenter = slots.Average(slot => slot.OriginalX);
+            float cursor = 0f;
+            for (int index = 0; index < slots.Count; index++)
+            {
+                SlotLayoutData slot = slots[index];
+                slot.PlacedX = cursor - slot.MinimumXOffset;
+                cursor = slot.PlacedX + slot.MaximumXOffset +
+                    Mathf.Max(0f, combatantSlotSpacing);
+                slots[index] = slot;
+            }
+
+            float placedCenter = slots.Average(slot => slot.PlacedX);
+            float centerCorrection = originalCenter - placedCenter;
+            foreach (SlotLayoutData slot in slots)
+            {
+                Vector3 position = slot.View.transform.position;
+                position.x = slot.PlacedX + centerCorrection;
+                slot.View.transform.position = position;
+            }
+        }
+
+        private static SlotLayoutData CreateSlotLayoutData(
+            ExplorationCombatantView view
+        )
+        {
+            float viewX = view.transform.position.x;
+            if (!view.TryGetVisualWorldBounds(out Bounds bounds))
+            {
+                return new SlotLayoutData(view, viewX, -0.5f, 0.5f);
+            }
+
+            return new SlotLayoutData(
+                view,
+                viewX,
+                bounds.min.x - viewX,
+                bounds.max.x - viewX
+            );
+        }
+
+        /// <summary>
+        /// Aliados: esquerda para direita = 1, 2, 3.
+        /// Inimigos: direita para esquerda = 1, 2, 3.
+        /// </summary>
+        private static void ApplyTeamSortingOrders(
+            IEnumerable<ExplorationCombatantView> teamViews,
+            bool startFromRight
+        )
+        {
+            IEnumerable<ExplorationCombatantView> ordered = (teamViews ??
+                    Array.Empty<ExplorationCombatantView>())
+                .Where(view => view != null && view.gameObject.activeSelf)
+                .OrderBy(view => view.transform.position.x);
+            if (startFromRight)
+            {
+                ordered = ordered.Reverse();
+            }
+
+            int sortingOrder = 1;
+            foreach (ExplorationCombatantView view in ordered)
+            {
+                view.SetCombatSortingOrder(sortingOrder++);
             }
         }
 
@@ -613,14 +750,20 @@ namespace TCCGame.Gameplay.Exploration
             {
                 if (adventurer != null)
                 {
+                    // O prefab específico de combate é opcional. Quando ele não
+                    // foi configurado, o prefab de recrutamento do próprio
+                    // aventureiro fornece seu visual, animação e escala originais.
+                    GameObject combatPrefab = adventurer.combatPrefab != null
+                        ? adventurer.combatPrefab
+                        : adventurer.recruitablePrefab != null
+                            ? adventurer.recruitablePrefab.gameObject
+                            : null;
                     visualsByDefinition[adventurer.PersistenceId] =
                         new CombatVisualData(
-                            adventurer.combatPrefab,
+                            combatPrefab,
                             adventurer.sprite,
                             adventurer.combatLocalPosition,
-                            adventurer.combatLocalEulerAngles,
-                            adventurer.combatLocalScale,
-                            adventurer.flipCombatVisualX
+                            adventurer.combatLocalEulerAngles
                         );
                 }
             }
@@ -652,9 +795,7 @@ namespace TCCGame.Gameplay.Exploration
                     enemy.CombatPrefab,
                     enemy.Portrait,
                     enemy.CombatLocalPosition,
-                    enemy.CombatLocalEulerAngles,
-                    enemy.CombatLocalScale,
-                    enemy.FlipCombatVisualX
+                    enemy.CombatLocalEulerAngles
                 );
             }
         }
@@ -683,27 +824,42 @@ namespace TCCGame.Gameplay.Exploration
                 GameObject prefab,
                 Sprite fallbackSprite,
                 Vector3 localPosition,
-                Vector3 localEulerAngles,
-                Vector3 localScale,
-                bool flipX
+                Vector3 localEulerAngles
             )
             {
                 Prefab = prefab;
                 FallbackSprite = fallbackSprite;
                 LocalPosition = localPosition;
                 LocalEulerAngles = localEulerAngles;
-                LocalScale = localScale == Vector3.zero
-                    ? Vector3.one
-                    : localScale;
-                FlipX = flipX;
             }
 
             public GameObject Prefab { get; }
             public Sprite FallbackSprite { get; }
             public Vector3 LocalPosition { get; }
             public Vector3 LocalEulerAngles { get; }
-            public Vector3 LocalScale { get; }
-            public bool FlipX { get; }
+        }
+
+        private struct SlotLayoutData
+        {
+            public SlotLayoutData(
+                ExplorationCombatantView view,
+                float originalX,
+                float minimumXOffset,
+                float maximumXOffset
+            )
+            {
+                View = view;
+                OriginalX = originalX;
+                MinimumXOffset = minimumXOffset;
+                MaximumXOffset = maximumXOffset;
+                PlacedX = originalX;
+            }
+
+            public ExplorationCombatantView View { get; }
+            public float OriginalX { get; }
+            public float MinimumXOffset { get; }
+            public float MaximumXOffset { get; }
+            public float PlacedX { get; set; }
         }
 
         private static ExplorationBattleCombatant CreateAdventurerCombatant(

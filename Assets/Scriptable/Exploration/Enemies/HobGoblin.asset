@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6b8ed736016f346a405d06f7f30c84, type: 3}
+  m_Name: HobGoblin
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
+  persistenceId: enemy.hobgoblin
+  displayName: Goblin
+  portrait: {fileID: 492853447409807844, guid: b03e49a0890c5364cbd5c0a00094dcdc, type: 3}
+  combatPrefab: {fileID: 6790329320643266379, guid: c1a3c8b12c4e1fb4499f7fcef5ab6f73, type: 3}
+  combatLocalPosition: {x: 0, y: 0, z: 0}
+  combatLocalEulerAngles: {x: 0, y: 0, z: 0}
+  flipCombatVisualX: 1
+  battlePower: 45
+  maximumHealth: 200
+  minimumDamage: 15
+  maximumDamage: 30
+  speed: 2
+  armor: 15
+  magicResistance: 10
+  damageType: 0

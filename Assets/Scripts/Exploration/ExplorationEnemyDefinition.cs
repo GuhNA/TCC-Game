@@ -21,8 +21,6 @@ namespace TCCGame.Gameplay.Exploration
         [SerializeField] private GameObject combatPrefab;
         [SerializeField] private Vector3 combatLocalPosition;
         [SerializeField] private Vector3 combatLocalEulerAngles;
-        [SerializeField] private Vector3 combatLocalScale = Vector3.one;
-        [SerializeField] private bool flipCombatVisualX;
 
         [Header("Combat stats")]
         [Tooltip("Valor usado para montar equipes dentro do poder mínimo e máximo do local.")]
@@ -45,8 +43,6 @@ namespace TCCGame.Gameplay.Exploration
         public GameObject CombatPrefab => combatPrefab;
         public Vector3 CombatLocalPosition => combatLocalPosition;
         public Vector3 CombatLocalEulerAngles => combatLocalEulerAngles;
-        public Vector3 CombatLocalScale => combatLocalScale;
-        public bool FlipCombatVisualX => flipCombatVisualX;
         public int BattlePower => battlePower;
         public int MaximumHealth => maximumHealth;
         public int MinimumDamage => minimumDamage;
@@ -65,10 +61,6 @@ namespace TCCGame.Gameplay.Exploration
             speed = Mathf.Max(0, speed);
             armor = Mathf.Max(0, armor);
             magicResistance = Mathf.Max(0, magicResistance);
-            if (combatLocalScale == Vector3.zero)
-            {
-                combatLocalScale = Vector3.one;
-            }
         }
     }
 }

@@ -16,11 +16,13 @@ namespace TCCGame.Gameplay.Exploration
         {
             spriteRenderer ??= GetComponent<SpriteRenderer>();
             targetCamera ??= Camera.main;
+            ApplyBackgroundSortingOrder();
         }
 
         public void SetSprite(Sprite sprite)
         {
             spriteRenderer ??= GetComponent<SpriteRenderer>();
+            ApplyBackgroundSortingOrder();
             spriteRenderer.sprite = sprite;
             spriteRenderer.enabled = sprite != null;
             FitToCamera();
@@ -54,5 +56,22 @@ namespace TCCGame.Gameplay.Exploration
                 transform.position.z
             );
         }
+
+        private void ApplyBackgroundSortingOrder()
+        {
+            if (spriteRenderer != null)
+            {
+                // Os combatentes usam 1, 2 e 3. O cenário permanece sempre atrás.
+                spriteRenderer.sortingOrder = 0;
+            }
+        }
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            spriteRenderer ??= GetComponent<SpriteRenderer>();
+            ApplyBackgroundSortingOrder();
+        }
+#endif
     }
 }

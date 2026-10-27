@@ -1,0 +1,212 @@
+[
+  {
+    "name": "MagePurple_Channel_12f_v1",
+    "width": 1536,
+    "height": 1152,
+    "columns": 4,
+    "rows": 3,
+    "cell": [
+      384,
+      384
+    ],
+    "pivot": [
+      0.5,
+      0.041666666666666664
+    ],
+    "ppu": 100,
+    "seconds": 2.5,
+    "frameHoldsAt12fps": [
+      6,
+      2,
+      2,
+      2,
+      2,
+      3,
+      1,
+      3,
+      2,
+      2,
+      2,
+      3
+    ],
+    "bounds": [
+      {
+        "frame": 0,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 1,
+        "minX": 74,
+        "minY": 32,
+        "maxX": 311,
+        "maxY": 367
+      },
+      {
+        "frame": 2,
+        "minX": 71,
+        "minY": 37,
+        "maxX": 312,
+        "maxY": 367
+      },
+      {
+        "frame": 3,
+        "minX": 56,
+        "minY": 41,
+        "maxX": 315,
+        "maxY": 367
+      },
+      {
+        "frame": 4,
+        "minX": 56,
+        "minY": 22,
+        "maxX": 314,
+        "maxY": 367
+      },
+      {
+        "frame": 5,
+        "minX": 57,
+        "minY": 19,
+        "maxX": 323,
+        "maxY": 367
+      },
+      {
+        "frame": 6,
+        "minX": 64,
+        "minY": 57,
+        "maxX": 314,
+        "maxY": 367
+      },
+      {
+        "frame": 7,
+        "minX": 55,
+        "minY": 19,
+        "maxX": 323,
+        "maxY": 367
+      },
+      {
+        "frame": 8,
+        "minX": 70,
+        "minY": 49,
+        "maxX": 314,
+        "maxY": 367
+      },
+      {
+        "frame": 9,
+        "minX": 39,
+        "minY": 58,
+        "maxX": 312,
+        "maxY": 367
+      },
+      {
+        "frame": 10,
+        "minX": 49,
+        "minY": 57,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 11,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      }
+    ],
+    "sameRestAtBothEnds": true,
+    "restHash": "df9288d710e0e8007a050f5efaedecec581856559a3efee0dcbdd9fcfb48f374",
+    "guid": "dcc3b4213351a1a9a104b65d94cfd8db",
+    "unityEditorPlaybackTested": false
+  },
+  {
+    "name": "MagePurple_Breathe_8f_v1",
+    "width": 1536,
+    "height": 768,
+    "columns": 4,
+    "rows": 2,
+    "cell": [
+      384,
+      384
+    ],
+    "pivot": [
+      0.5,
+      0.041666666666666664
+    ],
+    "ppu": 100,
+    "seconds": 2,
+    "frameHoldsAt12fps": [
+      3,
+      3,
+      3,
+      2,
+      3,
+      3,
+      3,
+      4
+    ],
+    "bounds": [
+      {
+        "frame": 0,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 1,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 2,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 3,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 309,
+        "maxY": 367
+      },
+      {
+        "frame": 4,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 5,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 6,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      },
+      {
+        "frame": 7,
+        "minX": 57,
+        "minY": 50,
+        "maxX": 308,
+        "maxY": 367
+      }
+    ],
+    "sameRestAtBothEnds": true,
+    "restHash": "df9288d710e0e8007a050f5efaedecec581856559a3efee0dcbdd9fcfb48f374",
+    "guid": "75ed79a5dbd24badfca7a8fefc94f0f1",
+    "unityEditorPlaybackTested": false
+  }
+]

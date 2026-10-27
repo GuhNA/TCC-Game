@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 64eb77f0d549c7d42b72cf37c659308d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5601950559644563381
+    second: novice_adventurers_roster_4x4_v1_0
+  - first:
+      213: 4087064992185489946
+    second: novice_adventurers_roster_4x4_v1_1
+  - first:
+      213: 5130231524150405246
+    second: novice_adventurers_roster_4x4_v1_2
+  - first:
+      213: -9201181815072051813
+    second: novice_adventurers_roster_4x4_v1_3
+  - first:
+      213: 2067049289514451783
+    second: novice_adventurers_roster_4x4_v1_4
+  - first:
+      213: -6640585606852459633
+    second: novice_adventurers_roster_4x4_v1_5
+  - first:
+      213: -6399745847085639018
+    second: novice_adventurers_roster_4x4_v1_6
+  - first:
+      213: 6786304094349076364
+    second: novice_adventurers_roster_4x4_v1_7
+  - first:
+      213: -1892341290862267425
+    second: novice_adventurers_roster_4x4_v1_8
+  - first:
+      213: 9075752284290934011
+    second: novice_adventurers_roster_4x4_v1_9
+  - first:
+      213: -4958930764866014920
+    second: novice_adventurers_roster_4x4_v1_10
+  - first:
+      213: 2898103868320873095
+    second: novice_adventurers_roster_4x4_v1_11
+  - first:
+      213: 2627030261766944416
+    second: novice_adventurers_roster_4x4_v1_12
+  - first:
+      213: -3942773639220278392
+    second: novice_adventurers_roster_4x4_v1_13
+  - first:
+      213: -5268899915110563972
+    second: novice_adventurers_roster_4x4_v1_14
+  - first:
+      213: 4017001425634098721
+    second: novice_adventurers_roster_4x4_v1_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_0
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1217
+        width: 299
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b73ae48a502ebd40800000000000000
+      internalID: 5601950559644563381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_1
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 1217
+        width: 268
+        height: 293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1a9629c4fb28b830800000000000000
+      internalID: 4087064992185489946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_2
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 1217
+        width: 308
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e78ee7cd36e323740800000000000000
+      internalID: 5130231524150405246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_3
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 1217
+        width: 283
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9da8de93e5de4080800000000000000
+      internalID: -9201181815072051813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 817
+        width: 288
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7438bba8062afac10800000000000000
+      internalID: 2067049289514451783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_5
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 817
+        width: 315
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f83ccfae296e7d3a0800000000000000
+      internalID: -6640585606852459633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_6
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 817
+        width: 271
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69adda33f098f27a0800000000000000
+      internalID: -6399745847085639018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_7
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 817
+        width: 302
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c87a4715e9bcd2e50800000000000000
+      internalID: 6786304094349076364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 417
+        width: 291
+        height: 311
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3b95c3f9d0db5e0800000000000000
+      internalID: -1892341290862267425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_9
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 417
+        width: 287
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf4e99efd9c83fd70800000000000000
+      internalID: 9075752284290934011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_10
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 417
+        width: 291
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831b76e2eb65e2bb0800000000000000
+      internalID: -4958930764866014920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_11
+      rect:
+        serializedVersion: 2
+        x: 1257
+        y: 417
+        width: 285
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78a73790d12283820800000000000000
+      internalID: 2898103868320873095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_12
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 17
+        width: 307
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6f1deba16157420800000000000000
+      internalID: 2627030261766944416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_13
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 17
+        width: 329
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88b408cc3447849c0800000000000000
+      internalID: -3942773639220278392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_14
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 17
+        width: 270
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7fbfba617b11e6b0800000000000000
+      internalID: -5268899915110563972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: novice_adventurers_roster_4x4_v1_15
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 17
+        width: 310
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e782d73814fb730800000000000000
+      internalID: 4017001425634098721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      novice_adventurers_roster_4x4_v1_0: 5601950559644563381
+      novice_adventurers_roster_4x4_v1_1: 4087064992185489946
+      novice_adventurers_roster_4x4_v1_10: -4958930764866014920
+      novice_adventurers_roster_4x4_v1_11: 2898103868320873095
+      novice_adventurers_roster_4x4_v1_12: 2627030261766944416
+      novice_adventurers_roster_4x4_v1_13: -3942773639220278392
+      novice_adventurers_roster_4x4_v1_14: -5268899915110563972
+      novice_adventurers_roster_4x4_v1_15: 4017001425634098721
+      novice_adventurers_roster_4x4_v1_2: 5130231524150405246
+      novice_adventurers_roster_4x4_v1_3: -9201181815072051813
+      novice_adventurers_roster_4x4_v1_4: 2067049289514451783
+      novice_adventurers_roster_4x4_v1_5: -6640585606852459633
+      novice_adventurers_roster_4x4_v1_6: -6399745847085639018
+      novice_adventurers_roster_4x4_v1_7: 6786304094349076364
+      novice_adventurers_roster_4x4_v1_8: -1892341290862267425
+      novice_adventurers_roster_4x4_v1_9: 9075752284290934011
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
