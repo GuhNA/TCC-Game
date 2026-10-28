@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro — edifícios integrados</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#171918;color:#eee2c5;font:17px/1.5 system-ui,sans-serif}main{max-width:1600px;margin:auto;padding:30px}h1,h2,a{color:#e6bc61}h1{font-size:30px}h2{font-size:21px}p{max-width:1100px}select{padding:10px;font:inherit;background:#292c29;color:#eee2c5;border:1px solid #8e794e;width:min(100%,540px)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}figure{margin:16px 0}img{width:100%;display:block;border:1px solid #716044}figcaption{margin:8px 0;color:#c6b99b}.note{padding:16px;background:#252a25;border-left:3px solid #e6bc61}@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+</style><main>
+<h1>Centro — etapa 1: modais dos edifícios</h1>
+<p>O modal do Quartel, Mercado Local, Taverna, Estande de Arqueiros e Escola de Magia agora usa o template aprovado. Nível, benefícios, custo e saldo vêm dos serviços reais do jogo.</p>
+<p class="note">As imagens abaixo usam dados fixos para comparar a composição. A coluna da direita captura o prefab de produção conectado à cena Centro. A baseline da esquerda foi preservada a partir da aprovação do protótipo.</p>
+<p><strong>Validação:</strong> 1/1 teste funcional passou, cobrindo os cinco edifícios e o fechamento por Esc. As 9/9 capturas passaram na comparação com a baseline, em 1920 × 1080 e 1366 × 768. O teste funcional usou uma partida em memória.</p>
+<p><a href="CentroHudImplementation.md">Entrega e validação</a> · <a href="../../Artifacts/VisualTests/centro-buildings/report.md">Comparação visual automatizada</a> · <a href="CentroHudProposalReview.html">Proposta aprovada</a></p>
+<label for="state">Estado para comparar</label><br><select id="state">
+<option value="building-1920x1080">Quartel — melhoria · 1920 × 1080</option>
+<option value="building-compact-1366x768">Quartel — melhoria · 1366 × 768</option>
+<option value="unbuilt-1920x1080">Construção inicial · 1920 × 1080</option>
+<option value="insufficient-1366x768">Ouro insuficiente · 1366 × 768</option>
+<option value="maximum-1366x768">Nível máximo · 1366 × 768</option>
+<option value="market-1920x1080">Mercado Local · 1920 × 1080</option>
+<option value="tavern-1920x1080">Taverna · 1920 × 1080</option>
+<option value="archers-1920x1080">Estande de Arqueiros · 1920 × 1080</option>
+<option value="mages-1920x1080">Escola de Magia · 1920 × 1080</option>
+</select>
+<div class="grid"><figure><h2>Protótipo aprovado</h2><img id="approved" src="../../Assets/Tests/Visual/Baselines/centro-proposals/building-1920x1080.png" alt="Protótipo aprovado do modal de edifícios"><figcaption>Referência visual preservada.</figcaption></figure>
+<figure><h2>Integrado ao jogo</h2><img id="actual" src="../../Artifacts/VisualTests/centro-buildings/captures/building-1920x1080.png" alt="Modal funcional integrado à cena Centro"><figcaption>Mesmo layout; dados e ações conectados à construção e melhoria.</figcaption></figure></div>
+<p>Para testar: abra a cena Centro, entre no modo de jogo e interaja com um edifício. Use Construir/Melhorar para a ação principal; X, Voltar à cidade ou Esc para sair.</p>
+<p>Impostos e seus prompts já foram aplicados: <a href="CentroHudStageTwoReview.html">ver etapa 2</a>. Viagens e alertas compartilhados serão conferidos no conjunto final.</p>
+</main><script>
+document.getElementById('state').addEventListener('change',event=>{
+const file=event.target.value+'.png';
+document.getElementById('approved').src='../../Assets/Tests/Visual/Baselines/centro-proposals/'+file;
+document.getElementById('actual').src='../../Artifacts/VisualTests/centro-buildings/captures/'+file;
+});
+</script></html>

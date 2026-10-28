@@ -14,6 +14,7 @@ public class CityManager : MonoBehaviour
     private BuildingBehaviour selectedBuilding;
     private EconomyService economy;
     private BuildingService buildingService;
+    private bool upgrading;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class CityManager : MonoBehaviour
         InitializeBuildings();
 
         buildingPanel.UpgradeRequested += UpgradeSelectedBuilding;
+        buildingPanel.Closed += HandlePanelClosed;
         economy.MoneyChanged += HandleMoneyChanged;
         buildingService.LevelChanged += HandleBuildingLevelChanged;
     }
@@ -30,6 +32,7 @@ public class CityManager : MonoBehaviour
     private void OnDestroy()
     {
         buildingPanel.UpgradeRequested -= UpgradeSelectedBuilding;
+        buildingPanel.Closed -= HandlePanelClosed;
         economy.MoneyChanged -= HandleMoneyChanged;
         buildingService.LevelChanged -= HandleBuildingLevelChanged;
 
@@ -59,20 +62,22 @@ public class CityManager : MonoBehaviour
 
     private void UpgradeSelectedBuilding()
     {
-        if (selectedBuilding == null)
+        if (selectedBuilding == null || upgrading || !buildingPanel.isActiveAndEnabled)
         {
             return;
         }
 
         BuildingDefinition definition = selectedBuilding.Definition;
-        BuildingUpgradeStatus result = buildingService.TryUpgrade(definition);
-
-        if (result != BuildingUpgradeStatus.Upgraded)
+        BuildingUpgradeStatus result;
+        upgrading = true;
+        try
         {
-            RefreshSelectedBuildingPanel();
-            return;
+            result = buildingService.TryUpgrade(definition);
         }
-        RefreshSelectedBuildingPanel();
+        finally { upgrading = false; }
+        RefreshSelectedBuildingPanel(result == BuildingUpgradeStatus.Upgraded
+            ? $"{definition.displayName} no nível {selectedBuilding.Level}. Melhoria concluída."
+            : null);
     }
 
     private void HandleBuildingLevelChanged(
@@ -89,17 +94,20 @@ public class CityManager : MonoBehaviour
                 break;
             }
         }
+        if (!upgrading && buildingPanel.isActiveAndEnabled) RefreshSelectedBuildingPanel();
     }
 
     private void HandleMoneyChanged(int newMoney)
     {
-        if (buildingPanel.isActiveAndEnabled)
+        if (!upgrading && buildingPanel.isActiveAndEnabled)
         {
             RefreshSelectedBuildingPanel();
         }
     }
 
-    private void RefreshSelectedBuildingPanel()
+    private void HandlePanelClosed() => selectedBuilding = null;
+
+    private void RefreshSelectedBuildingPanel(string feedback = null)
     {
         if (selectedBuilding == null)
         {
@@ -112,7 +120,8 @@ public class CityManager : MonoBehaviour
 
         buildingPanel.Show(
             selectedBuilding,
-            canAfford
+            canAfford,
+            feedback
         );
     }
 

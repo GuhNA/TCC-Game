@@ -1,5 +1,6 @@
 param(
-    [string]$UnityPath = "D:\Unity\Editors\6000.3.11f1\Editor\Unity.exe"
+    [string]$UnityPath = "D:\Unity\Editors\6000.3.11f1\Editor\Unity.exe",
+    [string]$TestFilter = "TCCGame.Tests.PlayMode.RecruitmentSmokeTests"
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,7 +22,7 @@ $unityArguments = @(
     "-projectPath", $projectPath,
     "-runTests",
     "-testPlatform", "PlayMode",
-    "-testFilter", "TCCGame.Tests.PlayMode.RecruitmentSmokeTests",
+    "-testFilter", $TestFilter,
     "-testResults", $resultPath,
     "-logFile", $logPath
 )

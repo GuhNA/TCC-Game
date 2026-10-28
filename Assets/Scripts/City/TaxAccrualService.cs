@@ -100,6 +100,18 @@ public sealed class TaxService
         );
     }
 
+    /// <summary>Projects accrual without changing timestamps, balances or persistence.</summary>
+    public int GetCollectibleAmount()
+    {
+        int level = GetMarketLevel();
+        if (level <= 0) return 0;
+        double elapsed = Math.Max(0d, clock.UnixSeconds - state.taxes.lastCalculatedUnixSeconds);
+        double eligible = TaxCalculator.GetEligibleSeconds(elapsed,
+            state.taxes.eligibleSecondsSinceCollection, MaximumAccrualSeconds);
+        double total = state.taxes.accruedTax + TaxCalculator.CalculateAccruedTax(GetProduction(level), eligible);
+        return (int)Math.Min(int.MaxValue, Math.Max(0d, Math.Floor(total + 0.0000001d)));
+    }
+
     public void SaveCurrentAccrual()
     {
         AccrueUntil(clock.UnixSeconds, GetMarketLevel());

@@ -26,6 +26,8 @@ namespace TCCGame.Editor
             "Assets/Images/UI/Recruitment/RecruitmentHudVisualDirection.png";
         private const string SpriteSourceFolder =
             "Assets/Images/UI/Recruitment/Sprites";
+        private const string PortraitFolder =
+            "Assets/Images/UI/Recruitment/PortraitsV2";
         private const string UiFontSourcePath =
             "Assets/Fonts/PixelifySans/PixelifySans-Variable.ttf";
         private const string UiFontAssetPath =
@@ -99,75 +101,83 @@ namespace TCCGame.Editor
             GameObject headerPlate = AddFixedPanel(
                 board.transform,
                 "Header Plate",
-                new Vector2(-80f, 370f),
-                new Vector2(1120f, 84f),
+                new Vector2(-105f, 378f),
+                new Vector2(1100f, 72f),
                 Color.white
             );
             ApplyStyle(headerPlate, metalPanel, Color.white);
 
-            AddDrape(board.transform, "Left Header Drape", new Vector2(-655f, 360f));
-            AddDrape(board.transform, "Right Header Drape", new Vector2(495f, 360f));
+            AddDrape(board.transform, "Left Header Drape", new Vector2(-690f, 358f));
+            AddDrape(board.transform, "Right Header Drape", new Vector2(470f, 358f));
+
+            GameObject subtitlePlate = AddFixedPanel(board.transform, "Subtitle Plate",
+                new Vector2(-105f, 320f), new Vector2(1020f, 32f), Color.white);
+            ApplyStyle(subtitlePlate, metalPanel, Color.white);
 
             GameObject goldPlate = AddFixedPanel(
                 board.transform,
                 "Gold Plate",
-                new Vector2(610f, 372f),
-                new Vector2(220f, 58f),
+                new Vector2(610f, 378f),
+                new Vector2(190f, 58f),
                 Color.white
             );
             ApplyStyle(goldPlate, metalPanel, Color.white);
 
             AddText(board.transform, "Title", "POSTO DE RECRUTAMENTO",
-                new Vector2(-80f, 378f), new Vector2(820f, 48f), 32f,
+                new Vector2(-105f, 378f), new Vector2(980f, 46f), 32f,
                 TextAlignmentOptions.Center,
                 theme.Title);
             AddText(board.transform, "Subtitle",
                 "Portão atual  •  Destino: Reserva central",
-                new Vector2(-80f, 340f), new Vector2(820f, 30f), 18f,
+                new Vector2(-105f, 320f), new Vector2(960f, 24f), 18f,
                 TextAlignmentOptions.Center,
                 theme.Subtitle);
-            AddText(board.transform, "Gold", "Ouro: 1000",
-                new Vector2(640f, 372f), new Vector2(135f, 42f), 22f,
+            TMP_Text goldLabel = AddText(board.transform, "Gold", "Ouro: 1000",
+                new Vector2(633f, 378f), new Vector2(132f, 42f), 22f,
                 TextAlignmentOptions.Left,
                 theme.GoldText);
+            goldLabel.enableAutoSizing = true;
+            goldLabel.fontSizeMin = 14f;
+            goldLabel.fontSizeMax = 22f;
+            goldLabel.textWrappingMode = TextWrappingModes.NoWrap;
             AddIcon(board.transform, "Gold Icon", coinIcon,
-                new Vector2(530f, 372f), new Vector2(34f, 34f));
+                new Vector2(540f, 378f), new Vector2(34f, 34f));
 
             Button close = AddButton(board.transform, "Close",
                 new Vector2(735f, 372f), new Vector2(54f, 54f), "X",
                 Color.white, 24f, redButton);
 
             CreateUnitCard(board.transform, UnitType.Warrior,
-                "GUERREIRO", "Linha de frente", "WARRIOR",
-                new Vector2(-480f, -12f), new Color(0.58f, 0.16f, 0.13f, 1f));
+                "GUERREIRO", "Linha de frente", "Warrior",
+                new Vector2(-480f, -20f), new Color(0.58f, 0.16f, 0.13f, 1f));
             CreateUnitCard(board.transform, UnitType.Archer,
-                "ARQUEIRO", "Ataque à distância", "ARCHER",
-                new Vector2(0f, -12f), new Color(0.25f, 0.37f, 0.30f, 1f));
+                "ARQUEIRO", "Ataque à distância", "Archer",
+                new Vector2(0f, -20f), new Color(0.25f, 0.37f, 0.30f, 1f));
             CreateUnitCard(board.transform, UnitType.Mage,
-                "MAGO", "Dano arcano", "MAGE",
-                new Vector2(480f, -12f), new Color(0.18f, 0.28f, 0.57f, 1f));
+                "MAGO", "Dano arcano", "Mage",
+                new Vector2(480f, -20f), new Color(0.18f, 0.28f, 0.57f, 1f));
 
             GameObject timerPlate = AddFixedPanel(
-                board.transform, "Timer Plate", new Vector2(-470f, -397f),
-                new Vector2(560f, 54f), Color.white);
+                board.transform, "Timer Plate", new Vector2(-452f, -382f),
+                new Vector2(540f, 50f), Color.white);
             ApplyStyle(timerPlate, metalPanel, Color.white);
             GameObject feedbackPlate = AddFixedPanel(
-                board.transform, "Feedback Plate", new Vector2(345f, -397f),
-                new Vector2(850f, 54f), Color.white);
+                board.transform, "Feedback Plate", new Vector2(270f, -382f),
+                new Vector2(890f, 50f), Color.white);
             ApplyStyle(feedbackPlate, metalPanel, Color.white);
 
             AddText(board.transform, "Timer", "Novos recrutas em 06:00:00",
-                new Vector2(-440f, -397f), new Vector2(455f, 40f), 19f,
+                new Vector2(-432f, -382f), new Vector2(455f, 36f), 19f,
                 TextAlignmentOptions.Left, Color.white);
             AddIcon(board.transform, "Timer Icon", hourglassIcon,
-                new Vector2(-720f, -397f), new Vector2(34f, 34f));
+                new Vector2(-693f, -382f), new Vector2(30f, 30f));
             AddText(board.transform, "Feedback",
                 "Selecione a quantidade e confirme a contratação.",
-                new Vector2(375f, -397f), new Vector2(745f, 40f), 19f,
+                new Vector2(305f, -382f), new Vector2(770f, 36f), 19f,
                 TextAlignmentOptions.Right,
                 theme.Success);
             AddIcon(board.transform, "Feedback Icon", checkIcon,
-                new Vector2(-45f, -397f), new Vector2(36f, 36f));
+                new Vector2(-130f, -382f), new Vector2(36f, 36f));
 
             AddBoardFrame(board.transform);
             close.transform.SetAsLastSibling();
@@ -209,7 +219,7 @@ namespace TCCGame.Editor
                 Color.white);
             ApplyStyle(portrait, metalPanel, Color.white);
             Sprite portraitSprite = AssetDatabase.LoadAssetAtPath<Sprite>(
-                $"{StyleFolder}/{portraitAssetName}.png"
+                $"{PortraitFolder}/{portraitAssetName}.png"
             );
             GameObject portraitImage = AddFixedPanel(
                 portrait.transform, "Portrait", Vector2.zero,
@@ -243,11 +253,11 @@ namespace TCCGame.Editor
                 TextAlignmentOptions.Left,
                 theme.ParchmentText);
             TMP_Text price = AddText(card.transform, "Price", "Unidade: 3 ouro",
-                new Vector2(20f, -167f), new Vector2(250f, 30f), 17f,
+                new Vector2(20f, -155f), new Vector2(250f, 24f), 17f,
                 TextAlignmentOptions.Center,
                 theme.PriceText);
             AddIcon(card.transform, "Price Icon", coinIcon,
-                new Vector2(-80f, -167f), new Vector2(42f, 42f));
+                new Vector2(-80f, -155f), new Vector2(30f, 30f));
 
             Button decrease = AddButton(card.transform, "Decrease",
                 new Vector2(-146f, -52f), new Vector2(58f, 52f), "−",
@@ -278,16 +288,16 @@ namespace TCCGame.Editor
                 Color.white, 17f, bronzeButton);
 
             TMP_Text total = AddText(card.transform, "Total", "Total: 3 ouro",
-                new Vector2(0f, -197f), new Vector2(340f, 28f), 17f,
+                new Vector2(0f, -183f), new Vector2(340f, 24f), 17f,
                 TextAlignmentOptions.Center,
                 new Color(0.21f, 0.15f, 0.09f, 1f));
             TMP_Text status = AddText(card.transform, "Status",
-                "Pronto para contratar", new Vector2(0f, -225f),
-                new Vector2(350f, 26f), 15f,
+                "Pronto para contratar", new Vector2(0f, -210f),
+                new Vector2(350f, 20f), 15f,
                 TextAlignmentOptions.Center,
                 new Color(0.62f, 0.82f, 0.58f, 1f));
             Button purchase = AddButton(card.transform, "Confirm Purchase",
-                new Vector2(0f, -267f), new Vector2(350f, 58f),
+                new Vector2(0f, -249f), new Vector2(350f, 48f),
                 "CONTRATAR", Color.white, 21f, goldButton);
             TMP_Text actionLabel = purchase.GetComponentInChildren<TMP_Text>();
 
@@ -538,7 +548,8 @@ namespace TCCGame.Editor
             EnsureFolder("Assets/Resources/UI");
             EnsureFolder(StyleFolder);
 
-            theme = MedievalHudKit.CreateOrUpdateTheme();
+            theme = AssetDatabase.LoadAssetAtPath<MedievalHudTheme>(MedievalHudKit.ThemeAssetPath);
+            if (theme == null || !theme.IsComplete) theme = MedievalHudKit.CreateOrUpdateTheme();
             woodPanel = theme.WoodPanel;
             parchmentPanel = theme.ParchmentPanel;
             metalPanel = theme.MetalPanel;
@@ -555,7 +566,12 @@ namespace TCCGame.Editor
             drapeSprite = theme.HeaderDrape;
             uiFont = theme.Font;
 
-            CreatePortraitCrops();
+            foreach (string portrait in new[] { "Warrior", "Archer", "Mage" })
+            {
+                string path = $"{PortraitFolder}/{portrait}.png";
+                if (!File.Exists(path)) throw new FileNotFoundException("Authored troop portrait is missing", path);
+                ImportAsSlicedSprite(path, Vector4.zero);
+            }
         }
 
         private static TMP_FontAsset LoadOrCreateUiFont()
