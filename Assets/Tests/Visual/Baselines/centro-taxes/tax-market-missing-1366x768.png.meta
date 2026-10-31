@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: f05a42f6cddf2c03d70f1760c5c59d3c
+guid: 294cd4e87395fe74e937db7bc9430c62
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4739618855927625038
+    second: tax-market-missing-1366x768_0
+  - first:
+      213: 2485849902327392293
+    second: tax-market-missing-1366x768_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -34,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -72,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,133 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkUpBaked_00
+      name: tax-market-missing-1366x768_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
+        width: 1366
+        height: 741
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9241f41639e24be34554593bd8adbca
-      internalID: -7464865729605974105
+      spriteID: 2bac0b913cd793eb0800000000000000
+      internalID: -4739618855927625038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkUpBaked_01
+      name: tax-market-missing-1366x768_1
       rect:
         serializedVersion: 2
-        x: 326
-        y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
+        x: 1091
+        y: 687
+        width: 237
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8096200d8592fb604a453716a22915c2
-      internalID: 4717906583227596545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkUpBaked_02
-      rect:
-        serializedVersion: 2
-        x: 652
-        y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f2f7a8216cbd7a4e76844f7c6fc21546
-      internalID: 4183217238667268154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkUpBaked_03
-      rect:
-        serializedVersion: 2
-        x: 978
-        y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42603ad4432c80983760ca007cb10c2e
-      internalID: -231285587117695655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkUpBaked_04
-      rect:
-        serializedVersion: 2
-        x: 1304
-        y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbf0e1082032048f72f6e3c3356bbbff
-      internalID: -8859118526981208951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkUpBaked_05
-      rect:
-        serializedVersion: 2
-        x: 1630
-        y: 0
-        width: 326
-        height: 301
-      alignment: 9
-      pivot: {x: 0.5, y: 0.053156145}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33ea452b14fa7575ed4d9cb1223d8ecd
-      internalID: -4513620783404097945
+      spriteID: 528e929c0538f7220800000000000000
+      internalID: 2485849902327392293
       vertices: []
       indices: 
       edges: []
@@ -242,12 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      WalkUpBaked_00: -7464865729605974105
-      WalkUpBaked_01: 4717906583227596545
-      WalkUpBaked_02: 4183217238667268154
-      WalkUpBaked_03: -231285587117695655
-      WalkUpBaked_04: -8859118526981208951
-      WalkUpBaked_05: -4513620783404097945
+      tax-market-missing-1366x768_0: -4739618855927625038
+      tax-market-missing-1366x768_1: 2485849902327392293
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
