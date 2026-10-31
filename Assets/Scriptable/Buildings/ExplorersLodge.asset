@@ -41,5 +41,6 @@ MonoBehaviour:
       quantity: 50
   baseProduction: 1
   productionPerLevel: 1
-  unbuiltSprite: {fileID: 0}
-  levelSprites: []
+  unbuiltSprite: {fileID: -2871290297188978435, guid: ee8afa7bb380a7e4abd1644eba6d2d77, type: 3}
+  levelSprites:
+  - {fileID: -2871290297188978435, guid: ee8afa7bb380a7e4abd1644eba6d2d77, type: 3}

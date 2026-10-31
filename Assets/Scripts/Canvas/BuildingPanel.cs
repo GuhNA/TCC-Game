@@ -101,6 +101,8 @@ public class BuildingPanel : MonoBehaviour, IModalInteractionOwner
             ? "Mais impostos acumulados por minuto enquanto o Mercado estiver construído."
             : definition.type == BuildingType.Tavern
                 ? "Gerencie o edifício aqui; use a porta para entrar na Taverna."
+                : definition.type == BuildingType.ExplorersLodge
+                    ? "Cada nível concede 1 explorador para coletar recursos nas regiões conquistadas."
                 : "Mais recrutas disponíveis no próximo reestoque do Portão.";
         levelText.text = maximum ? $"NÍVEL {currentLevel}/{definition.maximumLevel}"
             : currentLevel == 0 ? "PRÉVIA • NÍVEL 0 → 1" : $"NÍVEL {currentLevel} → {next}";
@@ -118,6 +120,7 @@ public class BuildingPanel : MonoBehaviour, IModalInteractionOwner
             : !canAfford ? "Recursos insuficientes. Confira os materiais exigidos para melhorar."
             : definition.type == BuildingType.LocalMarket ? "O novo rendimento passa a valer após a melhoria."
             : definition.type == BuildingType.Tavern ? "A nova capacidade será usada na próxima onda de aventureiros."
+            : definition.type == BuildingType.ExplorersLodge ? "A melhoria aumenta imediatamente a capacidade de exploradores no mapa."
             : "A melhoria altera o próximo reestoque (6h); não concede tropas imediatamente.");
         illustration.sprite = definition.levelSprites != null && definition.levelSprites.Length > 0
             ? definition.levelSprites[Mathf.Clamp(currentLevel - 1, 0, definition.levelSprites.Length - 1)]
@@ -139,7 +142,8 @@ public class BuildingPanel : MonoBehaviour, IModalInteractionOwner
         if (definition.type == BuildingType.Tavern)
             return $"{(level <= 0 ? 0 : level + 1)} aventureiros\npor onda";
         if (definition.type == BuildingType.ExplorersLodge)
-            return $"{level} exploradores\ndisponíveis";
+            // Capacidade não é a quantidade livre: exploradores podem estar alocados ou perdidos.
+            return $"{level} {(level == 1 ? "explorador" : "exploradores")}\ncapacidade total";
         string unit = definition.type == BuildingType.ArcherStand ? "arqueiros"
             : definition.type == BuildingType.MagicSchool ? "magos" : "guerreiros";
         return $"{RecruitmentService.CalculateCapacity(level)} {unit}\npor reestoque";

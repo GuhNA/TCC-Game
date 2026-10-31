@@ -80,7 +80,7 @@ namespace TCCGame.Tests.PlayMode
             BuildingPanel panel = Object.FindFirstObjectByType<BuildingPanel>(FindObjectsInactive.Include);
             var player = Object.FindFirstObjectByType<PlayerInteractor>();
             var buildings = Object.FindObjectsByType<BuildingBehaviour>(FindObjectsSortMode.None);
-            Assert.That(buildings, Has.Length.EqualTo(5));
+            Assert.That(buildings, Has.Length.EqualTo(6));
             Assert.That(panel.gameObject.activeSelf, Is.False);
             BuildingBehaviour barracks = buildings.Single(x => x.Definition.type == BuildingType.Barracks);
             barracks.Interact(player.gameObject);
@@ -112,6 +112,21 @@ namespace TCCGame.Tests.PlayMode
             yield return null;
             Assert.That(upgrade.interactable, Is.True);
 
+            // Ouro sozinho não constrói o alojamento: também são necessários recursos do mapa.
+            BuildingBehaviour lodge = buildings.Single(x => x.Definition.type == BuildingType.ExplorersLodge);
+            Assert.That(lodge.name, Is.EqualTo("ExplorationBuild"));
+            Assert.That(lodge.GetComponent<Collider2D>().enabled, Is.True);
+            panel.Hide();
+            lodge.Interact(player.gameObject);
+            yield return null;
+            Assert.That(upgrade.interactable, Is.False);
+            Assert.That(Label(panel, "Building Subtitle").text, Does.Contain("Cada nível concede 1 explorador"));
+            Assert.That(Label(panel, "Building Feedback").text, Does.Contain("Recursos insuficientes"));
+
+            foreach (BuildingUpgradeLevelCost levelCost in lodge.Definition.levelUpgradeCosts)
+                foreach (BuildingResourceRequirement requirement in levelCost.resources)
+                    Assert.That(session.Inventory.TryAddItem(requirement.ResourceId, requirement.quantity), Is.True);
+
             foreach (BuildingBehaviour building in buildings)
             {
                 panel.Hide();
@@ -124,16 +139,25 @@ namespace TCCGame.Tests.PlayMode
                     int before = session.Economy.Money;
                     int level = building.Level;
                     int cost = BuildingCalculator.GetUpgradeCost(building.Definition, level);
+                    int explorerCapacity = session.Exploration.AvailableExplorers;
+                    var materials = BuildingCalculator.GetResourceRequirements(building.Definition, level)
+                        .GroupBy(x => x.ResourceId)
+                        .ToDictionary(x => x.Key, x => new { Before = session.Buildings.GetResourceQuantity(x.Key), Cost = x.Sum(r => r.quantity) });
                     upgrade.onClick.Invoke();
                     upgrade.onClick.Invoke();
                     yield return null;
                     Assert.That(building.Level, Is.EqualTo(level + 1));
                     Assert.That(session.Buildings.GetLevel(building.Definition.type), Is.EqualTo(level + 1));
                     Assert.That(session.Economy.Money, Is.EqualTo(before - cost));
+                    foreach (var material in materials)
+                        Assert.That(session.Buildings.GetResourceQuantity(material.Key), Is.EqualTo(material.Value.Before - material.Value.Cost));
+                    if (building.Definition.type == BuildingType.ExplorersLodge)
+                        Assert.That(session.Exploration.AvailableExplorers, Is.EqualTo(explorerCapacity + 1));
                     Assert.That(Label(panel, "Building Feedback").text, Does.Contain("Melhoria concluída"));
                 }
                 Assert.That(Label(panel, "Current Benefit").text, Does.Contain(building.Definition.type == BuildingType.Tavern
-                    ? "3 aventureiros" : building.Definition.type == BuildingType.LocalMarket ? "15 ouro" : "16 "));
+                    ? "3 aventureiros" : building.Definition.type == BuildingType.LocalMarket ? "15 ouro"
+                    : building.Definition.type == BuildingType.ExplorersLodge ? "2 exploradores" : "16 "));
                 Button(panel, "Close Building").onClick.Invoke();
                 Assert.That(player.HasModalOpen, Is.False);
             }
