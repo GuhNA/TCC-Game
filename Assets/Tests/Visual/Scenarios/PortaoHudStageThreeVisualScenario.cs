@@ -78,6 +78,9 @@ namespace TCCGame.Tests.Visual
                 foreach (ScrollRect scroll in garrisonRoot.GetComponentsInChildren<ScrollRect>(true)) scroll.verticalNormalizedPosition = 1;
             }
             Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(context.TargetRoot.GetComponent<RectTransform>());
+            foreach (ScrollRect scroll in garrisonRoot.GetComponentsInChildren<ScrollRect>(true))
+                scroll.verticalScrollbar.gameObject.SetActive(scroll.content.rect.height > scroll.viewport.rect.height + .5f);
         }
 
         private static TMP_Text Text(Transform root, string name) => root.GetComponentsInChildren<TMP_Text>(true).Single(x => x.name == name);

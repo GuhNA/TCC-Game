@@ -408,7 +408,7 @@ namespace TCCGame.Tests.Visual
             builder.AppendLine();
             builder.AppendLine(report.summary);
             builder.AppendLine();
-            builder.AppendLine("The comparison sheet shows the approved UX/UI reference on the left and the Unity render on the right.");
+            builder.AppendLine("The comparison sheet shows the supplied reference on the left and the Unity render on the right. A reference image does not imply an approved baseline.");
             builder.AppendLine();
             builder.AppendLine("| State | Resolution | Status | Mean error | Changed pixels |");
             builder.AppendLine("|---|---:|---|---:|---:|");

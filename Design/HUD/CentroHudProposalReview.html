@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro — propostas de UX/UI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#171918;color:#eee2c5;font:17px/1.55 system-ui,sans-serif}main{max-width:1440px;margin:auto;padding:32px}h1{font-size:31px;color:#e6bc61}h2{font-size:24px;margin-top:38px}h3{font-size:19px}p{max-width:1000px}a{color:#e6bc61}img{display:block;width:100%;height:auto;border:1px solid #716044}figure{margin:20px 0}figcaption{margin:8px 0;color:#c6b99b}nav{display:flex;flex-wrap:wrap;gap:14px;margin:24px 0}nav a{padding:8px 12px;border:1px solid #716044;text-decoration:none;border-radius:4px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}details{border-top:1px solid #64583f;padding:16px 0}summary{font-weight:600;color:#e6bc61;cursor:pointer}label{display:block;margin:16px 0 8px}select{font:inherit;background:#292c29;color:#eee2c5;border:1px solid #8e794e;padding:10px;width:min(100%,450px)}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{text-align:left;padding:12px;border-bottom:1px solid #64583f;vertical-align:top}small{color:#c6b99b}.notice{padding:14px 18px;background:#252a25;border-left:3px solid #e6bc61}@media(max-width:800px){main{padding:20px}.grid{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>Centro — propostas de melhoria em UX/UI</h1>
+<p class="notice"><strong>Design aprovado em 27/10/2026.</strong> As 11 capturas foram preservadas como baseline do protótipo. Os modais dos edifícios já foram integrados: <a href="CentroHudStageOneReview.html">ver etapa 1</a>. <a href="CentroHudImplementation.md">Plano de implementação por etapas</a>.</p>
+<p>O foco está no modal dos cinco edifícios e no feedback de impostos, que ainda usam o visual legado.
+Ouro, interação, alertas de onda e viagem já aproveitam os componentes redesenhados.</p>
+<p class="notice">Propostas renderizadas no Unity com o kit visual do Portão e os sprites reais dos edifícios.
+Dados fixos para discussão. Estas imagens são do protótipo; o resultado da integração funcional está na revisão da etapa 1.</p>
+<p><a href="CentroHudUXUIProposal.md">Análise completa e etapas sugeridas</a> · <a href="CentroHudInventory.md">Inventário da cena</a></p>
+<nav aria-label="Seções da proposta"><a href="#principal">Modal de edifícios</a><a href="#estados">Estados da decisão</a><a href="#edificios">Cinco edifícios</a><a href="#impostos">Impostos</a><a href="#prioridades">Prioridades</a></nav>
+
+<section id="principal"><h2>1. Um template para construção e melhoria</h2>
+<p>Ilustração e nível à esquerda; comparação do benefício à direita. O custo, o saldo e o resultado esperado
+ficam juntos antes da ação principal. Cabeçalho, subtítulo, feedback e botões têm áreas próprias.</p>
+<figure><img alt="Proposta do modal do Quartel com comparação de níveis e custo" src="../../Artifacts/VisualTests/centro-proposals/captures/building-1920x1080.png"><figcaption>Exemplo: Quartel nível 2 → 3. A capacidade passa de 16 para 19 guerreiros no próximo reestoque, por 225 ouro.</figcaption></figure>
+<details><summary>Comparar com o modal atual</summary><div class="grid">
+<figure><img alt="Modal legado do Centro com dados ilustrativos" src="CentroLegacyBuilding.png"><figcaption>Antes da integração: textos genéricos, botões neutros e pouco contexto para a decisão.</figcaption></figure>
+<figure><img alt="Modal proposto no padrão medieval pixelado" src="../../Artifacts/VisualTests/centro-proposals/captures/building-1920x1080.png"><figcaption>Proposta: benefício atual/próximo, custo explícito e ação nomeada.</figcaption></figure></div></details>
+<details><summary>Ver em 1366 × 768</summary><figure><img alt="Modal proposto em resolução compacta" src="../../Artifacts/VisualTests/centro-proposals/captures/building-compact-1366x768.png"></figure></details>
+<p>A palavra “Produção” será substituída pelo efeito real: recrutas por reestoque, ouro por minuto ou aventureiros por onda.
+A melhoria militar não entrega tropas imediatamente; isso aparece antes de confirmar.</p></section>
+
+<section id="estados"><h2>2. Estados claros antes de gastar</h2>
+<details><summary>Edifício ainda não construído</summary><p>Mostrar benefício inicial, custo e “Construir por X ouro”. O estoque base do recrutamento continua sendo considerado.</p><img alt="Proposta para construção inicial" src="../../Artifacts/VisualTests/centro-proposals/captures/unbuilt-1920x1080.png"></details>
+<details><summary>Ouro insuficiente</summary><p>Indicar exatamente quanto falta, com motivo legível ao lado da decisão indisponível.</p><img alt="Proposta com ouro insuficiente e valor faltante" src="../../Artifacts/VisualTests/centro-proposals/captures/insufficient-1366x768.png"></details>
+<details><summary>Nível máximo</summary><p>Reconhecer a conclusão, manter o benefício atual visível e oferecer uma única saída.</p><img alt="Proposta de edifício no nível máximo" src="../../Artifacts/VisualTests/centro-proposals/captures/maximum-1366x768.png"></details>
+<p>Requisitos extras de recursos só aparecem quando estiverem configurados no edifício.
+Não adicionei madeira, pedras ou outros custos fictícios aos exemplos.</p></section>
+
+<section id="edificios"><h2>3. Mesmo padrão, conteúdo específico</h2>
+<label for="building-choice">Edifício para revisar</label>
+<select id="building-choice"><option value="building">Quartel</option><option value="archers">Estande de Arqueiros</option><option value="mages">Escola de Magia</option><option value="market">Mercado Local</option><option value="tavern">Taverna</option></select>
+<figure><img id="building-preview" alt="Proposta do Quartel" src="../../Artifacts/VisualTests/centro-proposals/captures/building-1920x1080.png"><figcaption id="building-caption" aria-live="polite">Quartel: guerreiros disponíveis por reestoque.</figcaption></figure>
+<p>Na Taverna, “Gerenciar o edifício” fica separado de “Entrar na Taverna”. As viagens dos sentinelas mantêm
+o modal compartilhado já redesenhado.</p></section>
+
+<section id="impostos"><h2>4. Impostos sem interromper a cidade</h2>
+<p>Manter a coleta em uma ação e usar um aviso compacto: “+X ouro coletado” e o saldo atualizado.
+Proponho aumentar a duração de leitura para 3–4 segundos e aguardar o fechamento de modais antes de exibir.</p>
+<figure><img alt="Proposta de aviso compacto de coleta de impostos" src="../../Artifacts/VisualTests/centro-proposals/captures/tax-feedback-1366x768.png"><figcaption>Feedback próximo ao indicador, sem fundo escuro bloqueando a cidade.</figcaption></figure>
+<details><summary>Opção: prévia de impostos antes de interagir</summary><p>Placa compacta no canto superior esquerdo, preferencialmente contextual à proximidade do coletor.
+Essa prévia ainda precisa de integração de dados somente leitura; não é um HUD já implementado.</p><img alt="Opção de HUD contextual de impostos" src="../../Artifacts/VisualTests/centro-proposals/captures/city-hud-1920x1080.png"></details>
+<p>Sem Mercado: “Construa o Mercado Local para gerar impostos”. Sem valor acumulado: “Ainda não há impostos disponíveis”.
+Assim o feedback informa o próximo passo e não exige confirmação para uma coleta rotineira.</p></section>
+
+<section id="prioridades"><h2>Ordem sugerida</h2><table><thead><tr><th>Etapa</th><th>Entrega</th><th>Critério de revisão</th></tr></thead><tbody>
+<tr><td>1 — Template</td><td>Aprovar o modal, a hierarquia e a descrição correta dos benefícios.</td><td>Estados de construção, melhoria, falta de ouro e nível máximo em duas resoluções.</td></tr>
+<tr><td>2 — Integração</td><td>Aplicar aos cinco edifícios, padronizando fechamento, bloqueio e feedback.</td><td>Custo descontado uma vez, dados atualizados e movimento liberado ao sair.</td></tr>
+<tr><td>3 — Impostos</td><td>Atualizar aviso e prompts; decidir sobre a placa contextual.</td><td>Coleta em uma ação, resultado legível e sem competir com menus.</td></tr>
+<tr><td>4 — Conjunto</td><td>Conferir alertas e viagem compartilhados no Centro.</td><td>Aprovação das capturas finais antes de registrar a baseline.</td></tr>
+</tbody></table></section>
+<p><small>As áreas azuis e a composição do cenário pertencem à cena atual e foram preservadas. Os botões das propostas são demonstrativos.</small></p>
+</main>
+<script>
+const choice=document.getElementById('building-choice');
+const captions={building:'Quartel: guerreiros disponíveis por reestoque.',archers:'Estande de Arqueiros: arqueiros disponíveis por reestoque.',mages:'Escola de Magia: magos disponíveis por reestoque.',market:'Mercado Local: ouro acumulado por minuto.',tavern:'Taverna: aventureiros oferecidos por onda; gerenciar é diferente de entrar.'};
+choice.addEventListener('change',()=>{document.getElementById('building-preview').src='../../Artifacts/VisualTests/centro-proposals/captures/'+choice.value+'-1920x1080.png';document.getElementById('building-preview').alt='Proposta: '+choice.selectedOptions[0].text;document.getElementById('building-caption').textContent=captions[choice.value];});
+</script></html>

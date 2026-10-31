@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class BuildingBehaviour : MonoBehaviour, IInteractable
+public class BuildingBehaviour : MonoBehaviour, IInteractable, IInteractionPromptProvider
 {
     [SerializeField]
     private BuildingDefinition definition;
@@ -16,6 +16,7 @@ public class BuildingBehaviour : MonoBehaviour, IInteractable
 
     public BuildingDefinition Definition => definition;
     public int Level => level;
+    public string InteractionPrompt => definition == null ? "Gerenciar edifício" : $"Gerenciar {definition.displayName}";
 
     public event Action<BuildingBehaviour> Selected;
 

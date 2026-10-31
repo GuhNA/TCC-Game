@@ -22,7 +22,7 @@ public sealed class AlertPopup : MonoBehaviour
 
     private void Awake()
     {
-        popupRoot?.SetActive(false);
+        if (popupRoot != null) popupRoot.SetActive(false);
         if (themedFeedbackPrefab != null)
         {
             GameObject instance = Instantiate(themedFeedbackPrefab);
@@ -48,7 +48,7 @@ public sealed class AlertPopup : MonoBehaviour
         }
 
         hideRoutine = null;
-        popupRoot?.SetActive(false);
+        if (popupRoot != null) popupRoot.SetActive(false);
     }
 
     public void Show(string message)
@@ -77,13 +77,13 @@ public sealed class AlertPopup : MonoBehaviour
             hideRoutine = null;
         }
 
-        popupRoot?.SetActive(false);
+        if (popupRoot != null) popupRoot.SetActive(false);
     }
 
     private IEnumerator HideAfterDelay()
     {
         yield return new WaitForSeconds(visibleDurationSeconds);
         hideRoutine = null;
-        popupRoot.SetActive(false);
+        if (popupRoot != null) popupRoot.SetActive(false);
     }
 }

@@ -5,6 +5,7 @@
         "TCCGame.Runtime",
         "Unity.TextMeshPro",
         "UnityEngine.UI",
+        "Unity.InputSystem",
         "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],

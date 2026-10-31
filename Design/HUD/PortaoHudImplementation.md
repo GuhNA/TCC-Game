@@ -75,3 +75,11 @@ novo foi configurado apenas na cena do Portão.
 Revisão: [galeria da etapa 3](PortaoHudStageThreeReview.html).
 Os dois prefabs de modal são compartilhados; o novo visual também aparece nos
 NPCs de viagem do Centro. As três etapas de integração estão aplicadas.
+
+### Conferência final — 27/10/2026
+
+Revisão retomada após a interrupção da entrega. O botão de fechar da guarnição
+foi afastado da área de rolagem de transferências. As capturas de revisão
+recalculam o layout dos textos antes de determinar se a barra de rolagem é
+necessária. Esta revisão de composição preserva a lógica funcional já validada
+pelos três testes da execução de 23/10/2026.

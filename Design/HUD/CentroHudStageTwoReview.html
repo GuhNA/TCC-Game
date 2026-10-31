@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro — impostos e interações</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#171918;color:#eee2c5;font:17px/1.55 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:30px}h1,h2,a{color:#e6bc61}h1{font-size:30px}h2{font-size:23px}p{max-width:1100px}img{display:block;width:100%;border:1px solid #716044}figure{margin:20px 0}figcaption{color:#c6b99b;margin:8px 0}select{padding:10px;font:inherit;background:#292c29;color:#eee2c5;border:1px solid #8e794e;width:min(100%,540px)}.notice{padding:16px;background:#252a25;border-left:3px solid #e6bc61}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}summary{color:#e6bc61;cursor:pointer}@media(max-width:950px){.grid{grid-template-columns:1fr}main{padding:20px}}</style>
+<main><h1>Centro — etapa 2: impostos e interações</h1>
+<p>A placa de impostos aparece quando o coletor é a interação próxima selecionada. Ela informa quanto pode ser coletado e a produção do Mercado, sem efetuar uma coleta nem gravar a partida.</p>
+<p class="notice">A coleta continua em uma ação. O aviso oferece 3,5 segundos de leitura, fica oculto durante modais e retoma o tempo restante ao fechar. O saldo e a tecla de interação usam os componentes compartilhados já aprovados.</p>
+<p><strong>Etapa 2 aprovada pelo usuário.</strong> As quatro capturas foram preservadas como baseline visual da integração. O teste funcional passou (1/1) com partida em memória, incluindo crédito único, consulta sem gravação, estados vazios, pausa e expiração. O relatório da captura inicial mantém seu status histórico anterior à aprovação.</p>
+<p><a href="CentroHudImplementation.md">Entrega e validação</a> · <a href="../../Artifacts/VisualTests/centro-taxes/report.md">Relatório de capturas</a> · <a href="CentroHudStageOneReview.html">Etapa 1</a></p>
+<label for="state">Estado da interface</label><br><select id="state">
+<option value="tax-feedback-1366x768">Coleta concluída · 1366 × 768</option>
+<option value="city-hud-1920x1080">Prévia antes de coletar · 1920 × 1080</option>
+<option value="tax-empty-1366x768">Nenhum imposto disponível · 1366 × 768</option>
+<option value="tax-market-missing-1366x768">Mercado não construído · 1366 × 768</option>
+</select>
+<figure><img id="capture" src="../../Artifacts/VisualTests/centro-taxes/captures/tax-feedback-1366x768.png" alt="Interface de impostos integrada ao Centro"><figcaption>Captura das peças de produção com dados fixos de revisão; a partida real fornece os valores durante o jogo.</figcaption></figure>
+<details><summary>Comparar a coleta com o protótipo aprovado</summary><div class="grid">
+<figure><img src="../../Assets/Tests/Visual/Baselines/centro-proposals/tax-feedback-1366x768.png" alt="Protótipo aprovado dos impostos"><figcaption>Protótipo aprovado.</figcaption></figure>
+<figure><img src="../../Artifacts/VisualTests/centro-taxes/captures/tax-feedback-1366x768.png" alt="Impostos integrados ao jogo"><figcaption>Integração: placa e aviso do protótipo, com saldo e prompt compartilhados do jogo.</figcaption></figure></div></details>
+<h2>Interações com ações distintas</h2>
+<p>Os edifícios mostram “Gerenciar Quartel”, “Gerenciar Mercado Local” e assim por diante. O edifício da Taverna mostra “Gerenciar Taverna”; a porta preserva “Entrar na Taverna”. O coletor oferece “Coletar impostos — X ouro” ou “Consultar impostos”, conforme o valor disponível.</p>
+<p>Para testar no Centro, aproxime-se do coletor e pressione E. Sem Mercado ou sem impostos acumulados, a mesma ação explica o próximo passo. A interface não bloqueia o movimento.</p>
+<p>A configuração local do HUD de ouro também foi normalizada: saldo visível no canto superior direito e apenas uma cópia ativa do painel. As áreas azuis do cenário foram preservadas.</p>
+<p>A revisão final do conjunto — viagens, alertas e demais HUDs compartilhados — permanece na etapa 3.</p>
+</main><script>document.getElementById('state').addEventListener('change',event=>{document.getElementById('capture').src='../../Artifacts/VisualTests/centro-taxes/captures/'+event.target.value+'.png';});</script></html>

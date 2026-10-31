@@ -58,6 +58,10 @@ namespace TCCGame.Editor
             NameLabel(dialog, "10 guerreiros em marcha.", "Status");
             Label(dialog, "10 guerreiros em marcha.").rectTransform.anchoredPosition = new Vector2(-230, -390);
             Rename(dialog, "Close Garrison", "Close");
+            RectTransform closeRect = (RectTransform)Find(dialog, "Close");
+            closeRect.anchoredPosition = new Vector2(580, -388);
+            closeRect.sizeDelta = new Vector2(200, 60);
+            closeRect.GetComponentInChildren<TMP_Text>().rectTransform.sizeDelta = new Vector2(200, 60);
 
             Transform paper = Find(dialog, "Battle Summary");
             // Keep the top edge and strategic stats in place; use the lower paper for real reports.
