@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7980838346352059257}
   m_Layer: 0
   m_Name: Bandido
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,8 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
   charBase: {fileID: 11400000, guid: 2f8c908ccffc4d96a0acf66fbd68cdca, type: 2}
-  sortingRenderer: {fileID: 100003}
-  fallbackPlayerSortingOrder: 1000
 --- !u!58 &100005
 CircleCollider2D:
   m_ObjectHideFlags: 0

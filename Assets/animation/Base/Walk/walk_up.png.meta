@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: eaee10ef7f4418f4381ea2e5193cdf5a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4778624461764053770
+    second: walk_up_0
+  - first:
+      213: -9096989396093648339
+    second: walk_up_1
+  - first:
+      213: -8467170227996590455
+    second: walk_up_2
+  - first:
+      213: -8745426631189603992
+    second: walk_up_3
+  - first:
+      213: 4428644091572420888
+    second: walk_up_4
+  - first:
+      213: -7119738755306937642
+    second: walk_up_5
+  - first:
+      213: 2370903508304181667
+    second: walk_up_6
+  - first:
+      213: -3889763168057555790
+    second: walk_up_7
+  - first:
+      213: -6035056537535761228
+    second: walk_up_8
+  - first:
+      213: 8146538600141167253
+    second: walk_up_9
+  - first:
+      213: -7474896907065578391
+    second: walk_up_10
+  - first:
+      213: 7358128993887781349
+    second: walk_up_11
+  - first:
+      213: -6968711567038559079
+    second: walk_up_12
+  - first:
+      213: -3420278305275972237
+    second: walk_up_13
+  - first:
+      213: 2032365910295866951
+    second: walk_up_14
+  - first:
+      213: 6842637436793865589
+    second: walk_up_15
+  - first:
+      213: 3994049055195505471
+    second: walk_up_16
+  - first:
+      213: 2992291276064788539
+    second: walk_up_17
+  - first:
+      213: 4151521979299652107
+    second: walk_up_18
+  - first:
+      213: 1488150989622445403
+    second: walk_up_19
+  - first:
+      213: -3148033749527921945
+    second: walk_up_20
+  - first:
+      213: 2865099485713838858
+    second: walk_up_21
+  - first:
+      213: -4254712606735230143
+    second: walk_up_22
+  - first:
+      213: -8850402017352037658
+    second: walk_up_23
+  - first:
+      213: -6578202861643676796
+    second: walk_up_24
+  - first:
+      213: -8081808344677356958
+    second: walk_up_25
+  - first:
+      213: 8361738974921377943
+    second: walk_up_26
+  - first:
+      213: 8978256045117178194
+    second: walk_up_27
+  - first:
+      213: 5417662905148138180
+    second: walk_up_28
+  - first:
+      213: 5811643292918572080
+    second: walk_up_29
+  - first:
+      213: -3860051260088582329
+    second: walk_up_30
+  - first:
+      213: -8968132547646035233
+    second: walk_up_31
+  - first:
+      213: -363981861822175154
+    second: walk_up_32
+  - first:
+      213: -4369784301146240848
+    second: walk_up_33
+  - first:
+      213: -4509805160407768694
+    second: walk_up_34
+  - first:
+      213: 422422654748475579
+    second: walk_up_35
+  - first:
+      213: -5845327363483807702
+    second: walk_up_36
+  - first:
+      213: -2668729782065853659
+    second: walk_up_37
+  - first:
+      213: 897849839346086269
+    second: walk_up_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: walk_up_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 426
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4bf89ce5aeeadb0800000000000000
+      internalID: -4778624461764053770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_1
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 426
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d22c758975001c180800000000000000
+      internalID: -9096989396093648339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_2
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 426
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98eff73e9819e7a80800000000000000
+      internalID: -8467170227996590455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_3
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 426
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 869d3be60d002a680800000000000000
+      internalID: -8745426631189603992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8118eca5654b57d30800000000000000
+      internalID: 4428644091572420888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_5
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 0
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d22954f25b913d90800000000000000
+      internalID: -7119738755306937642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_6
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 0
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a9b231ed2427e020800000000000000
+      internalID: 2370903508304181667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walk_up_7
+      rect:
+        serializedVersion: 2
+        x: 1383
+        y: 0
+        width: 461
+        height: 426
+      alignment: 9
+      pivot: {x: 0.5, y: 0.05315614}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4088be109c40ac0800000000000000
+      internalID: -3889763168057555790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1fe4030bf80cbc645874636f0e7fe81f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":2.0},"gridSpriteSize":{"x":461.0,"y":426.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.05315614119172096},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      walk_up_0: -4778624461764053770
+      walk_up_1: -9096989396093648339
+      walk_up_2: -8467170227996590455
+      walk_up_3: -8745426631189603992
+      walk_up_4: 4428644091572420888
+      walk_up_5: -7119738755306937642
+      walk_up_6: 2370903508304181667
+      walk_up_7: -3889763168057555790
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

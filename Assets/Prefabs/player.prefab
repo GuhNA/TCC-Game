@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8842137462901456021}
   - component: {fileID: 8842137462901456022}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.71, y: -1.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.81969327, y: 0.81969327, z: 0.81969327}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1000
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3698702541367410582, guid: bca838e85e1194045bf5d16c90abbdc0, type: 3}
+  m_Sprite: {fileID: -6629672355239719357, guid: 853a551633416514b9a0a45be00f22e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,7 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935169149b21f024684d9f47db9d529a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::moviment
-  velocity: 10
+  sortableNpcTag: NPC
+  npcRefreshInterval: 0.5
+  velocity: 5.02
 --- !u!114 &2751904476023348111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.52}
+  m_Offset: {x: 0, y: 0.47}
   m_Radius: 0.38
 --- !u!114 &4062801830742269912
 MonoBehaviour:
@@ -198,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b789876574e0c4bb84152cfc857adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Navigation.PlayerSpawnController
-  useGateSpawnAnchors: 0
+  useGateSpawnAnchors: 1
 --- !u!95 &8842137462901456021
 Animator:
   serializedVersion: 7

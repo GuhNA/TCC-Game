@@ -1,0 +1,477 @@
+fileFormatVersion: 2
+guid: 541b3b95010f75a4f8a6515a8ef61544
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6350352310601893135
+    second: RIGHT_CANDIDATE_NOT_APPROVED_0
+  - first:
+      213: -8037355166131461042
+    second: RIGHT_CANDIDATE_NOT_APPROVED_1
+  - first:
+      213: -6355775558358591434
+    second: RIGHT_CANDIDATE_NOT_APPROVED_2
+  - first:
+      213: -1414213535598815987
+    second: RIGHT_CANDIDATE_NOT_APPROVED_3
+  - first:
+      213: 5497174149179930133
+    second: RIGHT_CANDIDATE_NOT_APPROVED_4
+  - first:
+      213: 6482782988118731362
+    second: RIGHT_CANDIDATE_NOT_APPROVED_5
+  - first:
+      213: 4912436712555447132
+    second: RIGHT_CANDIDATE_NOT_APPROVED_6
+  - first:
+      213: -7830021905696474299
+    second: RIGHT_CANDIDATE_NOT_APPROVED_7
+  - first:
+      213: 1876581234315117739
+    second: RIGHT_CANDIDATE_NOT_APPROVED_8
+  - first:
+      213: -33626834106340756
+    second: RIGHT_CANDIDATE_NOT_APPROVED_9
+  - first:
+      213: 2003962240535224008
+    second: RIGHT_CANDIDATE_NOT_APPROVED_10
+  - first:
+      213: -6003391695972768598
+    second: RIGHT_CANDIDATE_NOT_APPROVED_11
+  - first:
+      213: -7788943496084314717
+    second: WalkRight_00
+  - first:
+      213: -1096769055752358134
+    second: WalkRight_01
+  - first:
+      213: 3420787704140065059
+    second: WalkRight_02
+  - first:
+      213: 1206365059102169438
+    second: WalkRight_03
+  - first:
+      213: -894035079360302539
+    second: WalkRight_04
+  - first:
+      213: 3911223492745603949
+    second: WalkRight_05
+  - first:
+      213: 2650996335058182954
+    second: WalkRight_06
+  - first:
+      213: 2976648792882912495
+    second: WalkRight_07
+  - first:
+      213: -110866077290906959
+    second: WalkRight_08
+  - first:
+      213: -8408450889974725882
+    second: WalkRight_09
+  - first:
+      213: -1341677015192675592
+    second: WalkRight_10
+  - first:
+      213: -4064358424353818794
+    second: WalkRight_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WalkRight_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a52e4c682d18e390800000000000000
+      internalID: -7788943496084314717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_01
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a077d3fca5e77c0f0800000000000000
+      internalID: -1096769055752358134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_02
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329ea45fa44197f20800000000000000
+      internalID: 3420787704140065059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_03
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e595a3131aeddb010800000000000000
+      internalID: 1206365059102169438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_04
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532bdf505dfb793f0800000000000000
+      internalID: -894035079360302539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_05
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6ba34a4b05774630800000000000000
+      internalID: 3911223492745603949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2361040f1b3ac420800000000000000
+      internalID: 2650996335058182954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_07
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fec91e06e4e2f4920800000000000000
+      internalID: 2976648792882912495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_08
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba3f6dd3ef167ef0800000000000000
+      internalID: -110866077290906959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_09
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6034db7277e2f4b80800000000000000
+      internalID: -8408450889974725882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_10
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa522afcd7616de0800000000000000
+      internalID: -1341677015192675592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_11
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65736840c8f7897c0800000000000000
+      internalID: -4064358424353818794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RIGHT_CANDIDATE_NOT_APPROVED_0: -6350352310601893135
+      RIGHT_CANDIDATE_NOT_APPROVED_1: -8037355166131461042
+      RIGHT_CANDIDATE_NOT_APPROVED_10: 2003962240535224008
+      RIGHT_CANDIDATE_NOT_APPROVED_11: -6003391695972768598
+      RIGHT_CANDIDATE_NOT_APPROVED_2: -6355775558358591434
+      RIGHT_CANDIDATE_NOT_APPROVED_3: -1414213535598815987
+      RIGHT_CANDIDATE_NOT_APPROVED_4: 5497174149179930133
+      RIGHT_CANDIDATE_NOT_APPROVED_5: 6482782988118731362
+      RIGHT_CANDIDATE_NOT_APPROVED_6: 4912436712555447132
+      RIGHT_CANDIDATE_NOT_APPROVED_7: -7830021905696474299
+      RIGHT_CANDIDATE_NOT_APPROVED_8: 1876581234315117739
+      RIGHT_CANDIDATE_NOT_APPROVED_9: -33626834106340756
+      WalkRight_00: -7788943496084314717
+      WalkRight_01: -1096769055752358134
+      WalkRight_02: 3420787704140065059
+      WalkRight_03: 1206365059102169438
+      WalkRight_04: -894035079360302539
+      WalkRight_05: 3911223492745603949
+      WalkRight_06: 2650996335058182954
+      WalkRight_07: 2976648792882912495
+      WalkRight_08: -110866077290906959
+      WalkRight_09: -8408450889974725882
+      WalkRight_10: -1341677015192675592
+      WalkRight_11: -4064358424353818794
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

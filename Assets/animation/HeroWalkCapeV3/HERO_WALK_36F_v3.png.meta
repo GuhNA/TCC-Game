@@ -1,0 +1,1213 @@
+fileFormatVersion: 2
+guid: 24ee14efdcc687941a931e324b105430
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7161491574586775667
+    second: HERO_WALK_36F_v3_0
+  - first:
+      213: 4001130011962796591
+    second: HERO_WALK_36F_v3_1
+  - first:
+      213: 5126074261616530308
+    second: HERO_WALK_36F_v3_2
+  - first:
+      213: 4237587588364901797
+    second: HERO_WALK_36F_v3_3
+  - first:
+      213: 8696325498729281320
+    second: HERO_WALK_36F_v3_4
+  - first:
+      213: -7930657865267270332
+    second: HERO_WALK_36F_v3_5
+  - first:
+      213: 1858803190791452187
+    second: HERO_WALK_36F_v3_6
+  - first:
+      213: 5481952946741017356
+    second: HERO_WALK_36F_v3_7
+  - first:
+      213: -9046322814142772490
+    second: HERO_WALK_36F_v3_8
+  - first:
+      213: 3140128261355442223
+    second: HERO_WALK_36F_v3_9
+  - first:
+      213: 4641460617752468242
+    second: HERO_WALK_36F_v3_10
+  - first:
+      213: 7102321983066706997
+    second: HERO_WALK_36F_v3_11
+  - first:
+      213: 6060856013755608465
+    second: HERO_WALK_36F_v3_12
+  - first:
+      213: 7207372756190126089
+    second: HERO_WALK_36F_v3_13
+  - first:
+      213: 7392998614906913519
+    second: HERO_WALK_36F_v3_14
+  - first:
+      213: 262801647933785175
+    second: HERO_WALK_36F_v3_15
+  - first:
+      213: 8954411454532644102
+    second: HERO_WALK_36F_v3_16
+  - first:
+      213: 3739862019720396726
+    second: HERO_WALK_36F_v3_17
+  - first:
+      213: -8477629890907327326
+    second: HERO_WALK_36F_v3_18
+  - first:
+      213: -35106289111539282
+    second: HERO_WALK_36F_v3_19
+  - first:
+      213: -2858748087955933595
+    second: HERO_WALK_36F_v3_20
+  - first:
+      213: 2984026123952111206
+    second: HERO_WALK_36F_v3_21
+  - first:
+      213: 3287375246808068780
+    second: HERO_WALK_36F_v3_22
+  - first:
+      213: 4355184479936824127
+    second: HERO_WALK_36F_v3_23
+  - first:
+      213: 9105677022280396812
+    second: HERO_WALK_36F_v3_24
+  - first:
+      213: -7024199628976699021
+    second: HERO_WALK_36F_v3_25
+  - first:
+      213: 7979468825787737352
+    second: HERO_WALK_36F_v3_26
+  - first:
+      213: 260302603579750971
+    second: HERO_WALK_36F_v3_27
+  - first:
+      213: -8177989390446863532
+    second: HERO_WALK_36F_v3_28
+  - first:
+      213: -238087940202646117
+    second: HERO_WALK_36F_v3_29
+  - first:
+      213: 2242180476495722567
+    second: HERO_WALK_36F_v3_30
+  - first:
+      213: 8164986560098288096
+    second: HERO_WALK_36F_v3_31
+  - first:
+      213: -1272555526279399976
+    second: HERO_WALK_36F_v3_32
+  - first:
+      213: -1548012125722959930
+    second: HERO_WALK_36F_v3_33
+  - first:
+      213: 2075304173974029272
+    second: HERO_WALK_36F_v3_34
+  - first:
+      213: -7602132007868144423
+    second: HERO_WALK_36F_v3_35
+  - first:
+      213: 4383860394506088976
+    second: HERO_WALK_36F_v3_36
+  - first:
+      213: -8810265572679387905
+    second: HERO_WALK_36F_v3_37
+  - first:
+      213: -4910048851054422683
+    second: HERO_WALK_36F_v3_38
+  - first:
+      213: -2388158851963297571
+    second: HERO_WALK_36F_v3_39
+  - first:
+      213: -3476686656154481581
+    second: WalkUp_00
+  - first:
+      213: -157256077501261475
+    second: WalkUp_01
+  - first:
+      213: -20252316821126345
+    second: WalkUp_02
+  - first:
+      213: 1828724762524736233
+    second: WalkUp_03
+  - first:
+      213: -4433722983830743126
+    second: WalkUp_04
+  - first:
+      213: -4550513003650674475
+    second: WalkUp_05
+  - first:
+      213: 5526260990210933593
+    second: WalkUp_06
+  - first:
+      213: 160358460891065199
+    second: WalkUp_07
+  - first:
+      213: 7143527369808315957
+    second: WalkUp_08
+  - first:
+      213: -5107073759398439056
+    second: WalkUp_09
+  - first:
+      213: 4571850602705344953
+    second: WalkUp_10
+  - first:
+      213: -1717132334971500433
+    second: WalkUp_11
+  - first:
+      213: 4532564958776611335
+    second: WalkDown_00
+  - first:
+      213: -5298676532728955576
+    second: WalkDown_01
+  - first:
+      213: 8447614059916966632
+    second: WalkDown_02
+  - first:
+      213: -167328261580139443
+    second: WalkDown_03
+  - first:
+      213: 2126228150113115050
+    second: WalkDown_04
+  - first:
+      213: -662208836826346355
+    second: WalkDown_05
+  - first:
+      213: -3318566162111440749
+    second: WalkDown_06
+  - first:
+      213: 8109628603936829199
+    second: WalkDown_07
+  - first:
+      213: -8007319969926555198
+    second: WalkDown_08
+  - first:
+      213: -5674828968954826762
+    second: WalkDown_09
+  - first:
+      213: -495095430634118473
+    second: WalkDown_10
+  - first:
+      213: 1242276860151555512
+    second: WalkDown_11
+  - first:
+      213: -7788943496084314717
+    second: WalkRight_00
+  - first:
+      213: -1096769055752358134
+    second: WalkRight_01
+  - first:
+      213: 3420787704140065059
+    second: WalkRight_02
+  - first:
+      213: 1206365059102169438
+    second: WalkRight_03
+  - first:
+      213: -894035079360302539
+    second: WalkRight_04
+  - first:
+      213: 3911223492745603949
+    second: WalkRight_05
+  - first:
+      213: 2650996335058182954
+    second: WalkRight_06
+  - first:
+      213: 2976648792882912495
+    second: WalkRight_07
+  - first:
+      213: -110866077290906959
+    second: WalkRight_08
+  - first:
+      213: -8408450889974725882
+    second: WalkRight_09
+  - first:
+      213: -1341677015192675592
+    second: WalkRight_10
+  - first:
+      213: -4064358424353818794
+    second: WalkRight_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WalkUp_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35c429018e350cfc0800000000000000
+      internalID: -3476686656154481581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_01
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5914c14e6051ddf0800000000000000
+      internalID: -157256077501261475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_02
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7338ff900ac08bff0800000000000000
+      internalID: -20252316821126345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_03
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea5f368b7fe06910800000000000000
+      internalID: 1828724762524736233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_04
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa79844ef604872c0800000000000000
+      internalID: -4433722983830743126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_05
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d01b97688459d0c0800000000000000
+      internalID: -4550513003650674475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9530f99571931bc40800000000000000
+      internalID: 5526260990210933593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_07
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6be32aab25b93200800000000000000
+      internalID: 160358460891065199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_08
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53684b87b48e22360800000000000000
+      internalID: 7143527369808315957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_09
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 077565969770029b0800000000000000
+      internalID: -5107073759398439056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_10
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b9586486e9727f30800000000000000
+      internalID: 4571850602705344953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkUp_11
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68cfa53d358b28e0800000000000000
+      internalID: -1717132334971500433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7025341c0d7e6ee30800000000000000
+      internalID: 4532564958776611335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_01
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84dfdfe54c15776b0800000000000000
+      internalID: -5298676532728955576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_02
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea32f8ea34fb3570800000000000000
+      internalID: 8447614059916966632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_03
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d44d1a725d78dadf0800000000000000
+      internalID: -167328261580139443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_04
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aab9deebc31e18d10800000000000000
+      internalID: 2126228150113115050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_05
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c47d9429c5fc6f0800000000000000
+      internalID: -662208836826346355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39857b778a512f1d0800000000000000
+      internalID: -3318566162111440749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_07
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0f6006af303b8070800000000000000
+      internalID: 8109628603936829199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_08
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9d2a579e840e090800000000000000
+      internalID: -8007319969926555198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_09
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ffe9588e15fe31b0800000000000000
+      internalID: -5674828968954826762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_10
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2622734511129f0800000000000000
+      internalID: -495095430634118473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkDown_11
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b56502f8347d3110800000000000000
+      internalID: 1242276860151555512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_00
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a52e4c682d18e390800000000000000
+      internalID: -7788943496084314717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_01
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a077d3fca5e77c0f0800000000000000
+      internalID: -1096769055752358134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_02
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 329ea45fa44197f20800000000000000
+      internalID: 3420787704140065059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_03
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e595a3131aeddb010800000000000000
+      internalID: 1206365059102169438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_04
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532bdf505dfb793f0800000000000000
+      internalID: -894035079360302539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_05
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6ba34a4b05774630800000000000000
+      internalID: 3911223492745603949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_06
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2361040f1b3ac420800000000000000
+      internalID: 2650996335058182954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_07
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fec91e06e4e2f4920800000000000000
+      internalID: 2976648792882912495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_08
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ba3f6dd3ef167ef0800000000000000
+      internalID: -110866077290906959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_09
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6034db7277e2f4b80800000000000000
+      internalID: -8408450889974725882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_10
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa522afcd7616de0800000000000000
+      internalID: -1341677015192675592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkRight_11
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.5, y: 0.053156145}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65736840c8f7897c0800000000000000
+      internalID: -4064358424353818794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HERO_WALK_36F_v3_0: 7161491574586775667
+      HERO_WALK_36F_v3_1: 4001130011962796591
+      HERO_WALK_36F_v3_10: 4641460617752468242
+      HERO_WALK_36F_v3_11: 7102321983066706997
+      HERO_WALK_36F_v3_12: 6060856013755608465
+      HERO_WALK_36F_v3_13: 7207372756190126089
+      HERO_WALK_36F_v3_14: 7392998614906913519
+      HERO_WALK_36F_v3_15: 262801647933785175
+      HERO_WALK_36F_v3_16: 8954411454532644102
+      HERO_WALK_36F_v3_17: 3739862019720396726
+      HERO_WALK_36F_v3_18: -8477629890907327326
+      HERO_WALK_36F_v3_19: -35106289111539282
+      HERO_WALK_36F_v3_2: 5126074261616530308
+      HERO_WALK_36F_v3_20: -2858748087955933595
+      HERO_WALK_36F_v3_21: 2984026123952111206
+      HERO_WALK_36F_v3_22: 3287375246808068780
+      HERO_WALK_36F_v3_23: 4355184479936824127
+      HERO_WALK_36F_v3_24: 9105677022280396812
+      HERO_WALK_36F_v3_25: -7024199628976699021
+      HERO_WALK_36F_v3_26: 7979468825787737352
+      HERO_WALK_36F_v3_27: 260302603579750971
+      HERO_WALK_36F_v3_28: -8177989390446863532
+      HERO_WALK_36F_v3_29: -238087940202646117
+      HERO_WALK_36F_v3_3: 4237587588364901797
+      HERO_WALK_36F_v3_30: 2242180476495722567
+      HERO_WALK_36F_v3_31: 8164986560098288096
+      HERO_WALK_36F_v3_32: -1272555526279399976
+      HERO_WALK_36F_v3_33: -1548012125722959930
+      HERO_WALK_36F_v3_34: 2075304173974029272
+      HERO_WALK_36F_v3_35: -7602132007868144423
+      HERO_WALK_36F_v3_36: 4383860394506088976
+      HERO_WALK_36F_v3_37: -8810265572679387905
+      HERO_WALK_36F_v3_38: -4910048851054422683
+      HERO_WALK_36F_v3_39: -2388158851963297571
+      HERO_WALK_36F_v3_4: 8696325498729281320
+      HERO_WALK_36F_v3_5: -7930657865267270332
+      HERO_WALK_36F_v3_6: 1858803190791452187
+      HERO_WALK_36F_v3_7: 5481952946741017356
+      HERO_WALK_36F_v3_8: -9046322814142772490
+      HERO_WALK_36F_v3_9: 3140128261355442223
+      WalkDown_00: 4532564958776611335
+      WalkDown_01: -5298676532728955576
+      WalkDown_02: 8447614059916966632
+      WalkDown_03: -167328261580139443
+      WalkDown_04: 2126228150113115050
+      WalkDown_05: -662208836826346355
+      WalkDown_06: -3318566162111440749
+      WalkDown_07: 8109628603936829199
+      WalkDown_08: -8007319969926555198
+      WalkDown_09: -5674828968954826762
+      WalkDown_10: -495095430634118473
+      WalkDown_11: 1242276860151555512
+      WalkRight_00: -7788943496084314717
+      WalkRight_01: -1096769055752358134
+      WalkRight_02: 3420787704140065059
+      WalkRight_03: 1206365059102169438
+      WalkRight_04: -894035079360302539
+      WalkRight_05: 3911223492745603949
+      WalkRight_06: 2650996335058182954
+      WalkRight_07: 2976648792882912495
+      WalkRight_08: -110866077290906959
+      WalkRight_09: -8408450889974725882
+      WalkRight_10: -1341677015192675592
+      WalkRight_11: -4064358424353818794
+      WalkUp_00: -3476686656154481581
+      WalkUp_01: -157256077501261475
+      WalkUp_02: -20252316821126345
+      WalkUp_03: 1828724762524736233
+      WalkUp_04: -4433722983830743126
+      WalkUp_05: -4550513003650674475
+      WalkUp_06: 5526260990210933593
+      WalkUp_07: 160358460891065199
+      WalkUp_08: 7143527369808315957
+      WalkUp_09: -5107073759398439056
+      WalkUp_10: 4571850602705344953
+      WalkUp_11: -1717132334971500433
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

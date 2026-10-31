@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9120408428127880659}
   m_Layer: 0
   m_Name: Arqueiro
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,8 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aventureiro
   charBase: {fileID: 11400000, guid: b86197fd39e4b0e4b89b733a15ca9ac7, type: 2}
-  sortingRenderer: {fileID: 7964176068623365827}
-  fallbackPlayerSortingOrder: 1000
 --- !u!58 &9120408428127880659
 CircleCollider2D:
   m_ObjectHideFlags: 0
