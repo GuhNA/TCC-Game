@@ -18,7 +18,6 @@ MonoBehaviour:
   combatPrefab: {fileID: 4691438587948023579, guid: 8a7c455c01e88a842bc71bf5c4a8353c, type: 3}
   combatLocalPosition: {x: 0, y: 0, z: 0}
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flipCombatVisualX: 1
   battlePower: 10
   maximumHealth: 80
   minimumDamage: 4

@@ -45,6 +45,7 @@ namespace TCCGame.Gameplay.Exploration
         private Image healthFullImage;
         private Coroutine feedbackRoutine;
         private Transform healthBarRoot;
+        private readonly Vector3[] layoutCorners = new Vector3[4];
 
         public ExplorationBattleCombatant Combatant => combatant;
 
@@ -62,6 +63,7 @@ namespace TCCGame.Gameplay.Exploration
             foreach (SpriteRenderer renderer in renderers)
             {
                 if (renderer == null || !renderer.enabled ||
+                    !renderer.gameObject.activeInHierarchy ||
                     renderer.sprite == null)
                 {
                     continue;
@@ -79,6 +81,89 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             return found;
+        }
+
+        /// <summary>
+        /// Reserva o espaço horizontal ocupado pelo corpo, pela barra inteira e
+        /// pelo nome renderizado. Com os elementos centralizados, a maior largura
+        /// define o slot; offsets do Inspector também são respeitados.
+        /// </summary>
+        public bool TryGetSlotWorldBounds(out Bounds bounds)
+        {
+            bool found = TryGetVisualWorldBounds(out bounds);
+            if (healthBarCanvas != null && healthBarCanvas.isActiveAndEnabled)
+            {
+                var rect = (RectTransform)healthBarCanvas.transform;
+                rect.GetWorldCorners(layoutCorners);
+                var barBounds = new Bounds(layoutCorners[0], Vector3.zero);
+                for (int index = 1; index < layoutCorners.Length; index++)
+                {
+                    barBounds.Encapsulate(layoutCorners[index]);
+                }
+                IncludeLayoutBounds(ref bounds, ref found, barBounds);
+            }
+            else if (healthEmptyRenderer != null &&
+                     healthEmptyRenderer.gameObject.activeInHierarchy &&
+                     healthEmptyRenderer.sprite != null)
+            {
+                IncludeLayoutBounds(ref bounds, ref found, healthEmptyRenderer.bounds);
+            }
+            else if (healthFill != null && healthFill.gameObject.activeInHierarchy)
+            {
+                // Cenas antigas encolhem o Full ao receber dano. O espaço do
+                // slot deve continuar sendo o da barra cheia, mesmo com vida zero.
+                SpriteRenderer fillRenderer = healthFill.GetComponent<SpriteRenderer>();
+                if (fillRenderer != null && fillRenderer.sprite != null)
+                {
+                    Matrix4x4 parentMatrix = healthFill.parent != null
+                        ? healthFill.parent.localToWorldMatrix : Matrix4x4.identity;
+                    Matrix4x4 fullBarMatrix = parentMatrix * Matrix4x4.TRS(
+                        healthFill.localPosition, healthFill.localRotation,
+                        healthFillInitialScale);
+                    IncludeLayoutBounds(ref bounds, ref found,
+                        TransformBounds(fillRenderer.localBounds, fullBarMatrix));
+                }
+            }
+
+            if (nameText != null && nameText.isActiveAndEnabled &&
+                !string.IsNullOrWhiteSpace(nameText.text))
+            {
+                // Bind e layout acontecem no mesmo frame: atualiza a malha antes
+                // de medir, sem usar a largura fixa do RectTransform do texto.
+                nameText.ForceMeshUpdate(true, true);
+                Renderer nameRenderer = nameText.GetComponent<Renderer>();
+                Bounds nameBounds = nameRenderer != null
+                    ? nameRenderer.bounds
+                    : TransformBounds(nameText.textBounds, nameText.transform.localToWorldMatrix);
+                IncludeLayoutBounds(ref bounds, ref found, nameBounds);
+            }
+
+            return found;
+        }
+
+        private static void IncludeLayoutBounds(ref Bounds bounds, ref bool found, Bounds item)
+        {
+            if (found)
+            {
+                bounds.Encapsulate(item);
+            }
+            else
+            {
+                bounds = item;
+                found = true;
+            }
+        }
+
+        private static Bounds TransformBounds(Bounds localBounds, Matrix4x4 matrix)
+        {
+            Vector3 x = matrix.MultiplyVector(new Vector3(localBounds.extents.x, 0f, 0f));
+            Vector3 y = matrix.MultiplyVector(new Vector3(0f, localBounds.extents.y, 0f));
+            Vector3 z = matrix.MultiplyVector(new Vector3(0f, 0f, localBounds.extents.z));
+            Vector3 extents = new Vector3(
+                Mathf.Abs(x.x) + Mathf.Abs(y.x) + Mathf.Abs(z.x),
+                Mathf.Abs(x.y) + Mathf.Abs(y.y) + Mathf.Abs(z.y),
+                Mathf.Abs(x.z) + Mathf.Abs(y.z) + Mathf.Abs(z.z));
+            return new Bounds(matrix.MultiplyPoint3x4(localBounds.center), extents * 2f);
         }
 
         public bool TryGetHealthBarAnchorWorldY(out float worldY)
@@ -518,6 +603,7 @@ namespace TCCGame.Gameplay.Exploration
         {
             if (instantiatedVisual != null)
             {
+                instantiatedVisual.SetActive(false);
                 Destroy(instantiatedVisual);
                 instantiatedVisual = null;
             }

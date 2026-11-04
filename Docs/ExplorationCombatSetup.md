@@ -50,6 +50,13 @@ detalhes, log, recompensas e botões.
 - `Enemy Team/Slot 1..3`: pontos dos prefabs inimigos;
 - `Exploration Combat Canvas`: somente controles e textos de interface.
 
+O `Combatant Slot Spacing` do controlador define o espaço livre horizontal entre
+slots. Cada slot considera os limites do sprite, da barra de vida inteira e do
+nome renderizado: o elemento mais largo determina o espaço necessário. Offsets
+locais também são incluídos para evitar sobreposição. O cálculo vale para aliados
+e inimigos e preserva o centro da equipe e o espaçamento vertical do Inspector.
+A barra continua reservando sua largura completa quando a vida diminui.
+
 Para recriar essa organização manualmente, use o menu:
 
 `TCC > Exploration > Create or Update Combat Scene`
@@ -113,6 +120,11 @@ Sugestões de distribuição:
 
 ## Regras atuais dos turnos
 
+- a formação é definida ao iniciar o combate pela soma de armadura e resistência
+  mágica; em caso de empate, quem tem maior vida máxima fica na frente;
+- aliados mais resistentes ficam à direita; inimigos mais resistentes, à esquerda;
+- empates nos dois atributos preservam a ordem de entrada da lista, da esquerda
+  para a direita; receber dano não reorganiza os personagens durante a luta;
 - todos os combatentes vivos são ordenados por velocidade no início da rodada;
 - valores maiores agem primeiro;
 - aventureiros acertam sempre o inimigo vivo mais à esquerda;

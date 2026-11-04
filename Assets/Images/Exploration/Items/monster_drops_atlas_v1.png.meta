@@ -1,0 +1,951 @@
+fileFormatVersion: 2
+guid: 7040a0a95472582480b06b560fcd4330
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8958031394793025559
+    second: SucataGoblin
+  - first:
+      213: 4006859205604727677
+    second: TiraCouroGoblin
+  - first:
+      213: 8595737135826952818
+    second: PresaHobgoblin
+  - first:
+      213: 1226384677665235150
+    second: EspinhoPorrete
+  - first:
+      213: 681563733989946415
+    second: PenaRitual
+  - first:
+      213: 7736841521346767692
+    second: AmuletoXama
+  - first:
+      213: 4265415329806836006
+    second: LascaEscudo
+  - first:
+      213: 4564022077283476087
+    second: PontaFlecha
+  - first:
+      213: 4344455274277143168
+    second: EssenciaVenenosa
+  - first:
+      213: 3129784498826454646
+    second: CristalVil
+  - first:
+      213: 6665163570774198626
+    second: Ectoplasma
+  - first:
+      213: 7218425492027824783
+    second: TecidoEspectral
+  - first:
+      213: 6462051512255047524
+    second: GalhadaAmaldicoada
+  - first:
+      213: 7853115722141715252
+    second: EssenciaSombria
+  - first:
+      213: 431689035090045063
+    second: OssoAntigo
+  - first:
+      213: 8000627297213530424
+    second: CordaArcoGasta
+  - first:
+      213: 3558428795794541680
+    second: SigiloProfano
+  - first:
+      213: 5282710460583820305
+    second: FragmentoAlma
+  - first:
+      213: 4853804880434023093
+    second: PoOsseo
+  - first:
+      213: 7317661662570057074
+    second: TecidoNecromantico
+  - first:
+      213: 968102071262108801
+    second: CristalNecrotico
+  - first:
+      213: 1981532783786830627
+    second: PlacaArmaduraNegra
+  - first:
+      213: 4462964203397831663
+    second: EmblemaCavaleiroCaido
+  - first:
+      213: 7834518696546378447
+    second: IcorPutrido
+  - first:
+      213: 771059863034505604
+    second: PresaTroll
+  - first:
+      213: 3596262464400208893
+    second: CouroTroll
+  - first:
+      213: 5860990931982999195
+    second: TotemGeada
+  - first:
+      213: 3078755797974462436
+    second: PeloYeti
+  - first:
+      213: 1497554730999465510
+    second: GarraYeti
+  - first:
+      213: 7416241125516230691
+    second: PeleLobo
+  - first:
+      213: 8214973481309332634
+    second: PresaLobo
+  - first:
+      213: 7672772935289767762
+    second: CoracaoGlacial
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SucataGoblin
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22dbf2f4eb955f26b517e02d236b80ae
+      internalID: 8958031394793025559
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TiraCouroGoblin
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 469a1574625e537ca5a046336bd51199
+      internalID: 4006859205604727677
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PresaHobgoblin
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 665
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad5c058f83b35681b3ef7f2ec1397a54
+      internalID: 8595737135826952818
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EspinhoPorrete
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7857319e4ff5da387961c05067d9e58
+      internalID: 1226384677665235150
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PenaRitual
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e456e63ed4e52f7be22e77fecf79dbc
+      internalID: 681563733989946415
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AmuletoXama
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 665
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d30b9c73e8455e98ba4c96fa764d64c9
+      internalID: 7736841521346767692
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LascaEscudo
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 231a2a97997b5c69a31b9ff8cfa4650a
+      internalID: 4265415329806836006
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PontaFlecha
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 665
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0d56f6854a5de09428fc208e8b6730
+      internalID: 4564022077283476087
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EssenciaVenenosa
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90b666992725d0fbc179d07a1b2e45b
+      internalID: 4344455274277143168
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalVil
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 589439d3b8d655dfa2e948ce4425cba6
+      internalID: 3129784498826454646
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ectoplasma
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 443
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa8d35eb3dc5f5b9de8c417585de8d5
+      internalID: 6665163570774198626
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TecidoEspectral
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cd20e66e02c533795630c2862f63c06
+      internalID: 7218425492027824783
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GalhadaAmaldicoada
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562509d0e8a85b958cf9705fc9e28975
+      internalID: 6462051512255047524
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EssenciaSombria
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 443
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5325eb109f959a18a1c8cb0c6d4d7b3
+      internalID: 7853115722141715252
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OssoAntigo
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9d3a542462e59c9b7639e48349f0aa7
+      internalID: 431689035090045063
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CordaArcoGasta
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 443
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2b3606181a6523588cd956bf9ef910b
+      internalID: 8000627297213530424
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SigiloProfano
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4908f465af9a5da192b7dd5c66220f6a
+      internalID: 3558428795794541680
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FragmentoAlma
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac2d91d73dc5e738f9271aff0a8bbbd
+      internalID: 5282710460583820305
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoOsseo
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 222
+        width: 221
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9d570480ca57398c08fe758bdc6de6
+      internalID: 4853804880434023093
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TecidoNecromantico
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e5582896d853bf9e27e9190dc757ab
+      internalID: 7317661662570057074
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalNecrotico
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ef8126e76757a5a6e75a05cc63a080
+      internalID: 968102071262108801
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlacaArmaduraNegra
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 222
+        width: 221
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1688d18c8ca756e491f5e27ea63cc2e7
+      internalID: 1981532783786830627
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EmblemaCavaleiroCaido
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4c7def86da5490ba68650e0ba2aac2
+      internalID: 4462964203397831663
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IcorPutrido
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 222
+        width: 222
+        height: 221
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af1d2e877d3d5aa1bf08278734e7c48f
+      internalID: 7834518696546378447
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PresaTroll
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f21d5b01d0b5344bd87cf87a156d13c
+      internalID: 771059863034505604
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CouroTroll
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fff5b6d5d94d5131adb81524c2376e4a
+      internalID: 3596262464400208893
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TotemGeada
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 0
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98cdb4bab9e55714a0111f5a36412317
+      internalID: 5860990931982999195
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeloYeti
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ebef275b50c559e84c30f873790b8cb
+      internalID: 3078755797974462436
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GarraYeti
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca74fce314fd5917b2fe3a5969b930e4
+      internalID: 1497554730999465510
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeleLobo
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 0
+        width: 221
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2938bf3f59005402851b8cc3c84df928
+      internalID: 7416241125516230691
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PresaLobo
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8677468b98256d6a16720c2f3944879
+      internalID: 8214973481309332634
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoracaoGlacial
+      rect:
+        serializedVersion: 2
+        x: 1552
+        y: 0
+        width: 222
+        height: 222
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d874e2ec43d54ea984dbe2abfbfd10c
+      internalID: 7672772935289767762
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID: 4ff3b6dfd06e53d28cbcb3c73ca9ad53
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8,"y":4},"gridSpriteSize":{"x":222,"y":222},"gridSpriteOffset":{"x":0,"y":0},"gridSpritePadding":{"x":0,"y":0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0,"y":0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      SucataGoblin: 8958031394793025559
+      TiraCouroGoblin: 4006859205604727677
+      PresaHobgoblin: 8595737135826952818
+      EspinhoPorrete: 1226384677665235150
+      PenaRitual: 681563733989946415
+      AmuletoXama: 7736841521346767692
+      LascaEscudo: 4265415329806836006
+      PontaFlecha: 4564022077283476087
+      EssenciaVenenosa: 4344455274277143168
+      CristalVil: 3129784498826454646
+      Ectoplasma: 6665163570774198626
+      TecidoEspectral: 7218425492027824783
+      GalhadaAmaldicoada: 6462051512255047524
+      EssenciaSombria: 7853115722141715252
+      OssoAntigo: 431689035090045063
+      CordaArcoGasta: 8000627297213530424
+      SigiloProfano: 3558428795794541680
+      FragmentoAlma: 5282710460583820305
+      PoOsseo: 4853804880434023093
+      TecidoNecromantico: 7317661662570057074
+      CristalNecrotico: 968102071262108801
+      PlacaArmaduraNegra: 1981532783786830627
+      EmblemaCavaleiroCaido: 4462964203397831663
+      IcorPutrido: 7834518696546378447
+      PresaTroll: 771059863034505604
+      CouroTroll: 3596262464400208893
+      TotemGeada: 5860990931982999195
+      PeloYeti: 3078755797974462436
+      GarraYeti: 1497554730999465510
+      PeleLobo: 7416241125516230691
+      PresaLobo: 8214973481309332634
+      CoracaoGlacial: 7672772935289767762
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData: exploration-resources-v1
+  assetBundleName:
+  assetBundleVariant:

@@ -15,4 +15,60 @@ MonoBehaviour:
   environment: 3
   background: {fileID: 0}
   enemies: []
-  possibleRewards: []
+  possibleRewards:
+  - resource: {fileID: 11400000, guid: 47892337a8fe5b6387dc2640870f1bf6, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 3f25e0cab63e5b5496f4ea19e19d49e6, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: 8b0fa92fae6c53e992368e2c36a3f8f6, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 3e905230697a50beaa7769bb5d08acf8, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 0475235c4c125810a7f46f7954b0f527, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: 184e8adf400d5566937ad9c36de809e4, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3
+  - resource: {fileID: 11400000, guid: 579d3fe14b3e5a56b803aafd3f734cc4, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3
+  - resource: {fileID: 11400000, guid: 35d750fac69652bcadf2f385834301ec, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: ba9e056864b4557a931de19c7e09c6e9, type: 2}
+    dropChance: 0.04
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: 52411012b91c52ed9e014ca278eac384, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 7c31a188d2725ac49a6217cb0db5107a, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 85f3730ae30958499d184960589e87ed, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: 96836b4aeebe556282d1e5dfe3e74277, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: b2df50a59e0c5931b3ed762a54a2d432, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81271d94b44f47948a3a763708b768e2, type: 3}
+  m_Name: FlorVital
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationResourceDefinition
+  persistenceId: resource.flor_vital
+  displayName: "Flor vital"
+  description: "Recurso regional de exploração. Encontrado em: Floresta Esmeralda."
+  icon: {fileID: 5245899971466851011, guid: 26ac98491cd75db9841e2806275dd9d5, type: 3}

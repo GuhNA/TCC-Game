@@ -123,6 +123,59 @@ namespace TCCGame.Tests.EditMode
                 Is.EqualTo(ExplorationMissionStatus.Defeated));
         }
 
+        [Test]
+        public void ReportAttackCountdown_UsesSessionClockAndStopsAtZero()
+        {
+            var state = GameSaveData.CreateDefault();
+            var clock = new FakeClock { UnixSeconds = 100 };
+            var area = new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.ColinasDoVento,
+                captured = true,
+                nextEnemyAttackUnixSeconds = 225
+            };
+            state.exploration.areas.Add(area);
+            var service = new ExplorationService(state, clock, () => { });
+
+            Assert.That(service.GetSecondsUntilEnemyAttack(area.environment), Is.EqualTo(125));
+            clock.UnixSeconds = 226;
+            Assert.That(service.GetSecondsUntilEnemyAttack(area.environment), Is.Zero);
+            clock.UnixSeconds = 100;
+            area.enemyAttackPending = true;
+            Assert.That(service.GetSecondsUntilEnemyAttack(area.environment), Is.Zero);
+            area.enemyAttackPending = false;
+            area.captured = false;
+            Assert.That(service.GetSecondsUntilEnemyAttack(area.environment), Is.Zero);
+            Assert.That(service.GetSecondsUntilEnemyAttack(ExplorationEnvironment.Santuario), Is.Zero);
+        }
+
+        [Test]
+        public void ReportExplorerAvailability_SubtractsAssignmentsAcrossTheEntireMap()
+        {
+            var state = GameSaveData.CreateDefault();
+            state.SetBuildingLevel(BuildingType.ExplorersLodge, 5);
+            state.exploration.areas.Add(new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.ColinasDoVento,
+                captured = true,
+                assignedWorkers = 2
+            });
+            state.exploration.areas.Add(new ExplorationAreaSaveData
+            {
+                environment = ExplorationEnvironment.FlorestaDasSombras,
+                captured = true,
+                assignedWorkers = 1
+            });
+            var service = new ExplorationService(state, new FakeClock(), () => { });
+            Assert.That(service.AvailableExplorers, Is.EqualTo(2));
+            Assert.That(service.TrySetAssignedWorkers(ExplorationEnvironment.ColinasDoVento,
+                3, out string error), Is.True, error);
+            Assert.That(service.AvailableExplorers, Is.EqualTo(1));
+            Assert.That(service.TrySetAssignedWorkers(ExplorationEnvironment.ColinasDoVento,
+                5, out _), Is.False);
+            Assert.That(service.AvailableExplorers, Is.EqualTo(1));
+        }
+
         private sealed class FakeClock : IClock
         {
             public long UnixSeconds { get; set; }

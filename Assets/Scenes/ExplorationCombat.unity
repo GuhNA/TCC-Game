@@ -5764,7 +5764,7 @@ MonoBehaviour:
   - {fileID: 1984964163}
   - {fileID: 1749858713}
   - {fileID: 1373011402}
-  combatantSlotSpacing: 0.25
+  combatantSlotSpacing: 0.15
   combatantVerticalSpacing: 0.2
   environmentTitleText: {fileID: 1515689562}
   roundText: {fileID: 1393250743}

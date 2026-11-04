@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: FastGoblin
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
   persistenceId: enemy.goblin.fast
-  displayName: Goblin
+  displayName: Goblin Ligeiro
   portrait: {fileID: -1575648226393915361, guid: b03e49a0890c5364cbd5c0a00094dcdc, type: 3}
   combatPrefab: {fileID: 1755499810399378674, guid: 51fd03e454f3a1a4e9d4625eadb0436a, type: 3}
   combatLocalPosition: {x: 0, y: 0, z: 0}
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flipCombatVisualX: 1
   battlePower: 15
   maximumHealth: 50
   minimumDamage: 4

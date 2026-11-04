@@ -15,4 +15,4 @@ MonoBehaviour:
   persistenceId: resource.wood
   displayName: Madeira
   description: 'Pode ser usado para diversas tarefas '
-  icon: {fileID: 2595303186730468838, guid: 4444e58dc28462844aee0b84e21cef53, type: 3}
+  icon: {fileID: 615138826591538121, guid: bf963c0fe9ec5ea468215c63b2855103, type: 3}

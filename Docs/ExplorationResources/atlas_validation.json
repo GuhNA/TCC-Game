@@ -1,0 +1,1762 @@
+[
+  {
+    "id": "exploration_resources_atlas_v1",
+    "columns": 8,
+    "rows": 8,
+    "requestedWidth": 1024,
+    "requestedHeight": 1024,
+    "actualWidth": 1254,
+    "actualHeight": 1254,
+    "nominalCellWidth": 156.75,
+    "nominalCellHeight": 156.75,
+    "uniformCells": false,
+    "transparentPixels": 749491,
+    "sha256": "93ea87c57e0b1f1439c847c9458adcad9ec135614ccb570f6e922b33137cc252",
+    "cells": [
+      {
+        "id": "PedraBruta",
+        "row": 1,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          24,
+          37,
+          145,
+          140
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "FibraVegetal",
+        "row": 1,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          18,
+          31,
+          152,
+          153
+        ],
+        "solidMargin": 5
+      },
+      {
+        "id": "ErvaMedicinal",
+        "row": 1,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 1097,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          14,
+          27,
+          144,
+          150
+        ],
+        "solidMargin": 8
+      },
+      {
+        "id": "FloresSilvestres",
+        "row": 1,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          26,
+          21,
+          138,
+          150
+        ],
+        "solidMargin": 7
+      },
+      {
+        "id": "SementeSilvestre",
+        "row": 1,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          17,
+          33,
+          137,
+          146
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "MinerioCobre",
+        "row": 1,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 1097,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          18,
+          38,
+          137,
+          144
+        ],
+        "solidMargin": 14
+      },
+      {
+        "id": "MinerioFerro",
+        "row": 1,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          18,
+          34,
+          138,
+          144
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "Argila",
+        "row": 1,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 1097,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          45,
+          137,
+          140
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "MadeiraEscura",
+        "row": 2,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          19,
+          30,
+          148,
+          147
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "CogumeloSombrio",
+        "row": 2,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          21,
+          24,
+          139,
+          148
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "RaizAmarga",
+        "row": 2,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 940,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          15,
+          20,
+          138,
+          155
+        ],
+        "solidMargin": 3
+      },
+      {
+        "id": "ResinaEscura",
+        "row": 2,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          25,
+          142,
+          146
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "MusgoNoturno",
+        "row": 2,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          37,
+          142,
+          143
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "FrutaSilvestre",
+        "row": 2,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 940,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          16,
+          28,
+          141,
+          147
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "FolhaEsmeralda",
+        "row": 2,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          17,
+          28,
+          139,
+          149
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "ResinaDourada",
+        "row": 2,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 940,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          25,
+          138,
+          145
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "FlorVital",
+        "row": 3,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          14,
+          21,
+          144,
+          149
+        ],
+        "solidMargin": 8
+      },
+      {
+        "id": "CascaRobusta",
+        "row": 3,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          15,
+          21,
+          145,
+          144
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "CristalGelo",
+        "row": 3,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 784,
+          "width": 156,
+          "height": 156
+        },
+        "visibleBounds": [
+          21,
+          23,
+          134,
+          148
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "GeloEterno",
+        "row": 3,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          13,
+          23,
+          141,
+          148
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "MinerioPrata",
+        "row": 3,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          12,
+          23,
+          141,
+          142
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "LiquenGelido",
+        "row": 3,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 784,
+          "width": 156,
+          "height": 156
+        },
+        "visibleBounds": [
+          12,
+          27,
+          140,
+          145
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "QuartzoBruto",
+        "row": 3,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          14,
+          23,
+          136,
+          147
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "SalMineral",
+        "row": 3,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 784,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          11,
+          33,
+          141,
+          139
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "CarvaoMineral",
+        "row": 4,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          18,
+          28,
+          143,
+          139
+        ],
+        "solidMargin": 15
+      },
+      {
+        "id": "Salitre",
+        "row": 4,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          16,
+          29,
+          139,
+          139
+        ],
+        "solidMargin": 16
+      },
+      {
+        "id": "CogumeloLuminoso",
+        "row": 4,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 627,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          20,
+          22,
+          131,
+          147
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "CristalProfundo",
+        "row": 4,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          14,
+          19,
+          140,
+          149
+        ],
+        "solidMargin": 8
+      },
+      {
+        "id": "Obsidiana",
+        "row": 4,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          25,
+          137,
+          140
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "Enxofre",
+        "row": 4,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 627,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          35,
+          140,
+          138
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "PedraPomes",
+        "row": 4,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          33,
+          143,
+          141
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "NucleoIgneo",
+        "row": 4,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 627,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          27,
+          140,
+          142
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "AreiaFina",
+        "row": 5,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          21,
+          26,
+          145,
+          143
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "FibraCacto",
+        "row": 5,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          15,
+          19,
+          146,
+          148
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "FlorDeserto",
+        "row": 5,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 470,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          8,
+          28,
+          143,
+          146
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "VidroDeserto",
+        "row": 5,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          10,
+          18,
+          138,
+          147
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "Coco",
+        "row": 5,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          5,
+          27,
+          146,
+          148
+        ],
+        "solidMargin": 6
+      },
+      {
+        "id": "Bambu",
+        "row": 5,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 470,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          20,
+          137,
+          148
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "FolhaPalmeira",
+        "row": 5,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          0,
+          29,
+          145,
+          146
+        ],
+        "solidMargin": 1
+      },
+      {
+        "id": "FrutaTropical",
+        "row": 5,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 470,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          18,
+          143,
+          147
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "AlgaMarinha",
+        "row": 6,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          14,
+          19,
+          149,
+          143
+        ],
+        "solidMargin": 9
+      },
+      {
+        "id": "ConchaMarinha",
+        "row": 6,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          18,
+          22,
+          141,
+          143
+        ],
+        "solidMargin": 14
+      },
+      {
+        "id": "SalMarinho",
+        "row": 6,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 314,
+          "width": 156,
+          "height": 156
+        },
+        "visibleBounds": [
+          17,
+          37,
+          139,
+          137
+        ],
+        "solidMargin": 18
+      },
+      {
+        "id": "PeixePrateado",
+        "row": 6,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          5,
+          26,
+          149,
+          126
+        ],
+        "solidMargin": 6
+      },
+      {
+        "id": "CoralVermelho",
+        "row": 6,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          10,
+          20,
+          141,
+          143
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "Perola",
+        "row": 6,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 314,
+          "width": 156,
+          "height": 156
+        },
+        "visibleBounds": [
+          12,
+          22,
+          138,
+          140
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "Madreperola",
+        "row": 6,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          4,
+          30,
+          136,
+          138
+        ],
+        "solidMargin": 5
+      },
+      {
+        "id": "EsponjaMarinha",
+        "row": 6,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 314,
+          "width": 157,
+          "height": 156
+        },
+        "visibleBounds": [
+          7,
+          24,
+          139,
+          138
+        ],
+        "solidMargin": 7
+      },
+      {
+        "id": "PergaminhoAntigo",
+        "row": 7,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          14,
+          13,
+          151,
+          145
+        ],
+        "solidMargin": 6
+      },
+      {
+        "id": "FragmentoRunico",
+        "row": 7,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          18,
+          16,
+          137,
+          141
+        ],
+        "solidMargin": 16
+      },
+      {
+        "id": "PoArcano",
+        "row": 7,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 157,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          19,
+          15,
+          130,
+          145
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "EngrenagemAntiga",
+        "row": 7,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          11,
+          18,
+          141,
+          141
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "Trigo",
+        "row": 7,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          9,
+          11,
+          143,
+          142
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "Linho",
+        "row": 7,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 157,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          1,
+          23,
+          145,
+          143
+        ],
+        "solidMargin": 2
+      },
+      {
+        "id": "CeraAbelha",
+        "row": 7,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          9,
+          22,
+          141,
+          138
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "SeloReal",
+        "row": 7,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 157,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          10,
+          18,
+          140,
+          132
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "IncensoSagrado",
+        "row": 8,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          22,
+          17,
+          140,
+          141
+        ],
+        "solidMargin": 17
+      },
+      {
+        "id": "AguaBenta",
+        "row": 8,
+        "column": 2,
+        "rect": {
+          "x": 157,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          19,
+          10,
+          134,
+          144
+        ],
+        "solidMargin": 11
+      },
+      {
+        "id": "FragmentoRelicario",
+        "row": 8,
+        "column": 3,
+        "rect": {
+          "x": 314,
+          "y": 0,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          12,
+          135,
+          142
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "PoBendito",
+        "row": 8,
+        "column": 4,
+        "rect": {
+          "x": 470,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          12,
+          22,
+          141,
+          143
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "CristalVento",
+        "row": 8,
+        "column": 5,
+        "rect": {
+          "x": 627,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          25,
+          13,
+          122,
+          142
+        ],
+        "solidMargin": 14
+      },
+      {
+        "id": "PepitaOuro",
+        "row": 8,
+        "column": 6,
+        "rect": {
+          "x": 784,
+          "y": 0,
+          "width": 156,
+          "height": 157
+        },
+        "visibleBounds": [
+          6,
+          30,
+          140,
+          132
+        ],
+        "solidMargin": 6
+      },
+      {
+        "id": "CristalMana",
+        "row": 8,
+        "column": 7,
+        "rect": {
+          "x": 940,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          22,
+          13,
+          132,
+          141
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "SafiraBruta",
+        "row": 8,
+        "column": 8,
+        "rect": {
+          "x": 1097,
+          "y": 0,
+          "width": 157,
+          "height": 157
+        },
+        "visibleBounds": [
+          13,
+          18,
+          139,
+          135
+        ],
+        "solidMargin": 13
+      }
+    ]
+  },
+  {
+    "id": "monster_drops_atlas_v1",
+    "columns": 8,
+    "rows": 4,
+    "requestedWidth": 1024,
+    "requestedHeight": 512,
+    "actualWidth": 1774,
+    "actualHeight": 887,
+    "nominalCellWidth": 221.75,
+    "nominalCellHeight": 221.75,
+    "uniformCells": false,
+    "transparentPixels": 928244,
+    "sha256": "525fac171826ed8416cd9c0b6871fb3c0dddbb2de15a13dcbbade0293cefa018",
+    "cells": [
+      {
+        "id": "SucataGoblin",
+        "row": 1,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          25,
+          20,
+          197,
+          198
+        ],
+        "solidMargin": 20
+      },
+      {
+        "id": "TiraCouroGoblin",
+        "row": 1,
+        "column": 2,
+        "rect": {
+          "x": 222,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          28,
+          27,
+          196,
+          194
+        ],
+        "solidMargin": 27
+      },
+      {
+        "id": "PresaHobgoblin",
+        "row": 1,
+        "column": 3,
+        "rect": {
+          "x": 444,
+          "y": 665,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          42,
+          22,
+          176,
+          205
+        ],
+        "solidMargin": 18
+      },
+      {
+        "id": "EspinhoPorrete",
+        "row": 1,
+        "column": 4,
+        "rect": {
+          "x": 665,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          21,
+          28,
+          193,
+          194
+        ],
+        "solidMargin": 22
+      },
+      {
+        "id": "PenaRitual",
+        "row": 1,
+        "column": 5,
+        "rect": {
+          "x": 887,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          24,
+          17,
+          193,
+          206
+        ],
+        "solidMargin": 17
+      },
+      {
+        "id": "AmuletoXama",
+        "row": 1,
+        "column": 6,
+        "rect": {
+          "x": 1109,
+          "y": 665,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          38,
+          17,
+          186,
+          208
+        ],
+        "solidMargin": 15
+      },
+      {
+        "id": "LascaEscudo",
+        "row": 1,
+        "column": 7,
+        "rect": {
+          "x": 1330,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          21,
+          17,
+          191,
+          205
+        ],
+        "solidMargin": 17
+      },
+      {
+        "id": "PontaFlecha",
+        "row": 1,
+        "column": 8,
+        "rect": {
+          "x": 1552,
+          "y": 665,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          24,
+          18,
+          192,
+          202
+        ],
+        "solidMargin": 18
+      },
+      {
+        "id": "EssenciaVenenosa",
+        "row": 2,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          46,
+          28,
+          178,
+          195
+        ],
+        "solidMargin": 28
+      },
+      {
+        "id": "CristalVil",
+        "row": 2,
+        "column": 2,
+        "rect": {
+          "x": 222,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          44,
+          15,
+          176,
+          204
+        ],
+        "solidMargin": 15
+      },
+      {
+        "id": "Ectoplasma",
+        "row": 2,
+        "column": 3,
+        "rect": {
+          "x": 444,
+          "y": 443,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          22,
+          23,
+          187,
+          193
+        ],
+        "solidMargin": 23
+      },
+      {
+        "id": "TecidoEspectral",
+        "row": 2,
+        "column": 4,
+        "rect": {
+          "x": 665,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          13,
+          26,
+          198,
+          199
+        ],
+        "solidMargin": 14
+      },
+      {
+        "id": "GalhadaAmaldicoada",
+        "row": 2,
+        "column": 5,
+        "rect": {
+          "x": 887,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          22,
+          20,
+          202,
+          204
+        ],
+        "solidMargin": 19
+      },
+      {
+        "id": "EssenciaSombria",
+        "row": 2,
+        "column": 6,
+        "rect": {
+          "x": 1109,
+          "y": 443,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          34,
+          27,
+          193,
+          197
+        ],
+        "solidMargin": 26
+      },
+      {
+        "id": "OssoAntigo",
+        "row": 2,
+        "column": 7,
+        "rect": {
+          "x": 1330,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          23,
+          29,
+          192,
+          188
+        ],
+        "solidMargin": 24
+      },
+      {
+        "id": "CordaArcoGasta",
+        "row": 2,
+        "column": 8,
+        "rect": {
+          "x": 1552,
+          "y": 443,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          19,
+          42,
+          203,
+          201
+        ],
+        "solidMargin": 20
+      },
+      {
+        "id": "SigiloProfano",
+        "row": 3,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          28,
+          11,
+          195,
+          202
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "FragmentoAlma",
+        "row": 3,
+        "column": 2,
+        "rect": {
+          "x": 222,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          39,
+          15,
+          178,
+          202
+        ],
+        "solidMargin": 16
+      },
+      {
+        "id": "PoOsseo",
+        "row": 3,
+        "column": 3,
+        "rect": {
+          "x": 444,
+          "y": 222,
+          "width": 221,
+          "height": 221
+        },
+        "visibleBounds": [
+          17,
+          24,
+          193,
+          197
+        ],
+        "solidMargin": 18
+      },
+      {
+        "id": "TecidoNecromantico",
+        "row": 3,
+        "column": 4,
+        "rect": {
+          "x": 665,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          16,
+          27,
+          203,
+          201
+        ],
+        "solidMargin": 17
+      },
+      {
+        "id": "CristalNecrotico",
+        "row": 3,
+        "column": 5,
+        "rect": {
+          "x": 887,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          31,
+          13,
+          178,
+          204
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "PlacaArmaduraNegra",
+        "row": 3,
+        "column": 6,
+        "rect": {
+          "x": 1109,
+          "y": 222,
+          "width": 221,
+          "height": 221
+        },
+        "visibleBounds": [
+          18,
+          18,
+          199,
+          200
+        ],
+        "solidMargin": 19
+      },
+      {
+        "id": "EmblemaCavaleiroCaido",
+        "row": 3,
+        "column": 7,
+        "rect": {
+          "x": 1330,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          26,
+          19,
+          201,
+          204
+        ],
+        "solidMargin": 17
+      },
+      {
+        "id": "IcorPutrido",
+        "row": 3,
+        "column": 8,
+        "rect": {
+          "x": 1552,
+          "y": 222,
+          "width": 222,
+          "height": 221
+        },
+        "visibleBounds": [
+          44,
+          22,
+          178,
+          197
+        ],
+        "solidMargin": 23
+      },
+      {
+        "id": "PresaTroll",
+        "row": 4,
+        "column": 1,
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          25,
+          23,
+          189,
+          203
+        ],
+        "solidMargin": 20
+      },
+      {
+        "id": "CouroTroll",
+        "row": 4,
+        "column": 2,
+        "rect": {
+          "x": 222,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          17,
+          33,
+          207,
+          195
+        ],
+        "solidMargin": 16
+      },
+      {
+        "id": "TotemGeada",
+        "row": 4,
+        "column": 3,
+        "rect": {
+          "x": 444,
+          "y": 0,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          38,
+          12,
+          154,
+          209
+        ],
+        "solidMargin": 12
+      },
+      {
+        "id": "PeloYeti",
+        "row": 4,
+        "column": 4,
+        "rect": {
+          "x": 665,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          9,
+          29,
+          207,
+          200
+        ],
+        "solidMargin": 10
+      },
+      {
+        "id": "GarraYeti",
+        "row": 4,
+        "column": 5,
+        "rect": {
+          "x": 887,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          28,
+          30,
+          197,
+          200
+        ],
+        "solidMargin": 23
+      },
+      {
+        "id": "PeleLobo",
+        "row": 4,
+        "column": 6,
+        "rect": {
+          "x": 1109,
+          "y": 0,
+          "width": 221,
+          "height": 222
+        },
+        "visibleBounds": [
+          16,
+          22,
+          209,
+          203
+        ],
+        "solidMargin": 13
+      },
+      {
+        "id": "PresaLobo",
+        "row": 4,
+        "column": 7,
+        "rect": {
+          "x": 1330,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          43,
+          27,
+          191,
+          200
+        ],
+        "solidMargin": 23
+      },
+      {
+        "id": "CoracaoGlacial",
+        "row": 4,
+        "column": 8,
+        "rect": {
+          "x": 1552,
+          "y": 0,
+          "width": 222,
+          "height": 222
+        },
+        "visibleBounds": [
+          9,
+          18,
+          209,
+          199
+        ],
+        "solidMargin": 9
+      }
+    ]
+  }
+]

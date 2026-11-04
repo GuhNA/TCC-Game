@@ -15,4 +15,32 @@ MonoBehaviour:
   environment: 13
   background: {fileID: 0}
   enemies: []
-  possibleRewards: []
+  possibleRewards:
+  - resource: {fileID: 11400000, guid: a5f5d547489c572ea56d7d63cc510d1e, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3
+  - resource: {fileID: 11400000, guid: 9c38b59670f05aefbd259a1f3f92832f, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3
+  - resource: {fileID: 11400000, guid: 18914ba4e38e54239f414a081566d18e, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3
+  - resource: {fileID: 11400000, guid: 3256b9b02f7d5fb1b0e1b8adc0f975ac, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: b6197cc9706550f3b05ab7cd516864ae, type: 2}
+    dropChance: 0.12
+    minimumQuantity: 1
+    maximumQuantity: 1
+  - resource: {fileID: 11400000, guid: 46d5186bcf3a5ecaae01649a9f14ae93, type: 2}
+    dropChance: 0.32
+    minimumQuantity: 1
+    maximumQuantity: 2
+  - resource: {fileID: 11400000, guid: 84e7b7236b125733b128d791f79c3243, type: 2}
+    dropChance: 0.65
+    minimumQuantity: 1
+    maximumQuantity: 3

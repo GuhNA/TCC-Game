@@ -36,7 +36,8 @@ namespace TCCGame.Gameplay.Exploration
 
         [Tooltip(
             "Espaço horizontal, em unidades do mundo, mantido entre os limites " +
-            "visuais de dois combatentes. O mesmo valor vale para as duas equipes."
+            "do sprite, da barra de vida inteira e do nome de dois combatentes. " +
+            "O maior elemento define a largura de cada slot, nas duas equipes."
         )]
         [SerializeField, Min(0f)] private float combatantSlotSpacing = 0.25f;
 
@@ -312,13 +313,16 @@ namespace TCCGame.Gameplay.Exploration
             IReadOnlyDictionary<string, CombatVisualData> visuals
         )
         {
-            for (int index = 0; index < (views?.Length ?? 0); index++)
+            // O motor entrega a formação em ordem espacial. A ordem de referências
+            // no Inspector não pode inverter a equipe nem a seleção dos alvos.
+            ExplorationCombatantView[] orderedViews = (views ??
+                    Array.Empty<ExplorationCombatantView>())
+                .Where(view => view != null)
+                .OrderBy(view => view.transform.position.x)
+                .ToArray();
+            for (int index = 0; index < orderedViews.Length; index++)
             {
-                ExplorationCombatantView view = views[index];
-                if (view == null)
-                {
-                    continue;
-                }
+                ExplorationCombatantView view = orderedViews[index];
 
                 if (index >= combatants.Count)
                 {
@@ -372,10 +376,10 @@ namespace TCCGame.Gameplay.Exploration
         }
 
         /// <summary>
-        /// Reposiciona os slots usando as bordas reais dos sprites. O centro médio
+        /// Reposiciona os slots usando as bordas do corpo, barra de vida e nome. O centro médio
         /// configurado na cena é preservado; somente a distância necessária entre
         /// os slots muda. Isso mantém o layout feito pelo DEV e abre espaço para
-        /// prefabs largos, como o HobGoblin.
+        /// prefabs largos, barras maiores que o corpo e nomes compridos.
         /// </summary>
         private void ArrangeTeamByVisualSize(
             IEnumerable<ExplorationCombatantView> teamViews
@@ -418,7 +422,7 @@ namespace TCCGame.Gameplay.Exploration
         )
         {
             float viewX = view.transform.position.x;
-            if (!view.TryGetVisualWorldBounds(out Bounds bounds))
+            if (!view.TryGetSlotWorldBounds(out Bounds bounds))
             {
                 return new SlotLayoutData(view, viewX, -0.5f, 0.5f);
             }

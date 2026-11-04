@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81271d94b44f47948a3a763708b768e2, type: 3}
+  m_Name: OssoAntigo
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationResourceDefinition
+  persistenceId: resource.osso_antigo
+  displayName: "Osso antigo"
+  description: "Material associado a Esqueletos guerreiros e arqueiros. Encontrado em: Floresta das Sombras, Torre Antiga, Deserto dos Ventos."
+  icon: {fileID: 431689035090045063, guid: 7040a0a95472582480b06b560fcd4330, type: 3}

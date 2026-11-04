@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: GoblinMage
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
   persistenceId: enemy.goblin.mage
-  displayName: Goblin
+  displayName: Goblin Mago
   portrait: {fileID: 1275948931964984430, guid: b03e49a0890c5364cbd5c0a00094dcdc, type: 3}
   combatPrefab: {fileID: 925963602807529032, guid: 075f03f32e7403241a2cd68fd1094d2c, type: 3}
   combatLocalPosition: {x: 0, y: 0, z: 0}
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flipCombatVisualX: 1
   battlePower: 35
-  maximumHealth: 120
+  maximumHealth: 85
   minimumDamage: 10
   maximumDamage: 40
   speed: 4
-  armor: 7
-  magicResistance: 15
+  armor: 3
+  magicResistance: 10
   damageType: 1

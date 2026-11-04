@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ExplorersLodge
   m_EditorClassIdentifier: Assembly-CSharp::BuildingDefinition
   type: 4
-  displayName: Construção de Exploradores
-  description: Cada nível disponibiliza um explorador para coletar recursos nas regiões capturadas.
+  displayName: "Constru\xE7\xE3o de Exploradores"
+  description: "Cada n\xEDvel disponibiliza um explorador para coletar recursos nas
+    regi\xF5es capturadas."
   maximumLevel: 5
   baseUpgradeCost: 200
   upgradeCostMultiplier: 1.5
@@ -41,6 +42,6 @@ MonoBehaviour:
       quantity: 50
   baseProduction: 1
   productionPerLevel: 1
-  unbuiltSprite: {fileID: -2871290297188978435, guid: ee8afa7bb380a7e4abd1644eba6d2d77, type: 3}
+  unbuiltSprite: {fileID: -2413806693520163455, guid: 8982201b7842c8e4087190a81a865792, type: 3}
   levelSprites:
   - {fileID: -2871290297188978435, guid: ee8afa7bb380a7e4abd1644eba6d2d77, type: 3}

@@ -210,6 +210,76 @@ namespace TCCGame.Tests.EditMode
             UnityEngine.Object.DestroyImmediate(enemy);
         }
 
+        [TestCase(ExplorationCombatTeam.Adventurers)]
+        [TestCase(ExplorationCombatTeam.Enemies)]
+        public void Formation_OrdersByCombinedDefenseThenMaximumHealth(ExplorationCombatTeam team)
+        {
+            var armored = CreateDefender("armored", team, 10, 0, 60);
+            var resistant = CreateDefender("resistant", team, 2, 9, 30);
+            var healthier = CreateDefender("healthier", team, 6, 4, 100);
+            // Vida atual não substitui o atributo de vida máxima no desempate.
+            healthier.ApplyDamage(95);
+            var input = new[] { healthier, resistant, armored };
+            var other = Create("other", team == ExplorationCombatTeam.Adventurers
+                ? ExplorationCombatTeam.Enemies : ExplorationCombatTeam.Adventurers, 1);
+            var battle = new ExplorationTurnBattle(
+                team == ExplorationCombatTeam.Adventurers ? input : new[] { other },
+                team == ExplorationCombatTeam.Enemies ? input : new[] { other }, 1);
+
+            CollectionAssert.AreEqual(team == ExplorationCombatTeam.Adventurers
+                ? new[] { armored, healthier, resistant }
+                : new[] { resistant, healthier, armored },
+                team == ExplorationCombatTeam.Adventurers ? battle.Adventurers : battle.Enemies);
+            CollectionAssert.AreEqual(new[] { healthier, resistant, armored }, input,
+                "A formação não deve modificar a lista original da missão.");
+        }
+
+        [TestCase(ExplorationCombatTeam.Adventurers)]
+        [TestCase(ExplorationCombatTeam.Enemies)]
+        public void Formation_FullTiesPreserveInputOrder(ExplorationCombatTeam team)
+        {
+            var first = CreateDefender("z", team, 4, 6, 100);
+            var second = CreateDefender("a", team, 8, 2, 100);
+            var other = Create("other", team == ExplorationCombatTeam.Adventurers
+                ? ExplorationCombatTeam.Enemies : ExplorationCombatTeam.Adventurers, 1);
+            var battle = new ExplorationTurnBattle(
+                team == ExplorationCombatTeam.Adventurers ? new[] { first, second } : new[] { other },
+                team == ExplorationCombatTeam.Enemies ? new[] { first, second } : new[] { other }, 1);
+            CollectionAssert.AreEqual(new[] { first, second },
+                team == ExplorationCombatTeam.Adventurers ? battle.Adventurers : battle.Enemies);
+        }
+
+        [TestCase(ExplorationCombatTeam.Adventurers)]
+        [TestCase(ExplorationCombatTeam.Enemies)]
+        public void Attacks_FollowDefensiveFormationAndSkipFallenFrontliner(ExplorationCombatTeam targetTeam)
+        {
+            var back = CreateDefender("back", targetTeam, 0, 0, 100);
+            var middle = CreateDefender("middle", targetTeam, 2, 3, 100);
+            var front = CreateDefender("front", targetTeam, 3, 2, 200);
+            var attackerTeam = targetTeam == ExplorationCombatTeam.Adventurers
+                ? ExplorationCombatTeam.Enemies : ExplorationCombatTeam.Adventurers;
+            var attacker = Create("fast", attackerTeam, 100);
+            var defenders = new[] { front, back, middle };
+            var battle = new ExplorationTurnBattle(
+                targetTeam == ExplorationCombatTeam.Adventurers ? defenders : new[] { attacker },
+                targetTeam == ExplorationCombatTeam.Enemies ? defenders : new[] { attacker }, 1);
+            ExplorationTurnResult first = battle.ExecuteNextTurn();
+            Assert.That(first.Attacker, Is.SameAs(attacker));
+            Assert.That(first.Target, Is.SameAs(front));
+            front.ApplyDamage(150);
+            Assert.That(battle.ExecuteNextTurn().Target, Is.SameAs(front),
+                "Dano recebido não deve mudar a formação.");
+            front.ApplyDamage(200);
+            Assert.That(battle.ExecuteNextTurn().Target, Is.SameAs(middle));
+        }
+
+        private static ExplorationBattleCombatant CreateDefender(string id,
+            ExplorationCombatTeam team, int armor, int resistance, int health)
+        {
+            return new ExplorationBattleCombatant(id, id, team, health, health,
+                1, 1, 1, armor, resistance, DamageType.Physical);
+        }
+
         private static void SetPrivateField<T>(
             object target,
             string fieldName,

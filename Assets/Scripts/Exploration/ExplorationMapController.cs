@@ -45,6 +45,7 @@ namespace TCCGame.Gameplay.Exploration
         [SerializeField] private Button backButton;
 
         [Header("Captured-area management")]
+        [SerializeField] private ExplorationAreaReportView areaReportView;
         [Tooltip("Optional. If empty, buttons are cloned from Confirm at runtime.")]
         [SerializeField] private Button assignExplorerButton;
         [SerializeField] private Button removeExplorerButton;
@@ -89,6 +90,8 @@ namespace TCCGame.Gameplay.Exploration
 
         private void Awake()
         {
+            areaReportView?.Hide();
+            areaReportView?.Initialize(this);
             partySelectionPopupRoot?.SetActive(false);
             if (confirmPartyButtonText == null && confirmPartyButton != null)
             {
@@ -153,6 +156,7 @@ namespace TCCGame.Gameplay.Exploration
                 ? null
                 : player.GetComponent<PlayerInteractor>();
             mapPopupRoot.SetActive(true);
+            areaReportView?.Hide();
             partySelectionPopupRoot?.SetActive(false);
             SetEnvironmentSelectionEnabled(true);
             selectedParty.Clear();
@@ -198,6 +202,7 @@ namespace TCCGame.Gameplay.Exploration
             }
 
             selectedEnvironment = environment;
+            areaReportView?.Hide();
             panelMode = PanelMode.Mission;
             SetExplorerButtonsVisible(false);
             selectedParty.Clear();
@@ -232,6 +237,21 @@ namespace TCCGame.Gameplay.Exploration
             selectedParty.Clear();
             visibleReport = GameSessionProvider.Current.Exploration
                 .GetLatestMissionForEnvironment(selectedEnvironment);
+
+            if (areaReportView != null)
+            {
+                ClearCards();
+                partySelectionPopupRoot?.SetActive(false);
+                SetExplorerButtonsVisible(false);
+                SetEnvironmentSelectionEnabled(false);
+                areaReportView.Show(GameSessionProvider.Current.Exploration,
+                    selectedEnvironment, encounterCatalog, adventurerCatalog);
+                if (visibleReport?.status == ExplorationMissionStatus.Returned)
+                {
+                    GameSessionProvider.Current.Exploration.AcknowledgeReport(visibleReport.id);
+                }
+                return;
+            }
             BuildReportCards(visibleReport);
 
             if (selectedDestinationText != null)
@@ -393,8 +413,16 @@ namespace TCCGame.Gameplay.Exploration
 
         public void ClosePartySelection()
         {
+            if (panelMode == PanelMode.Guard && areaReportView != null)
+            {
+                OpenAreaReport((int)selectedEnvironment);
+                return;
+            }
+
             selectedParty.Clear();
             visibleReport = null;
+            panelMode = PanelMode.Mission;
+            areaReportView?.Hide();
             SetExplorerButtonsVisible(false);
             partySelectionPopupRoot?.SetActive(false);
             SetEnvironmentSelectionEnabled(true);
@@ -403,15 +431,29 @@ namespace TCCGame.Gameplay.Exploration
 
         public void CloseModal()
         {
-            mapPopupRoot?.SetActive(false);
-            partySelectionPopupRoot?.SetActive(false);
+            // Scene unloading can destroy the report before the map owner.
+            if (areaReportView != null)
+            {
+                areaReportView.Hide();
+            }
+            if (mapPopupRoot != null)
+            {
+                mapPopupRoot.SetActive(false);
+            }
+            if (partySelectionPopupRoot != null)
+            {
+                partySelectionPopupRoot.SetActive(false);
+            }
             selectedParty.Clear();
             visibleReport = null;
             panelMode = PanelMode.Mission;
             SetExplorerButtonsVisible(false);
             SetEnvironmentSelectionEnabled(true);
             UiMenuState.SetOpen(this, false);
-            interactor?.ReleaseModalLock(this);
+            if (interactor != null)
+            {
+                interactor.ReleaseModalLock(this);
+            }
             interactor = null;
         }
 
@@ -465,8 +507,10 @@ namespace TCCGame.Gameplay.Exploration
             }
         }
 
-        private void BeginGuardSelection()
+        public void BeginGuardSelection()
         {
+            areaReportView?.Hide();
+            partySelectionPopupRoot?.SetActive(true);
             panelMode = PanelMode.Guard;
             SetExplorerButtonsVisible(false);
             selectedParty.Clear();
@@ -693,9 +737,12 @@ namespace TCCGame.Gameplay.Exploration
 
         private void SetExplorerButtonsVisible(bool visible)
         {
-            assignExplorerButton?.gameObject.SetActive(visible);
-            removeExplorerButton?.gameObject.SetActive(visible);
-            transportLootButton?.gameObject.SetActive(visible);
+            if (assignExplorerButton != null)
+                assignExplorerButton.gameObject.SetActive(visible);
+            if (removeExplorerButton != null)
+                removeExplorerButton.gameObject.SetActive(visible);
+            if (transportLootButton != null)
+                transportLootButton.gameObject.SetActive(visible);
         }
 
         private void UpdateExplorerButtons()
@@ -805,13 +852,19 @@ namespace TCCGame.Gameplay.Exploration
 
         private void SetEnvironmentSelectionEnabled(bool enabled)
         {
-            environmentSelectionRoot?.SetActive(enabled);
+            if (environmentSelectionRoot != null)
+            {
+                environmentSelectionRoot.SetActive(enabled);
+            }
 
             foreach (ExplorationDestinationButton destination in
                      destinationButtons ??
                      Array.Empty<ExplorationDestinationButton>())
             {
-                destination?.SetInteractionEnabled(enabled);
+                if (destination != null)
+                {
+                    destination.SetInteractionEnabled(enabled);
+                }
             }
         }
 

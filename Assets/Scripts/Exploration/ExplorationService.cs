@@ -102,6 +102,15 @@ namespace TCCGame.Gameplay.Exploration
         public int ExplorerCollectionIntervalSeconds =>
             explorerCollectionIntervalSeconds;
 
+        public long GetSecondsUntilEnemyAttack(ExplorationEnvironment environment)
+        {
+            ExplorationAreaSaveData area = GetArea(environment);
+            return area == null || !area.captured || area.enemyAttackPending ||
+                area.nextEnemyAttackUnixSeconds <= 0
+                    ? 0
+                    : Math.Max(0, area.nextEnemyAttackUnixSeconds - clock.UnixSeconds);
+        }
+
         /// <summary>
         /// True whenever the tavern action board has work waiting for the
         /// player: an arrived party / battle, an unread return report, or

@@ -137,6 +137,16 @@ namespace TCCGame.Gameplay.Exploration
                 ExplorationCombatTeam.Enemies,
                 nameof(enemyParty)
             );
+            // As duas listas representam a formação da esquerda para a direita.
+            // Ordena uma única vez: receber dano não muda a posição durante a luta.
+            adventurers = adventurers
+                .OrderBy(unit => (long)unit.Armor + unit.MagicResistance)
+                .ThenBy(unit => unit.MaximumHealth)
+                .ToList();
+            enemies = enemies
+                .OrderByDescending(unit => (long)unit.Armor + unit.MagicResistance)
+                .ThenByDescending(unit => unit.MaximumHealth)
+                .ToList();
             random = new System.Random(randomSeed);
             foreach (ExplorationBattleCombatant combatant in
                      adventurers.Concat(enemies))

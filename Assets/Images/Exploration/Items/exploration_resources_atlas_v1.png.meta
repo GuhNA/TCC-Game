@@ -1,0 +1,1783 @@
+fileFormatVersion: 2
+guid: 26ac98491cd75db9841e2806275dd9d5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7925004204046448889
+    second: PedraBruta
+  - first:
+      213: 1903076883119064768
+    second: FibraVegetal
+  - first:
+      213: 2080437785601600231
+    second: ErvaMedicinal
+  - first:
+      213: 8512076323030205725
+    second: FloresSilvestres
+  - first:
+      213: 2661596258843627850
+    second: SementeSilvestre
+  - first:
+      213: 7822156985662262998
+    second: MinerioCobre
+  - first:
+      213: 7029070120877313589
+    second: MinerioFerro
+  - first:
+      213: 4928359223811246797
+    second: Argila
+  - first:
+      213: 1059845216855776498
+    second: MadeiraEscura
+  - first:
+      213: 3419237721677033054
+    second: CogumeloSombrio
+  - first:
+      213: 7716180471757142323
+    second: RaizAmarga
+  - first:
+      213: 9125866223518025524
+    second: ResinaEscura
+  - first:
+      213: 7648091151152908264
+    second: MusgoNoturno
+  - first:
+      213: 7202648439812842611
+    second: FrutaSilvestre
+  - first:
+      213: 6346572957725776140
+    second: FolhaEsmeralda
+  - first:
+      213: 5259006854326542659
+    second: ResinaDourada
+  - first:
+      213: 5245899971466851011
+    second: FlorVital
+  - first:
+      213: 6110055981944568836
+    second: CascaRobusta
+  - first:
+      213: 4178884558167894751
+    second: CristalGelo
+  - first:
+      213: 4122026181018968222
+    second: GeloEterno
+  - first:
+      213: 7586700180875762752
+    second: MinerioPrata
+  - first:
+      213: 893813642092517618
+    second: LiquenGelido
+  - first:
+      213: 1537642579625952384
+    second: QuartzoBruto
+  - first:
+      213: 2310504529488640450
+    second: SalMineral
+  - first:
+      213: 7756989273825677078
+    second: CarvaoMineral
+  - first:
+      213: 428480532649181810
+    second: Salitre
+  - first:
+      213: 7526075640973928264
+    second: CogumeloLuminoso
+  - first:
+      213: 876195464846772575
+    second: CristalProfundo
+  - first:
+      213: 9097449789392406311
+    second: Obsidiana
+  - first:
+      213: 7591711700231709250
+    second: Enxofre
+  - first:
+      213: 6481525953010528695
+    second: PedraPomes
+  - first:
+      213: 1744973854040723986
+    second: NucleoIgneo
+  - first:
+      213: 4580660336379464841
+    second: AreiaFina
+  - first:
+      213: 5327100341256192338
+    second: FibraCacto
+  - first:
+      213: 1357152533348625956
+    second: FlorDeserto
+  - first:
+      213: 8815715647142498275
+    second: VidroDeserto
+  - first:
+      213: 2546743874997644920
+    second: Coco
+  - first:
+      213: 601461158254202221
+    second: Bambu
+  - first:
+      213: 8768345439059030568
+    second: FolhaPalmeira
+  - first:
+      213: 5267300906726030718
+    second: FrutaTropical
+  - first:
+      213: 2824676132654010906
+    second: AlgaMarinha
+  - first:
+      213: 4641507076911924153
+    second: ConchaMarinha
+  - first:
+      213: 7301231578549776799
+    second: SalMarinho
+  - first:
+      213: 8805287269335198036
+    second: PeixePrateado
+  - first:
+      213: 931385191239328231
+    second: CoralVermelho
+  - first:
+      213: 1853520662506949604
+    second: Perola
+  - first:
+      213: 3729947690101096112
+    second: Madreperola
+  - first:
+      213: 546758825711877712
+    second: EsponjaMarinha
+  - first:
+      213: 8029848356753841898
+    second: PergaminhoAntigo
+  - first:
+      213: 5665436825404699815
+    second: FragmentoRunico
+  - first:
+      213: 5473176060066474564
+    second: PoArcano
+  - first:
+      213: 5734995411485521136
+    second: EngrenagemAntiga
+  - first:
+      213: 3982126070391927260
+    second: Trigo
+  - first:
+      213: 4997460561328656372
+    second: Linho
+  - first:
+      213: 383856718650489852
+    second: CeraAbelha
+  - first:
+      213: 1901635360139716759
+    second: SeloReal
+  - first:
+      213: 4366568924964774966
+    second: IncensoSagrado
+  - first:
+      213: 1662833325284361967
+    second: AguaBenta
+  - first:
+      213: 2989492156995182624
+    second: FragmentoRelicario
+  - first:
+      213: 7189494466196525346
+    second: PoBendito
+  - first:
+      213: 8751938859774510033
+    second: CristalVento
+  - first:
+      213: 8729804352855205819
+    second: PepitaOuro
+  - first:
+      213: 6450849384704423725
+    second: CristalMana
+  - first:
+      213: 5215220974676383508
+    second: SafiraBruta
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PedraBruta
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 149dc347e8975fc68681159652c08561
+      internalID: 7925004204046448889
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FibraVegetal
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7327277551e5422b0fc3546ba940440
+      internalID: 1903076883119064768
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ErvaMedicinal
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 1097
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaf8f596ba7855fd9832942b59349e68
+      internalID: 2080437785601600231
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FloresSilvestres
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da06ddf7853e5a43a89fcf0403d2f074
+      internalID: 8512076323030205725
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SementeSilvestre
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb92eed80eb35bbeb181afbaafcd979d
+      internalID: 2661596258843627850
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinerioCobre
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 1097
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02144933528e5dd5aa7df318ee73515b
+      internalID: 7822156985662262998
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinerioFerro
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17e9bdfdec475a199ae6631d3f6c4a27
+      internalID: 7029070120877313589
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Argila
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 1097
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f6f1e7b4e4b5e4bb31537c94003ade8
+      internalID: 4928359223811246797
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MadeiraEscura
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3061ee9ce1255f1a277b7ebf12cf540
+      internalID: 1059845216855776498
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CogumeloSombrio
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7932b10ffc855cdac4101bb6ff0c589
+      internalID: 3419237721677033054
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RaizAmarga
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 940
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9149e40c6d5a71bcf0787efd61996f
+      internalID: 7716180471757142323
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResinaEscura
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53c7ca79cda651c89dd72e829829beb1
+      internalID: 9125866223518025524
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MusgoNoturno
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e7466885d759709730329002a9e20c
+      internalID: 7648091151152908264
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FrutaSilvestre
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 940
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60d3d783f2625eab95968814e4fc2ac4
+      internalID: 7202648439812842611
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FolhaEsmeralda
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b685edab1a4554699777856caaa77f3
+      internalID: 6346572957725776140
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResinaDourada
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 940
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c137f2e20209584195ef3c234fdfe4ea
+      internalID: 5259006854326542659
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlorVital
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea1c4a50b2a57bc90d6841b3ec26b72
+      internalID: 5245899971466851011
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CascaRobusta
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566ca879d93458f0a99bfb44de349569
+      internalID: 6110055981944568836
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalGelo
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 784
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f56bc02e0f6152f28ddbc6f99c579169
+      internalID: 4178884558167894751
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GeloEterno
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36045e17bba15e57b0d140a4a7e66134
+      internalID: 4122026181018968222
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinerioPrata
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88c998ba0ac5aed8d4ef9863dd40818
+      internalID: 7586700180875762752
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LiquenGelido
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 784
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 739f50280af65f949667143e35974469
+      internalID: 893813642092517618
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuartzoBruto
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545ab4bec89a52cc8c8cbb92a2943a7e
+      internalID: 1537642579625952384
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SalMineral
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 784
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d7362cf7b15d31bbcd12056292d398
+      internalID: 2310504529488640450
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CarvaoMineral
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30ccd2aaf9635e94b7c521a1155072fa
+      internalID: 7756989273825677078
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Salitre
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceca631b48e65492a4d8274634e84481
+      internalID: 428480532649181810
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CogumeloLuminoso
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 627
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fee37f64be5fa7a5661791e7477a1b
+      internalID: 7526075640973928264
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalProfundo
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b2da5a42355be291092deec75b65cd
+      internalID: 876195464846772575
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obsidiana
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc5a5f62ead501bbd2c375550cdb2c3
+      internalID: 9097449789392406311
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enxofre
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 627
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 834483252385574bb5607edb25abdeaf
+      internalID: 7591711700231709250
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PedraPomes
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5666fd119765b2ebb289dcbf74eea76
+      internalID: 6481525953010528695
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NucleoIgneo
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 627
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33c42b43bdbc5e4096b88d47a54823f4
+      internalID: 1744973854040723986
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AreiaFina
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 011921187bc35e138a54502a364115a6
+      internalID: 4580660336379464841
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FibraCacto
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a08adfc2fb253389b6687d31e961e7a
+      internalID: 5327100341256192338
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlorDeserto
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 470
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54534b64d5e9599088f5bbc2837b0a12
+      internalID: 1357152533348625956
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VidroDeserto
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1c56956ec756998b6d80229b6f4177
+      internalID: 8815715647142498275
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coco
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3df119bf3c5a6189e7d5d7694918a5
+      internalID: 2546743874997644920
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bambu
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 470
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1545799fbf65548aea54fd3f1a39974
+      internalID: 601461158254202221
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FolhaPalmeira
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4a66a7007d50a58886a97e192cc242
+      internalID: 8768345439059030568
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FrutaTropical
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 470
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bed90e7a5515365999b4659a98f0b63
+      internalID: 5267300906726030718
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AlgaMarinha
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce182da51d55833a7bfb7cd3171cae5
+      internalID: 2824676132654010906
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConchaMarinha
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23290790b1d85008af818d7665dac31e
+      internalID: 4641507076911924153
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SalMarinho
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 314
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 684e9e1016645c1c950be37ee9fd3d5b
+      internalID: 7301231578549776799
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PeixePrateado
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 867948847edf5b189d77a4024f2f844e
+      internalID: 8805287269335198036
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CoralVermelho
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eacd68b40ed15f34bdae14df05171c57
+      internalID: 931385191239328231
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Perola
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 314
+        width: 156
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e80877edd955ae3ae8e351771a9358a
+      internalID: 1853520662506949604
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Madreperola
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b538d2f34c55ef78a5e15cfcad36744
+      internalID: 3729947690101096112
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EsponjaMarinha
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 314
+        width: 157
+        height: 156
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8e83a847a257979f9e14a086fe145e
+      internalID: 546758825711877712
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PergaminhoAntigo
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3e3bda3f6e052c5ab24d25df551cca9
+      internalID: 8029848356753841898
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FragmentoRunico
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc1d66aeb77354c4abf5924c96413564
+      internalID: 5665436825404699815
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoArcano
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 157
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5731f3364f05a938e696aefa9a3a21f
+      internalID: 5473176060066474564
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EngrenagemAntiga
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d55ab4132eb534485310481277cab09
+      internalID: 5734995411485521136
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trigo
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1a885bb55a5b02b6ef2a834079ecce
+      internalID: 3982126070391927260
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Linho
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 157
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd75c54f1e45d63a0e440f193eccc51
+      internalID: 4997460561328656372
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CeraAbelha
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 947081b6be365dbea500226356d0d7d4
+      internalID: 383856718650489852
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SeloReal
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 157
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dedfef1297358ce97ebf5f220249a36
+      internalID: 1901635360139716759
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IncensoSagrado
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4137b25b35566188df4ab9d63202d1
+      internalID: 4366568924964774966
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AguaBenta
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71710fbcdbb05ffa9d39938a6dffd0d4
+      internalID: 1662833325284361967
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FragmentoRelicario
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 0
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 106114e94e0a5bdf90eda2106319ff49
+      internalID: 2989492156995182624
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PoBendito
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9c59921b31755e3ba5b13cce364a468
+      internalID: 7189494466196525346
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalVento
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a690eaa4f0a55bd1a18d0f996e5c1e65
+      internalID: 8751938859774510033
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PepitaOuro
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 0
+        width: 156
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efc893d2efc352bfb3111fd536538f1f
+      internalID: 8729804352855205819
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CristalMana
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0e8c814d4b25f38bc852494c347458f
+      internalID: 6450849384704423725
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SafiraBruta
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 0
+        width: 157
+        height: 157
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d715f79503b05a7a82c598f385227925
+      internalID: 5215220974676383508
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    customData:
+    physicsShape: []
+    bones: []
+    spriteID: e0aef8e53df25943ad9ae3ec2d5a5290
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8,"y":8},"gridSpriteSize":{"x":157,"y":157},"gridSpriteOffset":{"x":0,"y":0},"gridSpritePadding":{"x":0,"y":0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0,"y":0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      PedraBruta: 7925004204046448889
+      FibraVegetal: 1903076883119064768
+      ErvaMedicinal: 2080437785601600231
+      FloresSilvestres: 8512076323030205725
+      SementeSilvestre: 2661596258843627850
+      MinerioCobre: 7822156985662262998
+      MinerioFerro: 7029070120877313589
+      Argila: 4928359223811246797
+      MadeiraEscura: 1059845216855776498
+      CogumeloSombrio: 3419237721677033054
+      RaizAmarga: 7716180471757142323
+      ResinaEscura: 9125866223518025524
+      MusgoNoturno: 7648091151152908264
+      FrutaSilvestre: 7202648439812842611
+      FolhaEsmeralda: 6346572957725776140
+      ResinaDourada: 5259006854326542659
+      FlorVital: 5245899971466851011
+      CascaRobusta: 6110055981944568836
+      CristalGelo: 4178884558167894751
+      GeloEterno: 4122026181018968222
+      MinerioPrata: 7586700180875762752
+      LiquenGelido: 893813642092517618
+      QuartzoBruto: 1537642579625952384
+      SalMineral: 2310504529488640450
+      CarvaoMineral: 7756989273825677078
+      Salitre: 428480532649181810
+      CogumeloLuminoso: 7526075640973928264
+      CristalProfundo: 876195464846772575
+      Obsidiana: 9097449789392406311
+      Enxofre: 7591711700231709250
+      PedraPomes: 6481525953010528695
+      NucleoIgneo: 1744973854040723986
+      AreiaFina: 4580660336379464841
+      FibraCacto: 5327100341256192338
+      FlorDeserto: 1357152533348625956
+      VidroDeserto: 8815715647142498275
+      Coco: 2546743874997644920
+      Bambu: 601461158254202221
+      FolhaPalmeira: 8768345439059030568
+      FrutaTropical: 5267300906726030718
+      AlgaMarinha: 2824676132654010906
+      ConchaMarinha: 4641507076911924153
+      SalMarinho: 7301231578549776799
+      PeixePrateado: 8805287269335198036
+      CoralVermelho: 931385191239328231
+      Perola: 1853520662506949604
+      Madreperola: 3729947690101096112
+      EsponjaMarinha: 546758825711877712
+      PergaminhoAntigo: 8029848356753841898
+      FragmentoRunico: 5665436825404699815
+      PoArcano: 5473176060066474564
+      EngrenagemAntiga: 5734995411485521136
+      Trigo: 3982126070391927260
+      Linho: 4997460561328656372
+      CeraAbelha: 383856718650489852
+      SeloReal: 1901635360139716759
+      IncensoSagrado: 4366568924964774966
+      AguaBenta: 1662833325284361967
+      FragmentoRelicario: 2989492156995182624
+      PoBendito: 7189494466196525346
+      CristalVento: 8751938859774510033
+      PepitaOuro: 8729804352855205819
+      CristalMana: 6450849384704423725
+      SafiraBruta: 5215220974676383508
+  mipmapLimitGroupName:
+  pSDRemoveMatte: 0
+  userData: exploration-resources-v1
+  assetBundleName:
+  assetBundleVariant:

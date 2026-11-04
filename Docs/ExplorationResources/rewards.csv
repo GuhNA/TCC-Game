@@ -1,0 +1,159 @@
+﻿region;resource;name;proposedChance;minimum;maximum;preservedExisting
+Colinas do Vento;PedraBruta;Pedra bruta;0.65;1;3;False
+Colinas do Vento;FibraVegetal;Fibra vegetal;0.65;1;3;False
+Colinas do Vento;ErvaMedicinal;Erva medicinal;0.65;1;3;False
+Colinas do Vento;FloresSilvestres;Flores silvestres;0.65;1;3;False
+Colinas do Vento;SementeSilvestre;Sementes silvestres;0.65;1;3;False
+Colinas do Vento;MinerioCobre;Minério de cobre;0.32;1;2;False
+Colinas do Vento;Argila;Argila;0.65;1;3;False
+Colinas do Vento;FrutaSilvestre;Frutas silvestres;0.65;1;3;False
+Colinas do Vento;CristalVento;Cristal do vento;0.12;1;1;False
+Colinas do Vento;SucataGoblin;Sucata goblin;0.65;1;3;False
+Colinas do Vento;TiraCouroGoblin;Tira de couro goblin;0.65;1;3;False
+Colinas do Vento;PresaHobgoblin;Presa de hobgoblin;0.32;1;2;False
+Colinas do Vento;EspinhoPorrete;Espinho de porrete;0.32;1;2;False
+Colinas do Vento;LascaEscudo;Lasca de escudo;0.65;1;3;False
+Colinas do Vento;PontaFlecha;Pontas de flecha;0.65;1;3;False
+Colinas do Vento;Madeira;Madeira;0.65;1;3;True
+Floresta das Sombras;MadeiraEscura;Madeira escura;0.65;1;3;False
+Floresta das Sombras;CogumeloSombrio;Cogumelo sombrio;0.32;1;2;False
+Floresta das Sombras;RaizAmarga;Raiz amarga;0.65;1;3;False
+Floresta das Sombras;ResinaEscura;Resina escura;0.32;1;2;False
+Floresta das Sombras;MusgoNoturno;Musgo noturno;0.32;1;2;False
+Floresta das Sombras;CarvaoMineral;Carvão mineral;0.65;1;3;False
+Floresta das Sombras;EssenciaVenenosa;Essência venenosa;0.32;1;2;False
+Floresta das Sombras;CristalVil;Cristal vil;0.12;1;1;False
+Floresta das Sombras;Ectoplasma;Ectoplasma;0.32;1;2;False
+Floresta das Sombras;TecidoEspectral;Tecido espectral;0.32;1;2;False
+Floresta das Sombras;GalhadaAmaldicoada;Galhada amaldiçoada;0.12;1;1;False
+Floresta das Sombras;EssenciaSombria;Essência sombria;0.12;1;1;False
+Floresta das Sombras;OssoAntigo;Osso antigo;0.65;1;3;False
+Floresta das Sombras;CordaArcoGasta;Corda de arco gasta;0.65;1;3;False
+Floresta das Sombras;Madeira;Madeira;0.65;1;3;False
+Caverna de Gelo;CristalGelo;Cristal de gelo;0.32;1;2;False
+Caverna de Gelo;GeloEterno;Gelo eterno;0.12;1;1;False
+Caverna de Gelo;MinerioPrata;Minério de prata;0.12;1;1;False
+Caverna de Gelo;LiquenGelido;Líquen gélido;0.32;1;2;False
+Caverna de Gelo;QuartzoBruto;Quartzo bruto;0.32;1;2;False
+Caverna de Gelo;SafiraBruta;Safira bruta;0.12;1;1;False
+Caverna de Gelo;PresaTroll;Presa de troll;0.32;1;2;False
+Caverna de Gelo;CouroTroll;Couro de troll;0.32;1;2;False
+Caverna de Gelo;TotemGeada;Totem de geada;0.12;1;1;False
+Caverna de Gelo;PeloYeti;Pelo de yeti;0.32;1;2;False
+Caverna de Gelo;GarraYeti;Garra de yeti;0.12;1;1;False
+Caverna de Gelo;CoracaoGlacial;Coração glacial;0.04;1;1;False
+Torre Antiga;PergaminhoAntigo;Pergaminho antigo;0.32;1;2;False
+Torre Antiga;FragmentoRunico;Fragmento rúnico;0.12;1;1;False
+Torre Antiga;PoArcano;Pó arcano;0.32;1;2;False
+Torre Antiga;EngrenagemAntiga;Engrenagem antiga;0.32;1;2;False
+Torre Antiga;CristalMana;Cristal de mana;0.12;1;1;False
+Torre Antiga;OssoAntigo;Osso antigo;0.65;1;3;False
+Torre Antiga;CordaArcoGasta;Corda de arco gasta;0.65;1;3;False
+Torre Antiga;SigiloProfano;Sigilo profano;0.12;1;1;False
+Torre Antiga;FragmentoAlma;Fragmento de alma;0.04;1;1;False
+Torre Antiga;PoOsseo;Pó ósseo;0.32;1;2;False
+Torre Antiga;TecidoNecromantico;Tecido necromântico;0.32;1;2;False
+Torre Antiga;CristalNecrotico;Cristal necrótico;0.12;1;1;False
+Torre Antiga;PlacaArmaduraNegra;Placa de armadura negra;0.32;1;2;False
+Torre Antiga;EmblemaCavaleiroCaido;Emblema do cavaleiro caído;0.12;1;1;False
+Vila do Mar;AlgaMarinha;Alga marinha;0.65;1;3;False
+Vila do Mar;ConchaMarinha;Concha marinha;0.65;1;3;False
+Vila do Mar;SalMarinho;Sal marinho;0.65;1;3;False
+Vila do Mar;PeixePrateado;Peixe prateado;0.65;1;3;False
+Vila do Mar;Madreperola;Madrepérola;0.32;1;2;False
+Vila do Mar;EsponjaMarinha;Esponja marinha;0.65;1;3;False
+Vila do Mar;Madeira;Madeira;0.65;1;3;False
+Floresta Esmeralda;ErvaMedicinal;Erva medicinal;0.65;1;3;False
+Floresta Esmeralda;FrutaSilvestre;Frutas silvestres;0.65;1;3;False
+Floresta Esmeralda;FolhaEsmeralda;Folha esmeralda;0.32;1;2;False
+Floresta Esmeralda;ResinaDourada;Resina dourada;0.32;1;2;False
+Floresta Esmeralda;FlorVital;Flor vital;0.12;1;1;False
+Floresta Esmeralda;CascaRobusta;Casca robusta;0.65;1;3;False
+Floresta Esmeralda;PenaRitual;Pena ritual;0.32;1;2;False
+Floresta Esmeralda;AmuletoXama;Amuleto de xamã;0.12;1;1;False
+Floresta Esmeralda;PeleLobo;Pele de lobo;0.32;1;2;False
+Floresta Esmeralda;PresaLobo;Presa de lobo;0.65;1;3;False
+Floresta Esmeralda;Madeira;Madeira;0.65;1;3;False
+Montanhas Gélidas;CristalGelo;Cristal de gelo;0.32;1;2;False
+Montanhas Gélidas;MinerioPrata;Minério de prata;0.12;1;1;False
+Montanhas Gélidas;LiquenGelido;Líquen gélido;0.32;1;2;False
+Montanhas Gélidas;QuartzoBruto;Quartzo bruto;0.32;1;2;False
+Montanhas Gélidas;SalMineral;Sal mineral;0.65;1;3;False
+Montanhas Gélidas;SafiraBruta;Safira bruta;0.12;1;1;False
+Montanhas Gélidas;PresaTroll;Presa de troll;0.32;1;2;False
+Montanhas Gélidas;CouroTroll;Couro de troll;0.32;1;2;False
+Montanhas Gélidas;TotemGeada;Totem de geada;0.12;1;1;False
+Montanhas Gélidas;PeloYeti;Pelo de yeti;0.32;1;2;False
+Montanhas Gélidas;GarraYeti;Garra de yeti;0.12;1;1;False
+Montanhas Gélidas;PeleLobo;Pele de lobo;0.32;1;2;False
+Montanhas Gélidas;PresaLobo;Presa de lobo;0.65;1;3;False
+Montanhas Gélidas;CoracaoGlacial;Coração glacial;0.04;1;1;False
+Reino Real;MinerioFerro;Minério de ferro;0.32;1;2;False
+Reino Real;Trigo;Trigo;0.65;1;3;False
+Reino Real;Linho;Linho;0.65;1;3;False
+Reino Real;CeraAbelha;Cera de abelha;0.32;1;2;False
+Reino Real;SeloReal;Selo real;0.12;1;1;False
+Reino Real;PepitaOuro;Pepita de ouro;0.12;1;1;False
+Reino Real;PlacaArmaduraNegra;Placa de armadura negra;0.32;1;2;False
+Reino Real;EmblemaCavaleiroCaido;Emblema do cavaleiro caído;0.12;1;1;False
+Reino Real;Madeira;Madeira;0.65;1;3;False
+Ilha Verde;FibraVegetal;Fibra vegetal;0.65;1;3;False
+Ilha Verde;ErvaMedicinal;Erva medicinal;0.65;1;3;False
+Ilha Verde;Coco;Coco;0.65;1;3;False
+Ilha Verde;Bambu;Bambu;0.65;1;3;False
+Ilha Verde;FolhaPalmeira;Folha de palmeira;0.65;1;3;False
+Ilha Verde;FrutaTropical;Fruta tropical;0.65;1;3;False
+Ilha Verde;CeraAbelha;Cera de abelha;0.32;1;2;False
+Ilha Verde;SucataGoblin;Sucata goblin;0.65;1;3;False
+Ilha Verde;TiraCouroGoblin;Tira de couro goblin;0.65;1;3;False
+Ilha Verde;PontaFlecha;Pontas de flecha;0.65;1;3;False
+Ilha Verde;Madeira;Madeira;0.65;1;3;False
+Caverna Sombria;MinerioFerro;Minério de ferro;0.32;1;2;False
+Caverna Sombria;QuartzoBruto;Quartzo bruto;0.32;1;2;False
+Caverna Sombria;SalMineral;Sal mineral;0.65;1;3;False
+Caverna Sombria;CarvaoMineral;Carvão mineral;0.65;1;3;False
+Caverna Sombria;Salitre;Salitre;0.32;1;2;False
+Caverna Sombria;CogumeloLuminoso;Cogumelo luminoso;0.32;1;2;False
+Caverna Sombria;CristalProfundo;Cristal profundo;0.12;1;1;False
+Caverna Sombria;Ectoplasma;Ectoplasma;0.32;1;2;False
+Caverna Sombria;TecidoEspectral;Tecido espectral;0.32;1;2;False
+Caverna Sombria;EssenciaSombria;Essência sombria;0.12;1;1;False
+Caverna Sombria;PoOsseo;Pó ósseo;0.32;1;2;False
+Caverna Sombria;IcorPutrido;Icor pútrido;0.32;1;2;False
+Montanha de Fogo;MinerioFerro;Minério de ferro;0.32;1;2;False
+Montanha de Fogo;CarvaoMineral;Carvão mineral;0.65;1;3;False
+Montanha de Fogo;Obsidiana;Obsidiana;0.32;1;2;False
+Montanha de Fogo;Enxofre;Enxofre;0.32;1;2;False
+Montanha de Fogo;PedraPomes;Pedra-pomes;0.65;1;3;False
+Montanha de Fogo;NucleoIgneo;Núcleo ígneo;0.04;1;1;False
+Montanha de Fogo;PlacaArmaduraNegra;Placa de armadura negra;0.32;1;2;False
+Montanha de Fogo;EmblemaCavaleiroCaido;Emblema do cavaleiro caído;0.12;1;1;False
+Deserto dos Ventos;Argila;Argila;0.65;1;3;False
+Deserto dos Ventos;SalMineral;Sal mineral;0.65;1;3;False
+Deserto dos Ventos;AreiaFina;Areia fina;0.65;1;3;False
+Deserto dos Ventos;FibraCacto;Fibra de cacto;0.65;1;3;False
+Deserto dos Ventos;FlorDeserto;Flor do deserto;0.32;1;2;False
+Deserto dos Ventos;VidroDeserto;Vidro do deserto;0.12;1;1;False
+Deserto dos Ventos;PepitaOuro;Pepita de ouro;0.12;1;1;False
+Deserto dos Ventos;OssoAntigo;Osso antigo;0.65;1;3;False
+Deserto dos Ventos;PoOsseo;Pó ósseo;0.32;1;2;False
+Deserto dos Ventos;IcorPutrido;Icor pútrido;0.32;1;2;False
+Santuário;FragmentoRunico;Fragmento rúnico;0.12;1;1;False
+Santuário;PoArcano;Pó arcano;0.32;1;2;False
+Santuário;IncensoSagrado;Incenso sagrado;0.32;1;2;False
+Santuário;AguaBenta;Água benta;0.32;1;2;False
+Santuário;FragmentoRelicario;Fragmento de relicário;0.12;1;1;False
+Santuário;PoBendito;Pó bendito;0.12;1;1;False
+Santuário;CristalMana;Cristal de mana;0.12;1;1;False
+Santuário;GalhadaAmaldicoada;Galhada amaldiçoada;0.12;1;1;False
+Santuário;SigiloProfano;Sigilo profano;0.12;1;1;False
+Santuário;FragmentoAlma;Fragmento de alma;0.04;1;1;False
+Santuário;TecidoNecromantico;Tecido necromântico;0.32;1;2;False
+Santuário;CristalNecrotico;Cristal necrótico;0.12;1;1;False
+Ilhas Coral;AlgaMarinha;Alga marinha;0.65;1;3;False
+Ilhas Coral;ConchaMarinha;Concha marinha;0.65;1;3;False
+Ilhas Coral;SalMarinho;Sal marinho;0.65;1;3;False
+Ilhas Coral;CoralVermelho;Coral vermelho;0.32;1;2;False
+Ilhas Coral;Perola;Pérola;0.12;1;1;False
+Ilhas Coral;Madreperola;Madrepérola;0.32;1;2;False
+Ilhas Coral;EsponjaMarinha;Esponja marinha;0.65;1;3;False

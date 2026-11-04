@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: HobGoblin
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
   persistenceId: enemy.hobgoblin
-  displayName: Goblin
+  displayName: HobGoblin
   portrait: {fileID: 492853447409807844, guid: b03e49a0890c5364cbd5c0a00094dcdc, type: 3}
   combatPrefab: {fileID: 6790329320643266379, guid: c1a3c8b12c4e1fb4499f7fcef5ab6f73, type: 3}
   combatLocalPosition: {x: 0, y: 0, z: 0}
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flipCombatVisualX: 1
   battlePower: 45
   maximumHealth: 200
   minimumDamage: 15

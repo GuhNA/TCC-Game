@@ -1,0 +1,806 @@
+fileFormatVersion: 2
+guid: c35fb445896469347957e2e726bf81f0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8131046552120181560
+    second: Pandora_0
+  - first:
+      213: 5992175002394880709
+    second: Pandora_1
+  - first:
+      213: 6578447758930220109
+    second: Pandora_2
+  - first:
+      213: 4935389543327646844
+    second: Pandora_3
+  - first:
+      213: -6959243144016369437
+    second: Pandora_4
+  - first:
+      213: 4442111876068468527
+    second: Pandora_5
+  - first:
+      213: -4035698452814707976
+    second: Pandora_6
+  - first:
+      213: 830928620406174056
+    second: Pandora_7
+  - first:
+      213: 7675027306432705118
+    second: Pandora_8
+  - first:
+      213: 2506532500851034266
+    second: Pandora_9
+  - first:
+      213: 3475813005352263023
+    second: Pandora_10
+  - first:
+      213: -2907754070777530022
+    second: Pandora_11
+  - first:
+      213: 3529432475905755875
+    second: Pandora_12
+  - first:
+      213: 4910076021118307262
+    second: Pandora_13
+  - first:
+      213: 7721163062410766008
+    second: Pandora_14
+  - first:
+      213: 6244260479688049859
+    second: Pandora_15
+  - first:
+      213: 806470140214791318
+    second: Pandora_16
+  - first:
+      213: 7191898656583247317
+    second: Pandora_17
+  - first:
+      213: 2916055174186133095
+    second: Pandora_18
+  - first:
+      213: 5178394951498302265
+    second: Pandora_19
+  - first:
+      213: 8111838551632121535
+    second: Pandora_20
+  - first:
+      213: -679776510299692175
+    second: Pandora_21
+  - first:
+      213: -4818843960359437904
+    second: Pandora_22
+  - first:
+      213: 4449686913784016930
+    second: Pandora_23
+  - first:
+      213: 5929831615764232559
+    second: Pandora_24
+  - first:
+      213: 7705019774398668119
+    second: Pandora_25
+  - first:
+      213: -2178874047186834649
+    second: Pandora_26
+  - first:
+      213: -99391681514413102
+    second: Pandora_27
+  - first:
+      213: -725850870126228731
+    second: Pandora_28
+  - first:
+      213: -372866254558927346
+    second: Pandora_29
+  - first:
+      213: 5439036759902666571
+    second: Pandora_30
+  - first:
+      213: -3885285874748700364
+    second: Pandora_31
+  - first:
+      213: -7164229368035198271
+    second: Pandora_32
+  - first:
+      213: 6914662823174366577
+    second: Pandora_33
+  - first:
+      213: -8190074994634080054
+    second: Pandora_34
+  - first:
+      213: -8114743192404995079
+    second: Pandora_35
+  - first:
+      213: 2564858678946349720
+    second: Pandora_36
+  - first:
+      213: -86176006707348764
+    second: Pandora_37
+  - first:
+      213: 8266344022190898530
+    second: Pandora_38
+  - first:
+      213: -9067189963058084558
+    second: Pandora_39
+  - first:
+      213: 7024060998240197782
+    second: Pandora_40
+  - first:
+      213: -7023223620543151451
+    second: Pandora_41
+  - first:
+      213: -2839860071381029828
+    second: Pandora_42
+  - first:
+      213: -4441291423216190242
+    second: Pandora_43
+  - first:
+      213: 6392336968644500435
+    second: Pandora_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pandora_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 833c94f42c747d070800000000000000
+      internalID: 8131046552120181560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_1
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cae8b1ba6b782350800000000000000
+      internalID: 5992175002394880709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_2
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d441084f1675b4b50800000000000000
+      internalID: 6578447758930220109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_3
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1505
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c74c83e04a60e7440800000000000000
+      internalID: 4935389543327646844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8e45f6b3dcb6f90800000000000000
+      internalID: -6959243144016369437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_5
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27ea99473d85ad30800000000000000
+      internalID: 4442111876068468527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_6
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f2c263a3a15ef7c0800000000000000
+      internalID: -4035698452814707976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_7
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 1204
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 861f3058d2d088b00800000000000000
+      internalID: 830928620406174056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e523851dbac238a60800000000000000
+      internalID: 7675027306432705118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_9
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a988233870ef8c220800000000000000
+      internalID: 2506532500851034266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_10
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d54b143819c3030800000000000000
+      internalID: 3475813005352263023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_11
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 903
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59fb1d141595a7d0800000000000000
+      internalID: -2907754070777530022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be9d5f7b6f747a44adc7dc8a73f3511
+      internalID: 1318610699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_13
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6026d41225a1d4a44adb6453ddc046ab
+      internalID: 529044469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_14
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cff72736bf0e0841a9d149a73eb95f8
+      internalID: -1187657372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_15
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 602
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f3a01308b440a468fa9a98f9050deb
+      internalID: -677460561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37f2b7885bbf09349a4c15cf3b2e1bc7
+      internalID: -446409340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_17
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a63eb3fab888f184b8447e5b726a6b58
+      internalID: -1560470943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_18
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0fc30d6619a86f4fb418ab4b0552f3e
+      internalID: 160619671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_19
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 301
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4967fe2bfce3614785d644a89f1ed7e
+      internalID: -1569024030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5986a2b53c11c4347adabed060120af4
+      internalID: -389217489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_21
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c87fbf3a42b0f84490fb0d4bccf125f
+      internalID: -1735262508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_22
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f168fe2fa0eabd7488275350e611f367
+      internalID: 1635973639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pandora_23
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 0
+        width: 326
+        height: 301
+      alignment: 9
+      pivot: {x: 0.47, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5277cf9c2d50a3b42ad0aa53c3285579
+      internalID: -2104363251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 53afbf95ee233cc43b1fa37efb2f5c65
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":326.0,"y":301.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.4699999988079071,"y":0.25},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Pandora_0: 8131046552120181560
+      Pandora_1: 5992175002394880709
+      Pandora_10: 3475813005352263023
+      Pandora_11: -2907754070777530022
+      Pandora_12: 1318610699
+      Pandora_13: 529044469
+      Pandora_14: -1187657372
+      Pandora_15: -677460561
+      Pandora_16: -446409340
+      Pandora_17: -1560470943
+      Pandora_18: 160619671
+      Pandora_19: -1569024030
+      Pandora_2: 6578447758930220109
+      Pandora_20: -389217489
+      Pandora_21: -1735262508
+      Pandora_22: 1635973639
+      Pandora_23: -2104363251
+      Pandora_3: 4935389543327646844
+      Pandora_4: -6959243144016369437
+      Pandora_5: 4442111876068468527
+      Pandora_6: -4035698452814707976
+      Pandora_7: 830928620406174056
+      Pandora_8: 7675027306432705118
+      Pandora_9: 2506532500851034266
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

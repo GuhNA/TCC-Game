@@ -1,5 +1,35 @@
 # Configuração do mapa de exploração
 
+## Relatório da região na Taverna
+
+O objeto `relatorio` da cena Taverna possui `ExplorationAreaReportView`, associado
+ao campo `Area Report View` do `ExplorationMapController`. O botão de relatório
+do destino abre esse painel. A seleção de expedição e de guarda continua usando
+o painel de seleção existente; cancelar a seleção de guarda retorna ao relatório.
+
+- `Local` apresenta o nome da região selecionada.
+- `Valor D` apresenta **exploradores no local / exploradores livres para envio**.
+  Os livres são calculados pela construção de exploradores, descontando perdas
+  e todos os exploradores já alocados nas regiões capturadas.
+- O Content instancia `Assets/Prefabs/Item.prefab` para cada recurso de
+  `Possible Rewards`, usando o ícone e o nome do Resource. Entradas repetidas
+  do mesmo recurso são agrupadas.
+- Nos itens, **D** é o total coletado nessa região, aguardando transporte.
+  **T** é o máximo por ciclo: soma das quantidades máximas possíveis do recurso
+  multiplicada pelos exploradores locais. Como D acumula vários ciclos, pode
+  superar T; T não é um limite de armazenamento nem uma promessa de drop.
+- Os slots de aventureiros seguem a ordem da guarda salva no local, mostram
+  retrato, nome e vida atual/máxima e ocultam os espaços não ocupados.
+- `AtaqueOn` exibe o tempo restante em `mm:ss` usando o relógio da exploração.
+  Um ataque pendente mantém `00:00`; sem ataque agendado ou pendente, aparece
+  `SemAtaque`.
+- Enviar, Retirar, Transportar, Definir guarda e Voltar usam as ações existentes
+  do controller. Quantidades e cronômetro são atualizados com o painel aberto.
+
+Todos os textos TMP do relatório e do Item usam Pixelify Sans, inclusive os
+estados inicialmente desativados. As referências podem ser ajustadas pelo
+Inspector, sem depender dos nomes dos objetos em runtime.
+
 ## Fluxo implementado
 
 1. O jogador interage com o objeto que possui `ExplorationMapController`.

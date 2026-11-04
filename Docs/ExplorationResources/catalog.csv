@@ -1,0 +1,97 @@
+﻿ID;Nome;Raridade sugerida;Folha;Linha;Coluna;Origem;Locais
+PedraBruta;Pedra bruta;Comum;exploration_resources_atlas_v1;1;1;Recurso regional;Colinas do Vento
+FibraVegetal;Fibra vegetal;Comum;exploration_resources_atlas_v1;1;2;Recurso regional;Colinas do Vento, Ilha Verde
+ErvaMedicinal;Erva medicinal;Comum;exploration_resources_atlas_v1;1;3;Recurso regional;Colinas do Vento, Floresta Esmeralda, Ilha Verde
+FloresSilvestres;Flores silvestres;Comum;exploration_resources_atlas_v1;1;4;Recurso regional;Colinas do Vento
+SementeSilvestre;Sementes silvestres;Comum;exploration_resources_atlas_v1;1;5;Recurso regional;Colinas do Vento
+MinerioCobre;Minério de cobre;Incomum;exploration_resources_atlas_v1;1;6;Recurso regional;Colinas do Vento
+MinerioFerro;Minério de ferro;Incomum;exploration_resources_atlas_v1;1;7;Recurso regional;Reino Real, Caverna Sombria, Montanha de Fogo
+Argila;Argila;Comum;exploration_resources_atlas_v1;1;8;Recurso regional;Colinas do Vento, Deserto dos Ventos
+MadeiraEscura;Madeira escura;Comum;exploration_resources_atlas_v1;2;1;Recurso regional;Floresta das Sombras
+CogumeloSombrio;Cogumelo sombrio;Incomum;exploration_resources_atlas_v1;2;2;Recurso regional;Floresta das Sombras
+RaizAmarga;Raiz amarga;Comum;exploration_resources_atlas_v1;2;3;Recurso regional;Floresta das Sombras
+ResinaEscura;Resina escura;Incomum;exploration_resources_atlas_v1;2;4;Recurso regional;Floresta das Sombras
+MusgoNoturno;Musgo noturno;Incomum;exploration_resources_atlas_v1;2;5;Recurso regional;Floresta das Sombras
+FrutaSilvestre;Frutas silvestres;Comum;exploration_resources_atlas_v1;2;6;Recurso regional;Colinas do Vento, Floresta Esmeralda
+FolhaEsmeralda;Folha esmeralda;Incomum;exploration_resources_atlas_v1;2;7;Recurso regional;Floresta Esmeralda
+ResinaDourada;Resina dourada;Incomum;exploration_resources_atlas_v1;2;8;Recurso regional;Floresta Esmeralda
+FlorVital;Flor vital;Raro;exploration_resources_atlas_v1;3;1;Recurso regional;Floresta Esmeralda
+CascaRobusta;Casca robusta;Comum;exploration_resources_atlas_v1;3;2;Recurso regional;Floresta Esmeralda
+CristalGelo;Cristal de gelo;Incomum;exploration_resources_atlas_v1;3;3;Recurso regional;Caverna de Gelo, Montanhas Gélidas
+GeloEterno;Gelo eterno;Raro;exploration_resources_atlas_v1;3;4;Recurso regional;Caverna de Gelo
+MinerioPrata;Minério de prata;Raro;exploration_resources_atlas_v1;3;5;Recurso regional;Caverna de Gelo, Montanhas Gélidas
+LiquenGelido;Líquen gélido;Incomum;exploration_resources_atlas_v1;3;6;Recurso regional;Caverna de Gelo, Montanhas Gélidas
+QuartzoBruto;Quartzo bruto;Incomum;exploration_resources_atlas_v1;3;7;Recurso regional;Caverna de Gelo, Montanhas Gélidas, Caverna Sombria
+SalMineral;Sal mineral;Comum;exploration_resources_atlas_v1;3;8;Recurso regional;Montanhas Gélidas, Caverna Sombria, Deserto dos Ventos
+CarvaoMineral;Carvão mineral;Comum;exploration_resources_atlas_v1;4;1;Recurso regional;Floresta das Sombras, Caverna Sombria, Montanha de Fogo
+Salitre;Salitre;Incomum;exploration_resources_atlas_v1;4;2;Recurso regional;Caverna Sombria
+CogumeloLuminoso;Cogumelo luminoso;Incomum;exploration_resources_atlas_v1;4;3;Recurso regional;Caverna Sombria
+CristalProfundo;Cristal profundo;Raro;exploration_resources_atlas_v1;4;4;Recurso regional;Caverna Sombria
+Obsidiana;Obsidiana;Incomum;exploration_resources_atlas_v1;4;5;Recurso regional;Montanha de Fogo
+Enxofre;Enxofre;Incomum;exploration_resources_atlas_v1;4;6;Recurso regional;Montanha de Fogo
+PedraPomes;Pedra-pomes;Comum;exploration_resources_atlas_v1;4;7;Recurso regional;Montanha de Fogo
+NucleoIgneo;Núcleo ígneo;Épico;exploration_resources_atlas_v1;4;8;Recurso regional;Montanha de Fogo
+AreiaFina;Areia fina;Comum;exploration_resources_atlas_v1;5;1;Recurso regional;Deserto dos Ventos
+FibraCacto;Fibra de cacto;Comum;exploration_resources_atlas_v1;5;2;Recurso regional;Deserto dos Ventos
+FlorDeserto;Flor do deserto;Incomum;exploration_resources_atlas_v1;5;3;Recurso regional;Deserto dos Ventos
+VidroDeserto;Vidro do deserto;Raro;exploration_resources_atlas_v1;5;4;Recurso regional;Deserto dos Ventos
+Coco;Coco;Comum;exploration_resources_atlas_v1;5;5;Recurso regional;Ilha Verde
+Bambu;Bambu;Comum;exploration_resources_atlas_v1;5;6;Recurso regional;Ilha Verde
+FolhaPalmeira;Folha de palmeira;Comum;exploration_resources_atlas_v1;5;7;Recurso regional;Ilha Verde
+FrutaTropical;Fruta tropical;Comum;exploration_resources_atlas_v1;5;8;Recurso regional;Ilha Verde
+AlgaMarinha;Alga marinha;Comum;exploration_resources_atlas_v1;6;1;Recurso regional;Vila do Mar, Ilhas Coral
+ConchaMarinha;Concha marinha;Comum;exploration_resources_atlas_v1;6;2;Recurso regional;Vila do Mar, Ilhas Coral
+SalMarinho;Sal marinho;Comum;exploration_resources_atlas_v1;6;3;Recurso regional;Vila do Mar, Ilhas Coral
+PeixePrateado;Peixe prateado;Comum;exploration_resources_atlas_v1;6;4;Recurso regional;Vila do Mar
+CoralVermelho;Coral vermelho;Incomum;exploration_resources_atlas_v1;6;5;Recurso regional;Ilhas Coral
+Perola;Pérola;Raro;exploration_resources_atlas_v1;6;6;Recurso regional;Ilhas Coral
+Madreperola;Madrepérola;Incomum;exploration_resources_atlas_v1;6;7;Recurso regional;Vila do Mar, Ilhas Coral
+EsponjaMarinha;Esponja marinha;Comum;exploration_resources_atlas_v1;6;8;Recurso regional;Vila do Mar, Ilhas Coral
+PergaminhoAntigo;Pergaminho antigo;Incomum;exploration_resources_atlas_v1;7;1;Recurso regional;Torre Antiga
+FragmentoRunico;Fragmento rúnico;Raro;exploration_resources_atlas_v1;7;2;Recurso regional;Torre Antiga, Santuário
+PoArcano;Pó arcano;Incomum;exploration_resources_atlas_v1;7;3;Recurso regional;Torre Antiga, Santuário
+EngrenagemAntiga;Engrenagem antiga;Incomum;exploration_resources_atlas_v1;7;4;Recurso regional;Torre Antiga
+Trigo;Trigo;Comum;exploration_resources_atlas_v1;7;5;Recurso regional;Reino Real
+Linho;Linho;Comum;exploration_resources_atlas_v1;7;6;Recurso regional;Reino Real
+CeraAbelha;Cera de abelha;Incomum;exploration_resources_atlas_v1;7;7;Recurso regional;Reino Real, Ilha Verde
+SeloReal;Selo real;Raro;exploration_resources_atlas_v1;7;8;Recurso regional;Reino Real
+IncensoSagrado;Incenso sagrado;Incomum;exploration_resources_atlas_v1;8;1;Recurso regional;Santuário
+AguaBenta;Água benta;Incomum;exploration_resources_atlas_v1;8;2;Recurso regional;Santuário
+FragmentoRelicario;Fragmento de relicário;Raro;exploration_resources_atlas_v1;8;3;Recurso regional;Santuário
+PoBendito;Pó bendito;Raro;exploration_resources_atlas_v1;8;4;Recurso regional;Santuário
+CristalVento;Cristal do vento;Raro;exploration_resources_atlas_v1;8;5;Recurso regional;Colinas do Vento
+PepitaOuro;Pepita de ouro;Raro;exploration_resources_atlas_v1;8;6;Recurso regional;Reino Real, Deserto dos Ventos
+CristalMana;Cristal de mana;Raro;exploration_resources_atlas_v1;8;7;Recurso regional;Torre Antiga, Santuário
+SafiraBruta;Safira bruta;Raro;exploration_resources_atlas_v1;8;8;Recurso regional;Caverna de Gelo, Montanhas Gélidas
+SucataGoblin;Sucata goblin;Comum;monster_drops_atlas_v1;1;1;Goblin com adaga;Colinas do Vento, Ilha Verde
+TiraCouroGoblin;Tira de couro goblin;Comum;monster_drops_atlas_v1;1;2;Goblins guerreiros;Colinas do Vento, Ilha Verde
+PresaHobgoblin;Presa de hobgoblin;Incomum;monster_drops_atlas_v1;1;3;Hobgoblin;Colinas do Vento
+EspinhoPorrete;Espinho de porrete;Incomum;monster_drops_atlas_v1;1;4;Hobgoblin e guerreiros com porrete;Colinas do Vento
+PenaRitual;Pena ritual;Incomum;monster_drops_atlas_v1;1;5;Xamã goblin;Floresta Esmeralda
+AmuletoXama;Amuleto de xamã;Raro;monster_drops_atlas_v1;1;6;Xamã goblin;Floresta Esmeralda
+LascaEscudo;Lasca de escudo;Comum;monster_drops_atlas_v1;1;7;Goblin de escudo e esqueleto guerreiro;Colinas do Vento
+PontaFlecha;Pontas de flecha;Comum;monster_drops_atlas_v1;1;8;Goblin arqueiro e arqueiros mortos-vivos;Colinas do Vento, Ilha Verde
+EssenciaVenenosa;Essência venenosa;Incomum;monster_drops_atlas_v1;2;1;Mago goblin;Floresta das Sombras
+CristalVil;Cristal vil;Raro;monster_drops_atlas_v1;2;2;Mago goblin;Floresta das Sombras
+Ectoplasma;Ectoplasma;Incomum;monster_drops_atlas_v1;2;3;Espectro encapuzado;Floresta das Sombras, Caverna Sombria
+TecidoEspectral;Tecido espectral;Incomum;monster_drops_atlas_v1;2;4;Espectro encapuzado;Floresta das Sombras, Caverna Sombria
+GalhadaAmaldicoada;Galhada amaldiçoada;Raro;monster_drops_atlas_v1;2;5;Espírito de galhadas e xamã espectral;Floresta das Sombras, Santuário
+EssenciaSombria;Essência sombria;Raro;monster_drops_atlas_v1;2;6;Espírito de galhadas;Floresta das Sombras, Caverna Sombria
+OssoAntigo;Osso antigo;Comum;monster_drops_atlas_v1;2;7;Esqueletos guerreiros e arqueiros;Floresta das Sombras, Torre Antiga, Deserto dos Ventos
+CordaArcoGasta;Corda de arco gasta;Comum;monster_drops_atlas_v1;2;8;Arqueiros mortos-vivos;Floresta das Sombras, Torre Antiga
+SigiloProfano;Sigilo profano;Raro;monster_drops_atlas_v1;3;1;Xamã espectral;Torre Antiga, Santuário
+FragmentoAlma;Fragmento de alma;Épico;monster_drops_atlas_v1;3;2;Xamã espectral e espectros;Torre Antiga, Santuário
+PoOsseo;Pó ósseo;Incomum;monster_drops_atlas_v1;3;3;Esqueletos e zumbi;Torre Antiga, Caverna Sombria, Deserto dos Ventos
+TecidoNecromantico;Tecido necromântico;Incomum;monster_drops_atlas_v1;3;4;Necromante esqueleto;Torre Antiga, Santuário
+CristalNecrotico;Cristal necrótico;Raro;monster_drops_atlas_v1;3;5;Necromante esqueleto;Torre Antiga, Santuário
+PlacaArmaduraNegra;Placa de armadura negra;Incomum;monster_drops_atlas_v1;3;6;Cavaleiro negro;Torre Antiga, Reino Real, Montanha de Fogo
+EmblemaCavaleiroCaido;Emblema do cavaleiro caído;Raro;monster_drops_atlas_v1;3;7;Cavaleiro negro;Torre Antiga, Reino Real, Montanha de Fogo
+IcorPutrido;Icor pútrido;Incomum;monster_drops_atlas_v1;3;8;Zumbi;Caverna Sombria, Deserto dos Ventos
+PresaTroll;Presa de troll;Incomum;monster_drops_atlas_v1;4;1;Troll do gelo;Caverna de Gelo, Montanhas Gélidas
+CouroTroll;Couro de troll;Incomum;monster_drops_atlas_v1;4;2;Troll do gelo;Caverna de Gelo, Montanhas Gélidas
+TotemGeada;Totem de geada;Raro;monster_drops_atlas_v1;4;3;Xamã troll;Caverna de Gelo, Montanhas Gélidas
+PeloYeti;Pelo de yeti;Incomum;monster_drops_atlas_v1;4;4;Yeti;Caverna de Gelo, Montanhas Gélidas
+GarraYeti;Garra de yeti;Raro;monster_drops_atlas_v1;4;5;Yeti;Caverna de Gelo, Montanhas Gélidas
+PeleLobo;Pele de lobo;Incomum;monster_drops_atlas_v1;4;6;Lobo;Floresta Esmeralda, Montanhas Gélidas
+PresaLobo;Presa de lobo;Comum;monster_drops_atlas_v1;4;7;Lobo;Floresta Esmeralda, Montanhas Gélidas
+CoracaoGlacial;Coração glacial;Épico;monster_drops_atlas_v1;4;8;Lobo de gelo;Caverna de Gelo, Montanhas Gélidas

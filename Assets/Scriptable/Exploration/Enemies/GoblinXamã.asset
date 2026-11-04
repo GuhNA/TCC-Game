@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: "GoblinXam\xE3"
   m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Gameplay.Exploration.ExplorationEnemyDefinition
   persistenceId: enemy.goblin.xama
-  displayName: Goblin
+  displayName: "Goblin Xam\xE3"
   portrait: {fileID: -6126021786202017775, guid: b03e49a0890c5364cbd5c0a00094dcdc, type: 3}
   combatPrefab: {fileID: 4096313112478042606, guid: 1255dbfc145f58947b042866adc65bd2, type: 3}
   combatLocalPosition: {x: 0, y: 0, z: 0}
   combatLocalEulerAngles: {x: 0, y: 0, z: 0}
-  flipCombatVisualX: 1
   battlePower: 10
   maximumHealth: 75
   minimumDamage: 4
