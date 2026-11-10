@@ -8,6 +8,10 @@ using TCCGame.Core;
 using TCCGame.Core.Input;
 using TCCGame.Core.Persistence;
 using TCCGame.Core.Time;
+using TCCGame.Gameplay.Campaign;
+using TCCGame.Gameplay.Exploration;
+using TCCGame.Gameplay.Navigation;
+using TCCGame.Prototypes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -35,7 +39,11 @@ namespace TCCGame.Tests.PlayMode
         private sealed class MemoryRepository : IGameSaveRepository
         {
             private GameSaveData state = GameSaveData.CreateDefault();
-            public MemoryRepository() { state.money = 100; }
+            public MemoryRepository(GameSaveData saved = null)
+            {
+                if (saved != null) state = saved.Clone();
+                else state.money = 100;
+            }
             public GameSaveData Load() => state.Clone();
             public void Save(GameSaveData data) => state = data.Clone();
         }
@@ -58,7 +66,8 @@ namespace TCCGame.Tests.PlayMode
         public IEnumerator TearDown()
         {
             Scene scene = SceneManager.GetActiveScene();
-            if (scene.IsValid() && scene.name == "Centro")
+            if (scene.IsValid() && (scene.name == SceneCatalog.Center ||
+                scene.name == SceneCatalog.Gate || scene.name == SceneCatalog.Tavern))
             {
                 SceneManager.SetActiveScene(SceneManager.CreateScene("Centro smoke cleanup"));
                 yield return SceneManager.UnloadSceneAsync(scene);
@@ -194,6 +203,128 @@ namespace TCCGame.Tests.PlayMode
             InputSystem.QueueStateEvent(keyboard, new KeyboardState());
             InputSystem.Update();
             yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator ApprovedLayout_ConnectsTavernServicesAndAllFourGateSpawns()
+        {
+            var saved = GameSaveData.CreateDefault();
+            saved.money = 731;
+            saved.SetBuildingLevel(BuildingType.Tavern, 1);
+            saved.SetBuildingLevel(BuildingType.ExplorersLodge, 2);
+            var repository = new MemoryRepository(saved);
+            var session = new GameSession(repository, new SystemClock());
+            SessionField.SetValue(null, session);
+
+            yield return SceneManager.LoadSceneAsync(SceneCatalog.Center, LoadSceneMode.Single);
+            yield return null;
+            Assert.That(GameObject.Find("Centro Static Background"), Is.Not.Null);
+            Assert.That(GameObject.Find("Tavern Management Sign"), Is.Not.Null);
+            Assert.That(Object.FindObjectsByType<WorldBuildingView>(FindObjectsSortMode.None).Length, Is.EqualTo(6));
+            var entrance = Object.FindFirstObjectByType<TavernScenePortal>();
+            var management = Object.FindObjectsByType<BuildingBehaviour>(FindObjectsSortMode.None)
+                .Single(x => x.Definition.type == BuildingType.Tavern);
+            yield return StandIn(management, management);
+            yield return StandIn(entrance, entrance);
+            entrance.Interact(Object.FindFirstObjectByType<PlayerInteractor>().gameObject);
+            yield return WaitForScene(SceneCatalog.Tavern);
+
+            AssertAtSpawn("CenterDefaultSpawn");
+            Assert.That(GameObject.Find("Tavern floor perimeter").GetComponent<EdgeCollider2D>().enabled, Is.True);
+            Assert.That(Object.FindFirstObjectByType<TavernRecruitableSpawner>().enabled, Is.True);
+            Assert.That(Object.FindFirstObjectByType<ExplorationAreaReportView>(FindObjectsInactive.Include), Is.Not.Null);
+            var recruitables = Object.FindObjectsByType<Aventureiro>(FindObjectsSortMode.None);
+            Assert.That(recruitables, Is.Not.Empty);
+            foreach (var recruitable in recruitables)
+                AssertNpcZones(recruitable);
+            var board = Object.FindFirstObjectByType<ExplorationMapController>();
+            yield return StandIn(board, board);
+            var player = Object.FindFirstObjectByType<PlayerInteractor>();
+            board.Interact(player.gameObject);
+            Assert.That(player.HasModalOpen, Is.True);
+            board.CloseModal();
+
+            var exit = Object.FindFirstObjectByType<TavernScenePortal>();
+            yield return StandIn(exit, exit);
+            exit.Interact(player.gameObject);
+            yield return WaitForScene(SceneCatalog.Center);
+            AssertAtSpawn(PlayerSpawnController.TavernReturnAnchor);
+            Assert.That(Object.FindFirstObjectByType<PlayerInteractor>().CurrentInteractable, Is.Not.TypeOf<TavernScenePortal>());
+            AssertNpcZones(Object.FindFirstObjectByType<TaxCollectorNpc>());
+
+            foreach (GateId gate in System.Enum.GetValues(typeof(GateId)))
+            {
+                var sentinel = Object.FindObjectsByType<CityTravelNpc>(FindObjectsSortMode.None)
+                    .Single(x => x.Destination.GateId == gate);
+                yield return StandIn(sentinel, sentinel, checkNpcRange: true);
+                ConfirmTravel(sentinel);
+                yield return WaitForScene(SceneCatalog.Gate);
+                AssertAtSpawn("GateEntranceSpawn");
+                Assert.That(session.Navigation.Current.ActiveGateId, Is.EqualTo(gate));
+
+                var guide = Object.FindFirstObjectByType<CityTravelNpc>();
+                AssertNpcZones(Object.FindFirstObjectByType<CaptainNpc>());
+                AssertNpcZones(Object.FindFirstObjectByType<NPCVenda>());
+                yield return StandIn(guide, guide, checkNpcRange: true);
+                ConfirmTravel(guide);
+                yield return WaitForScene(SceneCatalog.Center);
+                AssertAtSpawn($"CenterFrom{gate}Spawn");
+            }
+
+            Assert.That(repository.Load().money, Is.EqualTo(saved.money));
+            Assert.That(session.Buildings.GetLevel(BuildingType.ExplorersLodge), Is.EqualTo(2));
+        }
+
+        private static CircleCollider2D AssertNpcZones(Component npc)
+        {
+            var solid = npc.GetComponents<CircleCollider2D>().Single(c => c.enabled && !c.isTrigger);
+            var zone = npc.GetComponentsInChildren<Collider2D>().Single(c => c.enabled && c.isTrigger);
+            Assert.That(solid.bounds.extents.x, Is.InRange(.21f, .28f), npc.name);
+            Assert.That(zone.bounds.size.x, Is.GreaterThanOrEqualTo(2.6f), npc.name);
+            Assert.That(zone.bounds.Contains(solid.bounds.center), Is.True, npc.name);
+            return solid;
+        }
+
+        private static IEnumerator StandIn(Component target, IInteractable interaction, bool checkNpcRange = false)
+        {
+            var player = Object.FindFirstObjectByType<PlayerInteractor>();
+            var body = player.GetComponent<Rigidbody2D>();
+            var feet = player.GetComponent<Collider2D>();
+            var zone = target.GetComponents<Collider2D>().Single(c => c.enabled && c.isTrigger);
+            var solid = checkNpcRange ? AssertNpcZones(target) : null;
+            Vector2 contactPoint = zone.bounds.center;
+            if (solid != null) contactPoint += Vector2.up * .78f;
+            Vector2 offset = (Vector2)feet.bounds.center - body.position;
+            body.position = contactPoint - offset;
+            body.linearVelocity = Vector2.zero;
+            yield return new WaitForFixedUpdate();
+            yield return null;
+            Assert.That(player.CurrentInteractable, Is.SameAs(interaction), target.name);
+            if (solid != null) Assert.That(feet.Distance(solid).isOverlapped, Is.False, target.name);
+        }
+
+        private static void ConfirmTravel(CityTravelNpc guide)
+        {
+            guide.Interact(Object.FindFirstObjectByType<PlayerInteractor>().gameObject);
+            Assert.That(TravelConversationPanel.IsVisible, Is.True);
+            var panel = Object.FindFirstObjectByType<TravelConversationPanel>();
+            panel.GetComponentsInChildren<Button>(true).Single(x => x.name == "Confirm").onClick.Invoke();
+        }
+
+        private static IEnumerator WaitForScene(string scene)
+        {
+            float deadline = Time.realtimeSinceStartup + 15f;
+            while ((SceneTransitionController.IsTransitioning || SceneManager.GetActiveScene().name != scene)
+                && Time.realtimeSinceStartup < deadline)
+                yield return null;
+            Assert.That(SceneManager.GetActiveScene().name, Is.EqualTo(scene));
+            Assert.That(SceneTransitionController.IsTransitioning, Is.False);
+        }
+
+        private static void AssertAtSpawn(string name)
+        {
+            Vector2 position = Object.FindFirstObjectByType<PlayerInteractor>().GetComponent<Rigidbody2D>().position;
+            Assert.That(Vector2.Distance(position, GameObject.Find(name).transform.position), Is.LessThan(.20f), name);
         }
 
         private static Button Button(BuildingPanel panel, string name) => panel.GetComponentsInChildren<Button>(true).Single(x => x.name == name);

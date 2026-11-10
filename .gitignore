@@ -22,9 +22,6 @@
 # Generated visual-review candidates and diffs. Approved baselines live in Assets.
 /[Aa]rtifacts/[Vv]isual[Tt]ests/
 
-# Generated visual-review candidates and diffs. Approved baselines live in Assets.
-/[Aa]rtifacts/[Vv]isual[Tt]ests/
-
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 

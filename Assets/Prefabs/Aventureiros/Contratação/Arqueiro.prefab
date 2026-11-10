@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6563834855348916515}
   - component: {fileID: 77788658928511511}
   - component: {fileID: 9120408428127880659}
+  - component: {fileID: 4231807627134382604}
   m_Layer: 0
   m_Name: Arqueiro
   m_TagString: NPC
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingOrder: 1788
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1017373567967355495, guid: 60022fd4ceb7c8b488f72fcc28025d96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -164,8 +165,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.88, y: 0.8}
-  m_Radius: 1
+  m_Offset: {x: -0.75, y: 0.42}
+  m_Radius: 0.849648
+--- !u!114 &4231807627134382604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912086951211481155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf976d7dcbf0143a790a64f6fab6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Prototypes.WorldPrototypeDepthSort
+  Target: {fileID: 7964176068623365827}
+  Feet: {fileID: 9120408428127880659}
+  UseFeetCenter: 1
+  OrderOffset: 0
 --- !u!1 &8955537160197946111
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +249,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.25863743, y: 0.8567383}
+  m_Offset: {x: 0.289204, y: -2.96135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -242,5 +259,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 15.12, y: 18.1}
+  m_Size: {x: 22.0519, y: 21.2644}
   m_EdgeRadius: 0

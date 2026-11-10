@@ -1,0 +1,15 @@
+{
+  "pavementArea": 230.18,
+  "currentClearAreaEstimate": 103.78500366210938,
+  "ratio": 2.218,
+  "routeClearanceRadius": 0.3799999952316284,
+  "routesGeometricallyClear": {
+    "barracks": true,
+    "archers": true,
+    "market": true,
+    "tavern": true,
+    "magic": true
+  },
+  "sceneModified": false,
+  "note": "Geometric planning checks only; not a runtime navigation test."
+}

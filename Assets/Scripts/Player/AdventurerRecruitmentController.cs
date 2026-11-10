@@ -123,8 +123,8 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
 
     private void CloseCurrent()
     {
-        panel?.Hide();
-        selectedAdventurer?.SetBeingInspected(false);
+        if (panel != null) panel.Hide();
+        if (selectedAdventurer != null) selectedAdventurer.SetBeingInspected(false);
         selectedAdventurer = null;
 
         if (!ownsModalLock)
@@ -132,7 +132,7 @@ public sealed class AdventurerRecruitmentController : MonoBehaviour,
             return;
         }
 
-        interactor?.ReleaseModalLock(this);
+        if (interactor != null) interactor.ReleaseModalLock(this);
         ownsModalLock = false;
     }
 

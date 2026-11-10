@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
@@ -12,8 +11,18 @@ namespace TCCGame.Tests.Visual
         public string DisplayName => "Centro — edifícios integrados";
         public string ScenePath => "Assets/Scenes/Centro.unity";
         public string ReferenceImagePath => "Assets/Tests/Visual/Baselines/centro-proposals/building-1920x1080.png";
-        public IReadOnlyList<VisualReviewCase> Cases { get; } = new CentroHudProposalVisualScenario().Cases
-            .Where(x => x.Id != "city-hud" && x.Id != "tax-feedback").ToArray();
+        public IReadOnlyList<VisualReviewCase> Cases { get; } = new[]
+        {
+            new VisualReviewCase("building", "Quartel — melhoria", 1920, 1080),
+            new VisualReviewCase("building-compact", "Melhoria compacta", 1366, 768),
+            new VisualReviewCase("unbuilt", "Construção inicial", 1920, 1080),
+            new VisualReviewCase("insufficient", "Ouro insuficiente", 1366, 768),
+            new VisualReviewCase("maximum", "Nível máximo", 1366, 768),
+            new VisualReviewCase("market", "Mercado — impostos por minuto", 1920, 1080),
+            new VisualReviewCase("tavern", "Taverna — aventureiros por onda", 1920, 1080),
+            new VisualReviewCase("archers", "Estande de Arqueiros", 1920, 1080),
+            new VisualReviewCase("mages", "Escola de Magia", 1920, 1080)
+        };
 
         public VisualReviewContext PrepareScene()
         {

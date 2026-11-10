@@ -9,6 +9,7 @@ namespace TCCGame.Gameplay.Navigation
     {
         private const string CenterDefaultAnchor = "CenterDefaultSpawn";
         private const string GateEntranceAnchor = "GateEntranceSpawn";
+        public const string TavernReturnAnchor = "CenterFromTavernSpawn";
 
         [Header("Gate spawn anchors")]
         [Tooltip(
@@ -27,7 +28,7 @@ namespace TCCGame.Gameplay.Navigation
             PlacePlayerInActiveScene();
         }
 
-        public static void PlacePlayerInActiveScene()
+        public static void PlacePlayerInActiveScene(string arrivalAnchor = null)
         {
             PlayerInteractor player = Object.FindFirstObjectByType<
                 PlayerInteractor
@@ -41,9 +42,7 @@ namespace TCCGame.Gameplay.Navigation
                 return;
             }
 
-            string anchorName = GetAnchorName(
-                ShouldUseGateSpawnAnchors()
-            );
+            string anchorName = arrivalAnchor ?? GetAnchorName(ShouldUseGateSpawnAnchors());
             GameObject anchor = GameObject.Find(anchorName);
 
             if (anchor == null)

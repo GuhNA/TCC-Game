@@ -335,6 +335,7 @@ namespace TCCGame.Editor
             var scene = EditorSceneManager.OpenScene(
                 GateScenePath, OpenSceneMode.Single);
             NPCVenda vendor = UnityEngine.Object.FindFirstObjectByType<NPCVenda>();
+            if (vendor != null) WorldCharacterDepthSetup.ConfigureStationaryVendor(vendor.gameObject);
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
             if (vendor == null || prefab == null)
             {

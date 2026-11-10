@@ -148,14 +148,15 @@ public sealed class AdventurerRecruitmentPanel : MonoBehaviour
         ClearText(strengthText);
         ClearText(priceText);
 
-        adventurerNameInput?.SetTextWithoutNotify(string.Empty);
+        if (adventurerNameInput != null) adventurerNameInput.SetTextWithoutNotify(string.Empty);
 
         if (portraitImage != null)
         {
             portraitImage.sprite = null;
         }
 
-        (panelRoot ?? gameObject).SetActive(false);
+        GameObject root = panelRoot != null ? panelRoot : gameObject;
+        if (root != null) root.SetActive(false);
     }
 
     private void NotifyPurchaseRequested()

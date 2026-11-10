@@ -1,0 +1,15 @@
+{
+  "linearFactor": 1.4142135623730951,
+  "mapAreaBefore": 520,
+  "mapAreaAfter": 1040.0000000000002,
+  "buildingFootprintAreaRatios": {
+    "barracks": 2.000000000000001,
+    "archers": 2.0000000000000004,
+    "market": 2.000000000000001,
+    "tavern": 2.0000000000000004,
+    "magic": 2.0000000000000004
+  },
+  "doorSizeUnchanged": true,
+  "playerHeightUnchanged": 1.9957143068313599,
+  "routesGeometricallyClear": true
+}

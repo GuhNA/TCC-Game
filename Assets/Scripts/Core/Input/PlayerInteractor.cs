@@ -10,7 +10,13 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(moviment))]
 public sealed class PlayerInteractor : MonoBehaviour
 {
-    private readonly Dictionary<IInteractable, int> candidates = new();
+    private struct Contact
+    {
+        public int Count;
+        public Collider2D Anchor;
+    }
+
+    private readonly Dictionary<IInteractable, Contact> candidates = new();
     private readonly HashSet<object> modalLockOwners = new();
 
     private moviment movement;
@@ -131,8 +137,14 @@ public sealed class PlayerInteractor : MonoBehaviour
     {
         foreach (IInteractable interactable in FindInteractables(collider))
         {
-            candidates.TryGetValue(interactable, out int count);
-            candidates[interactable] = count + 1;
+            if (!candidates.TryGetValue(interactable, out Contact contact))
+            {
+                contact.Anchor = ((MonoBehaviour)interactable).GetComponents<CircleCollider2D>()
+                    .FirstOrDefault(shape => shape.enabled && !shape.isTrigger);
+                if (contact.Anchor == null) contact.Anchor = collider;
+            }
+            contact.Count++;
+            candidates[interactable] = contact;
         }
 
         RefreshCurrentInteractable();
@@ -142,14 +154,15 @@ public sealed class PlayerInteractor : MonoBehaviour
     {
         foreach (IInteractable interactable in FindInteractables(collider))
         {
-            if (!candidates.TryGetValue(interactable, out int count))
+            if (!candidates.TryGetValue(interactable, out Contact contact))
             {
                 continue;
             }
 
-            if (count > 1)
+            if (contact.Count > 1)
             {
-                candidates[interactable] = count - 1;
+                contact.Count--;
+                candidates[interactable] = contact;
                 continue;
             }
 
@@ -183,17 +196,19 @@ public sealed class PlayerInteractor : MonoBehaviour
     private IInteractable GetCurrentInteractable()
     {
         return candidates.Keys
-            .Where(candidate => candidate.CanInteract)
+            .Where(candidate => candidate is MonoBehaviour behaviour &&
+                behaviour != null && candidate.CanInteract)
             .OrderBy(candidate => DistanceTo(candidate))
             .FirstOrDefault();
     }
 
     private float DistanceTo(IInteractable interactable)
     {
-        Component component = interactable as Component;
-        return component == null
-            ? float.MaxValue
-            : Vector2.Distance(transform.position, component.transform.position);
+        Collider2D anchor = candidates[interactable].Anchor;
+        Vector2 position = anchor != null && anchor.isActiveAndEnabled
+            ? anchor.bounds.center
+            : ((MonoBehaviour)interactable).transform.position;
+        return Vector2.Distance(transform.position, position);
     }
 
     private static IEnumerable<IInteractable> FindInteractables(

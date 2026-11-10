@@ -183,10 +183,12 @@ namespace TCCGame.Gameplay.Navigation
                 return false;
             }
 
-            // A Taverna pertence ao Centro. Limpamos uma eventual entrada de
-            // portão antiga para que a volta use CenterDefaultSpawn.
+            // A Taverna pertence ao Centro e tem um ponto de retorno na soleira.
             GameSessionProvider.Current.Navigation.RecoverToCenter();
-            StartCoroutine(LoadSceneRoutine(destinationScene, true));
+            string arrivalAnchor = destinationScene == SceneCatalog.Center
+                ? PlayerSpawnController.TavernReturnAnchor
+                : null;
+            StartCoroutine(LoadSceneRoutine(destinationScene, true, arrivalAnchor));
             return true;
         }
 
@@ -235,7 +237,8 @@ namespace TCCGame.Gameplay.Navigation
 
         private IEnumerator LoadSceneRoutine(
             string sceneName,
-            bool placePlayerAfterLoad
+            bool placePlayerAfterLoad,
+            string arrivalAnchor = null
         )
         {
             if (isTransitioning)
@@ -262,7 +265,7 @@ namespace TCCGame.Gameplay.Navigation
             yield return null;
             if (placePlayerAfterLoad)
             {
-                PlayerSpawnController.PlacePlayerInActiveScene();
+                PlayerSpawnController.PlacePlayerInActiveScene(arrivalAnchor);
             }
             yield return FadeTo(0f);
 

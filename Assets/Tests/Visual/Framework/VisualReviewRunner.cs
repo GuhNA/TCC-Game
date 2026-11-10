@@ -376,20 +376,19 @@ namespace TCCGame.Tests.Visual
             string selectedScenario
         )
         {
+            string[] selectedIds = (selectedScenario ?? "").Split(',')
+                .Select(id => id.Trim()).Where(id => id.Length > 0).ToArray();
             List<IVisualReviewScenario> scenarios = TypeCache
                 .GetTypesDerivedFrom<IVisualReviewScenario>()
                 .Where(type => !type.IsAbstract && type.GetConstructor(Type.EmptyTypes) != null)
                 .Select(type => (IVisualReviewScenario)Activator.CreateInstance(type))
-                .Where(scenario => string.IsNullOrWhiteSpace(selectedScenario) ||
-                    string.Equals(
-                        scenario.Id,
-                        selectedScenario,
-                        StringComparison.OrdinalIgnoreCase
-                    ))
+                .Where(scenario => selectedIds.Length == 0 ||
+                    selectedIds.Contains(scenario.Id, StringComparer.OrdinalIgnoreCase))
                 .OrderBy(scenario => scenario.Id)
                 .ToList();
 
-            if (scenarios.Count == 0)
+            if (scenarios.Count == 0 || selectedIds.Any(id => !scenarios.Any(
+                scenario => string.Equals(scenario.Id, id, StringComparison.OrdinalIgnoreCase))))
             {
                 throw new InvalidOperationException(
                     $"No visual review scenario matched '{selectedScenario}'."

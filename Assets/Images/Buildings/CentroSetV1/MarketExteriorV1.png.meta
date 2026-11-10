@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: cb97c43c0d10ba44b9b7c77a7421757f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5314260040211712238
+    second: MarketExteriorV1_0
+  - first:
+      213: 8269530580362198448
+    second: MarketExteriorV1_1
+  - first:
+      213: 5699254402891022102
+    second: MarketExteriorV1_2
+  - first:
+      213: 5489040206563755124
+    second: MarketExteriorV1_3
+  - first:
+      213: 6885236918603962218
+    second: MarketExteriorV1_4
+  - first:
+      213: -4786866754851802324
+    second: MarketExteriorV1_5
+  - first:
+      213: -3705051719076865452
+    second: MarketExteriorV1_6
+  - first:
+      213: -1455792447972028250
+    second: MarketExteriorV1_7
+  - first:
+      213: 1844990401490686727
+    second: MarketExteriorV1_8
+  - first:
+      213: -7172554259163628552
+    second: MarketExteriorV1_9
+  - first:
+      213: -6765608033359775735
+    second: MarketExteriorV1_10
+  - first:
+      213: -7663054761643217982
+    second: MarketExteriorV1_11
+  - first:
+      213: 2372583515446100307
+    second: MarketExteriorV1_12
+  - first:
+      213: 2420858046423742985
+    second: MarketExteriorV1_13
+  - first:
+      213: -6190659472792617340
+    second: MarketExteriorV1_14
+  - first:
+      213: -262673539863216279
+    second: MarketExteriorV1_15
+  - first:
+      213: -1470310226586981518
+    second: MarketExteriorV1_16
+  - first:
+      213: -8413549435053098270
+    second: MarketExteriorV1_17
+  - first:
+      213: 552411457070821455
+    second: MarketExteriorV1_18
+  - first:
+      213: -7606432196496017184
+    second: MarketExteriorV1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.5007474, y: 0.12340426}
+  spritePixelsToUnits: 120
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MarketExteriorV1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1324
+        height: 1155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217b02b46a4ff36b0800000000000000
+      internalID: -5314260040211712238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_1
+      rect:
+        serializedVersion: 2
+        x: 693
+        y: 1142
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bdf7bdbf3643c270800000000000000
+      internalID: 8269530580362198448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_2
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 1142
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61f76e8fea1d71f40800000000000000
+      internalID: 5699254402891022102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_3
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1136
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 474c1165cfcfc2c40800000000000000
+      internalID: 5489040206563755124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_4
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 1132
+        width: 25
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a675bc77f764d8f50800000000000000
+      internalID: 6885236918603962218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_5
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1131
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c237ee16c02a19db0800000000000000
+      internalID: -4786866754851802324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_6
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 1128
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45a19f97713059cc0800000000000000
+      internalID: -3705051719076865452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_7
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1094
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a05eef4b7cfbcbe0800000000000000
+      internalID: -1455792447972028250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_8
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 1097
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7039bd6bef8ba9910800000000000000
+      internalID: 1844990401490686727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_9
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 1089
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fb365237e7f57c90800000000000000
+      internalID: -7172554259163628552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_10
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 1077
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 908bf02e65bbb12a0800000000000000
+      internalID: -6765608033359775735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_11
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 1081
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cbe3ed7b4c57a590800000000000000
+      internalID: -7663054761643217982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_12
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 1081
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351cc16032c1de020800000000000000
+      internalID: 2372583515446100307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_13
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1077
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90abbb4219d989120800000000000000
+      internalID: 2420858046423742985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_14
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 1074
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48ef9ce420c561aa0800000000000000
+      internalID: -6190659472792617340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_15
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 1075
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ffe84aecbca5cf0800000000000000
+      internalID: -262673539863216279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_16
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1084
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27ba8a293a8689be0800000000000000
+      internalID: -1470310226586981518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_17
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 1077
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eab87f9d511d3b80800000000000000
+      internalID: -8413549435053098270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_18
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 67
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f40ff8c1b4f8aa700800000000000000
+      internalID: 552411457070821455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MarketExteriorV1_19
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 31
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e8b2c7c736807690800000000000000
+      internalID: -7606432196496017184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      MarketExteriorV1_0: -5314260040211712238
+      MarketExteriorV1_1: 8269530580362198448
+      MarketExteriorV1_10: -6765608033359775735
+      MarketExteriorV1_11: -7663054761643217982
+      MarketExteriorV1_12: 2372583515446100307
+      MarketExteriorV1_13: 2420858046423742985
+      MarketExteriorV1_14: -6190659472792617340
+      MarketExteriorV1_15: -262673539863216279
+      MarketExteriorV1_16: -1470310226586981518
+      MarketExteriorV1_17: -8413549435053098270
+      MarketExteriorV1_18: 552411457070821455
+      MarketExteriorV1_19: -7606432196496017184
+      MarketExteriorV1_2: 5699254402891022102
+      MarketExteriorV1_3: 5489040206563755124
+      MarketExteriorV1_4: 6885236918603962218
+      MarketExteriorV1_5: -4786866754851802324
+      MarketExteriorV1_6: -3705051719076865452
+      MarketExteriorV1_7: -1455792447972028250
+      MarketExteriorV1_8: 1844990401490686727
+      MarketExteriorV1_9: -7172554259163628552
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

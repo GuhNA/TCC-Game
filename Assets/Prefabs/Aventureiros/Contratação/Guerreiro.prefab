@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 100004}
   - component: {fileID: 100005}
   - component: {fileID: 7567852399596973493}
+  - component: {fileID: 8471524851271264069}
   m_Layer: 0
   m_Name: Guerreiro
   m_TagString: NPC
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingOrder: 2202
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6284474342188708338, guid: 092b6d5f0efe3b449a9e2d41001ceb18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,8 +143,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.67, y: -3.39}
-  m_Radius: 0.5
+  m_Offset: {x: 2.59, y: -3.91}
+  m_Radius: 0.464497
 --- !u!95 &7567852399596973493
 Animator:
   serializedVersion: 7
@@ -166,6 +167,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8471524851271264069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24bf976d7dcbf0143a790a64f6fab6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: TCCGame.Runtime::TCCGame.Prototypes.WorldPrototypeDepthSort
+  Target: {fileID: 100003}
+  Feet: {fileID: 100005}
+  UseFeetCenter: 1
+  OrderOffset: 0
 --- !u!1 &200001
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +249,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.25863743, y: 0.8567383}
+  m_Offset: {x: -0.38928, y: -1.52918}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -242,5 +259,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 14.21851, y: 10.695194}
+  m_Size: {x: 19.1778, y: 17.4051}
   m_EdgeRadius: 0

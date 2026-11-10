@@ -32,7 +32,7 @@ if ($process.ExitCode -ne 0)
     throw "A revisão visual falhou. Consulte $logPath."
 }
 
-$scenarioDirectory = if ([string]::IsNullOrWhiteSpace($Scenario))
+$scenarioDirectory = if ([string]::IsNullOrWhiteSpace($Scenario) -or $Scenario.Contains(','))
 {
     Join-Path $projectPath "Artifacts\VisualTests"
 }

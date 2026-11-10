@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novo Centro — fundo estático e seis lotes</title>
+<style>
+  :root { color-scheme: dark; background:#171c16; color:#eae1ce; font: 17px/1.55 system-ui,sans-serif }
+  body { max-width: 1250px; margin: auto; padding: 24px }
+  h1,h2 { color:#f5d098; line-height:1.2 }
+  a { color:#f5d098 }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,450px),1fr)); gap:16px }
+  figure { margin:0; background:#222a20; border:1px solid #536147; padding:8px }
+  img { display:block; width:100%; height:auto }
+  figcaption { padding: 8px 4px 2px }
+  small { color:#c9cbb9 }
+</style>
+<header>
+  <h1>Novo Centro — seis lotes e fundo estático</h1>
+  <p>A Construção de Exploradores fica no ramal norte. O chão de 60 × 52 unidades reúne praça, caminhos, terra e grama em um único sprite. As construções e os objetos da vila são camadas independentes.</p>
+  <p>Na revisão de colisões, o traço ciano marca os bloqueios físicos. O traço dourado sobre o tapete indica a área de interação da saída.</p>
+  <p><a href="CentroRedesignPlan.md">Planejamento</a> · <a href="CentroLayoutV3.json">Planta V3</a> · <a href="CentroStaticV3Prompts.md">Arte do terreno</a> · <a href="CentroPrototypeNpcPrompts.md">Arte dos personagens</a> · <a href="../../Artifacts/VisualTests/centro-static-background/report.md">Relatório visual</a></p>
+</header>
+<main id="review"></main>
+<script>
+const previous = "../../Artifacts/VisualTests/centro-terrain-v2/captures/";
+const current = "../../Artifacts/VisualTests/centro-static-background/captures/";
+const tavern = "../../Artifacts/VisualTests/centro-tavern-collisions/captures/";
+const production = "../../Artifacts/VisualTests/centro-production/captures/";
+const productionTavern = "../../Artifacts/VisualTests/centro-tavern-production/captures/";
+const groups = [
+  ["Cenas finais", [
+    [production, "overview-1920x1440", "Centro final · seis lotes e quatro sentinelas"],
+    [production, "tavern-management-1366x768", "Taverna final · fachada e placa de gestão"],
+    [productionTavern, "interior-1600x1200", "Interior final · quadro de exploração e saída"]
+  ]],
+  ["Visão geral", [
+    [previous, "overview-1920x1440", "V2 · cinco lotes e terreno em malhas"],
+    [current, "overview-1920x1440", "V3 · seis lotes e fundo único"]
+  ]],
+  ["Terra e grama no zoom de jogo", [
+    [previous, "garden-path-1366x768", "V2 · terra e jardim"],
+    [current, "garden-path-1366x768", "V3 · mesmo enquadramento"],
+    [previous, "streetlife-1920x1080", "V2 · praça, poço e pavimento"],
+    [current, "streetlife-1920x1080", "V3 · mesmo enquadramento"]
+  ]],
+  ["Acessos e bordas", [
+    [current, "explorers-1920x1080", "Construção de Exploradores e ramal norte"],
+    [current, "explorers-compact-1366x768", "Acesso dos Exploradores em 1366 × 768"],
+    [current, "tavern-compact-1366x768", "Soleira da Taverna"],
+    [current, "tavern-management-1366x768", "Placa de gestão e melhoria da Taverna"],
+    [current, "foundations-1920x1440", "Lotes antes da construção"],
+    [current, "camera-northwest-1366x768", "Extremo noroeste"],
+    [current, "camera-southeast-1920x1080", "Extremo sudeste"]
+  ]],
+  ["Personagens do Centro", [
+    [current, "gate-sentinel-1920x1080", "Sentinela Leste ao lado do jogador"],
+    [current, "tax-collector-1366x768", "Coletor de impostos ao lado do jogador"]
+  ]],
+  ["Colisões das cópias jogáveis", [
+    [tavern, "floor-1600x1200", "Taverna e acesso no tapete"],
+    [tavern, "floor-collisions-1600x1200", "Paredes, lareira, escada, móveis e saída"],
+    [current, "collision-overview-1920x1440", "Centro · bases dos prédios, pátios, bancos e poço"]
+  ]]
+];
+const review = document.querySelector("#review");
+for (const [title, images] of groups) {
+  const section = document.createElement("section");
+  const heading = document.createElement("h2");
+  heading.textContent = title;
+  section.append(heading);
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  for (const [folder, file, label] of images) {
+    const figure = document.createElement("figure");
+    const link = document.createElement("a");
+    link.href = folder + file + ".png";
+    const image = document.createElement("img");
+    image.src = link.href;
+    image.alt = label;
+    image.loading = "lazy";
+    link.append(image);
+    const caption = document.createElement("figcaption");
+    caption.textContent = label;
+    figure.append(link, caption);
+    grid.append(figure);
+  }
+  section.append(grid);
+  review.append(section);
+}
+</script>
+</html>

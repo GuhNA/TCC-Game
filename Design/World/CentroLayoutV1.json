@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "status": "Planta aprovada; implementação em cópia isolada para prototipagem",
+  "measurements": "CentroCurrentMeasurements.json",
+  "bounds": {"x": -13, "y": -10, "width": 26, "height": 20},
+  "sceneryPadding": 6,
+  "mainRoadWidth": 5,
+  "secondaryRoadWidth": 2.4,
+  "plazaRadius": 3.5,
+  "doorHeight": 2.7,
+  "doorWidth": 1.35,
+  "spawn": [0, -0.6],
+  "roads": [
+    {"a": [-13, 0], "b": [13, 0], "width": 5},
+    {"a": [0, -10], "b": [0, 10], "width": 5},
+    {"a": [0, -8.5], "b": [11.5, -8.5], "width": 2.4},
+    {"a": [0, 6.6], "b": [-4.25, 6.6], "width": 2.4}
+  ],
+  "buildings": [
+    {"id": "barracks", "name": "Quartel", "color": "#aa6654", "footprint": [-11, 2.8, 6, 2.8], "artWidth": 6.4, "artHeight": 6.4, "door": [-8, 2.8], "interaction": [-8, 2.15], "route": [[0, 0], [-8, 0], [-8, 2.15]], "brief": "Pedra, madeira, estandarte vermelho e pátio militar junto ao acesso oeste."},
+    {"id": "archers", "name": "Estande de Arqueiros", "color": "#72956b", "footprint": [-11, -7.2, 6, 4], "artWidth": 6, "artHeight": 5.2, "door": [-8, -3.2], "interaction": [-8, -2.5], "route": [[0, 0], [-8, 0], [-8, -2.5]], "brief": "Pátio aberto com alvos; acesso norte voltado à rua. Cobertura leve, sem interior novo."},
+    {"id": "market", "name": "Mercado Local", "color": "#b49b5a", "footprint": [4.8, 2.8, 6.4, 2.8], "artWidth": 6.6, "artHeight": 5.8, "door": [8, 2.8], "interaction": [8, 2.15], "route": [[0, 0], [8, 0], [8, 2.15]], "brief": "Toldo, balcão e mercadorias. O coletor fica diante do lote, sem ocupar a entrada."},
+    {"id": "tavern", "name": "Taverna", "color": "#bb8359", "footprint": [4.8, -7.2, 6.4, 4], "artWidth": 6.4, "artHeight": 6.6, "door": [8, -7.2], "interaction": [8, -7.85], "route": [[0, 0], [0, -8.5], [8, -8.5], [8, -7.85]], "brief": "Fachada externa com porta sul, placa de caneca e lanternas. A rua inferior leva até a porta; a gestão fica ao lado."},
+    {"id": "magic", "name": "Escola de Magia", "color": "#8088b9", "footprint": [-5.8, 7.4, 3.1, 2.1], "artWidth": 4.4, "artHeight": 8, "door": [-4.25, 7.4], "interaction": [-4.25, 6.75], "route": [[0, 0], [0, 6.6], [-4.25, 6.6], [-4.25, 6.75]], "brief": "Lote próprio ao norte, fora do eixo de saída. Torre de pedra com sinal arcano discreto; conferir oclusão do telhado no protótipo."}
+  ],
+  "collector": [5.3, 0.8],
+  "tavernManagement": [10.7, -8.45],
+  "tavernReturn": [8, -9.25],
+  "gates": [
+    {"name": "Norte", "sentinel": [0, 9.2], "spawn": [0, 8.3]},
+    {"name": "Leste", "sentinel": [12.2, 0], "spawn": [11.3, 0]},
+    {"name": "Sul", "sentinel": [0, -9.2], "spawn": [0, -8.3]},
+    {"name": "Oeste", "sentinel": [-12.2, 0], "spawn": [-11.3, 0]}
+  ]
+}
