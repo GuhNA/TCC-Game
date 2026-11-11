@@ -12,113 +12,107 @@
 
 ## Resumo
 
-Este trabalho analisa como uma equipe de dois estudantes planejou, implementou e testou o progresso com o jogo fechado em um protótipo *idle* 2D. O estudo de caso examinou os registros de gestão, o histórico do Git e a implementação. A verificação automatizada gravou partidas em chaves isoladas, carregou o estado em novas sessões e simulou o tempo de ausência com um relógio controlado. Os 23 casos selecionados foram aprovados, incluindo oito cenários de retomada. Ausências simuladas de 24 e 48 horas produziram o mesmo valor de impostos. Após a coleta e um novo carregamento, o saldo foi preservado sem duplicar o crédito. A campanha retomou do tempo salvo. O estudo indica que definir quais mecânicas consideram o tempo de ausência orienta a divisão das tarefas, a escolha dos dados a salvar e os testes. A verificação no executável, com encerramento e reabertura, permanece pendente.
+Este trabalho apresenta o desenvolvimento de um jogo independente 2D em que o jogador administra uma vila e a defende de ondas de inimigos. O jogador arrecada ouro, melhora construções, recruta tropas e contrata aventureiros para explorar regiões e obter materiais. A renda acumulada durante a ausência permite retomar essas decisões em sessões diferentes. O estudo de caso acompanha como uma equipe de dois estudantes organizou o trabalho, definiu as regras e integrou as mecânicas em Unity. A divisão por cenas permitiu desenvolver áreas em paralelo, enquanto a integração exigiu que a economia e os demais dados da partida fossem compartilhados. O protótipo resultante reúne gestão da vila, defesa e exploração. Em cenários controlados, a retomada disponibilizou a renda do período elegível e manteve o tempo de preparação para a próxima onda. O caso documenta como uma equipe pequena pode dividir o desenvolvimento de um jogo *idle*, reconhecer as dependências entre as mecânicas e verificar sua integração.
 
-**Palavras-chave:** jogos idle, desenvolvimento independente, progressão offline
+**Palavras-chave:** desenvolvimento independente, jogos idle, design de jogos
 
 ## 1 Introdução
 
-### 1.1 Contextualização
+### 1.1 Contexto e proposta do jogo
 
-Este trabalho descreve o desenvolvimento de um jogo independente por dois estudantes de Engenharia da Computação. A equipe precisou decidir quais mecânicas implementar primeiro e como testar sua integração. Essas decisões envolvem gestão e produção, duas áreas em que Politowski et al. (2021) identificaram dificuldades ao analisar 200 relatos de projetos de jogos.
+O projeto nasceu como um trabalho de Engenharia da Computação desenvolvido por dois estudantes. A proposta foi criar um jogo 2D de gestão e defesa de uma vila que pudesse ser jogado em sessões separadas. Ao voltar, o jogador encontra a vila no estado em que a deixou e pode usar a renda acumulada para decidir o que fazer a seguir.
 
-No jogo 2D, desenvolvido em Unity e C#, o jogador administra uma vila atacada por ondas de monstros. Antes de cada ataque, pode investir em construções, recrutar tropas e distribuí-las pelos portões. Também pode enviar aventureiros em expedições para obter materiais usados nas construções.
+A partida começa no Centro. O jogador recolhe impostos do Mercado Local e investe o ouro em construções, tropas ou aventureiros. As tropas defendem os quatro portões da vila. Os aventureiros são contratados na Taverna e enviados a regiões que oferecem materiais para novas melhorias. À medida que as ondas inimigas se aproximam, gastar ouro em uma melhoria ou reservar o recurso para a defesa muda as opções da próxima etapa da campanha.
 
-O jogo adota elementos do gênero *idle*, em que parte do progresso ocorre com pouca interação direta (ALHARTHI et al., 2018). Um exemplo é a arrecadação de impostos, que leva em conta o tempo em que o jogo ficou fechado.
+O protótipo combina momentos de decisão com períodos de espera. Alharthi et al. (2018) observam que jogos *idle* permitem progresso com pouca interação direta e deslocam parte da atividade do jogador para o planejamento. No projeto, esse princípio aparece na produção de renda, na disponibilidade de recrutas e nas atividades da exploração. A defesa acrescenta uma condição ao ciclo. A preparação para cada onda depende de decisões que o jogador toma enquanto está na partida.
 
 ### 1.2 Problema de pesquisa
 
-Ao retomar uma partida, o jogo precisa calcular quanto progresso corresponde ao tempo em que ficou fechado. A equipe precisa definir quais mecânicas usam esse intervalo, quais dados devem ser salvos e quanto progresso pode ser acumulado. Essas escolhas orientam a ordem de implementação e os testes para períodos curtos e longos de ausência.
+Em um jogo *idle* concebido para durar várias sessões, o jogador pode deixar uma tarefa em andamento e voltar horas depois. A equipe precisa definir o que progride nesse intervalo, o que espera pela próxima ação e como o jogo apresenta o estado resultante. Se a renda, o estoque e a defesa seguirem a mesma regra de tempo, uma ausência pode mudar tanto os recursos disponíveis quanto a oportunidade de preparar o portão. O projeto adotou regras próprias para cada sistema.
 
-Como uma equipe pequena pode planejar, implementar e testar o progresso durante a ausência do jogador em um jogo *idle* independente?
+Esse problema afeta a gestão do desenvolvimento. Uma mudança na economia interfere nas compras do Portão e da Taverna, e uma mudança na agenda de ataques altera o tempo disponível para essas decisões. A equipe precisa ordenar as entregas, combinar regras compartilhadas e verificar um ciclo que pode envolver minutos de preparação e horas de ausência. Repetir toda a duração de cada cenário torna a verificação demorada. É preciso selecionar situações que representem as decisões do jogador ao longo da partida.
+
+A pergunta deste trabalho é como uma equipe pequena pode organizar o desenvolvimento, integrar as mecânicas e verificar a progressão de um jogo *idle* pensado para várias sessões.
 
 ### 1.3 Justificativa
 
-O tempo fora do jogo faz parte da progressão. Ao retomar a partida, o sistema calcula os impostos com base no tempo decorrido, até o limite de 24 horas de acúmulo entre coletas. As ondas de ataque seguem o tempo de execução da campanha. Assim, o jogador pode voltar com impostos a recolher e ainda ter a oportunidade de preparar a defesa antes da próxima onda.
+Jogos independentes ampliam a variedade de propostas disponíveis na indústria. Equipes pequenas podem experimentar regras e combinações de gêneros e ajustar a ideia à medida que produzem versões jogáveis. O estudo sobre *Noita*, por exemplo, documenta como protótipos e decisões sucessivas transformaram a ideia de um jogo independente ao longo do desenvolvimento (KULTIMA; OJANEN; NYLUND, 2024).
 
-Esse caso permite examinar como uma equipe pequena transforma uma escolha de design em regras de cálculo, salvamento e teste. O registro do processo pode servir de referência em português para estudantes e desenvolvedores que precisem decidir quanto progresso conceder após uma ausência e como isso afeta a retomada da partida.
+Os jogos *idle* exploram uma forma de jogar que alterna planejamento, espera e retorno. Há exemplos de alcance expressivo. No lançamento da versão 1.0 de *Melvor Idle*, a editora Jagex informou que o jogo já havia recebido mais de um milhão de jogadores entre PC e dispositivos móveis (JAGEX, 2021). Esse caso mostra como a progressão entre sessões pode fazer parte de uma proposta com público além de um único canal de distribuição.
+
+O trabalho tem valor como experiência documentada de desenvolvimento acadêmico. A combinação de economia, defesa e exploração permite observar como a equipe transforma ideias de jogo em tarefas, resolve dependências e verifica o que o jogador encontra ao voltar. O registro dessas decisões pode servir de referência a estudantes e equipes que precisem planejar um protótipo com progressão distribuída ao longo do tempo.
 
 ### 1.4 Objetivos
 
-#### 1.4.1 Objetivo geral
+O objetivo geral é desenvolver um protótipo independente de gestão e defesa de uma vila e analisar como a equipe organizou e integrou suas mecânicas para compor uma experiência *idle*. Os objetivos específicos descrevem o que o jogador deve poder fazer e como a equipe examina o ciclo resultante.
 
-Desenvolver um protótipo de jogo *idle* 2D independente e analisar como a equipe planejou, implementou e testou o progresso associado ao tempo em que o jogo ficou fechado.
+1. Desenvolver a economia da vila, com arrecadação de ouro e investimento em construções e melhorias.
+2. Implementar a defesa dos portões, com avisos de ataque, distribuição de guarnições e resolução de ondas inimigas.
+3. Criar a contratação de tropas para a defesa e de aventureiros na Taverna, com custos compartilhados pela economia da vila.
+4. Implementar a exploração de regiões pela Taverna, com seleção de aventureiros, expedições, combates e obtenção de materiais.
+5. Documentar a organização e a integração das entregas e verificar aspectos da experiência *idle*, como o que o jogador encontra e pode fazer ao retomar a partida.
 
-#### 1.4.2 Objetivos específicos
+### 1.5 Escopo e qualidades do protótipo
 
-1. Documentar os requisitos e as regras das principais mecânicas do jogo.
-2. Integrar a economia da vila ao recrutamento, à defesa por ondas e à exploração.
-3. Definir quais sistemas consideram o tempo de ausência e salvar os dados necessários para calcular o progresso ao retomar a partida.
-4. Verificar as regras com testes automatizados, incluindo o cálculo do progresso após diferentes períodos de ausência e a aplicação do limite de acúmulo.
-5. Analisar as decisões de desenvolvimento e as limitações da versão avaliada.
+O protótipo é local, para um jogador, e inclui navegação entre Centro, Portão e Taverna, além da cena de combate de exploração. No Centro, reúne construções, melhorias, arrecadação e acompanhamento do saldo. A campanha inclui quatro portões, reserva e transferência de tropas, avisos, até dez ondas e registro de consequências das batalhas. O recrutamento inclui estoque e renovação de tropas. A Taverna concentra a contratação de aventureiros e o mapa de exploração. As expedições incluem deslocamento, combate, conquista de regiões, alocação de exploradores e guardas, coleta e transporte de materiais. A partida registra aventureiros, itens e progresso das regiões em um inventário persistente.
 
-### 1.5 Escopo e delimitações
+O projeto também definiu qualidades que atravessam as cenas. O saldo precisa ser consistente quando o jogador circula entre as áreas. O salvamento deve recuperar o progresso e lidar com formatos anteriores. A interface deve tornar visíveis o ouro, o estoque e o tempo até a próxima ameaça. As ações de movimento e interação devem seguir os mesmos controles. A separação entre regras e elementos visuais facilita ajustar parâmetros e verificar comportamentos sem depender da apresentação de cada cena.
 
-O estudo abrange um protótipo para um jogador, com uma campanha de até dez ondas em quatro portões. A avaliação da retomada concentra-se no cálculo de impostos, na persistência do saldo e no tempo da campanha. Recrutamento e exploração também usam o relógio do dispositivo e são descritos como parte da integração do protótipo. A avaliação de usabilidade, a medição do engajamento e o lançamento comercial ficam fora do escopo.
-
-### 1.6 Organização do trabalho
-
-A Seção 2 apresenta a gestão de projetos independentes e os conceitos de progressão em jogos *idle*. A Seção 3 descreve a organização do trabalho, as escolhas técnicas e o procedimento de teste. A Seção 4 apresenta a implementação e os resultados da retomada em sessões de teste. A Seção 5 responde à pergunta de pesquisa e discute as limitações do estudo.
+A avaliação apresentada examina comportamentos do protótipo e o processo usado para integrá-los. A revisão bibliográfica situa essas decisões no desenvolvimento independente. A metodologia descreve como elas foram registradas e verificadas. Os resultados retomam o ciclo do jogo e discutem o que a implementação e as evidências permitem concluir.
 
 ## 2 Revisão bibliográfica
 
-### 2.1 Desenvolvimento independente e gestão de equipes pequenas
+### 2.1 Desenvolvimento independente e organização do trabalho
 
-Poulsen e Wirman (2024) acompanharam uma equipe de oito pessoas em um estúdio independente dinamarquês. O estudo examinou como programadores e designers conciliavam propostas criativas com os prazos do projeto. Nas reuniões observadas, a equipe discutia tanto o que havia sido produzido quanto a forma de trabalhar. O caso mostra como as decisões sobre o jogo e sobre o processo de desenvolvimento se encontram no trabalho cotidiano.
+Politowski et al. (2021) analisaram 200 relatos pós-projeto e identificaram dificuldades tanto de gestão quanto de produção. Em um estúdio independente, Poulsen e Wirman (2024) observaram que a equipe discutia as decisões criativas junto com a maneira de organizar o trabalho. Isso ajuda a explicar por que a divisão de tarefas depende do conteúdo que está sendo construído. A decisão sobre quais áreas podem avançar em paralelo muda quando elas começam a consumir o mesmo saldo ou a depender do mesmo inventário.
 
-Em uma equipe pequena, o escopo pode ser organizado pelas dependências entre as mecânicas. Para testar a arrecadação de impostos ao retomar uma partida, por exemplo, já é preciso ter uma regra de produção e uma forma de salvar os dados usados no cálculo. Um protótipo que permita gerar recursos, fechar o jogo e conferir o valor ao voltar já permite verificar essa regra. A interface definitiva e os demais usos do ouro podem ser desenvolvidos em etapas posteriores.
+Kultima, Ojanen e Nylund (2024) usam uma linha do tempo de *Noita* para relacionar mudanças de design e etapas de produção. No projeto deste artigo, o cronograma de curto prazo foi revisto nas reuniões semanais. O Discord serviu para discutir as próximas entregas. O Trello registrou tarefas e pendências. O Git permitiu recuperar alterações nas cenas e marcos de integração. Esses registros ajudam a relacionar o que foi combinado com o que entrou no protótipo.
 
-### 2.2 Documentação de design e definição do escopo
+### 2.2 Documentação de design e dependências entre sistemas
 
-O *Game Design Document* (GDD) registra as decisões que orientam o desenvolvimento do jogo. Na revisão de Carrijo et al. (2023), os modelos analisados variam de acordo com o gênero e com as necessidades do projeto. Em um jogo *idle*, o documento pode descrever como os recursos são produzidos, quando o jogador precisa agir e quais regras se aplicam se ele fechar o jogo.
+O *Game Design Document* (GDD) registra regras e decisões que orientam a produção. Carrijo et al. (2023) discutem como sua organização pode variar conforme o gênero e as necessidades do projeto. Para uma equipe pequena, a documentação pode distribuir-se entre a proposta, cartões de tarefas e contratos técnicos, desde que as regras compartilhadas permaneçam identificáveis.
 
-Uma regra como “os impostos continuam acumulando” deixa decisões em aberto. É preciso definir quando o cálculo começa, quanto tempo pode ser contado entre coletas e como o jogador recebe o valor acumulado. Essas definições ajudam a dividir o trabalho em tarefas. O cálculo precisa de uma taxa de produção e de um intervalo de tempo. O salvamento precisa guardar os dados que permitem recuperar esse intervalo. O teste precisa indicar o valor esperado ao reabrir a partida.
+Neste jogo, uma descrição da defesa precisa indicar quando o ataque será anunciado, o que o jogador pode preparar e como a batalha usa a guarnição. A contratação depende de preço, disponibilidade e saldo. A exploração depende dos aventureiros contratados, do estado das regiões e do destino dos materiais. A economia reúne essas decisões porque cada compra consome recursos que poderiam ser usados em outra área. Registrar essas relações ajuda a definir a ordem das tarefas. Por exemplo, a Taverna pode desenvolver sua interface separadamente, mas a contratação precisa consultar o mesmo saldo do Centro.
 
-### 2.3 Jogos idle e progressão com o jogo fechado
+### 2.3 Espera, planejamento e retorno em jogos idle
 
-Alharthi et al. (2018) analisaram 66 jogos *idle* e os compararam com dez jogos de outros tipos. Os autores identificaram formas de progresso com pouca interação direta, nas quais a espera e a automação permitem ao jogador dedicar mais atenção ao planejamento. Em jogos incrementais, por exemplo, o jogador pode esperar pela produção de recursos e depois investi-los em melhorias que alteram o ritmo da produção.
+Alharthi et al. (2018) examinaram 66 jogos *idle* e os compararam com dez jogos de outros tipos. A taxonomia descreve formas de progressão com pouca interação, nas quais a espera e a automação abrem espaço para decisões de planejamento. A produção de recursos pode ocorrer enquanto o jogo está aberto. Quando o projeto admite progresso durante a ausência, o jogador também pode encontrar novos recursos ou tarefas prontas ao retornar.
 
-Neste trabalho, a automação durante a sessão é tratada como uma situação distinta do progresso com o jogo fechado. Durante a sessão, um sistema pode executar uma ação mesmo quando o jogador fica algum tempo sem interagir. Com o jogo fechado, uma opção é calcular o resultado na retomada usando o estado salvo e o intervalo decorrido. As regras podem variar por sistema. Na atualização 1.1.2 de *Melvor Idle*, por exemplo, as notas de versão indicam que a cidade é atualizada em intervalos de uma hora, com até 24 horas contabilizadas durante a ausência (MELVOR IDLE, 2023).
+As regras variam conforme a atividade. Em *Melvor Idle*, a atualização 1.1.2 estabeleceu que a cidade avançava em intervalos de uma hora, com até 24 horas contabilizadas durante a ausência (MELVOR IDLE, 2023). No protótipo deste trabalho, a arrecadação usa uma taxa de produção e um limite entre coletas. A defesa usa a espera para dar ao jogador tempo de se preparar. Essa diferença entre atividades é parte do desenho da partida.
 
-Um cálculo direto pode atender a uma mecânica com taxa de produção constante. Se houver eventos que alterem essa taxa durante a ausência, a equipe precisa decidir se o cálculo considera essas mudanças. O mesmo vale para ações que dependem da preparação do jogador, como defender um portão. A escolha de quais sistemas contabilizam a ausência define parte do escopo de implementação e teste.
+### 2.4 Decisões de balanceamento
 
-### 2.4 Economia e balanceamento da progressão
+Pecorella (2016) descreve a relação entre o ritmo de produção e o custo das melhorias em jogos incrementais. No protótipo, o ouro acumulado permite escolher entre investir na renda futura, reforçar a defesa ou ampliar a exploração. O aumento do custo das construções conforme o nível e a exigência de materiais em algumas melhorias conectam a economia do Centro às expedições da Taverna.
 
-Pecorella (2016) analisa o ritmo de progressão dos jogos incrementais pela relação entre a taxa de produção de recursos e o custo das melhorias. Se os custos crescem mais depressa que a produção, o intervalo até a próxima compra tende a aumentar. Para o balanceamento, interessa observar quanto tempo o jogador precisa esperar para tomar a próxima decisão de investimento.
+O recrutamento limita as compras pelo estoque e pelo saldo disponível. A campanha, por sua vez, aumenta a força das ondas e reduz os intervalos de preparação nas etapas posteriores. Os avisos permitem reorganizar as guarnições antes do ataque. O limite de 24 horas de arrecadação restringe o ganho que pode ser acumulado entre duas coletas. São decisões que regulam quanto o jogador pode fazer em cada retorno e quanto precisa reservar para as próximas etapas.
 
-O ganho durante a ausência também afeta esse intervalo. Uma forma de estimá-lo é multiplicar a taxa de produção pelo tempo que a regra permite contar. Quando há um limite de acúmulo, períodos acima desse limite deixam de aumentar a recompensa. A equipe pode comparar o valor obtido após ausências de diferentes durações com o custo das próximas compras. Isso permite avaliar, por exemplo, quantas melhorias ou tropas o jogador pode adquirir quando volta. A verificação do cálculo e a avaliação do balanceamento respondem a perguntas diferentes. A primeira confirma se a regra foi aplicada. A segunda examina se o valor produzido é adequado ao ritmo previsto para o jogo.
+### 2.5 Continuidade percebida e atualização ao retornar
 
-### 2.5 Medição do tempo e persistência da partida
+A sensação de que a vila continuou produzindo vem da diferença entre o que o jogador deixou e o que encontra ao voltar. Para calcular essa diferença, o jogo grava os dados necessários e consulta o tempo decorrido quando a partida volta a ser executada. No caso dos impostos, uma taxa conhecida e um intervalo elegível permitem calcular a renda de uma vez. Na exploração, datas salvas permitem reconhecer chegadas e ciclos de coleta que venceram no intervalo.
 
-O tempo de execução pode ser medido pelos intervalos entre quadros. Na Unity, `Time.unscaledDeltaTime` informa a duração entre o quadro anterior e o atual em segundos, independentemente da escala de tempo do motor (UNITY TECHNOLOGIES, [s.d.]d). Uma mecânica que depende do tempo decorrido entre sessões precisa de uma referência que possa ser comparada depois que o jogo é reaberto. O .NET oferece uma representação em segundos Unix, calculados a partir de 1º de janeiro de 1970 em Tempo Universal Coordenado (UTC) (MICROSOFT, [s.d.]).
+O relógio do dispositivo fornece uma referência comparável entre sessões. O .NET permite representar esses instantes como segundos decorridos desde 1º de janeiro de 1970 em UTC (MICROSOFT, [s.d.]). A campanha usa o tempo de execução, medido pelos intervalos entre quadros. A propriedade `Time.unscaledDeltaTime` fornece esse intervalo independentemente da escala de tempo do motor (UNITY TECHNOLOGIES, [s.d.]d). A separação permite que o jogador encontre renda ao voltar e ainda tenha a oportunidade de reagir à próxima onda.
 
-Para calcular o progresso após a ausência, o jogo pode subtrair o instante do último cálculo do instante atual. O salvamento também precisa conservar os dados exigidos pela regra, como o valor acumulado e a parte do limite já consumida. Se o relógio do dispositivo for atrasado, a diferença entre os instantes pode ser negativa. O tratamento desse caso e a atualização do instante de referência fazem parte da regra. Quando o jogo incorpora um intervalo ao saldo acumulado, deve registrar até que momento o cálculo foi feito para evitar que uma nova retomada conte o mesmo período duas vezes.
-
-### 2.6 Testes de regras dependentes do tempo
-
-A documentação da Microsoft (2026) apresenta o uso de um relógio controlável para testar regras dependentes do tempo. O teste começa em um instante conhecido e avança o relógio pelo intervalo desejado. Isso permite simular horas de ausência em uma execução curta e repetir o cenário a partir das mesmas condições iniciais.
-
-Para verificar uma regra com limite de acúmulo, convém testar intervalos abaixo, no valor exato e acima do limite. Um teste de integração pode gravar uma partida com parte do limite já utilizada, carregar os dados em outra sessão e conferir quanto ainda pode ser acumulado. Outra verificação é repetir a retomada após a coleta para conferir se o valor anterior foi contabilizado apenas uma vez.
-
-A Unity permite executar testes em *Edit Mode* e em *Play Mode* (UNITY TECHNOLOGIES, [s.d.]c). O primeiro pode ser usado para verificar um cálculo isolado com um relógio controlado. O segundo permite observar o comportamento dos componentes durante a execução do jogo. Para testar a retomada, importa verificar tanto o resultado do cálculo quanto a passagem dos dados entre salvamento, carregamento e apresentação do valor ao jogador.
+Essa percepção de continuidade depende da consistência do retorno. O estado apresentado precisa corresponder às regras de cada atividade, e uma nova abertura não deve repetir um crédito já recebido. Um relógio controlável permite representar durações diferentes sem aguardar todo o intervalo, como exemplifica a documentação da Microsoft (2026). A metodologia aplica essa ideia a situações que o jogador encontra durante o ciclo da vila.
 
 ## 3 Metodologia
 
-### 3.1 Caracterização da pesquisa
+### 3.1 Caracterização e fontes
 
-A pesquisa é aplicada e tem como objeto o protótipo de jogo desenvolvido pelos autores. O estudo de caso examina como a equipe definiu, implementou e testou as regras de progresso associadas ao tempo em que o jogo ficou fechado. A unidade de análise é o processo de desenvolvimento dessas regras, da definição do escopo à verificação da retomada da partida.
+A pesquisa é aplicada e examina o desenvolvimento de um jogo independente por uma equipe de dois estudantes. O caso inclui a definição das mecânicas, a divisão das entregas, a integração entre cenas e a verificação de comportamentos do protótipo. A progressão durante a ausência é um dos desafios analisados, pois exige decisões coordenadas entre economia, campanha e persistência.
 
-A análise usa a proposta inicial, os documentos técnicos, o quadro do Trello, o relato dos autores e o histórico do Git. O código mostra como as regras foram implementadas. Os relatórios de testes registram os intervalos simulados, os valores dos impostos e o tempo recuperado da campanha.
+A reconstrução do desenvolvimento usa a proposta, os documentos de regras, o quadro de tarefas e o histórico do Git. Foram selecionados registros que indicam a construção de uma área, a introdução de uma regra ou uma integração entre sistemas. A descrição de cada episódio relaciona o que a equipe precisava entregar, a dependência identificada e a alteração registrada. Para a retomada, o código e o relatório de testes documentam as condições da execução e os resultados. Esse encadeamento entre registros e conclusões segue a orientação de Runeson e Höst (2009) para estudos de caso em Engenharia de Software.
 
-### 3.2 Levantamento de requisitos e regras para o tempo de ausência
+### 3.2 Definição das regras e ordem de implementação
 
-A proposta inicial previa um jogo 2D de gestão de vila com progressão automática. O contrato de unificação do Centro e do Portão e o planejamento da defesa por ondas detalharam as regras de tempo. A partir desses registros, foram definidos os comportamentos a verificar. O imposto disponível deve corresponder à produção no intervalo elegível. A coleta deve creditar esse valor uma única vez, e a campanha deve voltar ao tempo registrado no salvamento.
+A proposta inicial definiu uma vila 2D com progressão automática. A equipe organizou o trabalho em entregas que permitiam verificar partes do ciclo. No Centro, a primeira dependência era ter construções, produção de renda e um saldo que pudesse ser consultado. No Portão, a compra de guerreiros, arqueiros e magos precisava verificar estoque e ouro antes de transferir as unidades para a reserva. A defesa foi desenvolvida em torno dos avisos, da alocação de tropas e da resolução das ondas nos quatro portões.
 
-### 3.3 Organização do trabalho e priorização das tarefas
+A integração entre Centro e Portão exigiu definir qual saldo valia nas duas cenas e quais regras de compra e arrecadação deveriam ser preservadas. A Taverna passou a usar essa economia para contratar aventureiros. O mapa de exploração reúne a seleção da equipe, o deslocamento e o combate. As regiões conquistadas podem receber exploradores e guardas. Os materiais transportados entram no inventário e podem ser exigidos para melhorar construções.
 
-#### 3.3.1 Trello e acompanhamento das tarefas
+Com essas dependências identificadas, a equipe atribuiu a cada atividade uma regra de tempo. Os impostos consideram o intervalo desde o último cálculo, limitado ao tempo restante entre coletas. O estoque de tropas tem um horário de reposição. As expedições registram prazos de deslocamento e retorno, e regiões com exploradores têm ciclos de coleta. A campanha conserva o tempo de preparação salvo e volta a avançar durante a sessão. O planejamento da defesa e o contrato de unificação registram parte dessas regras e serviram de base para a implementação e a seleção dos cenários.
 
-O quadro “Jogo - TCC” organizava os cartões nas listas A Fazer, Fazendo, Revisando e Arquivado. A equipe criava cartões conforme surgiam novas tarefas e atualizava sua posição no quadro e seus checklists durante a semana. A Figura 1 mostra a distribuição das tarefas.
+### 3.3 Planejamento das entregas, divisão de tarefas e integração
+
+A equipe se reunia semanalmente no Discord para discutir as próximas tarefas, dividir responsabilidades e registrar novas pendências. Entre as reuniões, o trabalho seguia de forma assíncrona e as dúvidas eram tratadas por mensagens. O quadro do Trello funcionava como o cronograma de curto prazo. Os integrantes acompanhavam as entregas pelas listas A Fazer, Fazendo, Revisando e Arquivado e atualizavam os itens dos cartões à medida que avançavam. A Figura 1 apresenta essa organização.
 
 **Figura 1 — Quadro do Trello utilizado para acompanhar as tarefas do projeto**
 
@@ -126,7 +120,7 @@ O quadro “Jogo - TCC” organizava os cartões nas listas A Fazer, Fazendo, Re
 
 Fonte: captura do quadro da equipe, fornecida pelos autores
 
-O cartão “1 - Portão Norte”, apresentado na Figura 2, especificava o cenário inicial, o saldo de ouro e a compra de tropas por meio de um personagem do jogo. O registro mostra sua criação em A Fazer e sua presença em Revisando na captura.
+O cartão do Portão Norte exemplifica como uma reunião se transformava em uma tarefa verificável. O escopo incluía um mapa pequeno, ouro inicial e um personagem responsável pelo recrutamento. A Figura 2 registra os comportamentos esperados para essa entrega e a posição do cartão na lista Revisando.
 
 **Figura 2 — Cartão do Portão Norte no Trello**
 
@@ -134,73 +128,69 @@ O cartão “1 - Portão Norte”, apresentado na Figura 2, especificava o cená
 
 Fonte: captura do quadro da equipe, fornecida pelos autores
 
-#### 3.3.2 Reuniões e comunicação no Discord
+A divisão também orientava o uso do Git. Em uma das reuniões, Marcos assumiu o Centro e Gustavo ficou com a Taverna. Como cada integrante trabalhava em uma cena diferente, os dois puderam avançar em paralelo e revisar as alterações antes da integração. Os commits `279c0ec`, `f6c4a2b` e `90726d3` registram trabalhos nessas frentes em momentos distintos. Em geral, a equipe mantinha uma branch por desenvolvedor e uma principal. Quando uma tarefa alterava regras comuns, como o saldo, a integração exigia combinar o comportamento antes de reunir as alterações.
 
-Segundo o relato dos autores, a equipe se reunia semanalmente no Discord para discutir as próximas tarefas, dividir pendências e criar cartões quando necessário. Ao longo da semana, os integrantes trabalhavam de forma assíncrona e trocavam mensagens pelo Discord para tratar dúvidas e alinhar as entregas.
+### 3.4 Ferramentas e arquitetura do protótipo
 
-#### 3.3.3 Divisão das tarefas entre Centro e Taverna
+A equipe adotou Unity e C# pela familiaridade com as ferramentas e pela disponibilidade de recursos para jogos 2D. O editor de cenas, a renderização de sprites e os componentes de interface permitiram trabalhar na apresentação enquanto as regras eram desenvolvidas em C#. *Cuphead* e *Hollow Knight* são exemplos de jogos independentes desenvolvidos com a ferramenta (UNITY TECHNOLOGIES, [s.d.]a, [s.d.]b). A revisão analisada usa Unity 6000.3.11f1.
 
-Em uma das reuniões, os autores dividiram o protótipo em duas frentes. Marcos ficou responsável pelo Centro e Gustavo pela Taverna. Cada integrante trabalhou na cena e nas mecânicas correspondentes. Segundo os autores, a divisão acordada na reunião evitou conflitos de integração nessa entrega. O histórico registra alterações no Centro em `279c0ec` e na Taverna em `f6c4a2b` e `90726d3`.
+A divisão em cenas ajudou a organizar o trabalho, mas os dados da partida precisavam acompanhar o jogador. A equipe centralizou o saldo, o inventário e o progresso em uma sessão compartilhada. As interfaces consultam essa sessão ao mostrar o ouro ou ao iniciar uma compra. O repositório grava o estado em JSON com armazenamento local em `PlayerPrefs`. Isso permite recuperar a partida e tratar versões anteriores do formato.
 
-#### 3.3.4 Versionamento e revisão pelo Git
+As regras de tempo ficam nos serviços que usam esses dados. A arrecadação, a reposição de tropas e atividades da exploração consultam o relógio do dispositivo. A campanha recebe o tempo de execução para manter a sequência de ataques. A interface `IClock` permite trocar o relógio real por um relógio controlado nos cenários de verificação. Essa escolha liga a arquitetura ao procedimento de avaliação.
 
-A equipe usava, em geral, uma branch por desenvolvedor e uma branch principal. Essa organização permitia trabalhar em paralelo. Ao final de uma entrega, cada integrante revisava as alterações do outro antes de integrá-las por *merge*. O histórico do Git permitiu identificar as contribuições e as mudanças de integração usadas no estudo de caso.
+### 3.5 Planejamento e execução da avaliação
 
-### 3.4 Ferramentas e escolhas técnicas
+A avaliação partiu de situações que o jogador encontra em uma partida distribuída ao longo do tempo. Ao retornar, ele precisa conseguir consultar a renda, recolhê-la uma vez e verificar quanto tempo ainda tem para se preparar para um ataque. Esses comportamentos foram escolhidos porque conectam espera, economia, salvamento e defesa. Um resultado incorreto altera as opções de compra ou a oportunidade de preparar a vila.
 
-A equipe escolheu Unity e C# pela familiaridade com as ferramentas, pelos recursos para jogos 2D e pelo uso do motor em produções independentes publicadas. *Cuphead*, do Studio MDHR, e *Hollow Knight*, da Team Cherry, são exemplos documentados pela Unity (UNITY TECHNOLOGIES, [s.d.]a, [s.d.]b). No protótipo, o editor de cenas, a renderização de sprites e os componentes de interface facilitaram a montagem das áreas enquanto as regras do jogo eram implementadas em C#. O projeto usa Unity 6000.3.11f1 e Unity Test Framework 1.6.0.
+Os cenários foram definidos a partir das regras de retorno. A abertura imediata indica o que acontece sem tempo elegível. Um intervalo de seis minutos permite verificar um ganho curto. Intervalos imediatamente antes, no limite e depois de 24 horas distinguem a produção do efeito do teto de acúmulo. Um salvamento com parte do limite já consumida verifica se a retomada respeita o saldo de tempo disponível. Uma nova abertura após a coleta confere a persistência do ouro. Um cenário da campanha verifica quanto falta para a onda após uma ausência prolongada.
 
-A equipe adotou duas referências de tempo para atender a regras diferentes. O relógio do dispositivo permite calcular os impostos quando o jogador volta. O contador de execução preserva o tempo de preparação para a próxima onda. O estado compartilhado entre cenas mantém o ouro recolhido disponível para compras e melhorias. O salvamento local em JSON, armazenado com `PlayerPrefs`, guarda o saldo e os dados de tempo entre sessões. A interface `IClock` permite fornecer um horário fixo nos testes para repetir intervalos de ausência nas mesmas condições.
+A rodada de 10 de novembro de 2026 usou o Unity Test Framework 1.6.0 em *Edit Mode*, no Windows (UNITY TECHNOLOGIES, [s.d.]c). As partidas foram gravadas em chaves isoladas e carregadas em novas sessões do mesmo processo. Nos cenários de arrecadação, o estado inicial tinha 1.000 unidades de ouro e Mercado Local no nível 3, com produção de 20 unidades por minuto. Foram comparados o valor disponível, o crédito e o saldo. O [relatório da execução](Evidencias/testes/Resultados_da_retomada_2026-11-10.md) registra os cenários e como repeti-los.
 
-### 3.5 Implementação incremental e integração das mecânicas
+## 4 Desenvolvimento e resultados
 
-A implementação foi dividida em entregas que pudessem ser verificadas à medida que as frentes eram integradas. Para reconstruir essa sequência, o estudo comparou a ordem prevista nos documentos de planejamento com as alterações no Git e os testes associados. A Seção 4.2 apresenta os marcos identificados.
+### 4.1 Evolução do protótipo e integração das entregas
 
-### 3.6 Cenários de teste para a retomada da partida
+O Centro e o Portão foram desenvolvidos inicialmente com saldos separados. Quando a equipe reuniu as alterações, o ouro produzido no Centro precisava estar disponível para recrutar tropas. O commit `4fc66a0`, de agosto de 2026, registra essa integração. O [contrato de unificação](UnificationBehaviorContract.md) estabeleceu o saldo compartilhado e registrou as regras de produção, acúmulo e compra que deveriam ser preservadas. Assim, duas frentes que podiam avançar separadamente passaram a depender de uma regra comum de atualização do estado.
 
-A rodada de 10 de novembro de 2026 foi executada em *Edit Mode* no Windows. Para os testes de impostos, o estado inicial tinha saldo de 1.000 unidades de ouro e Mercado Local no nível 3, com produção de 20 unidades por minuto. Cada caso usou uma chave de salvamento própria. Os testes gravaram os dados pelo repositório do jogo e criaram uma nova sessão para carregá-los. O relógio controlado simulou os intervalos de ausência dentro do mesmo processo da Unity.
+Em setembro, o commit `e79782b` registrou a ampliação da campanha para quatro portões e uma reserva de tropas. A divisão entre Centro e Taverna permitiu avançar no ambiente e na seleção de aventureiros. Com a exploração, a equipe precisou ligar o inventário da Taverna às melhorias do Centro. O commit `2436b78`, de novembro, registra a introdução de itens e do relatório de exploração. Essa sequência mostra por que a integração passou a envolver tanto a circulação do jogador quanto o uso de recursos produzidos em outras cenas.
 
-Foram comparados a prévia de impostos, o valor creditado e o saldo após a coleta. Os intervalos incluíram a retomada imediata, seis minutos, um segundo antes do limite, o limite exato e um período acima dele. Também foram verificados o acúmulo parcial, a segunda coleta após um novo carregamento e a recuperação do tempo da próxima onda. Os testes de persistência e migração verificaram a leitura de estados anteriores e a preservação de dados da partida. Os valores observados e a situação de cada caso constam do [relatório da execução](Evidencias/testes/Resultados_da_retomada_2026-11-10.md).
+### 4.2 Experiência de jogo e sistemas disponíveis
 
-## 4 Estudo de caso e resultados
+No Centro, o jogador acompanha o ouro e decide se investe em produção, tropas ou aventureiros. O Mercado Local gera renda, e as construções ampliam as possibilidades da vila. A Figura 3 apresenta a área em que o jogador inicia esse ciclo.
 
-### 4.1 Visão geral do protótipo e ciclo de jogo
+**Figura 3 — Centro da vila**
 
-O protótipo é um jogo 2D para um jogador. No Centro, o jogador melhora construções e recolhe os impostos do Mercado Local. No Portão, pode recrutar tropas e distribuí-las entre os quatro acessos à vila. Quando uma onda chega, o jogo resolve a batalha com base na guarnição disponível. Na Taverna, o jogador pode contratar aventureiros e organizar expedições. Os materiais obtidos na exploração podem ser usados em melhorias da vila.
+![Visão geral da cena Centro com as construções da vila](Evidencias/imagens/centro-visao-geral-2026-11-05.png)
 
-A implementação analisada tomou como base a revisão `9abb425` do repositório, de 9 de novembro de 2026. A rodada de testes incluiu as alterações de isolamento do salvamento e as novas verificações de retomada.
+Fonte: captura do protótipo, 5 de novembro de 2026
 
-### 4.2 Decisões de desenvolvimento e evolução do escopo
+Quando a campanha anuncia uma ameaça, o jogador consulta o portão previsto e prepara a guarnição. As tropas podem permanecer na reserva ou ser distribuídas entre os acessos da vila. A resolução da onda considera a defesa disponível e registra consequências para a campanha. A Figura 4 mostra a interface de gestão das guarnições.
 
-O commit `4fc66a0`, de 18 de agosto de 2026, registra a integração das alterações do Centro e do Portão. As duas cenas mantinham saldos separados. O contrato de unificação estabeleceu o saldo compartilhado e a preservação da produção do Mercado Local e do limite de acúmulo. A coleta e a compra de tropas passaram a operar sobre o mesmo estado da partida. [Contrato de unificação](UnificationBehaviorContract.md)
+**Figura 4 — Painel de guarnição do Portão**
 
-Em setembro, o commit `e79782b` ampliou a campanha com a reserva de tropas e os quatro portões. O relógio e a agenda de ondas serviram de base para os avisos de ataque. A exploração entrou em alterações posteriores, com expedições, combates e recompensas.
+![Painel do Portão com controles de guarnição e informação da próxima ameaça](Evidencias/imagens/portao-painel-guarnicao-2026-10-27.png)
 
-### 4.3 Tempo de campanha e tempo decorrido com o jogo fechado
+Fonte: captura do protótipo, 27 de outubro de 2026
 
-O sistema de impostos compara o horário atual do dispositivo com o instante do último cálculo, ambos representados em segundos Unix. A diferença inclui o período em que o jogo ficou fechado. O serviço usa esse intervalo para estimar a arrecadação quando o jogador consulta o valor disponível.
+A Taverna oferece outra forma de investir o ouro. O jogador contrata aventureiros e seleciona até três para uma expedição. O mapa acompanha o deslocamento, o combate e o progresso nas regiões. Nas áreas conquistadas, é possível alocar exploradores e guardas e transportar recursos para o inventário. Os materiais retornam ao ciclo do Centro quando são usados em melhorias. A Figura 5 apresenta o ambiente da Taverna.
 
-A campanha acumula o tempo entre quadros durante a execução. O contador e a agenda de ondas são gravados no salvamento. Ao carregar a partida, o contador volta ao valor gravado e avança conforme a nova sessão é executada.
+**Figura 5 — Interior da Taverna**
 
-### 4.4 Cálculo de impostos e limite de acúmulo
+![Cena da Taverna, onde o jogador acessa a contratação de aventureiros e o mapa](Evidencias/imagens/taverna-interior-2026-11-05.png)
 
-O sistema usa o menor valor entre o intervalo decorrido e o tempo que resta do limite de 24 horas entre coletas. Esse intervalo elegível é convertido em minutos, multiplicado pela taxa de produção do Mercado Local e somado aos impostos já acumulados.
+Fonte: captura do protótipo, 5 de novembro de 2026
 
-A interface apresenta uma prévia do valor disponível. A consulta deixa o saldo e os dados salvos como estavam. Na coleta, o jogo calcula o total, credita a parte inteira no saldo e reinicia o tempo elegível do próximo ciclo. Se o nível do mercado mudar, o sistema calcula o valor devido até aquele instante com a taxa anterior. A taxa nova passa a valer para os intervalos seguintes.
+### 4.3 Retomada da partida
 
-### 4.5 Arquitetura e recuperação do estado salvo
+Ao retornar, o jogador pode consultar o ouro disponível para coleta e o tempo de preparação para a próxima onda. Para a renda, o jogo calcula o intervalo desde o último cálculo e usa apenas a parte que cabe no limite restante de 24 horas entre coletas. O serviço multiplica esse intervalo pela produção do Mercado Local. A consulta apresenta uma prévia. Na coleta, o valor inteiro entra no saldo, a fração permanece acumulada e o limite reinicia quando há crédito.
 
-A sessão de jogo carrega o estado e o compartilha com os serviços de economia, construções, defesa e exploração. A versão 11 do formato guarda o saldo de ouro e os níveis das construções. Para retomar o cálculo de impostos, registra o instante do último cálculo, o valor já acumulado e a parte do limite usada entre coletas. Para a defesa, mantém o tempo da campanha e as ondas programadas.
+A defesa conserva o estado em que o jogador deixou a campanha. O salvamento registra o contador e a agenda das ondas. Ao carregar a partida, o contador retoma a contagem a partir do ponto gravado. A arrecadação pode, assim, dar ao jogador novos recursos para decidir como defender o portão antes de o tempo de preparação acabar.
 
-### 4.6 Integração com construções, recrutamento, defesa e exploração
+### 4.4 Verificação dos comportamentos de retorno
 
-O ouro recolhido pode ser gasto em construções ou em tropas para as guarnições. As expedições fornecem materiais usados em algumas melhorias. Nesses casos, o sistema verifica o inventário e o saldo de ouro antes de aplicar a melhoria. Essas relações determinam como o jogador pode usar os recursos ao voltar à vila.
+A rodada partiu da revisão `9abb425`, de 9 de novembro de 2026, com as alterações de isolamento do salvamento e os novos cenários de retomada. Foram aprovados os 23 casos selecionados. Oito verificaram a retomada, cinco trataram da persistência da campanha e dez examinaram a recuperação de dados do salvamento. A Tabela 1 apresenta os resultados ligados diretamente às situações de retorno.
 
-### 4.7 Resultados dos testes de retomada e integração
-
-Na execução de 10 de novembro de 2026, os 23 testes selecionados passaram em *Edit Mode*. O conjunto inclui oito testes de retomada, cinco de persistência da campanha e dez de robustez do salvamento. A Tabela 1 compara os valores esperados e observados nos oito cenários de retomada.
-
-**Tabela 1 — Valores esperados e observados nos testes de retomada**
+**Tabela 1 — Valores esperados e observados nos cenários de retomada**
 
 | Cenário | Esperado | Observado | Resultado |
 | --- | --- | --- | --- |
@@ -215,55 +205,57 @@ Na execução de 10 de novembro de 2026, os 23 testes selecionados passaram em *
 
 Fonte: elaboração própria a partir do [relatório XML do Unity Test Framework](Evidencias/testes/RetomadaEditMode-2026-11-10.xml)
 
-Os seis casos de migração que haviam falhado em outubro passaram após a atualização das expectativas para o formato atual. As verificações incluíram a preservação de dados como saldo, construções, tropas e estado de uma onda pendente. [Relatório da execução](Evidencias/testes/Resultados_da_retomada_2026-11-10.md)
+Os cenários de 24 e 48 horas resultaram na mesma renda, conforme o limite. A verificação com parte do intervalo já usada mostrou que a regra também se aplica quando o jogador alterna sessões antes de recolher os impostos. A abertura após a coleta preservou o saldo e a campanha manteve o tempo disponível até a onda.
 
-As Figuras 3 a 5 ilustram a retomada após seis minutos simulados. As imagens foram renderizadas com a mesma câmera e com valores calculados pelo serviço de impostos em uma sessão isolada. A Figura 3 registra o estado salvo, com saldo de 1.000 e zero de imposto disponível.
+As Figuras 6 a 8 apresentam o cenário de seis minutos do ponto de vista da interface. O serviço calculou os valores em sessões isoladas e um cenário de captura apresentou cada estado na mesma vista do Centro. A sequência começa no estado salvo, com saldo de 1.000 e nenhum imposto disponível.
 
-**Figura 3 — Estado salvo antes da retomada simulada**
+**Figura 6 — Estado salvo antes da retomada simulada**
 
 ![Mercado Local com zero de imposto disponível e saldo de 1.000 unidades de ouro](Evidencias/imagens/retomada-01-estado-salvo-2026-11-10.png)
 
 Fonte: elaboração própria, captura da interface do protótipo em cenário controlado
 
-A Figura 4 mostra a retomada com 120 de imposto disponível e saldo de 1.000.
+A Figura 7 mostra 120 unidades disponíveis após a ausência simulada. O saldo continua em 1.000 até o jogador recolher os impostos.
 
-**Figura 4 — Impostos disponíveis após seis minutos simulados**
+**Figura 7 — Impostos disponíveis após seis minutos simulados**
 
 ![Mercado Local com 120 de imposto disponível e saldo de 1.000](Evidencias/imagens/retomada-02-apos-seis-minutos-2026-11-10.png)
 
 Fonte: elaboração própria, captura da interface do protótipo em cenário controlado
 
-Após a coleta, o saldo passou a 1.120, conforme a Figura 5.
+A Figura 8 mostra a confirmação da coleta e o saldo de 1.120. Esse é o valor que fica disponível para a próxima decisão de investimento.
 
-**Figura 5 — Saldo após a coleta de impostos**
+**Figura 8 — Saldo após a coleta de impostos**
 
 ![Confirmação da coleta de 120 unidades de ouro e saldo de 1.120](Evidencias/imagens/retomada-03-apos-coleta-2026-11-10.png)
 
 Fonte: elaboração própria, captura da interface do protótipo em cenário controlado
 
-### 4.8 Limitações da versão avaliada
+### 4.5 Discussão e limites da avaliação
 
-Os testes gravaram e carregaram partidas em sessões distintas dentro do mesmo processo da Unity. A verificação com encerramento e reabertura do executável permanece pendente. O cálculo de impostos também depende do relógio do dispositivo, sujeito a ajustes entre sessões. O estudo verificou a aplicação do limite de 24 horas. A adequação desse limite ao ritmo da campanha depende de uma avaliação de balanceamento.
+A divisão do trabalho por cenas ajudou a equipe a avançar nas interfaces e mecânicas locais. O caso do saldo mostra onde essa divisão deixou de ser suficiente. A integração precisou estabelecer quais regras pertenciam à partida como um todo. O contrato registrou as decisões, e a sessão compartilhada deu ao Centro, ao Portão e à Taverna a mesma informação para produção, compra e contratação. Essa relação entre decisões de design e organização do trabalho também aparece no estudo de Poulsen e Wirman (2024).
+
+A separação dos relógios resolveu outra dependência. A renda podia considerar a ausência, enquanto a campanha precisava conservar a oportunidade de reação. Os cenários controlados mostraram o comportamento dessas duas regras em novas sessões. A cobertura da rodada se concentra na retomada, na campanha e na persistência. A experiência completa envolve também a navegação, o recrutamento e a exploração ao longo de uma partida.
+
+As conclusões sobre gestão vêm de uma equipe e de seus próprios registros. O histórico documenta alterações, e os cartões ajudam a recuperar o escopo. Parte das decisões de reunião foi reconstruída pelos próprios desenvolvedores. Os resultados da retomada correspondem às condições simuladas no editor. A confirmação do percurso pelo executável, com encerramento e reabertura, é uma etapa posterior.
 
 ## 5 Conclusão
 
-### 5.1 Resposta à pergunta de pesquisa
+O desenvolvimento reuniu economia, defesa, contratação e exploração em um protótipo *idle* de gestão de vila. O trabalho pôde avançar em paralelo quando as tarefas pertenciam a cenas diferentes. Nas entregas que envolviam o mesmo ouro ou inventário, a equipe precisou documentar as regras e integrar os sistemas em torno de um estado comum. As reuniões, o quadro de tarefas e o histórico do código permitiram acompanhar essas decisões.
 
-O estudo indica que uma equipe pequena pode começar definindo o que cada mecânica deve fazer quando o jogador volta. Essa decisão orienta a divisão das tarefas, a escolha dos dados a salvar e a ordem de integração. No protótipo, separar o tempo de arrecadação do tempo da campanha permitiu conceder recursos pela ausência e conservar a preparação para a próxima onda. Um relógio controlado e um salvamento isolado permitiram verificar essas regras em novas sessões.
+Para organizar um jogo pensado para várias sessões, o caso indica que a equipe pode definir primeiro o que o jogador faz em cada área e depois identificar os dados que precisam atravessar as cenas e os intervalos de ausência. No protótipo, essa abordagem permitiu reunir as decisões do Centro, do Portão e da Taverna. Os cenários de retorno confirmaram que a renda calculada fica disponível para coleta e que o tempo da defesa é preservado nas condições avaliadas.
 
-### 5.2 Atendimento aos objetivos
-
-O trabalho documentou a gestão das tarefas e as decisões de integração do protótipo. Na rodada selecionada, os testes verificaram o limite de acúmulo, a preservação do saldo sem crédito duplicado e a recuperação do tempo da campanha. Os resultados sustentam o comportamento da retomada nas condições simuladas.
-
-### 5.3 Limitações e trabalhos futuros
-
-A próxima verificação técnica é repetir a coleta em uma versão jogável, encerrar o executável e conferir o saldo e a próxima onda ao reabrir. Uma avaliação de balanceamento pode comparar o ouro obtido após diferentes períodos de ausência com os custos de melhorias e tropas disponíveis ao jogador.
+A contribuição do trabalho é registrar as decisões de desenvolvimento que deram forma a esse ciclo de jogo. Uma próxima etapa é acompanhar o percurso pelo executável, da preparação da vila à reabertura da partida, para observar as mecânicas integradas na sequência em que o jogador as utiliza.
 
 ## REFERÊNCIAS
 
 ALHARTHI, Sultan A. et al. Playing to wait: a taxonomy of idle games. In: CHI CONFERENCE ON HUMAN FACTORS IN COMPUTING SYSTEMS, 2018, Montreal. *Proceedings [...]*. New York: Association for Computing Machinery, 2018. Art. 621. DOI: [10.1145/3173574.3174195](https://doi.org/10.1145/3173574.3174195).
 
 CARRIJO, Gabriel F. et al. Uma revisão sistemática de literatura acerca de Game Design Documents, uma proposta para a criação de um roteiro de jogo otimizado. In: SIMPÓSIO BRASILEIRO DE JOGOS E ENTRETENIMENTO DIGITAL, 22., 2023, Rio Grande. *Anais Estendidos [...]*. Porto Alegre: Sociedade Brasileira de Computação, 2023. p. 43–53. Disponível em: [SBC OpenLib](https://sol.sbc.org.br/index.php/sbgames_estendido/article/download/27796/27606/). Acesso em: 10 nov. 2026.
+
+JAGEX. *Melvor Idle version 1.0 launches on PC and mobile*. Cambridge, 18 nov. 2021. Disponível em: [Comunicado da editora](https://www.jagex.com/news/melvor-idle-version-1-0-launches-on-pc-and-mobile). Acesso em: 10 nov. 2026.
+
+KULTIMA, Annakaisa; OJANEN, Riina; NYLUND, Niklas. Noita: a long journey of a game idea. *Transactions of the Digital Games Research Association*, v. 7, n. 1, p. 155–181, 2024. DOI: [10.26503/todigra.v7i1.2186](https://doi.org/10.26503/todigra.v7i1.2186).
 
 MELVOR IDLE. *Major update: Township rework, v1.1.2*. Steam, 11 abr. 2023. Disponível em: [Notas da atualização](https://steamcommunity.com/games/1267910/announcements/detail/3700311793101067361). Acesso em: 10 nov. 2026.
 
@@ -276,6 +268,8 @@ PECORELLA, Anthony. *The math of idle games, part I*. Game Developer, 13 out. 20
 POLITOWSKI, Cristiano et al. Game industry problems: an extensive analysis of the gray literature. *Information and Software Technology*, v. 134, art. 106538, 2021. DOI: [10.1016/j.infsof.2021.106538](https://doi.org/10.1016/j.infsof.2021.106538).
 
 POULSEN, Mark Staun; WIRMAN, Hanna. Creative-rational tensions in game development: a Danish case study on team collaboration. *Transactions of the Digital Games Research Association*, v. 7, n. 1, p. 89–124, 2024. DOI: [10.26503/todigra.v7i1.2184](https://doi.org/10.26503/todigra.v7i1.2184).
+
+RUNESON, Per; HÖST, Martin. Guidelines for conducting and reporting case study research in software engineering. *Empirical Software Engineering*, v. 14, p. 131–164, 2009. DOI: [10.1007/s10664-008-9102-8](https://doi.org/10.1007/s10664-008-9102-8).
 
 UNITY TECHNOLOGIES. *Cuphead*. Made with Unity, [s.d.]a. Disponível em: [Estudo de caso](https://unity.com/made-with-unity/cuphead). Acesso em: 10 nov. 2026.
 
