@@ -27,11 +27,31 @@ namespace TCCGame.Core.Persistence
         public const string CorruptSaveKey = SaveKey + ".corrupt";
         public const string LegacyCitySaveKey = "tcc.city.save.v1";
 
+        private readonly string saveKey;
+        private readonly string corruptSaveKey;
+        private readonly string legacyCitySaveKey;
+
+        public GameSaveRepository() : this(string.Empty)
+        {
+        }
+
+        public GameSaveRepository(string keyPrefix)
+        {
+            if (keyPrefix == null)
+            {
+                throw new ArgumentNullException(nameof(keyPrefix));
+            }
+
+            saveKey = keyPrefix + SaveKey;
+            corruptSaveKey = keyPrefix + CorruptSaveKey;
+            legacyCitySaveKey = keyPrefix + LegacyCitySaveKey;
+        }
+
         public GameSaveData Load()
         {
-            bool hasCurrentSave = PlayerPrefs.HasKey(SaveKey);
+            bool hasCurrentSave = PlayerPrefs.HasKey(saveKey);
             string rawCurrentSave = hasCurrentSave
-                ? PlayerPrefs.GetString(SaveKey)
+                ? PlayerPrefs.GetString(saveKey)
                 : null;
             GameSaveData saveData = null;
 
@@ -85,14 +105,14 @@ namespace TCCGame.Core.Persistence
             return saveData;
         }
 
-        private static GameSaveData RecoverFromCorruptCurrentSave(
+        private GameSaveData RecoverFromCorruptCurrentSave(
             string rawSave,
             Exception exception
         )
         {
-            if (!PlayerPrefs.HasKey(CorruptSaveKey))
+            if (!PlayerPrefs.HasKey(corruptSaveKey))
             {
-                PlayerPrefs.SetString(CorruptSaveKey, rawSave ?? string.Empty);
+                PlayerPrefs.SetString(corruptSaveKey, rawSave ?? string.Empty);
             }
 
             Debug.LogWarning(
@@ -102,7 +122,7 @@ namespace TCCGame.Core.Persistence
             GameSaveData recovered = GameSaveData.CreateDefault();
             Normalize(recovered);
             PlayerPrefs.SetString(
-                SaveKey,
+                saveKey,
                 JsonUtility.ToJson(recovered)
             );
             PlayerPrefs.Save();
@@ -117,32 +137,15 @@ namespace TCCGame.Core.Persistence
             }
 
             Normalize(saveData);
-            PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(saveData));
+            PlayerPrefs.SetString(saveKey, JsonUtility.ToJson(saveData));
             PlayerPrefs.Save();
         }
 
-        private static GameSaveData LoadCurrentSave()
-        {
-            if (!PlayerPrefs.HasKey(SaveKey))
-            {
-                return null;
-            }
-
-            string json = PlayerPrefs.GetString(SaveKey);
-
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                return null;
-            }
-
-            return JsonUtility.FromJson<GameSaveData>(json);
-        }
-
-        private static GameSaveData MigrateLegacyCitySave()
+        private GameSaveData MigrateLegacyCitySave()
         {
             GameSaveData migrated = GameSaveData.CreateDefault();
 
-            if (!PlayerPrefs.HasKey(LegacyCitySaveKey))
+            if (!PlayerPrefs.HasKey(legacyCitySaveKey))
             {
                 return migrated;
             }
@@ -151,7 +154,7 @@ namespace TCCGame.Core.Persistence
             try
             {
                 legacy = JsonUtility.FromJson<LegacyCitySaveData>(
-                    PlayerPrefs.GetString(LegacyCitySaveKey)
+                    PlayerPrefs.GetString(legacyCitySaveKey)
                 );
             }
             catch (ArgumentException exception)

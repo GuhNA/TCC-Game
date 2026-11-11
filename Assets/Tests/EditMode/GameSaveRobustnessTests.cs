@@ -11,69 +11,32 @@ namespace TCCGame.Tests.EditMode
 {
     public sealed class GameSaveRobustnessTests
     {
-        private bool hadSave;
-        private string previousSave;
-        private bool hadLegacySave;
-        private string previousLegacySave;
-        private bool hadCorruptSave;
-        private string previousCorruptSave;
+        private IsolatedGameSave save;
 
         [SetUp]
         public void SetUp()
         {
-            hadSave = PlayerPrefs.HasKey(GameSaveRepository.SaveKey);
-            previousSave = hadSave
-                ? PlayerPrefs.GetString(GameSaveRepository.SaveKey)
-                : null;
-            hadLegacySave = PlayerPrefs.HasKey(
-                GameSaveRepository.LegacyCitySaveKey
-            );
-            previousLegacySave = hadLegacySave
-                ? PlayerPrefs.GetString(GameSaveRepository.LegacyCitySaveKey)
-                : null;
-            hadCorruptSave = PlayerPrefs.HasKey(GameSaveRepository.CorruptSaveKey);
-            previousCorruptSave = hadCorruptSave
-                ? PlayerPrefs.GetString(GameSaveRepository.CorruptSaveKey)
-                : null;
-            PlayerPrefs.DeleteKey(GameSaveRepository.SaveKey);
-            PlayerPrefs.DeleteKey(GameSaveRepository.LegacyCitySaveKey);
-            PlayerPrefs.DeleteKey(GameSaveRepository.CorruptSaveKey);
-            PlayerPrefs.Save();
+            save = new IsolatedGameSave();
         }
 
         [TearDown]
         public void TearDown()
         {
-            RestoreKey(
-                GameSaveRepository.SaveKey,
-                hadSave,
-                previousSave
-            );
-            RestoreKey(
-                GameSaveRepository.LegacyCitySaveKey,
-                hadLegacySave,
-                previousLegacySave
-            );
-            RestoreKey(
-                GameSaveRepository.CorruptSaveKey,
-                hadCorruptSave,
-                previousCorruptSave
-            );
-            PlayerPrefs.Save();
+            save?.Dispose();
         }
 
         [TestCase(3)]
         [TestCase(4)]
         [TestCase(5)]
         [TestCase(6)]
-        public void EarlierSchemaVersions_MigrateToV7(int version)
+        public void EarlierSchemaVersions_MigrateToCurrentVersion(int version)
         {
             string json = $"{{\"version\":{version},\"money\":432}}";
-            PlayerPrefs.SetString(GameSaveRepository.SaveKey, json);
+            PlayerPrefs.SetString(save.SaveKey, json);
 
-            GameSaveData loaded = new GameSaveRepository().Load();
+            GameSaveData loaded = save.OpenRepository().Load();
 
-            Assert.That(loaded.version, Is.EqualTo(7));
+            Assert.That(loaded.version, Is.EqualTo(GameSaveData.CurrentVersion));
             Assert.That(loaded.money, Is.EqualTo(432));
             Assert.That(loaded.campaign.gates, Has.Count.EqualTo(4));
             Assert.That(loaded.navigation, Is.Not.Null);
@@ -83,7 +46,7 @@ namespace TCCGame.Tests.EditMode
         public void BattleReport_RoundTripsAllConsequences()
         {
             GameSaveData data = CreateResolvedData();
-            var repository = new GameSaveRepository();
+            var repository = save.OpenRepository();
 
             repository.Save(data);
             GameSaveData loaded = repository.Load();
@@ -115,7 +78,7 @@ namespace TCCGame.Tests.EditMode
             data.campaign.troopTransfers = null;
             data.campaign.scheduledWaves = null;
 
-            var repository = new GameSaveRepository();
+            var repository = save.OpenRepository();
             repository.Save(data);
             GameSaveData loaded = repository.Load();
 
@@ -137,13 +100,13 @@ namespace TCCGame.Tests.EditMode
         [TestCase("{\"version\":7,\"campaign\":")]
         public void MalformedCurrentSave_DoesNotPreventGameStartup(string json)
         {
-            PlayerPrefs.SetString(GameSaveRepository.SaveKey, json);
+            PlayerPrefs.SetString(save.SaveKey, json);
             GameSaveData loaded = null;
             Exception observed = null;
 
             try
             {
-                loaded = new GameSaveRepository().Load();
+                loaded = save.OpenRepository().Load();
             }
             catch (Exception exception)
             {
@@ -169,17 +132,17 @@ namespace TCCGame.Tests.EditMode
 
             Assert.That(problems, Is.Empty, string.Join(" ", problems));
             Assert.That(
-                PlayerPrefs.GetString(GameSaveRepository.CorruptSaveKey),
+                PlayerPrefs.GetString(save.CorruptSaveKey),
                 Is.EqualTo(json)
             );
         }
 
         [Test]
-        public void SaveOperations_DoNotCreateAParallelCurrentKey()
+        public void SaveOperations_UseTheCurrentKeyInTheSelectedNamespace()
         {
-            new GameSaveRepository().Save(GameSaveData.CreateDefault());
+            save.OpenRepository().Save(GameSaveData.CreateDefault());
 
-            Assert.That(PlayerPrefs.HasKey(GameSaveRepository.SaveKey),
+            Assert.That(PlayerPrefs.HasKey(save.SaveKey),
                 Is.True);
             Assert.That(GameSaveRepository.SaveKey,
                 Is.EqualTo("tcc.game.save.v2"));
@@ -217,20 +180,5 @@ namespace TCCGame.Tests.EditMode
             return data;
         }
 
-        private static void RestoreKey(
-            string key,
-            bool existed,
-            string value
-        )
-        {
-            if (existed)
-            {
-                PlayerPrefs.SetString(key, value);
-            }
-            else
-            {
-                PlayerPrefs.DeleteKey(key);
-            }
-        }
     }
 }

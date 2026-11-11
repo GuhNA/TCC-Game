@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="23" result="Passed" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0,3332431">
+  <test-suite type="TestSuite" id="1000" name="TCC Game" fullname="TCC Game" runstate="Runnable" testcasecount="170" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.333243" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1212" name="TCCGame.EditModeTests.dll" fullname="D:/TCC-Game/Library/ScriptAssemblies/TCCGame.EditModeTests.dll" runstate="Runnable" testcasecount="170" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.321971" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="6844" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1213" name="TCCGame" fullname="TCCGame" runstate="Runnable" testcasecount="167" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.320542" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1214" name="Tests" fullname="TCCGame.Tests" runstate="Runnable" testcasecount="167" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.319425" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestSuite" id="1215" name="EditMode" fullname="TCCGame.Tests.EditMode" runstate="Runnable" testcasecount="167" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.318297" total="23" passed="23" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1022" name="CampaignPersistenceTests" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.163396" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1024" name="CampaignState_RoundTripsThroughPlayerPrefs" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests.CampaignState_RoundTripsThroughPlayerPrefs" methodname="CampaignState_RoundTripsThroughPlayerPrefs" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" seed="1969891257" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.093546" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="CorruptCampaign_NormalizesGatesAndWaveList" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests.CorruptCampaign_NormalizesGatesAndWaveList" methodname="CorruptCampaign_NormalizesGatesAndWaveList" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" seed="96264667" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.025541" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1023" name="DefaultSave_ClonesCampaignData" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests.DefaultSave_ClonesCampaignData" methodname="DefaultSave_ClonesCampaignData" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" seed="2134978983" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002346" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="VersionSixPendingWave_MigratesWithUnresolvedReport" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests.VersionSixPendingWave_MigratesWithUnresolvedReport" methodname="VersionSixPendingWave_MigratesWithUnresolvedReport" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" seed="1443909064" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.008138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1025" name="VersionThreeSave_MigratesWithoutLosingExistingState" fullname="TCCGame.Tests.EditMode.CampaignPersistenceTests.VersionThreeSave_MigratesWithoutLosingExistingState" methodname="VersionThreeSave_MigratesWithoutLosingExistingState" classname="TCCGame.Tests.EditMode.CampaignPersistenceTests" runstate="Runnable" seed="991733432" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.009136" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1096" name="GameSaveRobustnessTests" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.039156" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1102" name="BattleReport_RoundTripsAllConsequences" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.BattleReport_RoundTripsAllConsequences" methodname="BattleReport_RoundTripsAllConsequences" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="1642916611" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.003673" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1101" name="EarlierSchemaVersions_MigrateToCurrentVersion" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.EarlierSchemaVersions_MigrateToCurrentVersion" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.008789" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1097" name="EarlierSchemaVersions_MigrateToCurrentVersion(3)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.EarlierSchemaVersions_MigrateToCurrentVersion(3)" methodname="EarlierSchemaVersions_MigrateToCurrentVersion" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="1783335385" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.003018" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1098" name="EarlierSchemaVersions_MigrateToCurrentVersion(4)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.EarlierSchemaVersions_MigrateToCurrentVersion(4)" methodname="EarlierSchemaVersions_MigrateToCurrentVersion" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="869839199" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.001024" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1099" name="EarlierSchemaVersions_MigrateToCurrentVersion(5)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.EarlierSchemaVersions_MigrateToCurrentVersion(5)" methodname="EarlierSchemaVersions_MigrateToCurrentVersion" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="1004187820" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.001190" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+                <test-case id="1100" name="EarlierSchemaVersions_MigrateToCurrentVersion(6)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.EarlierSchemaVersions_MigrateToCurrentVersion(6)" methodname="EarlierSchemaVersions_MigrateToCurrentVersion" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="443734879" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.001480" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                </test-case>
+              </test-suite>
+              <test-case id="1103" name="InvalidCampaignValues_AreNormalizedWithoutInvalidEnums" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.InvalidCampaignValues_AreNormalizedWithoutInvalidEnums" methodname="InvalidCampaignValues_AreNormalizedWithoutInvalidEnums" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="954554106" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002603" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1107" name="MalformedCurrentSave_DoesNotPreventGameStartup" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.MalformedCurrentSave_DoesNotPreventGameStartup" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.017205" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1104" name="MalformedCurrentSave_DoesNotPreventGameStartup(&quot;{&quot;)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.MalformedCurrentSave_DoesNotPreventGameStartup(&quot;{&quot;)" methodname="MalformedCurrentSave_DoesNotPreventGameStartup" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="588397355" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.010536" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[The current save is invalid; a default save was created. ArgumentException
+]]></output>
+                </test-case>
+                <test-case id="1105" name="MalformedCurrentSave_DoesNotPreventGameStartup(&quot;not-json&quot;)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.MalformedCurrentSave_DoesNotPreventGameStartup(&quot;not-json&quot;)" methodname="MalformedCurrentSave_DoesNotPreventGameStartup" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="1573630820" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002934" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[The current save is invalid; a default save was created. ArgumentException
+]]></output>
+                </test-case>
+                <test-case id="1106" name="MalformedCurrentSave_DoesNotPreventGameStartup(&quot;{\&quot;version\&quot;:7,\&quot;campaign\&quot;:&quot;)" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.MalformedCurrentSave_DoesNotPreventGameStartup(&quot;{\&quot;version\&quot;:7,\&quot;campaign\&quot;:&quot;)" methodname="MalformedCurrentSave_DoesNotPreventGameStartup" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="1817791322" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002062" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[The current save is invalid; a default save was created. ArgumentException
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1108" name="SaveOperations_UseTheCurrentKeyInTheSelectedNamespace" fullname="TCCGame.Tests.EditMode.GameSaveRobustnessTests.SaveOperations_UseTheCurrentKeyInTheSelectedNamespace" methodname="SaveOperations_UseTheCurrentKeyInTheSelectedNamespace" classname="TCCGame.Tests.EditMode.GameSaveRobustnessTests" runstate="Runnable" seed="409638091" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002321" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1133" name="OfflineResumeTests" fullname="TCCGame.Tests.EditMode.OfflineResumeTests" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.104536" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1141" name="CollectedTaxesPersistAcrossReopeningWithoutASecondCredit" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.CollectedTaxesPersistAcrossReopeningWithoutASecondCredit" methodname="CollectedTaxesPersistAcrossReopeningWithoutASecondCredit" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="1752823165" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.062161" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TCC_OFFLINE expected_first_credit=120 observed_first_credit=120 expected_saved_balance=1120 observed_saved_balance=1120 expected_second_credit=0 observed_available=0 observed_second_credit=0 observed_final_balance=1120
+]]></output>
+              </test-case>
+              <test-suite type="ParameterizedMethod" id="1139" name="ReopeningCalculatesTaxesForTheEligibleInterval" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.025163" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+                <properties />
+                <test-case id="1134" name="ReopeningCalculatesTaxesForTheEligibleInterval(0,0)" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval(0,0)" methodname="ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="205064193" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.004581" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[TCC_OFFLINE absence_seconds=0 expected_gold=0 observed_preview=0 observed_collected=0 expected_balance=1000 observed_balance=1000
+]]></output>
+                </test-case>
+                <test-case id="1135" name="ReopeningCalculatesTaxesForTheEligibleInterval(360,120)" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval(360,120)" methodname="ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="1681610139" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.005327" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[TCC_OFFLINE absence_seconds=360 expected_gold=120 observed_preview=120 observed_collected=120 expected_balance=1120 observed_balance=1120
+]]></output>
+                </test-case>
+                <test-case id="1136" name="ReopeningCalculatesTaxesForTheEligibleInterval(86399,28799)" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval(86399,28799)" methodname="ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="2123434221" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.003639" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[TCC_OFFLINE absence_seconds=86399 expected_gold=28799 observed_preview=28799 observed_collected=28799 expected_balance=29799 observed_balance=29799
+]]></output>
+                </test-case>
+                <test-case id="1137" name="ReopeningCalculatesTaxesForTheEligibleInterval(86400,28800)" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval(86400,28800)" methodname="ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="639538305" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002403" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[TCC_OFFLINE absence_seconds=86400 expected_gold=28800 observed_preview=28800 observed_collected=28800 expected_balance=29800 observed_balance=29800
+]]></output>
+                </test-case>
+                <test-case id="1138" name="ReopeningCalculatesTaxesForTheEligibleInterval(172800,28800)" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningCalculatesTaxesForTheEligibleInterval(172800,28800)" methodname="ReopeningCalculatesTaxesForTheEligibleInterval" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="1716103709" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.002584" asserts="0">
+                  <properties>
+                    <property name="retryIteration" value="0" />
+                    <property name="repeatIteration" value="0" />
+                  </properties>
+                  <output><![CDATA[TCC_OFFLINE absence_seconds=172800 expected_gold=28800 observed_preview=28800 observed_collected=28800 expected_balance=29800 observed_balance=29800
+]]></output>
+                </test-case>
+              </test-suite>
+              <test-case id="1142" name="ReopeningPreservesCampaignTimeUntilItAdvancesInTheNewSession" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningPreservesCampaignTimeUntilItAdvancesInTheNewSession" methodname="ReopeningPreservesCampaignTimeUntilItAdvancesInTheNewSession" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="1083243028" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.009640" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TCC_OFFLINE absence_seconds=172800 expected_elapsed=47.25 observed_elapsed=47.25 expected_remaining=132.75 observed_remaining=132.75 expected_after_advance=52.25 observed_after_advance=52.25
+]]></output>
+              </test-case>
+              <test-case id="1140" name="ReopeningUsesOnlyTheRemainingTaxBudget" fullname="TCCGame.Tests.EditMode.OfflineResumeTests.ReopeningUsesOnlyTheRemainingTaxBudget" methodname="ReopeningUsesOnlyTheRemainingTaxBudget" classname="TCCGame.Tests.EditMode.OfflineResumeTests" runstate="Runnable" seed="1192093002" result="Passed" start-time="2026-11-11 00:09:26Z" end-time="2026-11-11 00:09:26Z" duration="0.004598" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[TCC_OFFLINE absence_seconds=7200 saved_eligible_seconds=84600 saved_accrued_gold=28200 expected_added_gold=600 observed_added_gold=600 observed_total_gold=28800
+Saving results to: C:/Users/marcos/AppData/LocalLow/DefaultCompany/TCC Game\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

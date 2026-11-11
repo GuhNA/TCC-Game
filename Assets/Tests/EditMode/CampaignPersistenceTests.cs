@@ -11,36 +11,18 @@ namespace TCCGame.Tests.EditMode
 {
     public sealed class CampaignPersistenceTests
     {
-        private bool hadSave;
-        private string previousSave;
+        private IsolatedGameSave save;
 
         [SetUp]
         public void SetUp()
         {
-            hadSave = PlayerPrefs.HasKey(GameSaveRepository.SaveKey);
-            previousSave = hadSave
-                ? PlayerPrefs.GetString(GameSaveRepository.SaveKey)
-                : null;
-            PlayerPrefs.DeleteKey(GameSaveRepository.SaveKey);
-            PlayerPrefs.Save();
+            save = new IsolatedGameSave();
         }
 
         [TearDown]
         public void TearDown()
         {
-            if (hadSave)
-            {
-                PlayerPrefs.SetString(
-                    GameSaveRepository.SaveKey,
-                    previousSave
-                );
-            }
-            else
-            {
-                PlayerPrefs.DeleteKey(GameSaveRepository.SaveKey);
-            }
-
-            PlayerPrefs.Save();
+            save?.Dispose();
         }
 
         [Test]
@@ -94,7 +76,7 @@ namespace TCCGame.Tests.EditMode
             });
             data.campaign.nextTroopTransferSequence = 2;
 
-            var repository = new GameSaveRepository();
+            var repository = save.OpenRepository();
             repository.Save(data);
             GameSaveData loaded = repository.Load();
 
@@ -133,11 +115,11 @@ namespace TCCGame.Tests.EditMode
                 "\"availableMages\":10}," +
                 "\"playerInventory\":{\"recruitedAdventurerIds\":" +
                 "[\"adventurer.archer\"],\"items\":[]}}";
-            PlayerPrefs.SetString(GameSaveRepository.SaveKey, json);
+            PlayerPrefs.SetString(save.SaveKey, json);
 
-            GameSaveData loaded = new GameSaveRepository().Load();
+            GameSaveData loaded = save.OpenRepository().Load();
 
-            Assert.That(loaded.version, Is.EqualTo(7));
+            Assert.That(loaded.version, Is.EqualTo(GameSaveData.CurrentVersion));
             Assert.That(loaded.money, Is.EqualTo(321));
             Assert.That(
                 loaded.GetBuildingLevel(BuildingType.Barracks),
@@ -147,8 +129,8 @@ namespace TCCGame.Tests.EditMode
             Assert.That(loaded.army.archers, Is.EqualTo(5));
             Assert.That(loaded.army.mages, Is.EqualTo(2));
             Assert.That(
-                loaded.playerInventory.recruitedAdventurerIds,
-                Does.Contain("adventurer.archer")
+                loaded.playerInventory.recruitedAdventurers.Select(record => record.definitionId),
+                Is.EqualTo(new[] { "adventurer.archer" })
             );
             AssertFourDefaultGates(loaded.campaign.gates);
             Assert.That(loaded.navigation, Is.Not.Null);
@@ -156,7 +138,7 @@ namespace TCCGame.Tests.EditMode
         }
 
         [Test]
-        public void VersionSixPendingWave_MigratesToUnresolvedV7Report()
+        public void VersionSixPendingWave_MigratesWithUnresolvedReport()
         {
             GameSaveData data = GameSaveData.CreateDefault();
             CampaignSaveDataUtility.Normalize(data);
@@ -174,13 +156,13 @@ namespace TCCGame.Tests.EditMode
             });
             data.campaign.nextWaveSequence = 2;
             PlayerPrefs.SetString(
-                GameSaveRepository.SaveKey,
+                save.SaveKey,
                 JsonUtility.ToJson(data)
             );
 
-            GameSaveData loaded = new GameSaveRepository().Load();
+            GameSaveData loaded = save.OpenRepository().Load();
 
-            Assert.That(loaded.version, Is.EqualTo(7));
+            Assert.That(loaded.version, Is.EqualTo(GameSaveData.CurrentVersion));
             Assert.That(loaded.campaign.scheduledWaves, Has.Count.EqualTo(1));
             WaveSaveData wave = loaded.campaign.scheduledWaves[0];
             Assert.That(wave.status, Is.EqualTo(WaveStatus.AwaitingResolution));
@@ -231,8 +213,8 @@ namespace TCCGame.Tests.EditMode
                 }
             };
 
-            new GameSaveRepository().Save(data);
-            GameSaveData loaded = new GameSaveRepository().Load();
+            save.OpenRepository().Save(data);
+            GameSaveData loaded = save.OpenRepository().Load();
 
             Assert.That(
                 loaded.campaign.elapsedStrategicSeconds,
