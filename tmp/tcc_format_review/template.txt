@@ -1,0 +1,227 @@
+--- PAGE 1 ---
+TÍTULO DO TRABALHO DE CONCLUSÃO DE CURSO – TIMES NEW ROMAN 
+TAMANHO 12 CENTRALIZADO
+Último Sobrenome, N.B.1,2; Último Sobrenome, C.M. 1,3 e Último Sobrenome, M.C1,4.
+1Centro Universitário da Fundação Hermínio Ometto, 2Discente, 3Orientador, 4Co-Orientadora
+1,2Nome completo do Discente – e-mail institucional do discente
+1,3Nome Completo do Orientador(a) – e-mail institucional do orientador(a)
+1,4Nome Completo do Co-Orientador(a) - e-mail institucional do co-orientador(a) 
+Resumo
+O resumo deve conter no máximo 200 palavras e dever ser inserido aqui. Deve apresentar, de 
+forma concisa, o objetivo, a metodologia, os resultados e as conclusões do trabalho. (Fonte 
+Times New Roman, tamanho 12 e Parágrafo Justificado em um único parágrafo. 
+Palavras-Chaves: (Inserir três palavras-chave com as letras minúsculas separadas por 
+vírgula)
+1. Introdução
+O objetivo deste documento, fundamentado na norma de referência: ABNT NBR 14724:2011, 
+é auxiliar os autores sobre o formato a ser utilizado nos artigos submetidos ao Núcleo de 
+Engenharia. Este documento está escrito de acordo com o modelo indicado para os artigos, 
+assim, serve de referência, ao mesmo tempo em que comenta os diversos aspectos da 
+formatação. 
+Observe as instruções e formate seu artigo de acordo com este padrão. Recomenda-se, para 
+isso, o uso dos estilos de formatação pré-definidos que constam deste documento. Para tanto, 
+basta copiar e colar os textos do original diretamente em uma cópia deste documento e 
+colocar fonte tamanho 12.
+Lembre-se que uma formatação correta é essencial para uma boa avaliação do seu trabalho. 
+Artigos fora da formatação serão retirados do processo de avaliação.
+ 
+2. Formatação geral
+Este texto apresenta o caso de Artigo Identificado. Portanto, ele deve conter Título, Autores, 
+Resumo e Palavras-chave. O artigo completo deve ter no mínimo 15 páginas e no máximo 20 
+
+--- PAGE 2 ---
+páginas. Procure tratar imagens e tabelas para que estas tenham um tamanho e qualidade 
+adequados.
+As margens devem ser: esquerda e superior de 3 cm e direita e inferior de 2 cm. O tamanho de 
+página deve ser A4, impreterivelmente. Por favor, verifique esse aspecto com especial 
+cuidado.
+O artigo deve ser escrito no formato do programa Microsoft Word 2003, ou superior. Se você 
+está lendo este documento, significa que você possui a versão adequada do programa. 
+Na sequência, passo a passo, serão especificados os detalhes da formatação.
+3. Títulos das sessões
+Os títulos das sessões do trabalho devem ser posicionados à esquerda, em negrito, numerados 
+com algarismos arábicos (1, 2, 3, etc.) e somente com a primeira inicial maiúscula. Deve-se 
+utilizar texto com fonte Times New Roman, tamanho 12, em negrito. Não coloque ponto final 
+nos títulos. 
+3.1. Subtítulos das sessões
+Os subtítulos das sessões do trabalho devem ser posicionados à esquerda, em negrito, 
+numerados com algarismos arábicos em subtítulos (1.1, 1.2, 1.3, etc.) e somente com a 
+primeira inicial maiúscula. Deve-se utilizar texto com fonte Times New Roman, tamanho 12, 
+em negrito. 
+3.2. Recomendação de estrutura de trabalho 
+Para compor o corpo do seu TCC, a estrutura deve seguir uma progressão lógica que guie o 
+leitor do problema à solução, como recomendação a estrutura abaixo, que pode ser alterada de 
+acordo com o orientador:
+ 1. Introdução
+ 2. Revisão Bibliográfica
+ 3. Metodologia
+ 4. Estudo de Caso ou Resultados
+ 5. Conclusão 
+
+--- PAGE 3 ---
+4. Corpo do texto
+O corpo do texto deve iniciar imediatamente abaixo do título ou subtítulo das sessões. O 
+corpo de texto utiliza fonte tipo Times New Roman, tamanho 12, justificado na direita e 
+esquerda, com espaçamento 1,5 entre as linhas. O corpo de texto também utiliza um 
+espaçamento de 6 pontos depois de cada parágrafo, exatamente como este parágrafo.
+Notas de rodapé: não devem ser utilizadas notas de rodapé.
+No caso do uso de listas, deve-se usar o marcador que aparece a seguir:
+ As listas devem ser justificadas na direita e na esquerda, da mesma maneira que os 
+trechos de corpo de texto;
+ Use ponto-e-vírgula para separar os itens de uma lista, exceto no último item;
+ A lista é separada do parágrafo de texto anterior por meia linha em branco (6 pontos) e 
+do parágrafo de corpo de texto seguinte por uma linha (12 pontos);
+ O estilo "Lista" pode ser usado para que a formatação pré-definida seja corretamente 
+empregada.
+É possível, também, o uso de alíneas, que obedecem às seguintes indicações:
+a) Cada item de alínea deve ser ordenado alfabeticamente por letras minúsculas seguidas 
+de parênteses, como neste exemplo;
+b) Use ponto-e-vírgula para separar as alíneas, exceto no último item;
+c) A lista de alíneas é separada do parágrafo de texto anterior por meia linha em branco (6 
+pontos) e do parágrafo de corpo de texto seguinte por uma linha (12 pontos); 
+d) O estilo "Alínea" constante deste documento pode ser usado para a aplicação 
+automática da formatação correta de alíneas.
+No caso de nova lista de alíneas, a lista alfabética deve ser reiniciada. Veja em seu editor 
+como fazer isso:
+a) Uma nova alínea, assim, recomeça a partir da letra a);
+b) Os itens de alínea são separados entre si por ponto-e-vírgula;
+c) O último item de alínea pode terminar com ponto, dependendo de como segue a escrita 
+do texto. 
+
+--- PAGE 4 ---
+5. Formatação de tabelas, figuras e quadros
+As tabelas e figuras devem possuir títulos (cabeçalhos) localizados na parte superior 
+antecedidos da palavra que o designa (Tabela, Figura, Esquema, Fluxograma, Imagem, etc.), 
+seguidos do número de ordem de ocorrência no texto, em algarismos arábicos e travessão, que 
+serve para separação do título. 
+O título da tabela deve indicar a natureza e abrangência geográfica e temporal dos dados 
+numéricos, não deve conter abreviações, apenas descrição por extenso de forma clara e 
+objetiva.
+As fontes consultadas são obrigatórias, mesmo que seja de produção do próprio autor, devem 
+estar localizadas na parte inferior contendo notas e outras informações necessárias à sua 
+compreensão (caso aplicável).
+Esses objetos, bem como seus respectivos títulos e fontes consultadas, devem ser 
+centralizados na página (ver exemplos da Figura 1 e Tabela 1). Para as segundas deve-se 
+utilizar fonte Times New Roman, tamanho 10, centralizada e não levam ponto final. Use, para 
+isso, os estilos sugeridos "Figura" ou "Tabela" conforme descritos abaixo.
+Importante: deve ser evitado o uso de objetos "flutuando sobre o texto". Em vez disso, os 
+objetos devem ser inseridos "alinhados com o texto". Veja em seu editor de textos como fazer 
+isso.
+Figura 1 - Exemplo de figura
+Fonte: Adaptado de Mays apud Greenhalg (1997)
+
+--- PAGE 5 ---
+Tabela 1 - Exemplo de tabela
+Item Quantidade Percentual
+Teoria social 22 7,9%
+Método 34 12,3%
+Questão 54 19,5%
+Raciocínio 124 44,8%
+Método de amostragem 33 11,9%
+Força 10 3,6%
+Fonte: Adaptado de Mays apud Greenhalg (1997)
+Quadro 1 – Exemplo de Quadro
+Termos da pesquisa ResultadosScopus ISI
+Frase inicial 
+de pesquisa, 
+restrita à 
+busca apenas 
+por artigos
+(Oil OR Gas OR Petroleum) AND (Planning OR 
+Management OR Project OR Design)
+92.088 3.969
+Filtro 
+associado ao 
+termo 
+multicritério
+Aggregated Indices Randomization Method OR 
+ARIM
+0 0
+Analytic Hierarchy Process OR AHP 189 3
+Analytic Network Process OR ANP 83 0
+Borda 0 0
+Condorcet 0 0
+Disaggregation – Aggregation Approaches OR UTA 
+OR UTAII OR UTADIS
+0 0
+Dominance-based Rough Set Approach OR DRSA 0 0
+Elimination et Choix Traduisant la Réalité OR 
+ELECTRE
+19 0
+Evidential Reasoning Approach 4 0
+New Approach to Appraisal 0 0
+Potentially all pairwise rankings of all possible 
+alternatives OR PAPRIKA
+14 0
+Preference Ranking Organization Method for 
+Enrichment of Evaluations OR PROMETHEE
+21 0
+TODIM 1 0
+TOPSIS 1 1
+
+--- PAGE 6 ---
+Weighted Product Model OR WPM 0 0
+Weighted Sum Model OR WSM 0 0
+Fonte: Se for o próprio autor, não é necessário referenciar. Caso contrário, referenciar.
+Para diferenciar os elementos ilustrativos em seu trabalho, é importante observar que o 
+Quadro é utilizado para apresentar informações predominantemente qualitativas, como textos, 
+descrições, teorias ou comparações. Visualmente, ele deve ser formatado com todos os lados 
+fechados por linhas, formando uma moldura completa que delimita o conteúdo. Por outro 
+lado, a Tabela é reservada estritamente para dados numéricos e estatísticos, tendo como 
+objetivo facilitar a leitura rápida de valores e somatórios. Seguindo as normas adotadas pela 
+ABNT, a tabela deve possuir as laterais abertas (sem linhas verticais de fechamento), e o uso 
+de linhas horizontais internas deve ser minimizado para garantir a clareza visual dos dados 
+apresentados.
+5.1 Equações e Fórmulas
+As equações e fórmulas devem aparecer em destaque no texto, sendo centralizadas e, sempre 
+que necessário, numeradas consecutivamente com algarismos arábicos entre parênteses, 
+alinhados à direita. Quando aparecem na sequência do texto, devem ser lidas como parte da 
+frase, utilizando a pontuação adequada. Para garantir a clareza, recomenda-se o uso de 
+editores de equações específicos. Abaixo, apresenta-se um exemplo de como a fórmula deve 
+ser disposta:
+                                                             (1)
+Onde:
+A = representa a área do círculo;
+ = a constante pi (aproximadamente 3,14159);
+r = corresponde ao raio da circunferência. 
+6. Submissão e classificação dos artigos
+Os artigos devem ser submetidos em português.
+7. Citações e formatação das referências
+De acordo com Fulano (2011), citar corretamente a literatura é muito importante. 
+
+--- PAGE 7 ---
+A citação de autores ao longo do texto é feita em letras minúsculas, enquanto a citação de 
+autores entre parêntese ao final do parágrafo deve ser feita em letra maiúscula.
+Citar trechos de trabalhos de outros autores, sem referenciar adequadamente, pode ser 
+enquadrado como plágio (Fulano; Beltrano, 2012).
+Para as referências, ao final do artigo, deve-se utilizar texto com fonte Times New Roman, 
+tamanho 10, separadas entre si por um espaço simples em branco, prevendo 6 pontos depois 
+de cada referência, exatamente conforme aparece nas referências aleatórias incluídas a seguir. 
+Diferentemente deste exemplo ilustrativo, somente autores usados no texto devem ser citados 
+nas referências e as referências devem conter todos os autores citados no texto. 
+As referências devem aparecer em ordem alfabética e não devem ser numeradas. Todas as 
+referências citadas no texto, e apenas estas, devem ser incluídas ao final, na seção 
+Referências. 
+REFERÊNCIAS
+As referências são alinhadas somente à margem esquerda do texto e de forma a identificar o 
+documento, separadas por espaços simples.
+AZEVEDO, Dermi. Sarney Convida Igrejas Cristãs para Diálogo sobre o Pacto. Folha de 
+São Paulo, São Paulo, 22 out. 1985. Caderno econômico, p. 13.
+MELLO, Luiz Antonio. A Onda Maldita: como nasceu a Fluminense FM. Niterói: Arte & 
+Ofício, 1992. Disponível em: <http://www.actech.com.br/aondamaldita/ 
+creditos.html> Acesso em: 13 out. 1997.
+NEVESA, Roberta Braga, PEREIRA, Valdeci e COSTA, Helder Gomes. Auxílio 
+multicritério à decisão aplicado ao planejamento e gestão na indústria de petróleo e gás. 
+Production, São Paulo, v. 25, nº 1, p. 43-53, jan/mar, 2015. 
+OTT, Margot Bertolucci. Tendências Ideológicas no Ensino de Primeiro Grau. Porto 
+Alegre: UFRGS, 1983. 214 p. Tese (Doutorado) – Programa de Pós-Graduação em Educação, 
+Faculdade de Educação, Universidade Federal do Rio Grande do Sul, Porto Alegre, 1983.
+SAVIANI, Demerval. A Universidade e a Problemática da Educação e Cultura. Educação 
+Brasileira, Brasília, v. 1, n. 3, p. 35-58, maio/ago. 1979.
+SCHWARTZMAN, Simon. Como a Universidade Está se Pensando? In: PEREIRA, Antonio 
+Gomes (Org.). Para Onde Vai a Universidade Brasileira? Fortaleza: UFC, 1983. P. 29-45.
+ANEXO
+
+--- PAGE 8 ---
+Os anexos devem vir ao final do trabalho. Vale salientar que o trabalho completo, 
+incluindo resumo, referências bibliográficas, e os anexos, não deve exceder 20 páginas.

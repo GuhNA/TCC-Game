@@ -1,0 +1,185 @@
+{
+  "pages": 17,
+  "abstract_words": 157,
+  "keywords": [
+    "desenvolvimento independente",
+    "jogos idle",
+    "design de jogos"
+  ],
+  "references": 15,
+  "figures": 8,
+  "et_al_occurrences": 7,
+  "body_font": "Times New Roman 12",
+  "body_spacing": "1.5; 6 pt after",
+  "reference_font": "Times New Roman 10",
+  "reference_spacing": "single; 6 pt after",
+  "paper": "A4",
+  "margins_cm": {
+    "left": 3,
+    "top": 3,
+    "right": 2,
+    "bottom": 2
+  },
+  "original_preserved": true,
+  "all_figure_files_preserved": true,
+  "visual_review": "All 17 final pages inspected; page 5 reinspected after final italic correction. No clipping, overlap, missing figures or out-of-margin text found.",
+  "pending": [
+    "Three institutional email placeholders remain."
+  ],
+  "scope_note": "PDF governs non-italic formatting, including uppercase parenthetical author calls. NBR 10520:2023 was applied to italic citation expressions. Foreign terms were made consistent with the existing document style.",
+  "bounds": [
+    {
+      "page": 1,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.804,
+        782.208
+      ]
+    },
+    {
+      "page": 2,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.7279999999997,
+        744.4119999999999
+      ]
+    },
+    {
+      "page": 3,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.78,
+        766.728
+      ]
+    },
+    {
+      "page": 4,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.7879999999998,
+        717.7719999999999
+      ]
+    },
+    {
+      "page": 5,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.744,
+        765.168
+      ]
+    },
+    {
+      "page": 6,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.7560000000001,
+        679.012
+      ]
+    },
+    {
+      "page": 7,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.684,
+        765.168
+      ]
+    },
+    {
+      "page": 8,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.756,
+        685.012
+      ]
+    },
+    {
+      "page": 9,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.8239999999998,
+        748.728
+      ]
+    },
+    {
+      "page": 10,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.7679999999999,
+        783.168
+      ]
+    },
+    {
+      "page": 11,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.6919999999999,
+        777.32736
+      ]
+    },
+    {
+      "page": 12,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.6120000000001,
+        578.5419999999999
+      ]
+    },
+    {
+      "page": 13,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.6,
+        744.1719999999999
+      ]
+    },
+    {
+      "page": 14,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.4639999999998,
+        782.688
+      ]
+    },
+    {
+      "page": 15,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.744,
+        738.1719999999999
+      ]
+    },
+    {
+      "page": 16,
+      "bounds": [
+        85.104,
+        86.85199999999998,
+        538.7881600000001,
+        770.84736
+      ]
+    },
+    {
+      "page": 17,
+      "bounds": [
+        85.104,
+        86.65135999999995,
+        533.13364,
+        287.5613599999999
+      ]
+    }
+  ]
+}

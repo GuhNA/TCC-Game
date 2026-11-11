@@ -1,0 +1,132 @@
+{
+  "addition": "No desenvolvimento do protótipo, o balanceamento foi a atividade mais trabalhosa para a equipe. A dificuldade esteve em conciliar o ritmo de geração de ouro, os custos de melhorias e contratações e o avanço da força das ondas. Como esses elementos são interdependentes, o ajuste de um parâmetro exige considerar seus efeitos sobre a economia, a defesa e a exploração ao longo da partida.",
+  "italics": [
+    {
+      "paragraph": "PROCESSOS DE DESENVOLVIMENTO DE JOGOS INDIES",
+      "term": "INDIES"
+    },
+    {
+      "paragraph": "Este trabalho apresenta o desenvolvimento de um jogo in",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Palavras-chave: desenvolvimento independente, jogos idl",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Palavras-chave: desenvolvimento independente, jogos idl",
+      "term": "design"
+    },
+    {
+      "paragraph": "O protótipo combina momentos de decisão com períodos de",
+      "term": "et al."
+    },
+    {
+      "paragraph": "O protótipo combina momentos de decisão com períodos de",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Em um jogo idle concebido para durar várias sessões, o ",
+      "term": "idle"
+    },
+    {
+      "paragraph": "A pergunta deste trabalho é como uma equipe pequena pod",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Os jogos idle exploram uma forma de jogar que alterna p",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Os jogos idle exploram uma forma de jogar que alterna p",
+      "term": "Idle"
+    },
+    {
+      "paragraph": "O objetivo geral é desenvolver um protótipo independent",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Documentar a organização e a integração das entregas e ",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Politowski et al. (2021) analisaram 200 relatos pós-pro",
+      "term": "et al."
+    },
+    {
+      "paragraph": "Kultima, Ojanen e Nylund (2024) usam uma linha do tempo",
+      "term": "design"
+    },
+    {
+      "paragraph": "2.2. Documentação de design e dependências entre sistem",
+      "term": "design"
+    },
+    {
+      "paragraph": "O Game Design Document (GDD) registra regras e decisões",
+      "term": "et al."
+    },
+    {
+      "paragraph": "O Game Design Document (GDD) registra regras e decisões",
+      "term": "Design"
+    },
+    {
+      "paragraph": "2.3. Espera, planejamento e retorno em jogos idle",
+      "term": "idle"
+    },
+    {
+      "paragraph": "Alharthi et al. (2018) examinaram 66 jogos idle e os co",
+      "term": "et al."
+    },
+    {
+      "paragraph": "Alharthi et al. (2018) examinaram 66 jogos idle e os co",
+      "term": "idle"
+    },
+    {
+      "paragraph": "As regras variam conforme a atividade. Em Melvor Idle, ",
+      "term": "Idle"
+    },
+    {
+      "paragraph": "A divisão também orientava o uso do Git. Em uma das reu",
+      "term": "commits"
+    },
+    {
+      "paragraph": "A divisão também orientava o uso do Git. Em uma das reu",
+      "term": "branch"
+    },
+    {
+      "paragraph": "A equipe adotou Unity e C# pela familiaridade com as fe",
+      "term": "sprites"
+    },
+    {
+      "paragraph": "A divisão do trabalho por cenas ajudou a equipe a avanç",
+      "term": "design"
+    },
+    {
+      "paragraph": "O desenvolvimento reuniu economia, defesa, contratação ",
+      "term": "idle"
+    },
+    {
+      "paragraph": "ALHARTHI, Sultan A. et al. Playing to wait: a taxonomy ",
+      "term": "et al."
+    },
+    {
+      "paragraph": "ALHARTHI, Sultan A. et al. Playing to wait: a taxonomy ",
+      "term": "In"
+    },
+    {
+      "paragraph": "CARRIJO, Gabriel F. et al. Uma revisão sistemática de l",
+      "term": "et al."
+    },
+    {
+      "paragraph": "CARRIJO, Gabriel F. et al. Uma revisão sistemática de l",
+      "term": "In"
+    },
+    {
+      "paragraph": "POLITOWSKI, Cristiano et al. Game industry problems: an",
+      "term": "et al."
+    }
+  ],
+  "original_sha256": "65f25f31c2750e79175090910fed54cf07bcbc3bbc18220f6450503f2f3dcb33",
+  "output": "G:\\Unity projects\\TCC-Game\\Docs\\Processos de desenvolvimento de jogos indies - revisado.docx",
+  "abstract_words": 157
+}

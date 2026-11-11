@@ -1,0 +1,37 @@
+{
+  "new_section": "4.3. Exploração, combate temporizado e gestão de recursos",
+  "added_words": 402,
+  "figures": [
+    {
+      "caption": "Figura 6 — Combate por turnos temporizados nas Colinas do Vento",
+      "width_cm": 13.5,
+      "height_cm": 7.6009472222222225,
+      "source_sha256": "59aaf5576a9a4382d229d049e710ad27b97a0daa053eb83f9cdca98696945615"
+    },
+    {
+      "caption": "Figura 7 — Mapa de exploração e seleção de destinos",
+      "width_cm": 13.5,
+      "height_cm": 7.5873083333333335,
+      "source_sha256": "aec01b4aec6c72d67989a42fe3173647635785f3c831139bc3ae1f8b240d20b4"
+    },
+    {
+      "caption": "Figura 8 — Relatório da região e gestão de exploradores",
+      "width_cm": 13.5,
+      "height_cm": 7.547141666666667,
+      "source_sha256": "0be5125354f419160ce1b8ff94a91b082e7cadd414a2362a0801508558dad970"
+    }
+  ],
+  "old_sections_and_figures_renumbered": {
+    "4.3. Retomada da partida": "4.4. Retomada da partida",
+    "4.4. Verificação dos comportamentos de retorno": "4.5. Verificação dos comportamentos de retorno",
+    "4.5. Discussão e limites da avaliação": "4.6. Discussão e limites da avaliação",
+    "As Figuras 6 a 8 apresentam": "As Figuras 9 a 11 apresentam",
+    "Figura 6 —": "Figura 9 —",
+    "Figura 7 —": "Figura 10 —",
+    "Figura 8 —": "Figura 11 —",
+    "A Figura 7 mostra": "A Figura 10 mostra",
+    "A Figura 8 mostra": "A Figura 11 mostra"
+  },
+  "base_sha256": "50fd17108978ab45869c108856599e6f8936bbbffa0f11c22d375b09a1949d20",
+  "output": "G:\\Unity projects\\TCC-Game\\Docs\\Processos de desenvolvimento de jogos indies - revisado com exploração.docx"
+}
